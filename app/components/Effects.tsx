@@ -5,7 +5,7 @@ import { useEffect } from "react";
 /**
  * Homepage interactions ported from the original js/main.js:
  * nav-solid-on-scroll, side drawer + accordions, eased stat counters,
- * scroll reveals, testimonial carousel, image fallback, and newsletter validation.
+ * scroll reveals, testimonial carousel, and image fallback.
  * Runs once on mount and wires listeners onto the server-rendered DOM.
  */
 export default function Effects() {
@@ -52,12 +52,6 @@ export default function Effects() {
       heroVideo.pause();
       heroVideo.load();
     }
-
-    /* ---------- Nav: solid on scroll ---------- */
-    const nav = document.querySelector(".nav");
-    const syncNav = () => nav?.classList.toggle("is-solid", window.scrollY > 40);
-    add(window, "scroll", syncNav, { passive: true });
-    syncNav();
 
     /* ---------- Side drawer ---------- */
     const burger = document.querySelector<HTMLButtonElement>(".nav__burger");
@@ -197,23 +191,7 @@ export default function Effects() {
       cleanups.push(() => { if (timer) clearInterval(timer); });
     }
 
-    /* ---------- Newsletter form (frontend-only mockup) ---------- */
-    const form = document.querySelector<HTMLFormElement>(".newsletter__form");
-    if (form) {
-      add(form, "submit", (e) => {
-        e.preventDefault();
-        const emailField = form.querySelector<HTMLInputElement>("#nl-email");
-        if (!emailField) return;
-        const fieldWrap = emailField.closest(".field");
-        const error = fieldWrap?.querySelector<HTMLElement>(".field__error");
-        const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value.trim());
-        fieldWrap?.classList.toggle("is-error", !valid);
-        if (error) error.hidden = valid;
-        if (!valid) { emailField.focus(); return; }
-        const btn = form.querySelector<HTMLButtonElement>(".newsletter__submit");
-        if (btn) { btn.textContent = "Signed Up ✓"; btn.disabled = true; }
-      });
-    }
+    /* Newsletter validation lives in <NewsletterForm />, which owns that markup. */
 
     return () => {
       cleanups.forEach((fn) => fn());

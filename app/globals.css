@@ -609,3 +609,18 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
   .carousel__slide { transition: opacity 200ms ease; transform: none; }
   .listing__media img, .hood img, .post img { transition: none; }
 }
+
+/* ==========================================================================
+   Shared inner-page header (Contact, Properties, …)
+   ========================================================================== */
+.ck-page-head {
+  background: var(--parchment);
+  padding: clamp(7rem, 13vh, 9.5rem) 0 clamp(2.6rem, 5vw, 4rem);
+  text-align: center;
+}
+.ck-page-head .eyebrow { justify-content: center; }
+.ck-page-head h1 {
+  font-family: var(--serif); font-weight: 500; font-size: var(--fs-h1);
+  line-height: 1.05; letter-spacing: -0.015em; color: var(--ink);
+}
+.ck-page-head p { color: var(--ink-soft); max-width: 54ch; margin: 1.2rem auto 0; }

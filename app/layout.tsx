@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Effects from "./components/Effects";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -28,7 +31,13 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${cormorant.variable} ${dmSans.variable}`}>{children}</body>
+      <body className={`${cormorant.variable} ${dmSans.variable}`}>
+        <a className="skip-link" href="#main">Skip to content</a>
+        <Header />
+        {children}
+        <Footer />
+        <Effects />
+      </body>
     </html>
   );
 }

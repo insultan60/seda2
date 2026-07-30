@@ -1,0 +1,3 @@
+/* Journal index — Moss & Clay */
+.ck-journal { background: var(--off-white); padding-block: var(--section-y); }
+.ck-journal .journal__grid { margin-top: 0; }

@@ -1,0 +1,62 @@
+/* ==========================================================================
+   Contact page — Moss & Clay
+   ========================================================================== */
+/* ---------- Contact grid ---------- */
+.ck-contact { background: var(--off-white); padding-block: var(--section-y); }
+.ck-contact__grid {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(2.5rem, 6vw, 5rem); align-items: start;
+}
+.ck-contact__details { display: grid; gap: 1.7rem; }
+.ck-contact__team { font-family: var(--serif); font-size: 1.6rem; color: var(--moss); margin-bottom: .3rem; }
+.ck-contact__item { display: flex; gap: 1rem; align-items: flex-start; }
+.ck-contact__ic {
+  width: 44px; height: 44px; border-radius: 50%; flex: none;
+  display: grid; place-items: center; border: 1px solid var(--clay); color: var(--moss);
+}
+.ck-contact__ic svg { width: 18px; height: 18px; }
+.ck-contact__label { font-size: var(--fs-micro); font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--moss); margin-bottom: .2rem; }
+.ck-contact__val { font-size: 1rem; color: var(--ink); line-height: 1.6; }
+.ck-contact__val a:hover { color: var(--moss); }
+.ck-contact__social { display: flex; gap: .7rem; margin-top: .3rem; }
+.ck-contact__social a {
+  width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--clay);
+  display: grid; place-items: center; color: var(--moss);
+  transition: background-color 160ms var(--ease), color 160ms var(--ease);
+}
+.ck-contact__social a svg { width: 17px; height: 17px; }
+.ck-contact__social a:hover { background: var(--clay-light); }
+.ck-contact__licensing { font-size: var(--fs-micro); letter-spacing: .06em; color: var(--ink-soft); line-height: 1.9; }
+
+/* ---------- Form card ---------- */
+.ck-form-card { background: var(--white); border: 1px solid var(--clay-light); padding: clamp(1.8rem, 3vw, 2.8rem); }
+.ck-form-card h2 { font-family: var(--serif); font-weight: 500; font-size: var(--fs-h3); color: var(--ink); margin-bottom: 1.4rem; }
+.ck-form { display: grid; gap: 1.2rem; }
+.ck-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.ck-form .field label { color: var(--moss); }
+.ck-form .field input,
+.ck-form .field textarea {
+  font: inherit; color: var(--ink); background: var(--off-white);
+  border: 1px solid var(--clay-light); padding: .85rem 1rem; min-height: 48px;
+  transition: border-color 160ms var(--ease), background-color 160ms var(--ease);
+}
+.ck-form .field textarea { min-height: 128px; resize: vertical; line-height: 1.55; }
+.ck-form .field input::placeholder, .ck-form .field textarea::placeholder { color: var(--ink-soft); opacity: .6; }
+.ck-form .field input:focus, .ck-form .field textarea:focus { outline: none; border-color: var(--moss); background: var(--white); }
+.ck-form .btn { justify-self: start; margin-top: .2rem; }
+.ck-form__status { font-size: var(--fs-small); color: var(--moss); min-height: 1.2rem; }
+
+/* ---------- Map ---------- */
+.ck-map { background: var(--parchment); padding-block: var(--section-y); }
+.ck-map__head { margin-bottom: 2rem; }
+.ck-map__head h2 { font-family: var(--serif); font-weight: 500; font-size: var(--fs-h2); color: var(--ink); margin-top: .4rem; }
+.ck-map__head p { color: var(--ink-soft); margin-top: .5rem; }
+.ck-map__frame { width: 100%; height: 440px; border: 0; display: block; filter: grayscale(.25) contrast(1.03); }
+
+@media (max-width: 1023px) {
+  .ck-contact__grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 639px) {
+  .ck-form__row { grid-template-columns: 1fr; }
+  .ck-map__frame { height: 320px; }
+}

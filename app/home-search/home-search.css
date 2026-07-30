@@ -1,0 +1,59 @@
+/* ==========================================================================
+   Home Search — re-skin of the Andrew search UI to Alexandra's Moss & Clay.
+   The ported stylesheet (andrew-search.css) reads generic design tokens; here we
+   alias those tokens to the Moss & Clay palette, scoped to .page-search, so the
+   whole search experience renders on-brand without touching that stylesheet.
+   ========================================================================== */
+.page-search {
+  --gold: var(--moss);
+  --gold-deep: var(--moss-deep);
+  --gold-tint: var(--clay-light);
+  --brand: var(--moss-deep);
+  --brand-hover: var(--moss-shadow);
+  --sage: var(--moss);
+  --ivory: var(--parchment);
+  --ivory-deep: var(--clay-light);
+  --paper: var(--white);
+  --muted: var(--ink-soft);
+  --line: rgba(28, 28, 26, 0.14);
+  --line-soft: rgba(28, 28, 26, 0.08);
+  --on-dark: var(--parchment);
+  --font-display: var(--serif);
+  --ease-out: var(--ease);
+  --dur: 220ms;
+  --radius-lg: 4px;
+  --radius-md: 3px;
+  --radius-sm: 2px;
+  /* Alexandra's nav is position:fixed (~90px: 58px logo + 2×1rem padding), so the
+     page must pad its own top and the sticky filter bar must offset by the nav height. */
+  --header-solid: 90px;
+  --shadow-soft: 0 2px 10px rgba(46, 53, 42, 0.06), 0 12px 30px rgba(46, 53, 42, 0.08);
+  --shadow-float: 0 6px 16px rgba(46, 53, 42, 0.1), 0 22px 50px rgba(46, 53, 42, 0.16);
+  padding-top: var(--header-solid);
+}
+/* Keep the split view a full viewport tall below the fixed nav (not 100vh + nav). */
+.page-search .search-page { min-height: calc(100vh - var(--header-solid)); }
+
+/* Button primitives the ported markup relies on (compact, on-brand) */
+.page-search .btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  min-height: 44px; padding: .7rem 1.3rem;
+  font-family: var(--sans); font-size: var(--fs-small); font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase; white-space: nowrap;
+  border: 1px solid transparent; border-radius: 999px; cursor: pointer;
+  transition: background-color 180ms var(--ease), color 180ms var(--ease),
+              border-color 180ms var(--ease), transform 160ms var(--ease);
+}
+.page-search .btn:active { transform: scale(.97); }
+.page-search .btn-primary { background: var(--moss); color: var(--parchment); }
+.page-search .btn-primary:hover { background: var(--moss-deep); }
+.page-search .btn-secondary { background: transparent; color: var(--moss); border-color: var(--clay); }
+.page-search .btn-secondary:hover { background: var(--parchment); border-color: var(--moss); }
+.page-search .btn-tertiary { background: transparent; color: var(--moss); border: 0; min-height: auto; padding: .4rem .6rem; }
+.page-search .btn-tertiary:hover { color: var(--moss-deep); }
+.page-search .btn-sm { min-height: 38px; padding: .5rem 1rem; font-size: var(--fs-micro); }
+.page-search .btn-arrow { width: 16px; height: 16px; }
+.page-search .visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
