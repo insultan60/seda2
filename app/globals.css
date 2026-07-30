@@ -21,9 +21,9 @@
   --ink-soft:    #55534C;
   --alert:       #A04040;
 
-  /* Type */
-  --serif: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
-  --sans:  'DM Sans', 'Helvetica Neue', 'Arial', sans-serif;
+  /* Type — wired to next/font (see layout.tsx) with graceful fallbacks */
+  --serif: var(--font-cormorant), 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
+  --sans:  var(--font-dmsans), 'DM Sans', 'Helvetica Neue', 'Arial', sans-serif;
 
   /* Fluid scale */
   --fs-body:  clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
