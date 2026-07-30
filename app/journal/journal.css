@@ -1,3 +1,108 @@
-/* Journal index — Moss & Clay */
-.ck-journal { background: var(--off-white); padding-block: var(--section-y); }
-.ck-journal .journal__grid { margin-top: 0; }
+/* ==========================================================================
+   The Latest Real Estate News (journal index) — Moss & Clay
+   NOTE: the hero here mirrors .pf-hero in properties.css. Two page heroes is
+   tolerable; if a third appears, promote the shared rules to globals.css.
+   ========================================================================== */
+
+/* ---------- Hero ---------- */
+.jr-hero {
+  position: relative;
+  min-height: clamp(300px, 42vh, 420px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--moss-shadow);
+}
+.jr-hero__img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  /* favour the upper frame — keeps the MLS watermark in the source photo cropped out */
+  object-position: center 32%;
+  filter: saturate(.55) contrast(.95);
+}
+.jr-hero__scrim {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(120% 80% at 50% 50%, rgba(28, 31, 25, .66) 0%, rgba(28, 31, 25, .38) 58%, transparent 100%),
+    linear-gradient(180deg, rgba(46, 53, 42, .74) 0%, rgba(46, 53, 42, .52) 45%, rgba(46, 53, 42, .8) 100%);
+}
+.jr-hero__inner { position: relative; text-align: center; padding-block: clamp(6rem, 12vh, 8rem) clamp(2rem, 4vw, 3rem); }
+.jr-hero__inner .eyebrow { justify-content: center; }
+.jr-hero__title {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(2rem, 1.4rem + 3.2vw, 4rem); line-height: 1.08;
+  letter-spacing: .03em; text-transform: uppercase; color: var(--parchment);
+  margin-top: .6rem; text-wrap: balance;
+}
+.jr-hero__title span { display: block; font-size: .62em; letter-spacing: .06em; color: rgba(245, 240, 225, .82); }
+
+/* ---------- Feed ---------- */
+.jr-feed { background: var(--off-white); padding-block: clamp(2.5rem, 5vw, 4rem) var(--section-y); }
+
+.jr-meta {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: var(--fs-micro); font-weight: 600; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--moss);
+}
+.jr-meta__dot { color: var(--clay); }
+.jr-meta__tag { color: var(--ink-soft); }
+
+/* Masonry — three flex columns fed round-robin (see page.tsx) so mixed-height
+   cards tile while the feed still reads newest-first across the top row. */
+.jr-masonry {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 1.75rem); align-items: start;
+}
+.jr-masonry__col { display: flex; flex-direction: column; gap: clamp(1.25rem, 2.5vw, 1.75rem); }
+.jr-card {
+  background: var(--white);
+  border: 1px solid var(--clay-light);
+}
+
+.jr-card__media { display: block; overflow: hidden; aspect-ratio: 3 / 2; background: var(--clay-light); }
+.jr-card__media img { transition: transform 500ms var(--ease); }
+.jr-card:hover .jr-card__media img { transform: scale(1.04); }
+
+.jr-card__body { padding: clamp(1.1rem, 2vw, 1.5rem); }
+.jr-card__title {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(1.2rem, 1.1rem + .45vw, 1.5rem); line-height: 1.2;
+  color: var(--ink); margin: .6rem 0 .6rem;
+}
+.jr-card__title a { transition: color 160ms var(--ease); }
+.jr-card__title a:hover { color: var(--moss); }
+.jr-card__excerpt {
+  font-size: var(--fs-small); line-height: 1.65; color: var(--ink-soft);
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+  line-clamp: 3; overflow: hidden;
+}
+.jr-card__cta {
+  display: inline-block; margin-top: 1.1rem;
+  font-size: var(--fs-micro); font-weight: 600; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--moss);
+  border: 1px solid var(--clay); padding: .6rem 1.1rem;
+  transition: background-color 160ms var(--ease), border-color 160ms var(--ease), color 160ms var(--ease);
+}
+.jr-card__cta:hover { background: var(--moss); border-color: var(--moss); color: var(--parchment); }
+
+/* ---------- Closing CTA ---------- */
+.jr-cta { background: var(--moss); padding-block: clamp(3.5rem, 7vw, 6rem); }
+.jr-cta__inner {
+  display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, auto);
+  gap: clamp(2rem, 5vw, 4rem); align-items: center;
+}
+.jr-cta__sub { color: rgba(245, 240, 225, .8); max-width: 54ch; margin-top: 1.1rem; }
+.jr-cta__actions { display: flex; flex-direction: column; gap: .9rem; min-width: min(280px, 100%); }
+.jr-cta__actions .btn { justify-content: center; }
+
+@media (max-width: 1023px) {
+  /* Collapse the column wrappers so every card becomes a direct grid item and
+     its `order` (global post index) drives a chronological row-major layout. */
+  .jr-masonry { grid-template-columns: repeat(2, 1fr); }
+  .jr-masonry__col { display: contents; }
+  .jr-cta__inner { grid-template-columns: 1fr; }
+  .jr-cta__actions { flex-direction: row; flex-wrap: wrap; }
+}
+@media (max-width: 639px) {
+  .jr-masonry { grid-template-columns: 1fr; }
+  .jr-cta__actions .btn { width: 100%; }
+}

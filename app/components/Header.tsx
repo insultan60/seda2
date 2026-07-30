@@ -22,7 +22,7 @@ const DRAWER_GROUPS_2 = [
 
 // Routes that open on a full-bleed image hero — the nav rides transparent over
 // them until the user scrolls. Everywhere else it stays solid from the start.
-const HERO_ROUTES = ["/", "/properties"];
+const HERO_ROUTES = ["/", "/properties", "/journal"];
 
 export default function Header() {
   const pathname = usePathname();
