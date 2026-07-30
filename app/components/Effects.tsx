@@ -1,14 +1,22 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 /**
- * Homepage interactions ported from the original js/main.js:
+ * Site-wide interactions ported from the original js/main.js:
  * nav-solid-on-scroll, side drawer + accordions, eased stat counters,
  * scroll reveals, testimonial carousel, and image fallback.
- * Runs once on mount and wires listeners onto the server-rendered DOM.
+ *
+ * Re-runs on every route change. This component sits in the root layout, so it
+ * never unmounts during client-side navigation — with an empty dep array it
+ * would query the DOM once and hold a stale element list, leaving every
+ * `.reveal` on subsequently-visited pages stuck at opacity 0 until a hard
+ * reload. Keying on the pathname re-queries and re-wires against the new DOM.
  */
 export default function Effects() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const prefersReduced =
       window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
@@ -168,6 +176,8 @@ export default function Effects() {
         timer = setInterval(() => goTo(index + 1), 6000);
       };
 
+      // dots are created imperatively, so clear any from a previous run
+      if (dotsWrap) dotsWrap.innerHTML = "";
       slides.forEach((_, i) => {
         const dot = document.createElement("button");
         dot.type = "button";
@@ -197,7 +207,7 @@ export default function Effects() {
       cleanups.forEach((fn) => fn());
       document.body.style.overflow = "";
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }
