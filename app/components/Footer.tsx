@@ -11,7 +11,8 @@ export default function Footer() {
           <p className="footer__title">REALTOR® · Estates Director · Senior Real Estate Specialist</p>
           <address className="footer__contact">
             <a href="tel:+13107951440">(310) 795‑1440</a>
-            <a href="mailto:alexandra.kerr@compass.com">alexandra.kerr@compass.com</a>
+            <span className="footer__dre">DRE# 01911486</span>
+            <a href="mailto:alexandra@compass.com">alexandra@compass.com</a>
             <a href="https://instagram.com/alexandrakerrlarealestate" rel="noopener">@alexandrakerrlarealestate</a>
           </address>
         </div>
@@ -35,7 +36,11 @@ export default function Footer() {
           <h3>Office</h3>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="footer__compass" src="/assets/compass-white.png" alt="Compass" />
-          <p>6430 W Sunset Blvd, 6th Floor<br />Los Angeles, CA 90028</p>
+          <address className="footer__office-addr">
+            6430 W Sunset Blvd, 6th Floor<br />
+            Los Angeles, CA 90028<br />
+            <a href="tel:+13235936999">(323) 593‑6999</a>
+          </address>
           <div className="footer__badges" aria-label="Affiliations">
             <span>REALTOR®</span><span>EQUAL HOUSING</span><span>DRE# 01911486</span>
           </div>
