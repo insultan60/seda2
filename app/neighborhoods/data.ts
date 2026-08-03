@@ -88,9 +88,29 @@ export const ALSO_SERVING: Hood[] = [
 ];
 
 /**
- * How many listings currently sit in a given area. Zero is a valid answer and
- * the page labels it as one — an area Alexandra works is not the same claim as
- * an area she has inventory in this week.
+ * Active and sold counts for an area, split deliberately.
+ *
+ * A combined count is misleading: /home-search opens filtered to Active, so a
+ * card advertising "3 listings" for an area whose three homes have all sold
+ * sends the visitor to an empty result set. The page uses `active` for the
+ * label and routes sold-only areas to the portfolio instead. Zero of both is a
+ * valid answer — an area Alexandra works is not a claim that she has inventory
+ * in it this week.
  */
-export const countIn = (hood: Hood) =>
-  LISTINGS.filter((l) => l.hood === (hood.match ?? hood.name)).length;
+export function countIn(hood: Hood) {
+  const key = hood.match ?? hood.name;
+  const inArea = LISTINGS.filter((l) => l.hood === key);
+  return {
+    active: inArea.filter((l) => l.status === "Active").length,
+    sold: inArea.filter((l) => l.status === "Sold").length,
+  };
+}
+
+/** Label + destination for a neighborhood tile, derived from what's actually there. */
+export function hoodLink(hood: Hood) {
+  const { active, sold } = countIn(hood);
+  const q = `/home-search?q=${encodeURIComponent(hood.match ?? hood.name)}`;
+  if (active > 0) return { label: `${active} active listing${active === 1 ? "" : "s"}`, href: q };
+  if (sold > 0) return { label: `${sold} recently sold`, href: "/properties" };
+  return { label: "Search this area", href: q };
+}

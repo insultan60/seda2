@@ -298,9 +298,12 @@ export default function Home() {
             </div>
             <Link className="text-link" href="/neighborhoods">View All Neighborhoods<i className="arrow" aria-hidden="true"></i></Link>
           </div>
+          {/* Both the tiles and the index point at /neighborhoods rather than a
+              seeded search: most of these areas carry no active inventory this
+              week, and a tile that opens an empty result set reads as broken. */}
           <div className="hoods__grid">
             {HOODS.map((h) => (
-              <Link className={`hood${h.tall ? " hood--tall" : ""} reveal`} href={`/home-search?q=${encodeURIComponent(h.name)}`} key={h.name} style={h.d ? d(h.d) : undefined}>
+              <Link className={`hood${h.tall ? " hood--tall" : ""} reveal`} href="/neighborhoods" key={h.name} style={h.d ? d(h.d) : undefined}>
                 <img src={h.img} alt={h.alt} data-fallback />
                 <div className="hood__label"><h3>{h.name}</h3><span>{h.sub}</span></div>
               </Link>
@@ -308,7 +311,7 @@ export default function Home() {
           </div>
           <ul className="hoods__index reveal">
             {HOOD_INDEX.map((n) => (
-              <li key={n}><Link href={`/home-search?q=${encodeURIComponent(n)}`}>{n}</Link></li>
+              <li key={n}><Link href="/neighborhoods">{n}</Link></li>
             ))}
           </ul>
         </div>

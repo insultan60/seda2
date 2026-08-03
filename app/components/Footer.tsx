@@ -19,16 +19,17 @@ export default function Footer() {
           <h3>Explore</h3>
           <Link href="/about">About Alexandra</Link>
           <Link href="/properties">Portfolio</Link>
-          <Link href="/#neighborhoods">Neighborhoods</Link>
-          <Link href="/#journal">Journal</Link>
+          <Link href="/neighborhoods">Neighborhoods</Link>
+          <Link href="/journal">Journal</Link>
         </nav>
         <nav className="footer__col" aria-label="Resources">
           <h3>Resources</h3>
-          <a href="#">Buyers Guide</a>
-          <a href="#">Sellers Guide</a>
+          <Link href="/home-search">Home Search</Link>
+          <Link href="/my-search-portal">My Search Portal</Link>
           <Link href="/relocation">Relocation</Link>
           <Link href="/testimonials">Testimonials</Link>
           <Link href="/home-valuation">Home Valuation</Link>
+          <Link href="/compass-concierge">Compass Concierge</Link>
         </nav>
         <div className="footer__col footer__office">
           <h3>Office</h3>

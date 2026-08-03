@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ALSO_SERVING, FEATURED, countIn } from "./data";
+import { ALSO_SERVING, FEATURED, hoodLink } from "./data";
 import "./neighborhoods.css";
 
 export const metadata: Metadata = {
@@ -80,12 +80,12 @@ export default function NeighborhoodsPage() {
             {COLUMNS.map((col, c) => (
               <div className="nb-col" key={c}>
                 {col.map((h, i) => {
-                  const n = countIn(h);
+                  const { label, href } = hoodLink(h);
                   return (
                     <Link
                       key={h.name}
                       className={`nb-card${h.tall ? " nb-card--tall" : ""}${h.img ? "" : " nb-card--plain"} reveal`}
-                      href={`/home-search?q=${encodeURIComponent(h.name)}`}
+                      href={href}
                       style={{ "--d": `${(c * 2 + i) * 0.05}s` } as React.CSSProperties}
                     >
                       {h.img && <img src={h.img} alt={h.alt ?? h.name} loading="lazy" data-fallback />}
@@ -93,7 +93,7 @@ export default function NeighborhoodsPage() {
                         <h3>{h.name}</h3>
                         <p>{h.blurb}</p>
                         <span className="nb-card__count">
-                          {n > 0 ? `${n} listing${n === 1 ? "" : "s"}` : "Search this area"}
+                          {label}
                           <i className="arrow" aria-hidden="true"></i>
                         </span>
                       </div>
@@ -124,7 +124,7 @@ export default function NeighborhoodsPage() {
                 key={h.name}
                 style={{ "--d": `${(i % 3) * 0.06}s` } as React.CSSProperties}
               >
-                <Link href={`/home-search?q=${encodeURIComponent(h.name)}`}>
+                <Link href={hoodLink(h).href}>
                   <span className="nb-also__name">{h.name}</span>
                   <span className="nb-also__blurb">{h.blurb}</span>
                 </Link>
