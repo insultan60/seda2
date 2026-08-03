@@ -1,6 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
+
+/* The page URL is external state as far as React is concerned. Subscribing to
+   nothing and returning "" on the server keeps the first client render matching
+   the server output, then React fills in the real href after hydration. */
+const noSubscribe = () => () => {};
+const clientHref = () => window.location.href;
+const serverHref = () => "";
 
 /**
  * Share targets are built from the live URL rather than hardcoded, and the copy
@@ -9,10 +16,8 @@ import { useEffect, useState } from "react";
  * is no reason to ship a dead button when the real thing is a few lines.
  */
 export default function ShareRow({ title }: { title: string }) {
-  const [url, setUrl] = useState("");
+  const url = useSyncExternalStore(noSubscribe, clientHref, serverHref);
   const [copied, setCopied] = useState(false);
-
-  useEffect(() => setUrl(window.location.href), []);
 
   const enc = encodeURIComponent;
   const share = [

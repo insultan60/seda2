@@ -48,7 +48,11 @@ export default function Home() {
         </video>
         <div className="hero__scrim" aria-hidden="true"></div>
         <div className="hero__content">
-          <h1 className="hero__title">Los Angeles Luxury Real Estate, Elevated</h1>
+          {/* Headline and subhead supplied verbatim by the client (Seda, Aug 2026). */}
+          <h1 className="hero__title">Real Estate, Thoughtfully Guided.</h1>
+          <p className="hero__sub">
+            Helping clients buy, sell, and relocate with confidence throughout Greater Los Angeles.
+          </p>
           <div className="hero__ctas">
             <a className="btn btn--ghost-light" href="#listings">View Portfolio</a>
             <a className="btn btn--solid-light" href="/contact">Let&rsquo;s Connect</a>

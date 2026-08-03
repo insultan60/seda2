@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Effects from "./components/Effects";
+import RouteProgress from "./components/RouteProgress";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -30,9 +31,13 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    // `data-scroll-behavior` tells Next the smooth scrolling in globals.css is
+    // intentional, so it suppresses it during route transitions instead of
+    // animating the jump to the top of each new page.
+    <html lang="en" data-scroll-behavior="smooth">
       <body className={`${cormorant.variable} ${dmSans.variable}`}>
         <a className="skip-link" href="#main">Skip to content</a>
+        <RouteProgress />
         <Header />
         {children}
         <Footer />

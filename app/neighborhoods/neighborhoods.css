@@ -18,14 +18,19 @@
     radial-gradient(120% 80% at 50% 50%, rgba(28,31,25,.6) 0%, rgba(28,31,25,.32) 58%, transparent 100%),
     linear-gradient(180deg, rgba(46,53,42,.72) 0%, rgba(46,53,42,.46) 45%, rgba(46,53,42,.82) 100%);
 }
+/* The hero is a flex container, so this item's default `min-width: auto` lets
+   it grow to its widest unbreakable child rather than shrinking. "NEIGHBORHOODS"
+   set in uppercase with letter-spacing is one such child, and at 390px it pushed
+   the block to 437px — clipped by the hero's overflow rather than visibly
+   scrolling, which makes it easy to miss. Pin the width and let the type scale. */
 .nb-hero__inner {
-  position: relative; text-align: center;
+  position: relative; text-align: center; width: 100%; min-width: 0;
   padding-block: clamp(7rem, 13vh, 9.5rem) clamp(2.5rem, 5vw, 3.5rem);
 }
 .nb-hero__inner .eyebrow { justify-content: center; }
 .nb-hero__title {
   font-family: var(--serif); font-weight: 400;
-  font-size: clamp(2.5rem, 1.8rem + 3.6vw, 4.5rem); line-height: 1.05;
+  font-size: clamp(2rem, 1.1rem + 4.2vw, 4.5rem); line-height: 1.05;
   letter-spacing: .05em; text-transform: uppercase; color: var(--parchment);
   margin-top: .6rem;
 }

@@ -53,8 +53,8 @@ type Sort = (typeof SORTS)[number];
 
 const STATUSES = ["Active", "Sold"] as const;
 
-export default function SearchClient() {
-  const [query, setQuery] = useState("");
+export default function SearchClient({ initialQuery = "" }: { initialQuery?: string }) {
+  const [query, setQuery] = useState(initialQuery);
   const [statuses, setStatuses] = useState<string[]>(["Active"]);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
@@ -92,16 +92,6 @@ export default function SearchClient() {
   }, [query, statuses, minPrice, maxPrice, beds, baths, sort]);
 
   const pinned = results.filter((l) => l.lat != null && l.lng != null);
-
-  /* Seed the query from ?q= so neighborhood tiles and any other part of the
-     site can deep-link into a filtered search. Read off `window.location`
-     rather than `useSearchParams` — the hook forces this subtree behind a
-     Suspense boundary at build time, and there is nothing to gain from that
-     here. Runs once on mount; typing afterwards is never overridden. */
-  useEffect(() => {
-    const q = new URLSearchParams(window.location.search).get("q");
-    if (q) setQuery(q);
-  }, []);
 
   /* The static build hardcoded `top: 56px` for the filter bar because its nav
      was a fixed 56px. This project's <Header> is fluid, so measure it instead
