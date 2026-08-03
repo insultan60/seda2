@@ -72,7 +72,7 @@ export default function Home() {
           </div>
           <div className="hero__contact">
             <img className="hero__compass" src="/assets/compass-white.png" alt="Compass" />
-            <a className="hero__contact-email" href="mailto:alexandra@compass.com">alexandra@compass.com</a>
+            <a className="hero__contact-email" href="mailto:alexandra.kerr@compass.com">alexandra.kerr@compass.com</a>
             <a className="hero__contact-link" href="/contact">Let&rsquo;s Connect</a>
             <p className="hero__contact-office">
               6430 W Sunset Blvd, 6th Floor<br />

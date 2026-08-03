@@ -87,9 +87,9 @@ export default function AboutPage() {
                 <Icon.Call />
                 <span>(310) 795‑1440</span>
               </a>
-              <a href="mailto:alexandra@compass.com" className="ab-pill ab-pill-ghost">
+              <a href="mailto:alexandra.kerr@compass.com" className="ab-pill ab-pill-ghost">
                 <Icon.Mail />
-                <span>alexandra@compass.com</span>
+                <span>alexandra.kerr@compass.com</span>
               </a>
             </div>
           </div>

@@ -43,7 +43,7 @@ export default function ContactPage() {
               <span className="ck-contact__ic"><MailIcon /></span>
               <div>
                 <p className="ck-contact__label">Email</p>
-                <p className="ck-contact__val"><a href="mailto:alexandra@compass.com">alexandra@compass.com</a></p>
+                <p className="ck-contact__val"><a href="mailto:alexandra.kerr@compass.com">alexandra.kerr@compass.com</a></p>
               </div>
             </div>
 

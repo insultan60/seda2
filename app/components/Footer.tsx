@@ -12,7 +12,7 @@ export default function Footer() {
           <address className="footer__contact">
             <a href="tel:+13107951440">(310) 795‑1440</a>
             <span className="footer__dre">DRE# 01911486</span>
-            <a href="mailto:alexandra@compass.com">alexandra@compass.com</a>
+            <a href="mailto:alexandra.kerr@compass.com">alexandra.kerr@compass.com</a>
             <a href="https://instagram.com/alexandrakerrlarealestate" rel="noopener">@alexandrakerrlarealestate</a>
           </address>
         </div>
