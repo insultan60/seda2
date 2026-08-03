@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { LISTINGS, type Listing } from "./data";
+import { hasSpecs, LISTINGS, locationLabel, priceLabel, type Listing } from "./data";
 import "./properties.css";
 
 export const metadata: Metadata = {
@@ -13,7 +13,7 @@ const FEATURED = LISTINGS.filter((l) => l.status === "Active");
 const PAST = LISTINGS.filter((l) => l.status === "Sold");
 
 /** "$7,775,000" → 7775000, so the volume figure can never drift from the listings. */
-const toNumber = (price: string) => Number(price.replace(/[^0-9]/g, "")) || 0;
+const toNumber = (price?: string) => Number((price ?? "").replace(/[^0-9]/g, "")) || 0;
 const soldVolume = PAST.reduce((sum, l) => sum + toNumber(l.price), 0);
 const volumeLabel = `$${(soldVolume / 1_000_000).toFixed(1)}M`;
 
@@ -26,21 +26,21 @@ function PastCard({ l, delay }: { l: Listing; delay: string }) {
       style={delay ? ({ "--d": delay } as React.CSSProperties) : undefined}
     >
       <figure className="pf-card__media">
-        <img src={l.img} alt={`${l.addr}, ${l.city} — exterior`} data-fallback />
+        <img src={l.img} alt={[l.addr, l.city].filter(Boolean).join(", ")} data-fallback />
         <span className={`badge ${l.badgeCls}`}>{l.badge}</span>
       </figure>
       <div className="pf-card__body">
-        <p className="pf-card__hood">{l.hood}</p>
-        <p className="pf-card__price">{l.price}</p>
+        {l.hood && <p className="pf-card__hood">{l.hood}</p>}
+        <p className="pf-card__price">{priceLabel(l)}</p>
         <h3 className="pf-card__addr">{l.addr}</h3>
-        <p className="pf-card__city">
-          {l.city} {l.zip}
-        </p>
-        <ul className="pf-card__meta">
-          <li>{l.beds} Bd</li>
-          <li>{l.baths} Ba</li>
-          <li>{l.sqft} Sq.Ft.</li>
-        </ul>
+        {locationLabel(l) && <p className="pf-card__city">{locationLabel(l)}</p>}
+        {hasSpecs(l) && (
+          <ul className="pf-card__meta">
+            <li>{l.beds} Bd</li>
+            <li>{l.baths} Ba</li>
+            <li>{l.sqft} Sq.Ft.</li>
+          </ul>
+        )}
       </div>
     </Link>
   );
@@ -132,30 +132,39 @@ export default function PortfolioPage() {
                 style={i ? ({ "--d": ".1s" } as React.CSSProperties) : undefined}
               >
                 <figure className="pf-feature__media">
-                  <img src={l.img} alt={`${l.addr}, ${l.city}`} data-fallback />
+                  <img
+                    src={l.img}
+                    alt={
+                      l.imgNote
+                        ? `Representative photography for ${l.addr}`
+                        : [l.addr, l.city].filter(Boolean).join(", ")
+                    }
+                    data-fallback
+                  />
+                  {l.imgNote && <figcaption className="listing__imgnote">{l.imgNote}</figcaption>}
                   <span className={`badge ${l.badgeCls}`}>{l.badge}</span>
                 </figure>
                 <div className="pf-feature__body">
-                  <p className="pf-feature__hood">{l.hood}</p>
-                  <p className="pf-feature__price">{l.price}</p>
+                  {l.hood && <p className="pf-feature__hood">{l.hood}</p>}
+                  <p className="pf-feature__price">{priceLabel(l)}</p>
                   <h3 className="pf-feature__addr">{l.addr}</h3>
-                  <p className="pf-feature__city">
-                    {l.city} {l.zip}
-                  </p>
-                  <ul className="pf-feature__meta">
-                    <li>
-                      <b>{l.beds}</b>
-                      <span>Beds</span>
-                    </li>
-                    <li>
-                      <b>{l.baths}</b>
-                      <span>Baths</span>
-                    </li>
-                    <li>
-                      <b>{l.sqft}</b>
-                      <span>Sq.Ft.</span>
-                    </li>
-                  </ul>
+                  {locationLabel(l) && <p className="pf-feature__city">{locationLabel(l)}</p>}
+                  {hasSpecs(l) && (
+                    <ul className="pf-feature__meta">
+                      <li>
+                        <b>{l.beds}</b>
+                        <span>Beds</span>
+                      </li>
+                      <li>
+                        <b>{l.baths}</b>
+                        <span>Baths</span>
+                      </li>
+                      <li>
+                        <b>{l.sqft}</b>
+                        <span>Sq.Ft.</span>
+                      </li>
+                    </ul>
+                  )}
                   <span className="text-link pf-feature__view">
                     View Property<i className="arrow" aria-hidden="true"></i>
                   </span>

@@ -2,28 +2,24 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import NewsletterForm from "./components/NewsletterForm";
 import { LATEST_POSTS } from "./journal/data";
-import { LISTINGS } from "./properties/data";
+import { hasSpecs, LISTINGS, locationLabel, priceLabel } from "./properties/data";
+import { TESTIMONIALS } from "./testimonials/data";
 
 // helper for the CSS reveal-delay custom property
 const d = (val: string) => ({ "--d": val }) as CSSProperties;
 
 // Portfolio, single-sourced from app/properties/data.ts so the home page,
 // the portfolio index, and the detail pages never drift apart.
-const FEATURED = LISTINGS.filter((l) => l.status === "Active");
+/* The home page teases the portfolio, it doesn't reproduce it — "View Portfolio"
+   goes to the full set. Capped at 4 because the active list jumped from 2 to 15
+   in August 2026 and an unbounded 2-up grid put eight rows on the front page. */
+const FEATURED = LISTINGS.filter((l) => l.status === "Active").slice(0, 4);
 const SOLD = LISTINGS.filter((l) => l.status === "Sold");
 
 // stagger delays: featured cards go in pairs, sold cards in rows of three
 const FEATURED_DELAYS = ["", ".08s"];
 const SOLD_DELAYS = ["", ".06s", ".12s"];
 const JOURNAL_DELAYS = ["", ".08s", ".16s"];
-
-const TESTIMONIALS = [
-  { quote: "Sixteen offers in the first week. Alexandra secured an all‑cash buyer above list and closed escrow in ten days. We still can't quite believe how effortless she made it feel.", av: "AB", cite: "Alan B. & Joan C.", place: "Santa Monica" },
-  { quote: "Professional photography — drone shots included — an all‑cash offer, and the smoothest escrow we've ever experienced. Alexandra treats your home like the cover story it is.", av: "CB", cite: "Cheryl B.", place: "Hollywood Hills" },
-  { quote: "As first‑time buyers we were nervous — buying during COVID, no less. Alexandra found us our dream home and held our hands through every single step.", av: "AM", cite: "Amit & Mary S.", place: "Los Feliz" },
-  { quote: "In one of the most competitive markets imaginable, she priced our home perfectly and sold it above asking. Sharp, calm, and relentless in the best way.", av: "BC", cite: "Bradley & Claudia R.", place: "Los Feliz" },
-  { quote: "We were out of state the entire time. Alexandra managed the rental, then the sale — over ask, within a month. Total peace of mind from two time zones away.", av: "NS", cite: "Nancy & Stephen G.", place: "West Hollywood" },
-];
 
 const HOODS = [
   { img: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1600&auto=format&fit=crop", alt: "Los Feliz hillside homes", name: "Los Feliz", sub: "Storied estates & icons of early Hollywood", tall: true, d: "" },
@@ -108,7 +104,7 @@ export default function Home() {
               <li>Compass · Los Angeles</li>
               <li>DRE# 01911486</li>
             </ul>
-            <a className="btn btn--solid-moss" href="#">Learn More About Alexandra</a>
+            <Link className="btn btn--solid-moss" href="/about">Learn More About Alexandra</Link>
           </div>
         </div>
       </section>
@@ -165,7 +161,7 @@ export default function Home() {
               <button className="carousel__btn" data-dir="1" aria-label="Next testimonial"><i className="arrow" aria-hidden="true"></i></button>
             </div>
           </div>
-          <div className="section-foot reveal"><a className="text-link" href="#">View All Testimonials<i className="arrow" aria-hidden="true"></i></a></div>
+          <div className="section-foot reveal"><Link className="text-link" href="/testimonials">View All Testimonials<i className="arrow" aria-hidden="true"></i></Link></div>
         </div>
       </section>
 
@@ -185,18 +181,29 @@ export default function Home() {
               return (
                 <article className="listing reveal" key={l.slug} style={delay ? d(delay) : undefined}>
                   <figure className="listing__media">
-                    <img src={l.img} alt={`${l.addr}, ${l.city}`} data-fallback />
+                    <img
+                      src={l.img}
+                      alt={
+                        l.imgNote
+                          ? `Representative photography for ${l.addr}`
+                          : [l.addr, l.city].filter(Boolean).join(", ")
+                      }
+                      data-fallback
+                    />
                     <span className={`badge ${l.badgeCls}`}>{l.badge}</span>
+                    {l.imgNote && <figcaption className="listing__imgnote">{l.imgNote}</figcaption>}
                   </figure>
                   <div className="listing__body">
-                    <p className="listing__price">{l.price}</p>
+                    <p className="listing__price">{priceLabel(l)}</p>
                     <h3 className="listing__addr">{l.addr}</h3>
-                    <p className="listing__city">{l.city} {l.zip}</p>
-                    <ul className="listing__meta">
-                      <li>{l.beds} Beds</li>
-                      <li>{l.baths} Baths</li>
-                      <li>{l.sqft} Sq.Ft.</li>
-                    </ul>
+                    {locationLabel(l) && <p className="listing__city">{locationLabel(l)}</p>}
+                    {hasSpecs(l) && (
+                      <ul className="listing__meta">
+                        <li>{l.beds} Beds</li>
+                        <li>{l.baths} Baths</li>
+                        <li>{l.sqft} Sq.Ft.</li>
+                      </ul>
+                    )}
                     <Link className="text-link listing__view" href={`/properties/${l.slug}`} aria-label={`View ${l.addr}`}>View<i className="arrow" aria-hidden="true"></i></Link>
                   </div>
                 </article>
@@ -218,13 +225,17 @@ export default function Home() {
                 return (
                   <article className="listing listing--sold reveal" key={l.slug} style={delay ? d(delay) : undefined}>
                     <figure className="listing__media">
-                      <img src={l.img} alt={`${l.addr}, ${l.city} — exterior`} data-fallback />
+                      <img src={l.img} alt={[l.addr, l.city].filter(Boolean).join(", ")} data-fallback />
                       <span className={`badge ${l.badgeCls}`}>{l.badge}</span>
                     </figure>
                     <div className="listing__body">
-                      <p className="listing__price">{l.price}</p>
+                      <p className="listing__price">{priceLabel(l)}</p>
                       <h3 className="listing__addr">{l.addr}</h3>
-                      <p className="listing__city">{l.city} {l.zip} · {l.beds} Bd · {l.baths} Ba · {l.sqft} Sq.Ft.</p>
+                      <p className="listing__city">
+                        {[locationLabel(l), hasSpecs(l) && `${l.beds} Bd · ${l.baths} Ba · ${l.sqft} Sq.Ft.`]
+                          .filter(Boolean)
+                          .join(" · ")}
+                      </p>
                       <Link className="text-link listing__view" href={`/properties/${l.slug}`} aria-label={`View ${l.addr}`}>View<i className="arrow" aria-hidden="true"></i></Link>
                     </div>
                   </article>
@@ -258,7 +269,7 @@ export default function Home() {
             <h2 className="h2 h2--light">Moving to Los Angeles —<br /><em>or moving on?</em> Consider it handled.</h2>
             <p className="relo__sub">Alexandra has guided relocations in and out of Los Angeles for over a decade — executives on a deadline, families changing coasts, sellers managing everything from two time zones away. When your next chapter starts in another city, she&rsquo;s the first call to make.</p>
             <div className="relo__ctas">
-              <a className="btn btn--solid-light" href="/contact">Plan Your Relocation</a>
+              <Link className="btn btn--solid-light" href="/relocation">Plan Your Relocation</Link>
               <a className="btn btn--ghost-light" href="tel:+13107951440">Call (310) 795‑1440</a>
             </div>
           </div>
@@ -285,18 +296,20 @@ export default function Home() {
               <p className="eyebrow">Featured Neighborhoods</p>
               <h2 className="h2">Where character lives.</h2>
             </div>
-            <a className="text-link" href="#">View All Neighborhoods<i className="arrow" aria-hidden="true"></i></a>
+            <Link className="text-link" href="/neighborhoods">View All Neighborhoods<i className="arrow" aria-hidden="true"></i></Link>
           </div>
           <div className="hoods__grid">
             {HOODS.map((h) => (
-              <a className={`hood${h.tall ? " hood--tall" : ""} reveal`} href="#" key={h.name} style={h.d ? d(h.d) : undefined}>
+              <Link className={`hood${h.tall ? " hood--tall" : ""} reveal`} href={`/home-search?q=${encodeURIComponent(h.name)}`} key={h.name} style={h.d ? d(h.d) : undefined}>
                 <img src={h.img} alt={h.alt} data-fallback />
                 <div className="hood__label"><h3>{h.name}</h3><span>{h.sub}</span></div>
-              </a>
+              </Link>
             ))}
           </div>
           <ul className="hoods__index reveal">
-            {HOOD_INDEX.map((n) => <li key={n}><a href="#">{n}</a></li>)}
+            {HOOD_INDEX.map((n) => (
+              <li key={n}><Link href={`/home-search?q=${encodeURIComponent(n)}`}>{n}</Link></li>
+            ))}
           </ul>
         </div>
       </section>
@@ -315,7 +328,7 @@ export default function Home() {
             {LATEST_POSTS.map((p, i) => {
               const delay = JOURNAL_DELAYS[i % JOURNAL_DELAYS.length];
               return (
-                <Link className="post reveal" href="/journal" key={p.title} style={delay ? d(delay) : undefined}>
+                <Link className="post reveal" href={`/journal/${p.slug}`} key={p.title} style={delay ? d(delay) : undefined}>
                   <figure><img src={p.img} alt="" data-fallback /></figure>
                   <p className="post__tag">{p.tag}</p>
                   <h3>{p.title}</h3>

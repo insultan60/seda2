@@ -58,9 +58,9 @@ export default function JournalPage() {
                     style={{ order: index, "--d": `${c * 0.06}s` } as React.CSSProperties}
                   >
                     {p.img && (
-                      <span className="jr-card__media">
+                      <Link className="jr-card__media" href={`/journal/${p.slug}`} aria-label={p.title}>
                         <img src={p.img} alt="" loading="lazy" data-fallback />
-                      </span>
+                      </Link>
                     )}
                     <div className="jr-card__body">
                       <p className="jr-meta">
@@ -71,10 +71,10 @@ export default function JournalPage() {
                         <span className="jr-meta__tag">{p.tag}</span>
                       </p>
                       <h3 className="jr-card__title">
-                        <Link href="/journal">{p.title}</Link>
+                        <Link href={`/journal/${p.slug}`}>{p.title}</Link>
                       </h3>
                       <p className="jr-card__excerpt">{p.excerpt}</p>
-                      <Link className="jr-card__cta" href="/journal">
+                      <Link className="jr-card__cta" href={`/journal/${p.slug}`}>
                         Read Post
                       </Link>
                     </div>

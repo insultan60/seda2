@@ -111,13 +111,18 @@
 
 .pf-head { text-align: center; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
 .pf-head .eyebrow { justify-content: center; }
+/* Matches the home page's .h2 — same weight, size and tracking, no uppercase.
+   These section headings previously ran as wide-tracked caps ("FEATURED
+   PROPERTIES") while the identical heading on the home page ("Currently
+   Represented") was mixed-case with tight tracking, so the two pages read as
+   two different typographic systems. The oversized .pf-hero__title is left
+   alone: that is the page's display heading, not a section heading. */
 .pf-head__title {
   font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(1.9rem, 1.4rem + 2.2vw, 3.4rem);
-  line-height: 1.1;
-  letter-spacing: .04em;
-  text-transform: uppercase;
+  font-weight: 500;
+  font-size: var(--fs-h2);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
   color: var(--ink);
   margin-top: .5rem;
 }
@@ -220,6 +225,33 @@
 .pd-title { font-family: var(--serif); font-weight: 500; font-size: var(--fs-h2); color: var(--ink); line-height: 1.1; }
 .pd-addr { color: var(--ink-soft); margin-top: .3rem; }
 .pd-price { font-family: var(--serif); font-weight: 600; font-size: clamp(2rem, 3vw, 2.8rem); color: var(--moss); font-variant-numeric: tabular-nums; }
+.pd-head__right { display: flex; flex-direction: column; align-items: flex-end; gap: .9rem; }
+
+/* Save-to-portal control — shared with any other listing surface. */
+.save-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: flex-end; }
+.save-btn {
+  display: inline-flex; align-items: center; gap: .55rem;
+  border: 1px solid var(--clay); background: transparent; cursor: pointer;
+  padding: .55rem 1.1rem; color: var(--moss);
+  font-family: var(--sans); font-size: var(--fs-micro); font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase;
+  transition: border-color 220ms var(--ease), color 220ms var(--ease),
+              background 220ms var(--ease), transform 240ms var(--ease);
+}
+.save-btn:hover { border-color: var(--moss); background: var(--parchment); transform: translateY(-1px); }
+.save-btn.is-saved { color: var(--alert); border-color: var(--alert); }
+.save-btn.is-saved:hover { background: rgba(160, 64, 64, .06); }
+.save-btn svg { transition: transform 240ms var(--ease); }
+.save-btn:hover svg { transform: scale(1.1); }
+.save-row__link {
+  font-size: var(--fs-micro); font-weight: 600; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--moss);
+  text-decoration: underline; text-underline-offset: 4px;
+}
+@media (max-width: 639px) {
+  .pd-head__right { align-items: flex-start; width: 100%; }
+  .save-row { justify-content: flex-start; }
+}
 
 .pd-stats { display: flex; flex-wrap: wrap; gap: 1.4rem 3rem; padding-block: clamp(2rem, 4vw, 2.6rem); }
 .pd-stat { display: flex; flex-direction: column; gap: .3rem; }

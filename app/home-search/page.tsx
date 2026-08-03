@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
-import HomeSearchClient from "./HomeSearchClient";
-import "./home-search.css";
-import "./andrew-search.css";
+import SearchClient from "./SearchClient";
+import "./search.css";
 
 export const metadata: Metadata = {
   title: "Home Search — Alexandra Kerr | Search the Los Angeles MLS",
   description:
-    "Search active Los Angeles listings across the Greater L.A. MLS with Alexandra Kerr — filter by neighborhood, price, beds, baths, and home type, with a live map.",
+    "Search Los Angeles listings with Alexandra Kerr — filter by neighborhood, price, beds, baths, and status, with a live map.",
 };
 
 export default function HomeSearchPage() {
-  return <HomeSearchClient />;
+  return (
+    <main id="main" className="page-search">
+      <SearchClient />
+    </main>
+  );
 }

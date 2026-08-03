@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Buying Process — Alexandra Kerr | Los Angeles Real Estate</title>
+<meta name="description" content="The 8-step home buying process with Alexandra Kerr, REALTOR® — from pre-approval to closing, plus buyer tools and a moving checklist.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ NAV ============ -->
+<header class="nav nav--static is-solid" id="top">
+  <div class="nav__inner">
+    <a class="nav__logo" href="index.html" aria-label="Alexandra Kerr — Home">
+      <img class="nav__logo-img" src="assets/logo-white.png" alt="Alexandra Kerr — AK monogram">
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="portfolio.html">Portfolio</a>
+      <a href="home-search.html">Home Search</a>
+      <a href="index.html#journal">The Latest Real Estate News</a>
+    </nav>
+    <a class="btn btn--outline-light nav__cta" href="contact.html">Let’s Connect</a>
+    <button class="nav__burger" aria-label="Open menu" aria-expanded="false" aria-controls="sideMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ SIDE MENU ============ -->
+<div class="drawer" id="sideMenu" hidden>
+  <div class="drawer__backdrop" data-drawer-close aria-hidden="true"></div>
+  <aside class="drawer__panel" role="dialog" aria-modal="true" aria-label="Site menu">
+    <button class="drawer__close" data-drawer-close aria-label="Close menu">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true" fill="none"><path d="M3 3l16 16M19 3L3 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+    <nav class="drawer__nav" aria-label="Full menu">
+      <a class="drawer__item" href="index.html">Home</a>
+      <div class="drawer__group">
+        <button class="drawer__item drawer__toggle" type="button" aria-expanded="false">About
+          <svg class="drawer__chev" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="drawer__sub">
+          <a href="about.html">About Alexandra</a>
+          <a href="testimonials.html">Testimonials</a>
+        </div>
+      </div>
+      <a class="drawer__item" href="portfolio.html">Portfolio</a>
+      <div class="drawer__group">
+        <button class="drawer__item drawer__toggle" type="button" aria-expanded="false">Home Search
+          <svg class="drawer__chev" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="drawer__sub">
+          <a href="home-search.html">Map Search</a>
+          <a href="neighborhoods.html">Featured Neighborhoods</a>
+          <a href="#" aria-disabled="true">Market Reports</a>
+        </div>
+      </div>
+      <a class="drawer__item" href="sellers.html#valuation">Home Valuation</a>
+      <div class="drawer__group">
+        <button class="drawer__item drawer__toggle" type="button" aria-expanded="false">Buyers
+          <svg class="drawer__chev" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="drawer__sub">
+          <a href="buyers.html">The Buying Process</a>
+          <a href="buyers.html#tools">Tools for Buyers</a>
+          <a href="#" aria-disabled="true">Mortgage Calculator</a>
+        </div>
+      </div>
+      <div class="drawer__group">
+        <button class="drawer__item drawer__toggle" type="button" aria-expanded="false">Sellers
+          <svg class="drawer__chev" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="drawer__sub">
+          <a href="sellers.html">Selling Your Home</a>
+          <a href="sellers.html#staging">Staging Checklist</a>
+          <a href="#" aria-disabled="true">Compass Concierge</a>
+          <a href="sellers.html#valuation">What’s My Home Worth?</a>
+        </div>
+      </div>
+      <a class="drawer__item" href="neighborhoods.html">Neighborhoods</a>
+      <div class="drawer__group">
+        <button class="drawer__item drawer__toggle" type="button" aria-expanded="false">Compass Services
+          <svg class="drawer__chev" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="drawer__sub">
+          <a href="#" aria-disabled="true">Compass Concierge</a>
+          <a href="#" aria-disabled="true">Compass Private Exclusives</a>
+          <a href="#" aria-disabled="true">Compass Cares</a>
+        </div>
+      </div>
+      <a class="drawer__item" href="index.html#journal">The Latest Real Estate News</a>
+      <a class="drawer__item" href="contact.html">Let’s Connect</a>
+      <a class="drawer__item" href="#" aria-disabled="true">My Search Portal</a>
+      <a class="drawer__item" href="#" aria-disabled="true">Login / Register</a>
+    </nav>
+  </aside>
+</div>
+
+<main id="main">
+
+<!-- ============ PAGE HEAD ============ -->
+<section class="page-head">
+  <div class="container">
+    <p class="eyebrow eyebrow--clay">Buyers</p>
+    <h1 class="page-head__title">The Buying <em>Process</em></h1>
+    <p class="page-head__sub">Buying a home can be an exciting and emotional experience. As your local expert,
+       you can rely on me to guide you through the process so you can feel comfortable and confident each step
+       of the way.</p>
+    <div class="page-head__cta">
+      <a class="btn btn--solid-light" href="#" aria-disabled="true">Download The Guide</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8-STEP PROCESS ============ -->
+<section class="steps">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Step by Step</p>
+      <h2 class="h2">Eight steps to <em>home.</em></h2>
+    </div>
+    <ol class="steps__list">
+      <li class="step reveal">
+        <span class="step__num" aria-hidden="true">01</span>
+        <div>
+          <h3>Get Pre-Approved</h3>
+          <p>The first step to buying a home is to understand your buying power and establish a price range. A licensed lender can help evaluate your financial standing and provide a pre-approval. They will review your income and credit history to determine how much the bank will lend you, which will help you determine the price range for your search. Having a pre-approval letter in-hand can also increase the attractiveness of your offer, particularly when a seller has multiple offers to choose from.</p>
+        </div>
+      </li>
+      <li class="step reveal">
+        <span class="step__num" aria-hidden="true">02</span>
+        <div>
+          <h3>The Home Search</h3>
+          <p>You can start your search for the perfect home right here with up-to-date MLS listings in your favorite neighborhoods. Create your free account to save your favorite properties, request showings and more! As your REALTOR, I will also search for homes on your behalf. When you find a home that you like, we’ll schedule a showing tour for you to preview the property in person.</p>
+        <a class="text-link" href="#">Sign Up For An Account<i class="arrow" aria-hidden="true"></i></a>
+        </div>
+      </li>
+      <li class="step reveal">
+        <span class="step__num" aria-hidden="true">03</span>
+        <div>
+          <h3>Making An Offer</h3>
+          <p>When you’re ready to move forward with a purchase, I will advise you on constructing the strongest offer possible. Then I will draw up the necessary paperwork on your behalf. There is a lot to consider when making an offer. We’ll discuss the purchase price, the closing date, sale contingencies and any special stipulations for your particular purchase. Once an offer is submitted, the seller may accept, reject or counter the offer.</p>
+        </div>
+      </li>
+      <li class="step reveal">
+        <span class="step__num" aria-hidden="true">04</span>
+        <div>
+          <h3>Going Under Contract</h3>
+          <p>If your offer is accepted, you will be officially under contract. The purchase will not be complete until closing, but the home cannot be sold to anyone else while the contract remains in effect. At this point, unless you are making a cash purchase, it will be time to make an earnest money deposit and secure your mortgage loan.</p>
+        </div>
+      </li>
+      <li class="step reveal">
+        <span class="step__num" aria-hidden="true">05</span>
+        <div>
+          <h3>Home Inspection</h3>
+          <p>Inspecting the physical condition of your next home is a vital part of the home-buying process. A licensed home inspector will conduct a comprehensive evaluation of the entire property and report any problems with the condition of the home’s structure or systems.</p>
+        </div>
+      </li>
+      <li class="step reveal">
+        <span class="step__num" aria-hidden="true">06</span>
+        <div>
+          <h3>Home Appraisal</h3>
+          <p>Your lender will arrange a professional appraisal of the home. An appraisal is an unbiased estimate of the true (or fair market) value of a home and is conducted by an independent third party.</p>
+        </div>
+      </li>
+      <li class="step reveal">
+        <span class="step__num" aria-hidden="true">07</span>
+        <div>
+          <h3>The Final Walkthrough</h3>
+          <p>Prior to closing, we will conduct a final walkthrough of the home to ensure that all negotiated repairs have been completed, and that the home is in the same (or better) condition as when the original offer was made.</p>
+        </div>
+      </li>
+      <li class="step reveal">
+        <span class="step__num" aria-hidden="true">08</span>
+        <div>
+          <h3>Closing</h3>
+          <p>Time to celebrate! Your lender will provide a final closing disclosure that summarizes the loan terms, monthly payments, taxes, and other costs associated with the closing. Once the paperwork is signed by all parties and your loan is funded, you will receive keys, and you’ll be ready to move into your new home!</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ TOOLS FOR BUYERS ============ -->
+<section class="tools" id="tools">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Tools for Buyers</p>
+      <h2 class="h2">Everything you need to search smart.</h2>
+    </div>
+    <div class="tools__grid">
+      <div class="path-card reveal">
+        <span class="path-card__num" aria-hidden="true">01</span>
+        <h3 class="path-card__title">Home Search</h3>
+        <p class="path-card__body">Find your new home with up-to-date listings. Save and rate your favorites!</p>
+      </div>
+      <div class="path-card reveal" style="--d:.08s">
+        <span class="path-card__num" aria-hidden="true">02</span>
+        <h3 class="path-card__title">Email Drips</h3>
+        <p class="path-card__body">Save your searches and review daily email alerts sent direct to your inbox!</p>
+      </div>
+      <div class="path-card reveal" style="--d:.16s">
+        <span class="path-card__num" aria-hidden="true">03</span>
+        <h3 class="path-card__title">Market Analysis</h3>
+        <p class="path-card__body">Make smart decisions with local market reports. Subscribe today!</p>
+      </div>
+      <div class="path-card reveal" style="--d:.24s">
+        <span class="path-card__num" aria-hidden="true">04</span>
+        <h3 class="path-card__title">Featured Listings</h3>
+        <p class="path-card__body">Browse featured listings in your area. Sort homes by price, location and more!</p>
+      </div>
+    </div>
+    <div class="section-foot reveal">
+      <a class="btn btn--solid-moss" href="#" aria-disabled="true">Sign Up For An Account</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MOVING CHECKLIST ============ -->
+<section class="checklist">
+  <div class="container checklist__max">
+    <div class="section-head reveal">
+      <p class="eyebrow">Get Ready</p>
+      <h2 class="h2">The Moving Checklist</h2>
+      <p class="lede">A month-by-month plan to make moving day feel effortless.</p>
+    </div>
+      <details class="acc" open>
+        <summary>Two Months Before</summary>
+        <div class="acc__body"><ul><li>Start a file to organize documents and estimates.</li><li>Create a moving budget.</li><li>Request estimates from moving companies.</li></ul></div>
+      </details>
+      <details class="acc">
+        <summary>A Month Before</summary>
+        <div class="acc__body"><ul><li>Select a moving company.</li><li>Order boxes and packing supplies.</li><li>Sort belongings and purge what you don’t need.</li><li>Update school records.</li><li>Change your address.</li><li>Notify organizations and subscriptions.</li></ul></div>
+      </details>
+      <details class="acc">
+        <summary>Two Weeks Before</summary>
+        <div class="acc__body"><ul><li>Begin boxing up belongings.</li><li>Label boxes by room and contents.</li><li>Schedule utility disconnects.</li><li>Cancel local services.</li><li>Notify your workplace.</li></ul></div>
+      </details>
+      <details class="acc">
+        <summary>The Week Of</summary>
+        <div class="acc__body"><ul><li>Empty furniture drawers and cabinets.</li><li>Pack a survival suitcase of essentials.</li><li>Clean the home.</li><li>Arrange pet and childcare for moving day.</li><li>Reconfirm details with the movers.</li></ul></div>
+      </details>
+      <details class="acc">
+        <summary>The Day Before</summary>
+        <div class="acc__body"><ul><li>Stash emergency cash.</li><li>Prepare essentials for the first night in your new home.</li></ul></div>
+      </details>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="mls">
+  <div class="container mls__inner reveal">
+    <div>
+      <p class="eyebrow">Ready When You Are</p>
+      <h2 class="h2">Let’s find your Los Angeles home.</h2>
+      <p class="lede">Tell me what you’re looking for and I’ll guide you from first showing to closing day.</p>
+    </div>
+    <div class="mls__ctas">
+      <a class="btn btn--solid-moss" href="contact.html">Let’s Connect</a>
+      <a class="btn btn--outline-moss" href="home-search.html">Search The MLS</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <img class="footer__logo" src="assets/logo-white.png" alt="Alexandra Kerr — AK monogram logo">
+      <p class="footer__name">Alexandra Kerr</p>
+      <p class="footer__title">REALTOR® · Estates Director · Senior Real Estate Specialist</p>
+      <address class="footer__contact">
+        <a href="tel:+13107951440">(310) 795-1440</a>
+        <a href="mailto:alexandra.kerr@compass.com">alexandra.kerr@compass.com</a>
+        <a href="https://instagram.com/alexandrakerrlarealestate" rel="noopener">@alexandrakerrlarealestate</a>
+      </address>
+    </div>
+    <nav class="footer__col" aria-label="Resources">
+      <h3>Resources</h3>
+      <a href="home-search.html">Home Search</a>
+      <a href="neighborhoods.html">Featured Neighborhoods</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="#">Market Reports</a>
+      <a href="sellers.html#valuation">What’s My Home Worth?</a>
+      <a href="#">Compass Concierge</a>
+      <a href="#">Calculate My Payments</a>
+      <a href="#">My Search Portal</a>
+    </nav>
+    <nav class="footer__col" aria-label="Explore">
+      <h3>Explore</h3>
+      <a href="about.html">About Alexandra</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="#">Compass Cares</a>
+      <a href="sellers.html">Sell Your Home</a>
+      <a href="buyers.html">Buying A Home</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="index.html#journal">Real Estate News</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="footer__col footer__office">
+      <h3>Office</h3>
+      <p>Compass<br>6430 W Sunset Blvd, 6th Floor<br>Los Angeles, CA 90028<br><a href="tel:+13235936999">(323) 593-6999</a></p>
+      <div class="footer__badges" aria-label="Affiliations">
+        <span>COMPASS</span><span>REALTOR®</span><span>EQUAL HOUSING</span><span>DRE# 01911486</span>
+      </div>
+    </div>
+  </div>
+  <div class="container footer__legal">
+    <p>© 2026 Alexandra Kerr, REALTOR® | DRE# 01911486 | COMPASS – All rights reserved |
+       <a href="#">Privacy Policy</a> | <a href="#">DMCA Policy</a></p>
+    <p>Alexandra Kerr is a real estate agent affiliated with COMPASS, a licensed real estate broker and abides by
+       all applicable Equal Housing Opportunity laws. All material presented herein is intended for informational
+       purposes only. Information is compiled from sources deemed reliable but is subject to errors, omissions,
+       changes in price, condition, sale, or withdrawal without notice.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/pages.js"></script>
+</body>
+</html>

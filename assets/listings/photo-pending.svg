@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#CBBBA0"/>
+  <rect x="330" y="215" width="140" height="140" fill="none" stroke="#4F5847" stroke-width="2"/>
+  <text x="400" y="310" font-family="Georgia, 'Times New Roman', serif" font-size="72" fill="#4F5847" text-anchor="middle">AK</text>
+  <text x="400" y="405" font-family="Helvetica, Arial, sans-serif" font-size="17" letter-spacing="4" fill="#4F5847" text-anchor="middle">PHOTOGRAPHY COMING SOON</text>
+</svg>

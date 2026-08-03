@@ -1,0 +1,129 @@
+/* ==========================================================================
+   Home Valuation — layout ported from my-app/app/valuation.css (hero + address
+   search, worth split, FAQ accordion, dark band, method cards, numbered grid,
+   final CTA), re-skinned to the Moss & Clay tokens.
+   ========================================================================== */
+
+/* ---------- Hero ---------- */
+.hv-hero {
+  background: var(--moss-deep); color: var(--parchment); text-align: center;
+  /* .nav is position:fixed here, so the hero starts underneath it. */
+  padding: clamp(7rem, 13vh, 9.5rem) 0 clamp(3.75rem, 7vw, 6rem);
+}
+.hv-hero-title {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(2.4rem, 5.4vw, 4.25rem); line-height: 1.06; color: var(--parchment);
+  text-wrap: balance;
+}
+.hv-hero-sub { margin: 1rem auto 0; max-width: 60ch; line-height: 1.65; color: rgba(245, 240, 225, .8); }
+.hv-hero-sub b { color: var(--parchment); font-weight: 500; }
+
+.hv-searchbar {
+  display: flex; align-items: center; gap: .75rem; flex-wrap: wrap;
+  justify-content: center; margin: 1.9rem auto 0; max-width: 640px;
+}
+.hv-search-field { position: relative; display: flex; align-items: center; flex: 1 1 340px; min-width: 260px; }
+.hv-search-field svg { position: absolute; left: 16px; width: 17px; height: 17px; color: var(--ink-soft); pointer-events: none; }
+.hv-search-field input {
+  width: 100%; font: inherit; font-size: .93rem; color: var(--ink);
+  background: var(--white); border: 1px solid transparent;
+  padding: 15px 20px 15px 42px;
+  transition: box-shadow 160ms var(--ease), border-color 160ms var(--ease);
+}
+.hv-search-field input::placeholder { color: var(--ink-soft); }
+.hv-search-field input:focus { outline: none; border-color: var(--clay); box-shadow: 0 0 0 4px rgba(203, 187, 160, .3); }
+.hv-searchbar .btn { flex: none; }
+.hv-search-status { margin-top: .9rem; font-size: var(--fs-small); color: var(--clay-light); min-height: 18px; }
+
+/* ---------- What's your property worth ---------- */
+.hv-section { padding-block: var(--section-y); background: var(--off-white); }
+.hv-worth-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4.25rem); align-items: center; }
+.hv-worth-media img { width: 100%; aspect-ratio: 4 / 3.2; object-fit: cover; background: var(--clay-light); }
+.hv-lead {
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  font-size: clamp(1.1rem, 1.7vw, 1.3rem); line-height: 1.6; color: var(--ink); margin-top: 1.1rem;
+}
+.hv-body { margin-top: 1rem; line-height: 1.75; color: var(--ink-soft); }
+.hv-worth-copy .btn { margin-top: 1.6rem; }
+
+/* ---------- FAQ ---------- */
+.hv-faq { background: var(--parchment); padding-block: var(--section-y); }
+.hv-faq-list { margin-top: 1.9rem; border-top: 1px solid var(--clay); }
+.hv-faq-item { border-bottom: 1px solid var(--clay); }
+.hv-faq-item > summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+  padding: 1.5rem 0; cursor: pointer; list-style: none;
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(1.05rem, 1.7vw, 1.25rem); color: var(--ink);
+}
+.hv-faq-item > summary::-webkit-details-marker { display: none; }
+.hv-plus { position: relative; width: 18px; height: 18px; flex: none; }
+.hv-plus::before, .hv-plus::after {
+  content: ""; position: absolute; background: var(--moss); transition: transform 260ms var(--ease);
+}
+.hv-plus::before { left: 0; top: 50%; width: 18px; height: 1.6px; transform: translateY(-50%); }
+.hv-plus::after { left: 50%; top: 0; width: 1.6px; height: 18px; transform: translateX(-50%); }
+.hv-faq-item[open] .hv-plus::after { transform: translateX(-50%) scaleY(0); }
+.hv-faq-body { padding: 0 0 1.6rem; max-width: 82ch; }
+.hv-faq-body p { line-height: 1.75; color: var(--ink-soft); }
+
+/* ---------- Search band ---------- */
+.hv-band-wrap { background: var(--off-white); padding: 0 0 var(--section-y); }
+.hv-band {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1.75rem; flex-wrap: wrap;
+  background: var(--moss); color: var(--parchment);
+  padding: clamp(2rem, 4.5vw, 3.25rem) clamp(1.75rem, 4vw, 3.5rem);
+}
+.hv-band h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.45rem, 2.9vw, 2.05rem); color: var(--parchment); margin-top: .4rem; }
+.hv-band p { margin-top: .5rem; font-size: var(--fs-small); color: rgba(245, 240, 225, .8); max-width: 52ch; }
+
+/* ---------- Method cards ---------- */
+.hv-methods { background: var(--off-white); padding-block: 0 var(--section-y); }
+.hv-methods-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.9rem; }
+.hv-method-card {
+  background: var(--white); border: 1px solid var(--clay-light);
+  padding: clamp(1.6rem, 3vw, 2.25rem);
+  transition: box-shadow 320ms var(--ease), transform 320ms var(--ease);
+}
+.hv-method-card:hover { box-shadow: 0 16px 36px -12px rgba(46,53,42,.2); transform: translateY(-3px); }
+.hv-method-tag {
+  display: inline-block; font-size: var(--fs-micro); font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase;
+  background: var(--parchment); color: var(--moss); padding: .38rem .75rem;
+}
+.hv-method-card h3 { font-family: var(--serif); font-weight: 500; font-size: clamp(1.25rem, 2.2vw, 1.55rem); color: var(--ink); margin: 1rem 0 .75rem; }
+.hv-method-card p { line-height: 1.75; color: var(--ink-soft); font-size: var(--fs-small); }
+
+/* ---------- Why it matters ---------- */
+.hv-why { background: var(--parchment); padding-block: var(--section-y); }
+.hv-why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1.9rem; }
+.hv-why-card {
+  background: var(--white); border: 1px solid var(--clay-light);
+  padding: clamp(1.5rem, 2.8vw, 2.1rem);
+  transition: box-shadow 320ms var(--ease), transform 320ms var(--ease);
+}
+.hv-why-card:hover { box-shadow: 0 16px 36px -12px rgba(46,53,42,.2); transform: translateY(-3px); }
+.hv-why-num { display: block; font-family: var(--serif); font-weight: 500; font-size: .95rem; color: var(--moss); letter-spacing: .08em; }
+.hv-why-card h3 { font-family: var(--serif); font-weight: 500; font-size: clamp(1.15rem, 2vw, 1.35rem); color: var(--ink); margin: .75rem 0 .6rem; }
+.hv-why-card p { font-size: var(--fs-small); line-height: 1.75; color: var(--ink-soft); }
+
+/* ---------- Final CTA ---------- */
+.hv-final { background: var(--off-white); padding-block: var(--section-y); }
+.hv-final-inner { text-align: center; max-width: 660px; margin-inline: auto; }
+.hv-final-inner h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.75rem, 3.6vw, 2.75rem); color: var(--ink); }
+.hv-final-inner > p { margin-top: .9rem; line-height: 1.7; color: var(--ink-soft); }
+.hv-final-ctas { margin-top: 1.75rem; display: flex; flex-wrap: wrap; justify-content: center; gap: .9rem; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .hv-worth-grid { grid-template-columns: 1fr; }
+  .hv-worth-media { order: -1; }
+  .hv-methods-grid, .hv-why-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .hv-searchbar { flex-direction: column; }
+  .hv-search-field { flex: 1 1 100%; width: 100%; }
+  .hv-searchbar .btn { width: 100%; justify-content: center; }
+  .hv-band { flex-direction: column; align-items: flex-start; }
+}

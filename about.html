@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Alexandra — Alexandra Kerr | Los Angeles Real Estate</title>
+<meta name="description" content="Meet Alexandra Kerr — REALTOR®, Estates Director &amp; Senior Real Estate Specialist with Compass, Los Angeles. DRE# 01911486.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ NAV ============ -->
+<header class="nav nav--static is-solid" id="top">
+  <div class="nav__inner">
+    <a class="nav__logo" href="index.html" aria-label="Alexandra Kerr — Home">
+      <img class="nav__logo-img" src="assets/logo-white.png" alt="Alexandra Kerr — AK monogram">
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="portfolio.html">Portfolio</a>
+      <a href="home-search.html">Home Search</a>
+      <a href="index.html#journal">The Latest Real Estate News</a>
+    </nav>
+    <a class="btn btn--outline-light nav__cta" href="contact.html">Let’s Connect</a>
+    <button class="nav__burger" aria-label="Open menu" aria-expanded="false" aria-controls="sideMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ SIDE MENU ============ -->
+<div class="drawer" id="sideMenu" hidden>
+  <div class="drawer__backdrop" data-drawer-close aria-hidden="true"></div>
+  <aside class="drawer__panel" role="dialog" aria-modal="true" aria-label="Site menu">
+    <button class="drawer__close" data-drawer-close aria-label="Close menu">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true" fill="none"><path d="M3 3l16 16M19 3L3 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+    <nav class="drawer__nav" aria-label="Full menu">
+      <a class="drawer__item" href="index.html">Home</a>
+      <div class="drawer__group">
+        <button class="drawer__item drawer__toggle" type="button" aria-expanded="false">About
+          <svg class="drawer__chev" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="drawer__sub">
+          <a href="about.html" aria-current="page">About Alexandra</a>
+          <a href="testimonials.html">Testimonials</a>
+        </div>
+      </div>
+      <a class="drawer__item" href="portfolio.html">Portfolio</a>
+      <div class="drawer__group">
+        <button class="drawer__item drawer__toggle" type="button" aria-expanded="false">Home Search
+          <svg class="drawer__chev" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="drawer__sub">
+          <a href="home-search.html">Map Search</a>
+          <a href="neighborhoods.html">Featured Neighborhoods</a>
+          <a href="#" aria-disabled="true">Market Reports</a>
+        </div>
+      </div>
+      <a class="drawer__item" href="sellers.html#valuation">Home Valuation</a>
+      <div class="drawer__group">
+        <button class="drawer__item drawer__toggle" type="button" aria-expanded="false">Buyers
+          <svg class="drawer__chev" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="drawer__sub">
+          <a href="buyers.html">The Buying Process</a>
+          <a href="buyers.html#tools">Tools for Buyers</a>
+          <a href="#" aria-disabled="true">Mortgage Calculator</a>
+        </div>
+      </div>
+      <div class="drawer__group">
+        <button class="drawer__item drawer__toggle" type="button" aria-expanded="false">Sellers
+          <svg class="drawer__chev" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="drawer__sub">
+          <a href="sellers.html">Selling Your Home</a>
+          <a href="sellers.html#staging">Staging Checklist</a>
+          <a href="#" aria-disabled="true">Compass Concierge</a>
+          <a href="sellers.html#valuation">What’s My Home Worth?</a>
+        </div>
+      </div>
+      <a class="drawer__item" href="neighborhoods.html">Neighborhoods</a>
+      <div class="drawer__group">
+        <button class="drawer__item drawer__toggle" type="button" aria-expanded="false">Compass Services
+          <svg class="drawer__chev" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="drawer__sub">
+          <a href="#" aria-disabled="true">Compass Concierge</a>
+          <a href="#" aria-disabled="true">Compass Private Exclusives</a>
+          <a href="#" aria-disabled="true">Compass Cares</a>
+        </div>
+      </div>
+      <a class="drawer__item" href="index.html#journal">The Latest Real Estate News</a>
+      <a class="drawer__item" href="contact.html">Let’s Connect</a>
+      <a class="drawer__item" href="#" aria-disabled="true">My Search Portal</a>
+      <a class="drawer__item" href="#" aria-disabled="true">Login / Register</a>
+    </nav>
+  </aside>
+</div>
+
+<main id="main">
+
+<!-- ============ PAGE HEAD ============ -->
+<section class="page-head">
+  <div class="container">
+    <p class="eyebrow eyebrow--clay">About</p>
+    <h1 class="page-head__title">Meet <em>Alexandra</em></h1>
+    <p class="page-head__sub">Dedication. Expertise. Results.</p>
+  </div>
+</section>
+
+<!-- ============ AGENT HEADER ============ -->
+<section class="agent">
+  <div class="container agent__grid">
+    <figure class="agent__media reveal">
+      <img src="assets/alexandra-headshot.jpg" alt="Alexandra Kerr — professional headshot" onerror="akImgFallback(this)">
+    </figure>
+    <div class="reveal" style="--d:.1s">
+      <h2 class="agent__name">Alexandra Kerr</h2>
+      <p class="agent__role">REALTOR® · Estates Director · Senior Real Estate Specialist</p>
+      <address class="agent__contact">
+        <a href="tel:+13107951440">(310) 795-1440</a>
+        <a href="mailto:alexandra.kerr@compass.com">alexandra.kerr@compass.com</a>
+        <a href="https://instagram.com/alexandrakerrlarealestate" rel="noopener">@alexandrakerrlarealestate</a>
+      </address>
+      <div class="prose" style="margin-top:1.8rem">
+        <p>The three qualities that distinguish Alexandra as a real estate agent are her dedication, thorough
+           knowledge of the L.A. marketplace, and her efficiency. Regardless of circumstances, she successfully
+           gets the job done for her clients.</p>
+        <p>Alexandra started her real estate career as a member of one of the most successful, high-end real
+           estate teams in Los Angeles. She quickly rose to become one of the team’s top producers.</p>
+        <p>Alexandra’s sharp negotiating skills, and her ability to find the best course of action to meet a
+           client’s needs, are the keys to her success. When it comes to the escrow process, she treats each and
+           every transaction with unrivaled attention to detail. Regardless of how challenging the circumstances
+           are, she finds solutions and achieves the best possible results for her clients.</p>
+        <p>Whether a client is selling or buying a home, Alexandra will get the best price and find the most
+           suitable property. She offers a skilled and personalized approach to the real estate process, making
+           it seamless, efficient, and always successful.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INTRO VIDEO ============ -->
+<section class="video-band">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Introduction</p>
+      <h2 class="h2">Alexandra, <em>in her own words.</em></h2>
+    </div>
+    <video class="reveal" controls preload="metadata" style="--d:.1s"
+           aria-label="Introduction video — Alexandra Kerr, Los Angeles real estate">
+      <source src="assets/intro-video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS CAROUSEL ============ -->
+<section class="testimonials" style="background:var(--white)">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Testimonials</p>
+      <h2 class="h2">Real Clients. <em>Real Stories.</em></h2>
+    </div>
+    <div class="carousel reveal" style="--d:.1s" aria-roledescription="carousel" aria-label="Client testimonials">
+      <div class="carousel__viewport">
+        <blockquote class="carousel__slide is-active">
+          <p>“Alexandra is a REALTOR of the highest caliber and was an incredible facilitator on the sale of our
+             Santa Monica condo. From first advising us on steps to prepare the property, then bringing in a fantastic
+             stager at a reasonable cost, to connecting us with an extremely professional escrow officer, everything
+             came together with tremendous ease. Alexandra’s guidance on pricing was pitch‑perfect: not only did it
+             lead to enormous activity during open houses, but resulted in 16 offers, culminating in an all cash buyer
+             who offered an extraordinary price, well above the list price. After a series of quick inspections which
+             Alexandra carefully oversaw, we closed escrow within 10 days. It was an incredibly swift while also
+             pleasant transaction, from beginning to end.”</p>
+          <footer><span class="avatar" aria-hidden="true">AB</span><cite>Alan B &amp; Joan C</cite><span class="carousel__place">Santa Monica</span></footer>
+        </blockquote>
+        <blockquote class="carousel__slide">
+          <p>“Alexandra was an indispensable guide throughout the process of selling my home. At our first meeting,
+             I knew she would be the only agent for the job. Her marketing package was impressive, with beautiful
+             photos of the interior and exterior of the house, including drone shots. She was pro‑active in doing
+             frequent showings and holding open houses, resulting in an all‑cash offer. She expertly negotiated the
+             best possible terms on my behalf, and then helped me through the escrow process. When we closed escrow,
+             I couldn’t believe how smoothly it had all gone.”</p>
+          <footer><span class="avatar" aria-hidden="true">CB</span><cite>Cheryl B</cite><span class="carousel__place">Hollywood Hills</span></footer>
+        </blockquote>
+        <blockquote class="carousel__slide">
+          <p>“Alexandra was our trusted confidante and advocate during our first home buying experience in Los Angeles.
+             We ended up with a home beyond our expectations in our top neighborhood. And we didn’t overpay. She always
+             had the time to discuss the advantages and disadvantages of the many properties we looked at during our
+             search and always encouraged us to make the best decisions for our family.”</p>
+          <footer><span class="avatar" aria-hidden="true">AM</span><cite>Amit and Mary S</cite><span class="carousel__place">Los Feliz</span></footer>
+        </blockquote>
+        <blockquote class="carousel__slide">
+          <p>“Alexandra helped us find the perfect house at the perfect price in a competitive market. We always felt
+             that she had our interests as her priority. She was extremely thorough in her assessment of properties and
+             diligent in providing answers from sellers and other agents. When we had to leave Los Angeles, there was
+             not the slightest doubt that she would be the listing agent. She always had our best interest in mind and
+             sold our house above asking price. She is THE BEST real estate agent!”</p>
+          <footer><span class="avatar" aria-hidden="true">BC</span><cite>Bradley &amp; Claudia R</cite><span class="carousel__place">Los Feliz</span></footer>
+        </blockquote>
+        <blockquote class="carousel__slide">
+          <p>“We are so glad we had Alexandra on our side. She helped us rent our house during a down‑time in the
+             market, and we were able to cover all our costs. She took all the worry out of the process. She then
+             advised us when to start thinking about selling the house, and ultimately sold it over ask within a month.
+             All of this, while we lived 3,000 miles away. I couldn’t have asked for a better overall experience.”</p>
+          <footer><span class="avatar" aria-hidden="true">NS</span><cite>Nancy &amp; Stephen G</cite><span class="carousel__place">West Hollywood</span></footer>
+        </blockquote>
+      </div>
+      <div class="carousel__controls">
+        <button class="carousel__btn" data-dir="-1" aria-label="Previous testimonial"><i class="arrow arrow--left" aria-hidden="true"></i></button>
+        <div class="carousel__dots" role="tablist" aria-label="Choose testimonial"></div>
+        <button class="carousel__btn" data-dir="1" aria-label="Next testimonial"><i class="arrow" aria-hidden="true"></i></button>
+      </div>
+    </div>
+    <div class="section-foot reveal"><a class="text-link" href="testimonials.html">View All<i class="arrow" aria-hidden="true"></i></a></div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <img class="footer__logo" src="assets/logo-white.png" alt="Alexandra Kerr — AK monogram logo">
+      <p class="footer__name">Alexandra Kerr</p>
+      <p class="footer__title">REALTOR® · Estates Director · Senior Real Estate Specialist</p>
+      <address class="footer__contact">
+        <a href="tel:+13107951440">(310) 795-1440</a>
+        <a href="mailto:alexandra.kerr@compass.com">alexandra.kerr@compass.com</a>
+        <a href="https://instagram.com/alexandrakerrlarealestate" rel="noopener">@alexandrakerrlarealestate</a>
+      </address>
+    </div>
+    <nav class="footer__col" aria-label="Resources">
+      <h3>Resources</h3>
+      <a href="home-search.html">Home Search</a>
+      <a href="neighborhoods.html">Featured Neighborhoods</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="#">Market Reports</a>
+      <a href="sellers.html#valuation">What’s My Home Worth?</a>
+      <a href="#">Compass Concierge</a>
+      <a href="#">Calculate My Payments</a>
+      <a href="#">My Search Portal</a>
+    </nav>
+    <nav class="footer__col" aria-label="Explore">
+      <h3>Explore</h3>
+      <a href="about.html">About Alexandra</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="#">Compass Cares</a>
+      <a href="sellers.html">Sell Your Home</a>
+      <a href="buyers.html">Buying A Home</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="index.html#journal">Real Estate News</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="footer__col footer__office">
+      <h3>Office</h3>
+      <p>Compass<br>6430 W Sunset Blvd, 6th Floor<br>Los Angeles, CA 90028<br><a href="tel:+13235936999">(323) 593-6999</a></p>
+      <div class="footer__badges" aria-label="Affiliations">
+        <span>COMPASS</span><span>REALTOR®</span><span>EQUAL HOUSING</span><span>DRE# 01911486</span>
+      </div>
+    </div>
+  </div>
+  <div class="container footer__legal">
+    <p>© 2026 Alexandra Kerr, REALTOR® | DRE# 01911486 | COMPASS – All rights reserved |
+       <a href="#">Privacy Policy</a> | <a href="#">DMCA Policy</a></p>
+    <p>Alexandra Kerr is a real estate agent affiliated with COMPASS, a licensed real estate broker and abides by
+       all applicable Equal Housing Opportunity laws. All material presented herein is intended for informational
+       purposes only. Information is compiled from sources deemed reliable but is subject to errors, omissions,
+       changes in price, condition, sale, or withdrawal without notice.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/pages.js"></script>
+</body>
+</html>

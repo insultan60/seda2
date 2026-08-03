@@ -1,3 +1,15 @@
+/**
+ * One paragraph, heading, list, or pull quote of article copy. The article
+ * template renders whatever it is handed, so publishing a piece is a matter of
+ * pasting its body in here — no page work required.
+ */
+export type Block =
+  | { k: "p"; t: string }
+  | { k: "h2"; t: string }
+  | { k: "h3"; t: string }
+  | { k: "ul"; items: string[] }
+  | { k: "quote"; t: string };
+
 export type Post = {
   slug: string;
   title: string;
@@ -9,6 +21,15 @@ export type Post = {
   excerpt: string;
   /** Optional — roughly a third of the feed runs with art, the rest is text-only. */
   img?: string;
+  /**
+   * The full article. Absent until Alexandra supplies the copy — the titles and
+   * dates came off the live Compass feed, but the bodies did not, and an article
+   * page is not the place to improvise them. Posts without a body render an
+   * honest "being prepared" state instead of a fabricated read.
+   */
+  body?: Block[];
+  /** Optional override; otherwise estimated from the body length. */
+  read?: string;
 };
 
 // Newest first. `img` values are stock placeholders pending the real article art.
@@ -260,3 +281,29 @@ export const POSTS: Post[] = [
  * never renders a card with an empty figure.
  */
 export const LATEST_POSTS = POSTS.filter((p) => p.img).slice(0, 3);
+
+export const getPost = (slug: string) => POSTS.find((p) => p.slug === slug);
+
+/** Reading time at ~220 wpm, rounded up. Returns null when there is no body. */
+export function readingTime(post: Post): string | null {
+  if (post.read) return post.read;
+  if (!post.body?.length) return null;
+  const words = post.body
+    .map((b) => (b.k === "ul" ? b.items.join(" ") : b.t))
+    .join(" ")
+    .split(/\s+/)
+    .filter(Boolean).length;
+  return `${Math.max(1, Math.ceil(words / 220))} min read`;
+}
+
+/**
+ * Up to `n` other posts, preferring ones filed under the same tag so the
+ * "Continue Reading" row stays topical rather than merely adjacent.
+ */
+export function relatedPosts(slug: string, n = 3): Post[] {
+  const current = getPost(slug);
+  const rest = POSTS.filter((p) => p.slug !== slug);
+  if (!current) return rest.slice(0, n);
+  const sameTag = rest.filter((p) => p.tag === current.tag);
+  return [...sameTag, ...rest.filter((p) => p.tag !== current.tag)].slice(0, n);
+}

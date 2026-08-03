@@ -1,0 +1,172 @@
+/* ==========================================================================
+   Neighborhoods — woven image grid over the hero, then a typographic index
+   for the wider service area. Prefix: nb-
+   ========================================================================== */
+
+/* ---------- Hero ---------- */
+.nb-hero {
+  position: relative; min-height: clamp(360px, 48vh, 500px);
+  display: flex; align-items: center; overflow: hidden; background: var(--moss-shadow);
+}
+.nb-hero__img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  object-position: center 45%; filter: saturate(.6) contrast(.96);
+}
+.nb-hero__scrim {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(120% 80% at 50% 50%, rgba(28,31,25,.6) 0%, rgba(28,31,25,.32) 58%, transparent 100%),
+    linear-gradient(180deg, rgba(46,53,42,.72) 0%, rgba(46,53,42,.46) 45%, rgba(46,53,42,.82) 100%);
+}
+.nb-hero__inner {
+  position: relative; text-align: center;
+  padding-block: clamp(7rem, 13vh, 9.5rem) clamp(2.5rem, 5vw, 3.5rem);
+}
+.nb-hero__inner .eyebrow { justify-content: center; }
+.nb-hero__title {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(2.5rem, 1.8rem + 3.6vw, 4.5rem); line-height: 1.05;
+  letter-spacing: .05em; text-transform: uppercase; color: var(--parchment);
+  margin-top: .6rem;
+}
+.nb-hero__sub { color: rgba(245, 240, 225, .82); max-width: 54ch; margin: 1.1rem auto 0; }
+
+/* ---------- Intro ---------- */
+.nb-intro { background: var(--off-white); padding-block: clamp(3.5rem, 7vw, 6rem) 0; }
+.nb-intro__grid {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: clamp(2rem, 5vw, 4.5rem); align-items: start;
+}
+.nb-intro__statement {
+  font-family: var(--serif); font-weight: 400; font-style: italic;
+  font-size: clamp(1.45rem, 1.2rem + 1.4vw, 2.25rem); line-height: 1.25;
+  color: var(--ink); margin-top: .8rem; text-wrap: balance;
+}
+.nb-intro__body p { color: var(--ink-soft); max-width: 62ch; }
+.nb-intro__body p + p { margin-top: 1.1rem; }
+
+/* ---------- Featured grid ---------- */
+.nb-areas { background: var(--off-white); padding-block: var(--section-y); }
+.nb-grid {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem); align-items: start;
+}
+.nb-col { display: grid; gap: clamp(1rem, 2vw, 1.5rem); }
+/* Middle column rides up so the grid reads woven rather than gridded. */
+.nb-col:nth-child(2) { margin-top: clamp(2rem, 5vw, 4rem); }
+
+.nb-card {
+  position: relative; display: block; overflow: hidden;
+  min-height: 300px; background: var(--moss-deep); color: var(--parchment);
+}
+.nb-card--tall { min-height: 460px; }
+.nb-card img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  transition: transform 700ms var(--ease), filter 400ms var(--ease);
+  filter: saturate(.72) brightness(.86);
+}
+.nb-card:hover img { transform: scale(1.05); filter: saturate(.85) brightness(.92); }
+.nb-card::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(28,31,25,0) 30%, rgba(28,31,25,.78) 100%);
+  transition: background 400ms var(--ease);
+}
+.nb-card--plain::after {
+  background: linear-gradient(180deg, rgba(79,88,71,.35) 0%, rgba(28,31,25,.72) 100%);
+}
+.nb-card__label {
+  position: absolute; inset: auto 0 0 0; z-index: 1;
+  padding: clamp(1.25rem, 2.5vw, 1.9rem);
+}
+.nb-card__label h3 {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(1.35rem, 1.15rem + .7vw, 1.85rem); line-height: 1.15;
+  color: var(--parchment);
+}
+.nb-card__label p {
+  font-size: var(--fs-small); line-height: 1.6;
+  color: rgba(245, 240, 225, .8); margin-top: .5rem;
+  /* Held back until hover so the grid reads as images first. */
+  max-height: 0; opacity: 0; overflow: hidden;
+  transition: max-height 480ms var(--ease), opacity 320ms var(--ease), margin 480ms var(--ease);
+  margin-top: 0;
+}
+.nb-card:hover .nb-card__label p,
+.nb-card:focus-visible .nb-card__label p { max-height: 9rem; opacity: 1; margin-top: .55rem; }
+.nb-card__count {
+  display: inline-flex; align-items: center; gap: .45rem; margin-top: .7rem;
+  font-size: var(--fs-micro); font-weight: 600; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--clay-light);
+}
+.nb-card__count .arrow { transition: transform 220ms var(--ease); }
+.nb-card:hover .nb-card__count .arrow { transform: translateX(4px); }
+
+/* ---------- Also serving ---------- */
+.nb-also { background: var(--parchment); padding-block: var(--section-y); }
+.nb-also__list {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.nb-also__list li { border-top: 1px solid var(--clay); }
+.nb-also__list a {
+  display: block; padding: 1.25rem 0;
+  transition: padding-left 320ms var(--ease);
+}
+.nb-also__list a:hover { padding-left: .6rem; }
+.nb-also__name {
+  display: block; font-family: var(--serif); font-size: 1.3rem;
+  color: var(--ink); transition: color 200ms var(--ease);
+}
+.nb-also__list a:hover .nb-also__name { color: var(--moss); }
+.nb-also__blurb {
+  display: block; font-size: var(--fs-small); line-height: 1.6;
+  color: var(--ink-soft); margin-top: .3rem;
+}
+
+/* ---------- Search band ---------- */
+.nb-band-wrap { background: var(--off-white); padding-block: clamp(3rem, 6vw, 5rem); }
+.nb-band {
+  background: var(--moss); color: var(--parchment);
+  padding: clamp(2rem, 4vw, 3rem);
+  display: grid; grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(1.5rem, 4vw, 3rem); align-items: center;
+}
+.nb-band h2 {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(1.5rem, 1.25rem + 1.1vw, 2.15rem); line-height: 1.15;
+  color: var(--parchment); margin-top: .4rem;
+}
+.nb-band p { color: rgba(245, 240, 225, .8); max-width: 48ch; margin-top: .7rem; }
+
+/* ---------- Closing CTA ---------- */
+.nb-cta { background: var(--off-white); padding-block: 0 var(--section-y); }
+.nb-cta__inner {
+  display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, auto);
+  gap: clamp(2rem, 5vw, 4rem); align-items: center;
+  border-top: 1px solid var(--clay-light); padding-top: clamp(2.5rem, 5vw, 4rem);
+}
+.nb-cta__actions { display: flex; flex-direction: column; gap: .9rem; min-width: min(280px, 100%); }
+.nb-cta__actions .btn { justify-content: center; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1023px) {
+  .nb-intro__grid { grid-template-columns: 1fr; }
+  .nb-grid { grid-template-columns: 1fr 1fr; }
+  .nb-col:nth-child(2) { margin-top: 0; }
+  .nb-also__list { grid-template-columns: 1fr 1fr; }
+  .nb-band { grid-template-columns: 1fr; }
+  .nb-cta__inner { grid-template-columns: 1fr; }
+  .nb-cta__actions { flex-direction: row; flex-wrap: wrap; }
+}
+@media (max-width: 639px) {
+  .nb-grid { grid-template-columns: 1fr; }
+  .nb-card, .nb-card--tall { min-height: 260px; }
+  /* Touch has no hover, so the blurb always shows. */
+  .nb-card__label p { max-height: 9rem; opacity: 1; margin-top: .55rem; }
+  .nb-also__list { grid-template-columns: 1fr; }
+  .nb-cta__actions .btn { width: 100%; }
+}
+@media (hover: none) {
+  .nb-card__label p { max-height: 9rem; opacity: 1; margin-top: .55rem; }
+}

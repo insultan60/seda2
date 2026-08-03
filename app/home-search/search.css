@@ -1,0 +1,312 @@
+/* ==========================================================================
+   Alexandra Kerr — Home Search (Map Search)
+   Compact utility page: tight spacing, full-viewport map + results split.
+   ========================================================================== */
+
+.page-search { overflow: hidden; height: 100vh; height: 100dvh; }
+
+/* Compact nav variant (keeps brand, trims height) */
+.nav--compact .nav__inner { padding-block: .5rem; }
+.nav--compact .nav__logo-img { height: 40px; }
+.nav--compact .nav__cta { min-height: 36px; padding: .35rem 1rem; }
+
+/* ---------- Filter bar (single line) ---------- */
+.sbar {
+  position: fixed; top: var(--ak-header, 68px); left: 0; right: 0; z-index: 90;
+  background: var(--white); border-bottom: 1px solid var(--clay-light);
+}
+.sbar__inner {
+  display: flex; align-items: center;
+  height: 50px; padding: 0 12px; gap: 6px;
+}
+.sbar__location {
+  display: flex; align-items: center; gap: 7px;
+  flex: 0 1 230px; min-width: 130px; height: 36px;
+  border: 1px solid var(--clay-light); border-radius: 5px; padding: 0 10px;
+  transition: border-color 150ms var(--ease);
+}
+.sbar__location:focus-within { border-color: var(--moss); }
+.sbar__location svg { color: var(--ink-soft); flex-shrink: 0; }
+.sbar__location input {
+  font: inherit; font-size: 14px; color: var(--ink);
+  background: none; border: none; outline: none; width: 100%;
+}
+.sbar__location input::placeholder { color: var(--ink-soft); }
+
+.sbar__filter { position: relative; }
+.sbar__btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 36px; padding: 0 12px;
+  font-size: 13.5px; font-weight: 500; color: var(--ink);
+  border: 1px solid var(--clay-light); border-radius: 5px;
+  white-space: nowrap;
+  transition: border-color 140ms var(--ease), background-color 140ms var(--ease);
+}
+.sbar__btn:hover { border-color: var(--clay); background: var(--off-white); }
+.sbar__btn[aria-expanded="true"] { border-color: var(--moss); background: var(--off-white); }
+.sbar__btn svg { transition: transform 140ms var(--ease); flex-shrink: 0; }
+.sbar__btn[aria-expanded="true"] svg { transform: rotate(180deg); }
+
+.sbar__save {
+  margin-left: auto; height: 36px; padding: 0 16px; flex-shrink: 0;
+  font-size: 12.5px; font-weight: 600; letter-spacing: .06em;
+  color: var(--moss); border: 1px solid var(--moss); border-radius: 5px;
+  white-space: nowrap;
+  transition: background-color 140ms var(--ease), color 140ms var(--ease);
+}
+.sbar__save:hover, .sbar__save.is-saved { background: var(--moss); color: var(--parchment); }
+.sbar__save.is-saved { pointer-events: none; }
+
+/* Dropdown panels */
+.sbar__dropdown {
+  position: absolute; top: calc(100% + 7px); left: 0; z-index: 100;
+  min-width: 218px; padding: 12px;
+  background: var(--white); border: 1px solid var(--clay-light); border-radius: 8px;
+  box-shadow: 0 12px 32px -10px rgba(46,53,42,.25);
+  animation: sbar-drop 160ms var(--ease);
+}
+@keyframes sbar-drop { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: none; } }
+.sbar__dropdown--range { min-width: 300px; }
+.sbar__dropdown--beds { min-width: 320px; }
+.sbar__dropdown--more { min-width: 420px; left: auto; right: 0; }
+
+.sbar__dropdown fieldset { border: 0; display: grid; gap: 1px; }
+.sbar__check {
+  display: flex; align-items: center; gap: 9px; cursor: pointer;
+  font-size: 14px; color: var(--ink); padding: 7px 8px; border-radius: 5px;
+  transition: background-color 120ms var(--ease);
+}
+.sbar__check:hover { background: var(--off-white); }
+.sbar__check input { width: 17px; height: 17px; accent-color: var(--moss); cursor: pointer; }
+
+.sbar__range-row { display: flex; align-items: end; gap: 8px; }
+.sbar__range-sep { color: var(--ink-soft); padding-bottom: 9px; }
+.sbar__range-field { display: grid; gap: 4px; flex: 1; }
+.sbar__range-field label {
+  font-size: 10.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.sbar__range-field select {
+  appearance: none; -webkit-appearance: none; font: inherit; font-size: 13.5px;
+  color: var(--ink); background: var(--off-white);
+  border: 1px solid var(--clay-light); border-radius: 5px;
+  padding: 7px 26px 7px 9px; min-height: 34px; cursor: pointer;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='9' height='5' viewBox='0 0 9 5'><path d='M1 1l3.5 3L8 1' fill='none' stroke='%234F5847' stroke-width='1.4'/></svg>");
+  background-repeat: no-repeat; background-position: right 8px center;
+}
+.sbar__range-field select:hover { border-color: var(--moss); }
+
+.sbar__seg-group + .sbar__seg-group { margin-top: 12px; }
+.sbar__seg-label {
+  display: block; font-size: 10.5px; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-soft); margin-bottom: 6px;
+}
+.sbar__segments { display: flex; border: 1px solid var(--clay-light); border-radius: 5px; overflow: hidden; }
+.sbar__segments button {
+  flex: 1; padding: 7px 0; font-size: 13px; font-weight: 500; color: var(--ink-soft);
+  border-right: 1px solid var(--clay-light);
+  transition: background-color 120ms var(--ease), color 120ms var(--ease);
+}
+.sbar__segments button:last-child { border-right: 0; }
+.sbar__segments button:hover { background: var(--off-white); }
+.sbar__segments button.is-active { background: var(--moss); color: var(--parchment); }
+
+.sbar__more-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.sbar__more-checks {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  border-top: 1px solid var(--clay-light); padding-top: 10px;
+}
+.sbar__apply {
+  display: block; width: 100%; margin-top: 11px; padding: 9px;
+  font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  background: var(--moss); color: var(--parchment); border-radius: 5px;
+  transition: background-color 140ms var(--ease);
+}
+.sbar__apply:hover { background: var(--moss-deep); }
+
+/* ---------- Results bar ---------- */
+.rbar {
+  position: fixed; top: calc(var(--ak-header, 68px) + 50px); left: 0; right: 0; z-index: 80;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 40px; padding: 0 12px;
+  background: var(--off-white); border-bottom: 1px solid var(--clay-light);
+}
+.rbar__left { display: flex; align-items: center; gap: 10px; }
+.rbar__view {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 9px; font-size: 12.5px; font-weight: 500; color: var(--ink-soft);
+  border: 1px solid transparent; border-radius: 4px;
+  transition: all 120ms var(--ease);
+}
+.rbar__view:hover { color: var(--ink); background: var(--white); }
+.rbar__view.is-active { color: var(--ink); font-weight: 600; background: var(--white); border-color: var(--clay-light); }
+.rbar__count { font-size: 13px; color: var(--ink-soft); padding-left: 8px; border-left: 1px solid var(--clay-light); }
+.rbar__count strong { color: var(--ink); }
+.rbar__note { font-size: 11px; color: var(--clay); }
+.rbar__sort {
+  appearance: none; -webkit-appearance: none; font: inherit;
+  font-size: 13px; font-weight: 500; color: var(--ink-soft);
+  background: none; border: 0; cursor: pointer; padding: 4px 18px 4px 4px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='9' height='5' viewBox='0 0 9 5'><path d='M1 1l3.5 3L8 1' fill='none' stroke='%2355534C' stroke-width='1.4'/></svg>");
+  background-repeat: no-repeat; background-position: right 2px center;
+}
+
+/* ---------- Split: map + results ---------- */
+.search-split {
+  position: fixed; top: calc(var(--ak-header, 68px) + 90px); left: 0; right: 0; bottom: 0;
+  display: grid; grid-template-columns: 1fr 480px;
+}
+@media (min-width: 1600px) { .search-split { grid-template-columns: 1fr 560px; } }
+
+/* Map */
+.map { position: relative; background: var(--parchment); }
+#map { width: 100%; height: 100%; }
+
+/* Leaflet price pins */
+.price-pin {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--moss); color: var(--parchment);
+  font-family: var(--sans); font-size: 12px; font-weight: 600;
+  padding: 4px 9px; border-radius: 12px; white-space: nowrap;
+  border: 1.5px solid rgba(245,240,225,.9);
+  box-shadow: 0 2px 8px rgba(28,28,26,.35);
+  cursor: pointer;
+  transition: background-color 120ms var(--ease), transform 120ms var(--ease);
+}
+.price-pin:hover, .price-pin.is-active {
+  background: var(--moss-shadow); transform: scale(1.08); z-index: 1000;
+}
+.leaflet-marker-icon { background: none; border: none; }
+
+/* Leaflet popup card, on-brand */
+.leaflet-popup-content-wrapper {
+  border-radius: 8px; overflow: hidden; padding: 0;
+  box-shadow: 0 10px 30px -6px rgba(28,28,26,.35);
+}
+.leaflet-popup-content { margin: 0; width: 230px !important; font-family: var(--sans); }
+.map-pop img { width: 100%; height: 120px; object-fit: cover; display: block; }
+.map-pop__body { padding: 8px 11px 10px; }
+.map-pop__price { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--ink); }
+.map-pop__addr { font-size: 12.5px; font-weight: 600; color: var(--ink); margin-top: 1px; }
+.map-pop__meta { font-size: 11.5px; color: var(--ink-soft); margin-top: 2px; }
+.leaflet-container a.leaflet-popup-close-button { color: var(--parchment); text-shadow: 0 1px 2px rgba(0,0,0,.5); }
+
+/* Custom layers control */
+.map__layers { position: absolute; top: 10px; right: 10px; z-index: 500; }
+.map__layers-btn {
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  background: var(--white); color: var(--ink);
+  border: 1px solid var(--clay-light); border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(28,28,26,.15);
+  transition: background-color 120ms var(--ease);
+}
+.map__layers-btn:hover { background: var(--off-white); }
+.map__layers-panel {
+  position: absolute; top: calc(100% + 6px); right: 0; min-width: 130px;
+  background: var(--white); border: 1px solid var(--clay-light); border-radius: 7px;
+  overflow: hidden; box-shadow: 0 8px 24px -6px rgba(28,28,26,.25);
+  animation: sbar-drop 140ms var(--ease);
+}
+.map__layers-panel[hidden] { display: none; }
+.map__layer {
+  display: block; width: 100%; text-align: left;
+  padding: 9px 14px; font-size: 13.5px; color: var(--ink);
+  border-bottom: 1px solid var(--clay-light);
+  transition: background-color 100ms var(--ease);
+}
+.map__layer:last-child { border-bottom: 0; }
+.map__layer:hover { background: var(--off-white); }
+.map__layer.is-active { background: var(--parchment); font-weight: 600; color: var(--moss); }
+
+.map__note {
+  position: absolute; left: 10px; bottom: 10px; z-index: 500;
+  background: rgba(250,250,245,.94); border: 1px solid var(--clay-light);
+  color: var(--ink-soft); font-size: 10.5px; padding: 4px 8px; border-radius: 4px;
+}
+
+/* ---------- Results panel ---------- */
+.results {
+  overflow-y: auto; background: var(--white);
+  border-left: 1px solid var(--clay-light);
+  scrollbar-width: thin; scrollbar-color: var(--clay-light) transparent;
+}
+.results::-webkit-scrollbar { width: 6px; }
+.results::-webkit-scrollbar-thumb { background: var(--clay-light); border-radius: 3px; }
+
+/* Single-column list reusing the homepage .listing card component
+   (identical styling — .listing rules live in styles.css) */
+.results__grid {
+  display: flex; flex-direction: column; gap: clamp(2rem, 4vw, 2.75rem);
+  padding: 20px;
+}
+/* pin ↔ card sync highlight (search-only affordance) */
+.results .listing { scroll-margin: 90px; border-radius: 2px; transition: outline-color 160ms var(--ease); outline: 2px solid transparent; outline-offset: 8px; }
+.results .listing.is-hot { outline-color: var(--clay); }
+
+/* Off-market strip + pager inside results */
+.results__cta {
+  padding: 20px 16px; text-align: center;
+  background: var(--parchment); border-bottom: 1px solid var(--clay-light);
+}
+.results__cta p { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; color: var(--ink); }
+.results__cta span { display: block; font-family: var(--sans); font-size: 12.5px; color: var(--ink-soft); margin: 4px 0 12px; }
+.results__cta .btn { min-height: 38px; padding: .5rem 1.2rem; font-size: 11.5px; }
+
+.results__pager { display: flex; align-items: center; justify-content: center; gap: 4px; padding: 14px; }
+.results__pager a, .results__pager-current {
+  min-width: 34px; min-height: 34px; display: inline-flex; align-items: center; justify-content: center;
+  font-size: 12.5px; font-weight: 600; color: var(--ink-soft); border-radius: 4px;
+  transition: background-color 120ms var(--ease), color 120ms var(--ease);
+}
+.results__pager a:hover { background: var(--parchment); color: var(--moss); }
+.results__pager-current { background: var(--moss); color: var(--parchment); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1023px) {
+  .page-search { overflow: auto; height: auto; }
+  .sbar { position: sticky; }
+  .sbar__inner { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .sbar__inner::-webkit-scrollbar { display: none; }
+  .sbar__save { margin-left: 6px; }
+  .rbar { position: sticky; top: calc(var(--ak-header, 68px) + 50px); }
+  .search-split { position: static; grid-template-columns: 1fr; }
+  .map { height: 52vh; min-height: 360px; }
+  .results { border-left: 0; }
+}
+@media (max-width: 639px) {
+  .sbar { top: var(--ak-header, 60px); }
+  .rbar { top: calc(var(--ak-header, 60px) + 50px); }
+  .nav--compact .nav__logo-img { height: 34px; }
+  .map { height: 44vh; min-height: 300px; }
+  .results__grid { padding: 16px; gap: 2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sbar__dropdown, .map__layers-panel { animation: none; }
+  .price-pin { transition: none; }
+}
+
+/* ---------- Additions for the Next port ---------- */
+
+/* Not present in globals.css — the static build had it in styles.css. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* List view: the map keeps its DOM node (Leaflet holds a live reference to it)
+   but yields the full width, so results become a multi-column grid. */
+.search-split.is-list { grid-template-columns: 1fr; }
+.search-split.is-list .map { display: none; }
+.search-split.is-list .results { border-left: 0; }
+.search-split.is-list .results__grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.25rem); padding: 24px;
+  max-width: var(--container); margin-inline: auto;
+}
+
+.results__empty { padding: 2rem .5rem; color: var(--ink-soft); font-size: var(--fs-small); }
+
+/* The page owns the viewport on this route; the global footer would otherwise
+   sit below a fixed, full-height split and be unreachable. */
+.page-search ~ .footer { display: none; }

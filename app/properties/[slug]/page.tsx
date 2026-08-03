@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Gallery from "./Gallery";
-import { ALL_SLUGS, getListing, LISTINGS } from "../data";
+import SaveListing from "../../components/SaveListing";
+import { ALL_SLUGS, getListing, hasSpecs, LISTINGS, locationLabel, priceLabel } from "../data";
 import "../properties.css";
 
 export function generateStaticParams() {
@@ -12,9 +13,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const l = getListing(slug);
   if (l) {
+    const where = locationLabel(l);
     return {
-      title: `${l.addr}, ${l.city} — Alexandra Kerr`,
-      description: `${l.beds} bd · ${l.baths} ba · ${l.sqft} sqft — ${l.price}. ${l.addr}, ${l.city} ${l.zip}.`,
+      title: [l.addr, l.city].filter(Boolean).join(", ") + " — Alexandra Kerr",
+      description: [
+        hasSpecs(l) && `${l.beds} bd · ${l.baths} ba · ${l.sqft} sqft`,
+        priceLabel(l),
+        [l.addr, where].filter(Boolean).join(", "),
+      ]
+        .filter(Boolean)
+        .join(" — "),
     };
   }
   return { title: "Listing — Alexandra Kerr" };
@@ -54,17 +62,28 @@ export default async function PropertyDetail({ params }: { params: Promise<{ slu
           <div>
             <span className="pd-status">{l.status}</span>
             <h1 className="pd-title">{l.addr}</h1>
-            <p className="pd-addr">{l.city} {l.zip}</p>
+            {locationLabel(l) && <p className="pd-addr">{locationLabel(l)}</p>}
           </div>
-          <div className="pd-price">{l.price}</div>
+          <div className="pd-head__right">
+            <div className="pd-price">{priceLabel(l)}</div>
+            <SaveListing slug={l.slug} addr={l.addr} />
+          </div>
         </div>
 
-        <div className="pd-stats">
-          <div className="pd-stat"><b>{l.beds}</b><span>Beds</span></div>
-          <div className="pd-stat"><b>{l.baths}</b><span>Baths</span></div>
-          <div className="pd-stat"><b>{l.sqft}</b><span>Sq Ft</span></div>
-          {l.features?.[1] && <div className="pd-stat"><b>{l.features[1].value}</b><span>Year Built</span></div>}
-        </div>
+        {/* Dropped entirely rather than rendered with blanks when a listing is
+            still awaiting its figures. */}
+        {(hasSpecs(l) || l.features?.[1]) && (
+          <div className="pd-stats">
+            {hasSpecs(l) && (
+              <>
+                <div className="pd-stat"><b>{l.beds}</b><span>Beds</span></div>
+                <div className="pd-stat"><b>{l.baths}</b><span>Baths</span></div>
+                <div className="pd-stat"><b>{l.sqft}</b><span>Sq Ft</span></div>
+              </>
+            )}
+            {l.features?.[1] && <div className="pd-stat"><b>{l.features[1].value}</b><span>Year Built</span></div>}
+          </div>
+        )}
 
         <div className="pd-layout">
           <div className="pd-main">

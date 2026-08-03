@@ -1,0 +1,139 @@
+/* ==========================================================================
+   Meet Alexandra — layout ported from my-app/app/agent.css (hero with cutout
+   photo, contact pills + card grid, two-column story, pull quote), re-skinned
+   to the Moss & Clay tokens.
+   ========================================================================== */
+
+/* ---------- Hero ---------- */
+.ab-hero { background: var(--moss-deep); color: var(--parchment); position: relative; overflow: hidden; }
+/* Faint AK monogram behind the photo, as the AL mark sits in the source design */
+.ab-hero::before {
+  content: ""; position: absolute; top: 50%; right: 24%;
+  transform: translate(50%, -50%); width: clamp(300px, 32vw, 440px); aspect-ratio: 1;
+  background: url("/assets/logo-white.png") center / contain no-repeat;
+  opacity: .06; pointer-events: none; z-index: 0;
+}
+.ab-hero-inner { position: relative; z-index: 2; display: flex; align-items: center; min-height: 508px; }
+/* Top padding clears the fixed .nav; the source design's nav was sticky and
+   occupied flow, so 72px was enough there and is not here. */
+.ab-hero-copy { padding: clamp(7rem, 13vh, 9.5rem) 0 clamp(3.5rem, 7vw, 4.5rem); max-width: 620px; }
+/* The source design floated a transparent PNG cutout bottom-right, capped at
+   508px. Alexandra's headshot is a normal rectangular photo (927x1200), so it
+   becomes a full-height panel instead — otherwise it reads as a cropped
+   rectangle pinned in the corner. */
+.ab-hero-photo {
+  position: absolute; inset: 0 0 0 auto; z-index: 1;
+  width: clamp(300px, 36vw, 620px); pointer-events: none;
+}
+.ab-hero-photo img {
+  display: block; width: 100%; height: 100%;
+  object-fit: cover; object-position: center 22%;
+}
+/* Feather the inner edge so the photo meets the moss rather than butting
+   against the copy with a hard vertical seam. */
+.ab-hero-photo::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg, var(--moss-deep) 0%, rgba(58, 66, 51, .55) 22%, transparent 60%);
+}
+.ab-hero-name {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(2.5rem, 5.4vw, 4.1rem); line-height: 1.02;
+  letter-spacing: .02em; color: var(--parchment);
+}
+.ab-hero-role { margin-top: .75rem; font-size: var(--fs-small); color: var(--clay); letter-spacing: .04em; }
+.ab-hero-bio { margin-top: 1.25rem; line-height: 1.72; color: rgba(245, 240, 225, .8); max-width: 52ch; }
+.ab-hero-ctas { margin-top: 1.9rem; display: flex; gap: .9rem; flex-wrap: wrap; }
+
+/* ---------- Get in touch ---------- */
+.ab-touch { background: var(--off-white); padding-block: clamp(4rem, 8vw, 5.5rem); }
+.ab-touch-head { text-align: center; max-width: 720px; margin: 0 auto clamp(2rem, 4vw, 2.5rem); }
+.ab-touch-head .eyebrow { justify-content: center; }
+.ab-touch-name {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(1.9rem, 3.8vw, 2.75rem); color: var(--ink); margin-top: .5rem;
+}
+.ab-touch-sub { margin-top: .5rem; font-size: var(--fs-small); color: var(--ink-soft); }
+.ab-touch-actions { margin-top: 1.4rem; display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+.ab-pill {
+  display: inline-flex; align-items: center; gap: .55rem;
+  height: 46px; padding: 0 1.4rem; font-size: var(--fs-small); font-weight: 500;
+  transition: transform 160ms var(--ease), background-color 160ms var(--ease), border-color 160ms var(--ease);
+}
+.ab-pill svg { width: 17px; height: 17px; flex: none; }
+.ab-pill-solid { background: var(--moss); color: var(--parchment); }
+.ab-pill-solid:hover { background: var(--moss-deep); transform: translateY(-2px); }
+.ab-pill-ghost { background: var(--white); color: var(--ink); border: 1px solid var(--clay-light); }
+.ab-pill-ghost:hover { border-color: var(--moss); transform: translateY(-2px); }
+
+.ab-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; max-width: 940px; margin-inline: auto; }
+.ab-card { background: var(--white); border: 1px solid var(--clay-light); padding: 1.6rem 1.75rem; }
+.ab-card-ic {
+  width: 40px; height: 40px; display: grid; place-items: center;
+  background: var(--parchment); color: var(--moss); margin-bottom: 1rem;
+}
+.ab-card-ic svg { width: 19px; height: 19px; }
+.ab-card-label {
+  font-size: var(--fs-micro); font-weight: 600; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--moss); margin-bottom: .5rem;
+}
+.ab-card-text { font-size: var(--fs-small); color: var(--ink-soft); line-height: 1.55; }
+.ab-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+.ab-tag {
+  font-size: var(--fs-micro); color: var(--ink-soft); padding: .38rem .8rem;
+  border: 1px solid var(--clay-light); background: var(--off-white);
+}
+.ab-socials { display: flex; flex-wrap: wrap; gap: .6rem; }
+.ab-social {
+  display: grid; place-items: center; gap: .3rem; min-width: 74px; padding: .65rem .4rem;
+  border: 1px solid var(--clay-light); background: var(--off-white); color: var(--ink-soft);
+  font-size: 10.5px;
+  transition: transform 160ms var(--ease), border-color 160ms var(--ease), color 160ms var(--ease), background-color 160ms var(--ease);
+}
+.ab-social svg { width: 18px; height: 18px; }
+.ab-social:hover { transform: translateY(-2px); color: var(--moss); border-color: var(--clay); background: var(--parchment); }
+
+/* ---------- Story ---------- */
+.ab-story { background: var(--off-white); padding: 0 0 var(--section-y); }
+.ab-story-head { text-align: center; margin-bottom: clamp(2rem, 4vw, 2.5rem); }
+.ab-story-head .eyebrow { justify-content: center; }
+.ab-story-title {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(1.75rem, 3.6vw, 2.6rem); color: var(--ink); margin-top: .5rem;
+}
+.ab-story-cols { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.75rem, 4vw, 2.75rem); max-width: 960px; margin-inline: auto; }
+.ab-story-cols p { line-height: 1.75; color: var(--ink-soft); }
+.ab-story-cols p + p { margin-top: 1.1rem; }
+
+.ab-quote { max-width: 960px; margin: clamp(2.25rem, 5vw, 2.75rem) auto 0; border-left: 3px solid var(--clay); padding: .4rem 0 .4rem 1.75rem; }
+.ab-quote-mark { font-family: var(--serif); font-size: 3.5rem; line-height: .4; color: var(--clay); display: block; margin-bottom: .9rem; user-select: none; }
+.ab-quote-text { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(1.2rem, 2.3vw, 1.6rem); color: var(--ink); line-height: 1.4; }
+.ab-quote-by { display: flex; align-items: center; gap: .75rem; margin-top: 1.1rem; }
+.ab-quote-by img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: top center; flex: none; }
+.ab-quote-name { font-weight: 600; font-size: var(--fs-small); color: var(--ink); }
+.ab-quote-role { font-size: var(--fs-micro); color: var(--ink-soft); }
+
+/* ---------- Closing CTA ---------- */
+.ab-cta { background: var(--moss); padding-block: clamp(3.5rem, 7vw, 6rem); }
+.ab-cta__inner { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, auto); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+.ab-cta__sub { color: rgba(245, 240, 225, .8); max-width: 54ch; margin-top: 1.1rem; }
+.ab-cta__actions { display: flex; flex-direction: column; gap: .9rem; min-width: min(280px, 100%); }
+.ab-cta__actions .btn { justify-content: center; }
+
+@media (max-width: 860px) {
+  .ab-hero::before { display: none; }
+  .ab-hero-inner { min-height: 0; align-items: flex-start; padding-bottom: 280px; }
+  /* Must still clear the fixed nav — the source design's smaller mobile
+     padding assumed a nav that occupied flow. */
+  .ab-hero-copy { padding: clamp(6.5rem, 13vh, 8rem) 0 0; }
+  /* Photo moves to a band across the bottom rather than a side panel. */
+  .ab-hero-photo { inset: auto 0 0 0; width: auto; height: 260px; }
+  .ab-hero-photo img { object-position: center 18%; }
+  .ab-hero-photo::after {
+    background: linear-gradient(180deg, var(--moss-deep) 0%, rgba(58, 66, 51, .5) 30%, transparent 70%);
+  }
+  .ab-cards { grid-template-columns: 1fr; max-width: 480px; }
+  .ab-story-cols { grid-template-columns: 1fr; gap: 1.1rem; }
+  .ab-cta__inner { grid-template-columns: 1fr; }
+  .ab-cta__actions { flex-direction: row; flex-wrap: wrap; }
+}
+@media (max-width: 639px) { .ab-cta__actions .btn { width: 100%; } }

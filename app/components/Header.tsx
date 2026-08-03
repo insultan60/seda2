@@ -10,14 +10,16 @@ const Chevron = () => (
   </svg>
 );
 
-const DRAWER_GROUPS = [
-  { label: "About", sub: [{ t: "Meet Alexandra", href: "/#about" }, { t: "Testimonials", href: "/#testimonials", disabled: false }] },
-  { label: "Home Search", sub: [{ t: "Search The MLS", href: "/home-search" }, { t: "My Search Portal", href: "#", disabled: true }] },
-  { label: "Buyers", sub: [{ t: "Buyers Guide", href: "#", disabled: true }, { t: "Relocation", href: "/#relocation" }] },
-  { label: "Sellers", sub: [{ t: "Sellers Guide", href: "#", disabled: true }, { t: "Home Valuation", href: "/contact" }] },
+type DrawerGroup = { label: string; sub: { t: string; href: string; disabled?: boolean }[] };
+
+const DRAWER_GROUPS: DrawerGroup[] = [
+  { label: "About", sub: [{ t: "Meet Alexandra", href: "/about" }, { t: "Testimonials", href: "/testimonials" }] },
+  { label: "Home Search", sub: [{ t: "Search The MLS", href: "/home-search" }, { t: "My Search Portal", href: "/my-search-portal" }] },
+  { label: "Buyers", sub: [{ t: "Neighborhoods", href: "/neighborhoods" }, { t: "Relocation", href: "/relocation" }] },
+  { label: "Sellers", sub: [{ t: "Home Valuation", href: "/home-valuation" }, { t: "Compass Concierge", href: "/compass-concierge" }] },
 ];
-const DRAWER_GROUPS_2 = [
-  { label: "Compass Services", sub: [{ t: "Compass Concierge", href: "#", disabled: true }, { t: "Private Exclusives", href: "#", disabled: true }] },
+const DRAWER_GROUPS_2: DrawerGroup[] = [
+  { label: "Compass Services", sub: [{ t: "Compass Concierge", href: "/compass-concierge" }, { t: "Private Exclusives", href: "#", disabled: true }] },
 ];
 
 // Routes that open on a full-bleed image hero — the nav rides transparent over
@@ -49,6 +51,7 @@ export default function Header() {
           <nav className="nav__links" aria-label="Primary">
             <Link href="/properties">Portfolio</Link>
             <Link href="/home-search">Home Search</Link>
+            <Link href="/relocation">Relocation</Link>
             <Link href="/journal">The Latest Real Estate News</Link>
           </nav>
           <Link className="btn btn--outline-light nav__cta" href="/contact">Let&rsquo;s Connect</Link>
@@ -83,8 +86,8 @@ export default function Header() {
               </div>
             ))}
             <Link className="drawer__item" href="/properties">Portfolio</Link>
-            <Link className="drawer__item" href="/contact">Home Valuation</Link>
-            <Link className="drawer__item" href="/#neighborhoods">Neighborhoods</Link>
+            <Link className="drawer__item" href="/home-valuation">Home Valuation</Link>
+            <Link className="drawer__item" href="/neighborhoods">Neighborhoods</Link>
             {DRAWER_GROUPS_2.map((g) => (
               <div className="drawer__group" key={g.label}>
                 <button className="drawer__item drawer__toggle" type="button" aria-expanded="false">
@@ -100,7 +103,7 @@ export default function Header() {
             ))}
             <Link className="drawer__item" href="/journal">The Latest Real Estate News</Link>
             <Link className="drawer__item" href="/contact">Let&rsquo;s Connect</Link>
-            <a className="drawer__item" href="#" aria-disabled="true">My Search Portal</a>
+            <Link className="drawer__item" href="/my-search-portal">My Search Portal</Link>
           </nav>
         </aside>
       </div>

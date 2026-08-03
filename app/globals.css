@@ -204,30 +204,90 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 .drawer__close { display: block; margin-left: auto; padding: 12px; color: var(--ink); }
 .drawer__nav { margin-top: .4rem; }
 .drawer__item {
+  position: relative;
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   width: 100%; padding: 1.05rem 0; text-align: left;
   font-family: var(--serif); font-weight: 500; font-size: 1.3rem;
   letter-spacing: .1em; text-transform: uppercase; color: var(--ink);
   border-bottom: 1px solid rgba(28,28,26,.12);
-  transition: color 160ms var(--ease);
+  transition: color 220ms var(--ease), transform 380ms var(--ease);
 }
-.drawer__item:hover { color: var(--moss); }
+/* Clay rule that draws itself in as the label slides right. Offset by exactly
+   the hover translate, so it appears pinned to the label's resting position
+   rather than travelling with it. */
+.drawer__item::before {
+  content: ""; position: absolute; left: -1.15rem; top: 50%;
+  width: .8rem; height: 1px; margin-top: -.5px; background: var(--clay);
+  opacity: 0; transform: scaleX(0); transform-origin: left;
+  transition: opacity 260ms var(--ease), transform 380ms var(--ease);
+}
+.drawer__item:hover { color: var(--moss); transform: translateX(1.15rem); }
+.drawer__item:hover::before { opacity: 1; transform: scaleX(1); }
+
 .drawer__item[aria-disabled="true"] { opacity: .45; }
-.drawer__item[aria-disabled="true"]:hover { color: var(--ink); }
-.drawer__chev { flex-shrink: 0; transition: transform 200ms var(--ease); }
+.drawer__item[aria-disabled="true"]:hover { color: var(--ink); transform: none; }
+.drawer__item[aria-disabled="true"]:hover::before { opacity: 0; }
+
+.drawer__chev { flex-shrink: 0; transition: transform 200ms var(--ease), color 220ms var(--ease); }
+.drawer__item:hover .drawer__chev { color: var(--clay); }
+/* Keep the open-state rotation when hovering an already-expanded group. */
+.drawer__toggle:hover .drawer__chev { transform: translateY(2px); }
+.drawer__toggle[aria-expanded="true"]:hover .drawer__chev { transform: rotate(180deg) translateY(2px); }
 .drawer__toggle[aria-expanded="true"] .drawer__chev { transform: rotate(180deg); }
 .drawer__group { border-bottom: 1px solid rgba(28,28,26,.12); }
 .drawer__group .drawer__item { border-bottom: 0; }
 .drawer__sub { overflow: hidden; max-height: 0; transition: max-height 240ms var(--ease); }
 .drawer__group.is-open .drawer__sub { max-height: 16rem; }
 .drawer__sub a {
-  display: block; padding: .6rem 0 .6rem 1.3rem;
+  position: relative; display: block; padding: .6rem 0 .6rem 1.3rem;
   font-size: var(--fs-small); letter-spacing: .16em; text-transform: uppercase;
-  color: var(--ink-soft); transition: color 160ms var(--ease);
+  color: var(--ink-soft);
+  transition: color 220ms var(--ease), transform 380ms var(--ease);
 }
-.drawer__sub a:hover { color: var(--moss); }
+/* Same idea one level down, at half the travel so the hierarchy still reads. */
+.drawer__sub a::before {
+  content: ""; position: absolute; left: .45rem; top: 50%;
+  width: .5rem; height: 1px; margin-top: -.5px; background: var(--clay);
+  opacity: 0; transform: scaleX(0); transform-origin: left;
+  transition: opacity 240ms var(--ease), transform 340ms var(--ease);
+}
+.drawer__sub a:hover { color: var(--moss); transform: translateX(.6rem); }
+.drawer__sub a:hover::before { opacity: 1; transform: scaleX(1); }
 .drawer__sub a[aria-disabled="true"] { opacity: .5; }
+.drawer__sub a[aria-disabled="true"]:hover { color: var(--ink-soft); transform: none; }
+.drawer__sub a[aria-disabled="true"]:hover::before { opacity: 0; }
 .drawer__sub a:last-child { padding-bottom: 1rem; }
+
+/* Close button gives a quarter turn on hover. */
+.drawer__close { transition: transform 320ms var(--ease), color 200ms var(--ease); }
+.drawer__close:hover { transform: rotate(90deg); color: var(--moss); }
+
+/* Items settle in one after another as the panel slides open. `backwards` holds
+   the start frame during the delay so nothing flashes at full opacity first. */
+@keyframes drawer-item-in {
+  from { opacity: 0; transform: translateX(1.5rem); }
+  to   { opacity: 1; transform: none; }
+}
+.drawer.is-open .drawer__nav > * {
+  animation: drawer-item-in 460ms var(--ease) backwards;
+}
+.drawer.is-open .drawer__nav > *:nth-child(1)  { animation-delay: 60ms; }
+.drawer.is-open .drawer__nav > *:nth-child(2)  { animation-delay: 100ms; }
+.drawer.is-open .drawer__nav > *:nth-child(3)  { animation-delay: 140ms; }
+.drawer.is-open .drawer__nav > *:nth-child(4)  { animation-delay: 180ms; }
+.drawer.is-open .drawer__nav > *:nth-child(5)  { animation-delay: 220ms; }
+.drawer.is-open .drawer__nav > *:nth-child(6)  { animation-delay: 260ms; }
+.drawer.is-open .drawer__nav > *:nth-child(7)  { animation-delay: 300ms; }
+.drawer.is-open .drawer__nav > *:nth-child(8)  { animation-delay: 340ms; }
+.drawer.is-open .drawer__nav > *:nth-child(9)  { animation-delay: 380ms; }
+.drawer.is-open .drawer__nav > *:nth-child(n+10) { animation-delay: 420ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer__item, .drawer__sub a, .drawer__close { transition: color 220ms var(--ease); }
+  .drawer__item:hover, .drawer__sub a:hover, .drawer__close:hover { transform: none; }
+  .drawer__item::before, .drawer__sub a::before { display: none; }
+  .drawer.is-open .drawer__nav > * { animation: none; }
+}
 
 /* ==========================================================================
    1 · HERO
@@ -406,6 +466,18 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
   .listing:hover .listing__media img { transform: scale(1.035); }
   .listing:hover .listing__view .arrow { transform: translateX(4px); }
 }
+/* Caption for a listing card using stock imagery instead of the real property.
+   Sits over the bottom of the photo so it travels with the image wherever the
+   card is used, and is legible against any photograph via the scrim. */
+.listing__imgnote {
+  position: absolute; inset-inline: 0; bottom: 0;
+  padding: 1.75rem .9rem .6rem;
+  font-size: var(--fs-micro); font-weight: 500; letter-spacing: .08em;
+  text-transform: uppercase; color: rgba(255, 255, 255, .92); text-align: center;
+  background: linear-gradient(to top, rgba(28, 30, 24, .72), transparent);
+  pointer-events: none;
+}
+
 .badge {
   position: absolute; top: 1rem; left: 1rem;
   font-size: var(--fs-micro); font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
