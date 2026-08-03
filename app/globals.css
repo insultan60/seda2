@@ -386,6 +386,15 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
   line-height: 1.06; letter-spacing: -0.015em;
 }
 .hero__title em { font-style: italic; font-weight: 400; }
+/* Client-specified two-line headline. Each line is its own block so the break
+   is fixed rather than left to the viewport, and the vw term is steeper than
+   --fs-h1 so the longer line ("Luxury Real Estate,") still fits at 390px
+   without being allowed to wrap and break the intended shape. */
+.hero__title--stack {
+  font-size: clamp(1.85rem, 1.05rem + 3.9vw, 5rem);
+  text-wrap: nowrap;
+}
+.hero__title--stack span { display: block; }
 /* Client-supplied subhead. Deliberately sans, deliberately lighter — it has to
    read as the smaller line under the headline, not a second headline. */
 .hero__sub {

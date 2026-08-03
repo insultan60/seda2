@@ -48,8 +48,14 @@ export default function Home() {
         </video>
         <div className="hero__scrim" aria-hidden="true"></div>
         <div className="hero__content">
-          {/* Headline and subhead supplied verbatim by the client (Seda, Aug 2026). */}
-          <h1 className="hero__title">Real Estate, Thoughtfully Guided.</h1>
+          {/* Headline and subhead supplied verbatim by the client (Seda, Aug 2026).
+              The two lines are explicit spans rather than a natural wrap — the
+              client asked for this exact break, so it must hold at every width
+              instead of reflowing with the viewport. */}
+          <h1 className="hero__title hero__title--stack">
+            <span>Luxury Real Estate,</span>
+            <span>Thoughtfully Guided</span>
+          </h1>
           <p className="hero__sub">
             Helping clients buy, sell, and relocate with confidence throughout Greater Los Angeles.
           </p>
