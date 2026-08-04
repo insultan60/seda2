@@ -515,8 +515,10 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
    ========================================================================== */
 .stats { background: var(--moss); padding-block: var(--section-y); }
 .stats__grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(2.5rem, 6vw, 5rem); align-items: center; }
-.stats__note { margin-top: 1.4rem; font-size: var(--fs-micro); color: rgba(222,210,189,.78); letter-spacing: .06em; }
-.stats__figures { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4rem 2rem; }
+/* auto-fit, not a fixed 1fr 1fr: the figure count is content, not layout. At
+   three it sits as a row of three, at four it falls back to 2x2, and neither
+   leaves an orphan in a half-empty row. */
+.stats__figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr)); gap: 2.4rem 2rem; }
 .stat dt { font-size: var(--fs-micro); font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--clay-light); margin-bottom: .4rem; }
 .stat dd .stat__num {
   font-family: var(--serif); font-weight: 500; font-size: clamp(2.4rem, 4vw, 3.6rem);
@@ -726,6 +728,13 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 .field input:focus { outline: none; border-color: var(--parchment); background: rgba(245,240,225,.12); }
 .field.is-error input { border-color: #C98A8A; }
 .field__error { font-size: var(--fs-small); color: #E8C2C2; }
+
+/* Honeypot. Off-screen rather than display:none — some bots skip anything the
+   CSS hides outright, but will happily fill a field they can "see". */
+.ck-form__hp {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0; margin: -1px; padding: 0;
+}
 .newsletter__submit { justify-self: start; }
 .newsletter__fine { font-size: var(--fs-micro); color: rgba(222,210,189,.78); letter-spacing: .04em; }
 
@@ -801,7 +810,7 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
   .hoods__grid { grid-template-columns: 1fr; grid-template-rows: none; }
   .hood { aspect-ratio: 4 / 3; }
   .hood--tall { grid-row: auto; }
-  .stats__figures { grid-template-columns: 1fr 1fr; gap: 1.8rem 1rem; }
+  .stats__figures { grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr)); gap: 1.8rem 1rem; }
   .section-head--split { align-items: flex-start; flex-direction: column; }
   .hero__ctas .btn, .relo__ctas .btn { width: 100%; }
   .hero__footer { flex-direction: column; align-items: flex-start; gap: 1.2rem; padding-bottom: 1.8rem; }

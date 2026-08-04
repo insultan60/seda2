@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "photos": "node scripts/photos.mjs"
+    "photos": "node scripts/photos.mjs",
+    "optimize-photos": "node scripts/optimize-photos.mjs"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

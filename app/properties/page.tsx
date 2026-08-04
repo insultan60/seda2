@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { hasSpecs, LISTINGS, locationLabel, priceLabel, type Listing } from "./data";
 import "./properties.css";
@@ -11,6 +12,11 @@ export const metadata: Metadata = {
 
 const FEATURED = LISTINGS.filter((l) => l.status === "Active");
 const PAST = LISTINGS.filter((l) => l.status === "Sold");
+
+/* Matches .pf-grid: 3-up on desktop, 2-up on tablet, 1-up on phones. */
+const CARD_SIZES = "(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw";
+/* .pf-featured__grid is 2-up. */
+const FEATURE_SIZES = "(max-width: 639px) 100vw, 50vw";
 
 /** "$7,775,000" → 7775000, so the volume figure can never drift from the listings. */
 const toNumber = (price?: string) => Number((price ?? "").replace(/[^0-9]/g, "")) || 0;
@@ -26,7 +32,7 @@ function PastCard({ l, delay }: { l: Listing; delay: string }) {
       style={delay ? ({ "--d": delay } as React.CSSProperties) : undefined}
     >
       <figure className="pf-card__media">
-        <img src={l.img} alt={[l.addr, l.city].filter(Boolean).join(", ")} data-fallback />
+        <Image src={l.img} alt={[l.addr, l.city].filter(Boolean).join(", ")} fill sizes={CARD_SIZES} />
         <span className={`badge ${l.badgeCls}`}>{l.badge}</span>
       </figure>
       <div className="pf-card__body">
@@ -132,14 +138,16 @@ export default function PortfolioPage() {
                 style={i ? ({ "--d": ".1s" } as React.CSSProperties) : undefined}
               >
                 <figure className="pf-feature__media">
-                  <img
+                  <Image
                     src={l.img}
                     alt={
                       l.imgNote
                         ? `Representative photography for ${l.addr}`
                         : [l.addr, l.city].filter(Boolean).join(", ")
                     }
-                    data-fallback
+                    fill
+                    sizes={FEATURE_SIZES}
+                    priority={i === 0}
                   />
                   {l.imgNote && <figcaption className="listing__imgnote">{l.imgNote}</figcaption>}
                   <span className={`badge ${l.badgeCls}`}>{l.badge}</span>

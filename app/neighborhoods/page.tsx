@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ALSO_SERVING, FEATURED, hoodLink } from "./data";
+import { ALSO_SERVING, FEATURED, hoodLink, REGIONS } from "./data";
 import "./neighborhoods.css";
 
 export const metadata: Metadata = {
   title: "Neighborhoods — Alexandra Kerr | Los Angeles Real Estate",
   description:
-    "The Los Angeles neighborhoods Alexandra Kerr knows best — Los Feliz, Hancock Park, Windsor Square, the Hollywood Hills, Silver Lake and the Sunset Strip.",
+    "The Los Angeles neighborhoods Alexandra Kerr knows best — Los Feliz, Hancock Park, Windsor Square, the Hollywood Hills, Silver Lake, the Sunset Strip, Beverly Hills, Brentwood, Santa Monica and Venice.",
 };
 
 /* Woven columns: tall/short, short/tall, tall/short so the middle column rides
@@ -113,8 +113,8 @@ export default function NeighborhoodsPage() {
             <p className="eyebrow">Also Serving</p>
             <h2 className="h2 h2--sub">Beyond the core six.</h2>
             <p className="lede">
-              Areas Alexandra represents clients in regularly, across the basin, the valley and out
-              to the desert.
+              Areas Alexandra represents clients in regularly, from the Eastside hills out to the
+              coast.
             </p>
           </div>
           <ul className="nb-also__list">
@@ -131,6 +131,12 @@ export default function NeighborhoodsPage() {
               </li>
             ))}
           </ul>
+          {/* The broad regions, as prose. See REGIONS in ./data.ts for why they
+              are not tiles alongside the named neighborhoods. */}
+          <p className="nb-also__regions reveal">
+            Also working throughout {REGIONS.slice(0, -1).join(", ")} and {REGIONS.at(-1)} — if your
+            area isn&rsquo;t named above, ask.
+          </p>
         </div>
       </section>
 

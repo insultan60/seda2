@@ -12,6 +12,14 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    /* The pre-React static site this project was ported from. Next does not
+       serve any of it — only /public is — so it is reference material, not
+       shipped code, and linting it just reports on a build nobody runs. */
+    "js/**",
+    "css/**",
+    "*.html",
+    // Camera masters parked by `npm run optimize-photos`.
+    "_photo-originals/**",
   ]),
 ]);
 

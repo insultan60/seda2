@@ -5,6 +5,9 @@ export type Hood = {
   /** Matched against Listing.hood to derive a live count. */
   match?: string;
   blurb: string;
+  /** Short form for the home page's small tiles, where the full blurb would
+   *  run past the label. Falls back to `blurb` when absent. */
+  short?: string;
   img?: string;
   alt?: string;
   /** Renders taller in the woven grid. */
@@ -26,6 +29,7 @@ export const FEATURED: Hood[] = [
     match: "Los Feliz",
     blurb:
       "Storied estates below Griffith Park, where early Hollywood built and the architecture still shows it — Lloyd Wright, Neutra, and Spanish Colonial on the same winding street.",
+    short: "Storied estates & icons of early Hollywood",
     img: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1600&auto=format&fit=crop",
     alt: "Los Feliz hillside homes",
     tall: true,
@@ -35,6 +39,7 @@ export const FEATURED: Hood[] = [
     match: "Hollywood Hills",
     blurb:
       "Mid-century glass and canyon quiet, minutes above the city. Buyers here are paying for the view and the privacy — the finishes are the tiebreaker.",
+    short: "Mid-century views above the city",
     img: "https://images.unsplash.com/photo-1580655653885-65763b2597d0?q=80&w=1600&auto=format&fit=crop",
     alt: "Hollywood Hills homes at golden hour",
   },
@@ -42,6 +47,7 @@ export const FEATURED: Hood[] = [
     name: "Silver Lake",
     blurb:
       "Craftsman bones and creative energy around the reservoir. Hillside lots reward anyone who knows how to read a slope and a permit history.",
+    short: "Craftsman charm, creative energy",
     img: "https://images.unsplash.com/photo-1523217582562-09d0def993a6?q=80&w=1600&auto=format&fit=crop",
     alt: "Silver Lake craftsman homes",
   },
@@ -72,20 +78,29 @@ export const FEATURED: Hood[] = [
   },
 ];
 
-/** The wider service area — listed rather than illustrated. */
+/** The wider service area — listed rather than illustrated.
+ *
+ *  Trimmed to Alexandra's own August 2026 shortlist. Pasadena, Glendale,
+ *  Sherman Oaks & Studio City, West Hollywood, Pacific Palisades and Palm
+ *  Springs came off it; Venice went on. Mar Vista stays because her sold
+ *  portfolio is there and `countIn` reads a real number off it — an area with
+ *  a closing behind it earns its place on the list. */
 export const ALSO_SERVING: Hood[] = [
   { name: "Echo Park", blurb: "Hillside bungalows and lake-adjacent walkability." },
-  { name: "Mar Vista", match: "Mar Vista", blurb: "Post-war stock steadily giving way to considered rebuilds." },
-  { name: "Pasadena", blurb: "Craftsman pedigree and the deepest architectural bench in the county." },
-  { name: "Glendale", blurb: "Value per foot with genuine proximity to the Eastside." },
-  { name: "Sherman Oaks & Studio City", blurb: "Flat, family-scaled streets over the hill." },
-  { name: "West Hollywood", blurb: "Density done well — walkable, and never quiet for long." },
   { name: "Beverly Hills", blurb: "The flats and the hills behave like two separate markets." },
   { name: "Brentwood", blurb: "Established, private, and consistently defensive in a soft market." },
   { name: "Santa Monica", blurb: "Ocean proximity priced by the block, not the neighborhood." },
-  { name: "Pacific Palisades", blurb: "Canyon and bluff, with a village at the center of it." },
-  { name: "Palm Springs", blurb: "Desert modernism, second homes, and a seasonal rhythm of its own." },
+  { name: "Venice", blurb: "Walk streets, canals, and a rebuild market that trades on light and lot width." },
+  { name: "Mar Vista", match: "Mar Vista", blurb: "Post-war stock steadily giving way to considered rebuilds." },
 ];
+
+/** The three broad regions Alexandra covers beyond the named areas above.
+ *
+ *  Deliberately not `Hood[]`: the Eastside, the Valley and the Westside are an
+ *  order of magnitude bigger than Silver Lake or Windsor Square, so listing
+ *  them as peers reads wrong and they can carry no honest listing count. They
+ *  render as a single sentence instead. */
+export const REGIONS = ["the Eastside", "the San Fernando Valley", "the Westside"];
 
 /**
  * Active and sold counts for an area, split deliberately.

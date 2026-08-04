@@ -86,6 +86,12 @@ export default function RouteProgress() {
     target.current = null;
 
     if (!visible) return;
+    /* Synchronous by design, and the rule's own exception: this effect is
+       subscribed to an external system — the router — and `pathname` changing
+       IS the "navigation committed" event. Snapping the bar to 100% has to
+       happen in the same commit that delivered the new route, or the bar
+       lingers mid-creep over a page that has already arrived. */
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPct(100);
     doneTimer.current = setTimeout(() => {
       setVisible(false);

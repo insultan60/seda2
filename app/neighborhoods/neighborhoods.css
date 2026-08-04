@@ -128,6 +128,13 @@
   display: block; font-size: var(--fs-small); line-height: 1.6;
   color: var(--ink-soft); margin-top: .3rem;
 }
+/* Closing prose line for the broad regions. Sits under the grid, borderless, so
+   it reads as a footnote to the list rather than a thirteenth entry in it. */
+.nb-also__regions {
+  border-top: 1px solid var(--clay); margin-top: 0; padding-top: 1.5rem;
+  font-size: var(--fs-small); line-height: 1.7; color: var(--ink-soft);
+  max-width: 60ch;
+}
 
 /* ---------- Search band ---------- */
 .nb-band-wrap { background: var(--off-white); padding-block: clamp(3rem, 6vw, 5rem); }

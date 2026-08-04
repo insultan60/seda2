@@ -1,7 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import NewsletterForm from "./components/NewsletterForm";
 import { LATEST_POSTS } from "./journal/data";
+import { ALSO_SERVING, FEATURED as FEATURED_HOODS } from "./neighborhoods/data";
 import { hasSpecs, LISTINGS, locationLabel, priceLabel } from "./properties/data";
 import { TESTIMONIALS } from "./testimonials/data";
 
@@ -16,17 +18,23 @@ const d = (val: string) => ({ "--d": val }) as CSSProperties;
 const FEATURED = LISTINGS.filter((l) => l.status === "Active").slice(0, 4);
 const SOLD = LISTINGS.filter((l) => l.status === "Sold");
 
+/* Both card grids are 3-up on desktop, 2-up on tablet, 1-up on phones — this
+   tells the browser that up front so it downloads a card-sized image instead of
+   a full-width one. Keep it in step with .listings__grid / .sold__grid. */
+const CARD_SIZES = "(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw";
+
 // stagger delays: featured cards go in pairs, sold cards in rows of three
 const FEATURED_DELAYS = ["", ".08s"];
 const SOLD_DELAYS = ["", ".06s", ".12s"];
 const JOURNAL_DELAYS = ["", ".08s", ".16s"];
 
-const HOODS = [
-  { img: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1600&auto=format&fit=crop", alt: "Los Feliz hillside homes", name: "Los Feliz", sub: "Storied estates & icons of early Hollywood", tall: true, d: "" },
-  { img: "https://images.unsplash.com/photo-1580655653885-65763b2597d0?q=80&w=1600&auto=format&fit=crop", alt: "Hollywood Hills homes at golden hour", name: "Hollywood Hills", sub: "Mid‑century views above the city", tall: false, d: ".08s" },
-  { img: "https://images.unsplash.com/photo-1523217582562-09d0def993a6?q=80&w=1600&auto=format&fit=crop", alt: "Silver Lake craftsman homes", name: "Silver Lake", sub: "Craftsman charm, creative energy", tall: false, d: ".16s" },
-];
-const HOOD_INDEX = ["Echo Park", "Pasadena", "Glendale", "Sherman Oaks & Studio City", "West Hollywood", "Beverly Hills", "Brentwood", "Santa Monica", "Pacific Palisades", "Palm Springs"];
+/* Both lists come from app/neighborhoods/data.ts rather than a second copy
+   here. They had already drifted apart once — the home page was still listing
+   Pasadena, Glendale and Palm Springs after Alexandra cut them — and a client
+   editing one list should never have to know there is a second. */
+const HOOD_DELAYS = ["", ".08s", ".16s"];
+const HOODS = FEATURED_HOODS.slice(0, 3);
+const HOOD_INDEX = ALSO_SERVING.map((h) => h.name);
 
 /* eslint-disable @next/next/no-img-element */
 export default function Home() {
@@ -133,14 +141,19 @@ export default function Home() {
           <div className="stats__lead reveal">
             <p className="eyebrow eyebrow--clay">A Record That Speaks Quietly</p>
             <h2 className="h2 h2--light">Trusted by Los Angeles homeowners for over a decade.</h2>
-            <p className="stats__note">Figures shown are placeholders pending client confirmation.</p>
           </div>
+          {/* Figures confirmed by Alexandra, August 2026. Exact counts, not
+              rounded "+" claims — 179 and $184M are hers and are defensible.
+              A "Client Reviews" figure used to sit here at 90+; it came off the
+              placeholder set and the real count is 2 five-star reviews on
+              Facebook, so it is out until the Google Business profile has
+              enough behind it. Re-add it to this array when it does — the grid
+              below reflows on its own. */}
           <dl className="stats__figures">
             {[
-              { t: "Homes Sold", count: "200", suffix: "+", d: ".05s" },
-              { t: "Total Sales", count: "250", prefix: "$", suffix: "M+", d: ".1s" },
-              { t: "Client Reviews", count: "90", suffix: "+", d: ".15s" },
-              { t: "Years in L.A. Real Estate", count: "12", suffix: "+", d: ".2s" },
+              { t: "Homes Sold", count: "179", d: ".05s" },
+              { t: "Total Sales", count: "184", prefix: "$", suffix: "M", d: ".1s" },
+              { t: "Years in L.A. Real Estate", count: "13", d: ".15s" },
             ].map((s) => (
               <div className="stat reveal" key={s.t} style={d(s.d)}>
                 <dt>{s.t}</dt>
@@ -204,14 +217,16 @@ export default function Home() {
               return (
                 <article className="listing reveal" key={l.slug} style={delay ? d(delay) : undefined}>
                   <figure className="listing__media">
-                    <img
+                    <Image
                       src={l.img}
                       alt={
                         l.imgNote
                           ? `Representative photography for ${l.addr}`
                           : [l.addr, l.city].filter(Boolean).join(", ")
                       }
-                      data-fallback
+                      fill
+                      sizes={CARD_SIZES}
+                      priority={i === 0}
                     />
                     <span className={`badge ${l.badgeCls}`}>{l.badge}</span>
                     {l.imgNote && <figcaption className="listing__imgnote">{l.imgNote}</figcaption>}
@@ -248,7 +263,7 @@ export default function Home() {
                 return (
                   <article className="listing listing--sold reveal" key={l.slug} style={delay ? d(delay) : undefined}>
                     <figure className="listing__media">
-                      <img src={l.img} alt={[l.addr, l.city].filter(Boolean).join(", ")} data-fallback />
+                      <Image src={l.img} alt={[l.addr, l.city].filter(Boolean).join(", ")} fill sizes={CARD_SIZES} />
                       <span className={`badge ${l.badgeCls}`}>{l.badge}</span>
                     </figure>
                     <div className="listing__body">
@@ -325,12 +340,15 @@ export default function Home() {
               seeded search: most of these areas carry no active inventory this
               week, and a tile that opens an empty result set reads as broken. */}
           <div className="hoods__grid">
-            {HOODS.map((h) => (
-              <Link className={`hood${h.tall ? " hood--tall" : ""} reveal`} href="/neighborhoods" key={h.name} style={h.d ? d(h.d) : undefined}>
-                <img src={h.img} alt={h.alt} data-fallback />
-                <div className="hood__label"><h3>{h.name}</h3><span>{h.sub}</span></div>
-              </Link>
-            ))}
+            {HOODS.map((h, i) => {
+              const delay = HOOD_DELAYS[i];
+              return (
+                <Link className={`hood${h.tall ? " hood--tall" : ""} reveal`} href="/neighborhoods" key={h.name} style={delay ? d(delay) : undefined}>
+                  {h.img && <img src={h.img} alt={h.alt ?? h.name} data-fallback />}
+                  <div className="hood__label"><h3>{h.name}</h3><span>{h.short ?? h.blurb}</span></div>
+                </Link>
+              );
+            })}
           </div>
           <ul className="hoods__index reveal">
             {HOOD_INDEX.map((n) => (

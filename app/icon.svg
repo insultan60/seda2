@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" fill="#4F5847"/>
+  <rect x="9" y="9" width="46" height="46" fill="none" stroke="#CBBBA0" stroke-width="1.5"/>
+  <text x="32" y="34" font-family="Georgia, 'Times New Roman', serif" font-size="26"
+        fill="#F5F0E1" text-anchor="middle" dominant-baseline="central" letter-spacing="1">AK</text>
+</svg>

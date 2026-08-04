@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Gallery({ images, addr }: { images: string[]; addr: string }) {
@@ -39,7 +40,14 @@ export default function Gallery({ images, addr }: { images: string[]; addr: stri
       <div className="pd-gallery__grid">
         {images.slice(0, 5).map((src, i) => (
           <button type="button" className="pd-cell" key={i} onClick={() => open(i)} aria-label={`View photo ${i + 1} of ${images.length}`}>
-            <img src={src} alt={`${addr} photo ${i + 1}`} loading={i === 0 ? "eager" : "lazy"} data-fallback />
+            <Image
+              src={src}
+              alt={`${addr} photo ${i + 1}`}
+              fill
+              /* First cell is the 2fr column, the rest are 1fr. */
+              sizes={i === 0 ? "(max-width: 767px) 100vw, 50vw" : "(max-width: 767px) 50vw, 25vw"}
+              priority={i === 0}
+            />
             {i === 4 && more > 0 && <span className="pd-more">{more} More Photos</span>}
           </button>
         ))}
@@ -70,7 +78,7 @@ export default function Gallery({ images, addr }: { images: string[]; addr: stri
           <div className="pd-lb-thumbs" onClick={(e) => e.stopPropagation()}>
             {images.map((src, i) => (
               <button key={i} className={`pd-lb-thumb${i === lightbox ? " is-active" : ""}`} onClick={() => { setLightbox(i); setZoom(false); }} aria-label={`Go to photo ${i + 1}`}>
-                <img src={src} alt="" loading="lazy" />
+                <Image src={src} alt="" fill sizes="120px" />
               </button>
             ))}
           </div>

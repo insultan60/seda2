@@ -32,6 +32,9 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# ...but the template must ship: it is the only record of which variables the
+# lead forms and the sitemap need. It contains placeholders, never values.
+!.env.example
 
 # vercel
 .vercel
@@ -39,3 +42,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Camera masters, moved aside by `npm run optimize-photos`. Never served, and
+# far too large to version — keep them in Alexandra's own storage.
+/_photo-originals/

@@ -61,3 +61,7 @@
   .ck-form__row { grid-template-columns: 1fr; }
   .ck-map__frame { height: 320px; }
 }
+
+/* A failed send has to look different from a successful one — same element,
+   opposite meaning. */
+.ck-form__status.is-error { color: var(--alert); }

@@ -34,13 +34,19 @@ export default async function PropertyDetail({ params }: { params: Promise<{ slu
   const l = getListing(slug);
   const similar = LISTINGS.filter((x) => x.slug !== slug && x.status === "Sold").slice(0, 3);
 
-  if (!l || !l.gallery) {
+  /* Only a slug that matches nothing gets the holding page. A listing used to
+     land here whenever it had no `gallery`, which sent five sold homes and two
+     actives to "Coming Soon" while their cards advertised a real price and full
+     specs — the visitor clicked a $6.3M closing and was told it wasn't ready.
+     Every section below is now independently optional, so a listing renders
+     whatever it actually has. */
+  if (!l) {
     return (
       <main id="main" className="pd-wrap">
         <div className="container pd-soon">
           <div>
             <span className="pd-soon__badge">Listing Coming Soon</span>
-            <h1>{l ? l.addr : "This listing is on the way."}</h1>
+            <h1>This listing is on the way.</h1>
             <p>Full details, photography, and pricing for this property are being prepared. Reach out and Alexandra will send everything over the moment it&rsquo;s live.</p>
             <Link href="/properties" className="btn btn--solid-moss">Back to Portfolio</Link>
           </div>
@@ -49,13 +55,36 @@ export default async function PropertyDetail({ params }: { params: Promise<{ slu
     );
   }
 
+  /* The AK monogram placeholder is a card-grid device — full width at the top of
+     a detail page it just reads as a broken image, so the media block is
+     dropped entirely rather than filled with it. */
+  const hasGallery = Boolean(l.gallery?.length);
+  const heroImg = !hasGallery && !l.img.endsWith("photo-pending.svg") ? l.img : null;
+
   return (
     <main id="main" className="pd-wrap">
-      <section className="pd-gallery">
-        <div className="container">
-          <Gallery images={l.gallery} addr={l.addr} />
-        </div>
-      </section>
+      {hasGallery && (
+        <section className="pd-gallery">
+          <div className="container">
+            <Gallery images={l.gallery!} addr={l.addr} />
+          </div>
+        </section>
+      )}
+
+      {heroImg && (
+        <section className="pd-gallery">
+          <div className="container">
+            <figure className="pd-solo">
+              <img
+                src={heroImg}
+                alt={l.imgNote ? `Representative photography for ${l.addr}` : `${l.addr}${l.city ? `, ${l.city}` : ""}`}
+                data-fallback
+              />
+              {l.imgNote && <figcaption className="pd-solo__note">{l.imgNote}</figcaption>}
+            </figure>
+          </div>
+        </section>
+      )}
 
       <div className="container">
         <div className="pd-head">
@@ -87,10 +116,21 @@ export default async function PropertyDetail({ params }: { params: Promise<{ slu
 
         <div className="pd-layout">
           <div className="pd-main">
+            {/* Guarded: the listings Alexandra sent as photography only have no
+                overview copy, and an "Overview" heading above nothing reads as a
+                page that failed to load. They get a short honest line instead. */}
             <section>
               <h2 className="pd-section-title">Overview</h2>
               <div className="pd-overview">
-                {l.overview?.map((p, i) => <p key={i}>{p}</p>)}
+                {l.overview?.length ? (
+                  l.overview.map((p, i) => <p key={i}>{p}</p>)
+                ) : (
+                  <p>
+                    Full details for {l.addr} are being prepared. For pricing, specifications, or to
+                    arrange a private showing, reach out to Alexandra directly — she can talk you
+                    through the property today.
+                  </p>
+                )}
               </div>
             </section>
 

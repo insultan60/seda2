@@ -127,3 +127,7 @@
   .hv-searchbar .btn { width: 100%; justify-content: center; }
   .hv-band { flex-direction: column; align-items: flex-start; }
 }
+
+/* Errors on the valuation bar sit on the dark band, so the alert red used
+   elsewhere would go muddy — this is the light-on-dark equivalent. */
+.hv-search-status.is-error { color: #E8C2C2; }

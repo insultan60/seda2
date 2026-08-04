@@ -1,21 +1,46 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
+import { submitLead } from "../actions/lead";
 
+/* A valuation request needs somewhere to send the answer, so this asks for an
+   email alongside the address. It previously collected an address alone, said
+   "a valuation is being prepared", and sent nothing anywhere — meaning even if
+   it had sent, there was no way to reply. */
 export default function ValuationSearch() {
   const [address, setAddress] = useState("");
+  const [email, setEmail] = useState("");
+  const [company, setCompany] = useState("");
   const [status, setStatus] = useState("");
+  const [ok, setOk] = useState<boolean | null>(null);
+  const [pending, startTransition] = useTransition();
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (pending) return;
+
     if (!address.trim()) {
+      setOk(false);
       setStatus("Please enter your property address.");
       return;
     }
-    setStatus(
-      `Thank you — a valuation for ${address.trim()} is being prepared. Alexandra will be in touch shortly.`,
-    );
-    setAddress("");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      setOk(false);
+      setStatus("Please add an email address so Alexandra can send the valuation.");
+      return;
+    }
+
+    setStatus("");
+    setOk(null);
+    startTransition(async () => {
+      const res = await submitLead({ kind: "valuation", address, email, company });
+      setOk(res.ok);
+      setStatus(res.message);
+      if (res.ok) {
+        setAddress("");
+        setEmail("");
+      }
+    });
   };
 
   return (
@@ -33,13 +58,36 @@ export default function ValuationSearch() {
             autoComplete="street-address"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
+            disabled={pending}
           />
         </div>
-        <button type="submit" className="btn btn--solid-light">
-          Get a Free Valuation
+        <div className="hv-search-field">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M4 6h16v12H4z" />
+            <path d="m4 7 8 6 8-6" />
+          </svg>
+          <input
+            type="email"
+            placeholder="Your email address…"
+            aria-label="Your email address"
+            autoComplete="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            disabled={pending}
+          />
+        </div>
+
+        {/* Honeypot — see ContactForm. */}
+        <div className="ck-form__hp" aria-hidden="true">
+          <label htmlFor="hv-company">Company</label>
+          <input id="hv-company" type="text" tabIndex={-1} autoComplete="off" value={company} onChange={(e) => setCompany(e.target.value)} />
+        </div>
+
+        <button type="submit" className="btn btn--solid-light" disabled={pending}>
+          {pending ? "Sending…" : "Get a Free Valuation"}
         </button>
       </form>
-      <p className="hv-search-status" role="status" aria-live="polite">
+      <p className={`hv-search-status${ok === false ? " is-error" : ""}`} role="status" aria-live="polite">
         {status}
       </p>
     </>
