@@ -29,7 +29,13 @@ export default function ContactPage() {
       <section className="ck-contact">
         <div className="container ck-contact__grid">
           <div className="ck-contact__details reveal">
-            <p className="ck-contact__team">Alexandra Kerr Team</p>
+            {/* Alexandra works solo — no team, so this is her name and her
+                licence, never a group byline. Wrapped because the parent is a
+                grid with a 1.7rem gap; these two lines are one block. */}
+            <div className="ck-contact__identity">
+              <p className="ck-contact__name">Alexandra Kerr</p>
+              <p className="ck-contact__role">REALTOR&reg; &middot; Estates Director &middot; DRE# 01911486</p>
+            </div>
 
             <div className="ck-contact__item">
               <span className="ck-contact__ic"><PhoneIcon /></span>

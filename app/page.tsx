@@ -65,14 +65,17 @@ export default function Home() {
           </div>
         </div>
         <div className="hero__footer">
+          {/* Name, phone, email, licence — one column, so every way of reaching
+              Alexandra sits together under her name rather than split across
+              the hero. The right block is the brokerage: Compass and its office. */}
           <div className="hero__id">
             <p className="hero__id-name">Alexandra Kerr</p>
             <p>Ph. <a href="tel:+13107951440">310.795.1440</a></p>
+            <p className="hero__id-email"><a href="mailto:alexandra.kerr@compass.com">alexandra.kerr@compass.com</a></p>
             <p>DRE# 01911486</p>
           </div>
           <div className="hero__contact">
             <img className="hero__compass" src="/assets/compass-white.png" alt="Compass" />
-            <a className="hero__contact-email" href="mailto:alexandra.kerr@compass.com">alexandra.kerr@compass.com</a>
             <a className="hero__contact-link" href="/contact">Let&rsquo;s Connect</a>
             <p className="hero__contact-office">
               6430 W Sunset Blvd, 6th Floor<br />

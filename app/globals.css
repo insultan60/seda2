@@ -418,11 +418,14 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 }
 .hero__id-name { font-family: var(--serif); font-size: clamp(1.35rem, 1.1rem + 1vw, 1.8rem); line-height: 1.25; }
 .hero__id p:not(.hero__id-name) { font-size: var(--fs-small); color: rgba(245,240,225,.9); margin-top: .15rem; }
+/* The email sits with the phone number under her name. Left a touch brighter
+   than the DRE line below it — it is a call to action, not a disclosure. */
+.hero__id-email { overflow-wrap: anywhere; }
+.hero__id-email a { color: var(--parchment); }
 /* Left-aligned, not right-ragged: the Compass mark, the email and the link now
    share one flush left edge so the block reads as a single column. The block
    itself still sits on the right of the hero — only its contents are aligned. */
 .hero__contact { text-align: left; display: grid; gap: .2rem; justify-items: start; }
-.hero__contact-email { font-size: clamp(1.05rem, 1rem + .5vw, 1.35rem); }
 .hero__contact-link { font-size: var(--fs-small); color: rgba(245,240,225,.9); }
 .hero__contact-office {
   font-size: var(--fs-small); line-height: 1.5;

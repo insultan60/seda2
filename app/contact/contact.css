@@ -8,7 +8,8 @@
   gap: clamp(2.5rem, 6vw, 5rem); align-items: start;
 }
 .ck-contact__details { display: grid; gap: 1.7rem; }
-.ck-contact__team { font-family: var(--serif); font-size: 1.6rem; color: var(--moss); margin-bottom: .3rem; }
+.ck-contact__name { font-family: var(--serif); font-size: 1.6rem; color: var(--moss); line-height: 1.2; }
+.ck-contact__role { font-size: var(--fs-small); color: var(--ink-soft); margin-top: .35rem; }
 .ck-contact__item { display: flex; gap: 1rem; align-items: flex-start; }
 .ck-contact__ic {
   width: 44px; height: 44px; border-radius: 50%; flex: none;
