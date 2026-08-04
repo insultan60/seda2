@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Effects from "./components/Effects";
 import RouteProgress from "./components/RouteProgress";
+import { REVEAL_BOOTSTRAP } from "./reveal-bootstrap";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -35,6 +36,12 @@ export default function RootLayout({
     // intentional, so it suppresses it during route transitions instead of
     // animating the jump to the top of each new page.
     <html lang="en" data-scroll-behavior="smooth">
+      <head>
+        {/* Must stay a blocking inline script in <head>: it arms the scroll
+            reveals before the first paint, so sections are never gated on the
+            client bundle hydrating. See app/reveal-bootstrap.ts. */}
+        <script dangerouslySetInnerHTML={{ __html: REVEAL_BOOTSTRAP }} />
+      </head>
       <body className={`${cormorant.variable} ${dmSans.variable}`}>
         <a className="skip-link" href="#main">Skip to content</a>
         <RouteProgress />

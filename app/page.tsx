@@ -142,7 +142,12 @@ export default function Home() {
               <div className="stat reveal" key={s.t} style={d(s.d)}>
                 <dt>{s.t}</dt>
                 <dd>
-                  <span className="stat__num" data-count={s.count} data-prefix={s.prefix} data-suffix={s.suffix}>0</span>
+                  {/* Server-render the real figure, not 0 — the count-up is an
+                      enhancement, so the number must already be correct for
+                      anyone who reads it before (or without) the bundle. */}
+                  <span className="stat__num" data-count={s.count} data-prefix={s.prefix} data-suffix={s.suffix}>
+                    {`${s.prefix ?? ""}${Number(s.count).toLocaleString("en-US")}${s.suffix ?? ""}`}
+                  </span>
                 </dd>
               </div>
             ))}

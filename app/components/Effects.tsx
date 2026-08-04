@@ -4,15 +4,19 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 /**
- * Site-wide interactions ported from the original js/main.js:
- * nav-solid-on-scroll, side drawer + accordions, eased stat counters,
- * scroll reveals, testimonial carousel, and image fallback.
+ * Site-wide interactions ported from the original js/main.js: side drawer +
+ * accordions, eased stat counters, testimonial carousel, and image fallback.
+ *
+ * Everything here is enhancement — nothing the page needs in order to be
+ * readable may live in this file, because it cannot run until the client bundle
+ * has hydrated. Scroll reveals used to be here and gated all below-hero content
+ * on that; they now run from app/reveal-bootstrap.ts in the document head.
  *
  * Re-runs on every route change. This component sits in the root layout, so it
  * never unmounts during client-side navigation — with an empty dep array it
- * would query the DOM once and hold a stale element list, leaving every
- * `.reveal` on subsequently-visited pages stuck at opacity 0 until a hard
- * reload. Keying on the pathname re-queries and re-wires against the new DOM.
+ * would query the DOM once and hold a stale element list, wiring the drawer and
+ * carousel to elements that no longer exist. Keying on the pathname re-queries
+ * and re-wires against the new DOM.
  */
 export default function Effects() {
   const pathname = usePathname();
@@ -126,36 +130,40 @@ export default function Effects() {
       requestAnimationFrame(frame);
     };
 
-    /* ---------- Scroll reveals + counters ---------- */
-    let pendingReveals = [...document.querySelectorAll<HTMLElement>(".reveal")];
-    let pendingStats = [...document.querySelectorAll<HTMLElement>(".stat__num")];
-    const checkInView = () => {
-      const limit = window.innerHeight - 60;
-      pendingReveals = pendingReveals.filter((el) => {
-        if (el.getBoundingClientRect().top < limit) { el.classList.add("is-in"); return false; }
-        return true;
+    /* ---------- Stat counters ----------
+       Scroll reveals are NOT handled here — they run from the inline head
+       script (app/reveal-bootstrap.ts) so that content is never waiting on this
+       bundle to hydrate. Only the count-up stays, because it is pure decoration:
+       the final figure is server-rendered, so a visitor who never gets this far
+       reads the correct number, just without it ticking up. */
+    const stats = [...document.querySelectorAll<HTMLElement>(".stat__num")];
+    if (prefersReduced || !("IntersectionObserver" in window)) {
+      stats.forEach((el) => animateCount(el)); // writes the final value outright
+    } else if (stats.length) {
+      const statIO = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            animateCount(e.target as HTMLElement);
+            statIO.unobserve(e.target);
+          });
+        },
+        { rootMargin: "0px 0px -10% 0px" }
+      );
+      stats.forEach((el) => {
+        /* Park at zero first. The stats sit inside a `.reveal` block that is
+           still faded out at this point, so the swap is invisible — without it
+           the server-rendered figure would snap back to 0 in front of the
+           visitor the moment the bar scrolled into view. */
+        el.textContent = (el.dataset.prefix || "") + "0" + (el.dataset.suffix || "");
+        statIO.observe(el);
       });
-      pendingStats = pendingStats.filter((el) => {
-        if (el.getBoundingClientRect().top < window.innerHeight * 0.9) { animateCount(el); return false; }
-        return true;
-      });
-    };
-    if (prefersReduced) {
-      pendingReveals.forEach((el) => el.classList.add("is-in"));
-      pendingStats.forEach((el) => animateCount(el));
-      pendingReveals = [];
-      pendingStats = [];
-    } else {
-      let ticking = false;
-      const onScroll = () => {
-        if (ticking || (!pendingReveals.length && !pendingStats.length)) return;
-        ticking = true;
-        requestAnimationFrame(() => { checkInView(); ticking = false; });
-      };
-      add(window, "scroll", onScroll, { passive: true });
-      add(window, "resize", onScroll, { passive: true });
-      checkInView();
+      cleanups.push(() => statIO.disconnect());
     }
+
+    /* Hydration can re-render the server markup and drop the `is-in` classes the
+       bootstrap already applied. Now that React has settled, have it re-check. */
+    window.dispatchEvent(new Event("reveal:rescan"));
 
     /* ---------- Testimonial carousel ---------- */
     const carousel = document.querySelector(".carousel");

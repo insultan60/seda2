@@ -220,8 +220,12 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 .arrow--left { transform: rotate(180deg); }
 
 /* ---------- Reveal on scroll ---------- */
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity 500ms var(--ease) var(--d, 0s), transform 500ms var(--ease) var(--d, 0s); }
-.reveal.is-in { opacity: 1; transform: none; }
+/* The hidden state is deliberately scoped to .js-reveal, which the head script
+   in app/reveal-bootstrap.ts sets only once it has an observer ready to undo it.
+   Hiding .reveal unconditionally is what left whole pages blank while the client
+   bundle loaded — if the script never runs, the content must render visible. */
+.js-reveal .reveal { opacity: 0; transform: translateY(18px); transition: opacity 500ms var(--ease) var(--d, 0s), transform 500ms var(--ease) var(--d, 0s); }
+.js-reveal .reveal.is-in { opacity: 1; transform: none; }
 
 /* ==========================================================================
    NAV
@@ -807,7 +811,9 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal { opacity: 1; transform: none; transition: none; }
+  /* The bootstrap already skips hiding under reduced motion; this keeps the
+     override winning on specificity if .js-reveal is ever set anyway. */
+  .reveal, .js-reveal .reveal { opacity: 1; transform: none; transition: none; }
   .hero__mark, .hero__title, .hero__sub, .hero__ctas, .hero__footer { animation: none; }
   .drawer__backdrop, .drawer__panel, .drawer__sub, .drawer__chev { transition: none; }
   .carousel__slide { transition: opacity 200ms ease; transform: none; }
