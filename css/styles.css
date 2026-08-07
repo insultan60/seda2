@@ -622,7 +622,16 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
   .stats__figures { grid-template-columns: 1fr 1fr; gap: 1.8rem 1rem; }
   .section-head--split { align-items: flex-start; flex-direction: column; }
   .hero__ctas .btn, .relo__ctas .btn { width: 100%; }
-  .hero__footer { flex-direction: column; align-items: flex-start; gap: 1.2rem; padding-bottom: 1.8rem; }
+  /* Stacked full-width CTAs push .hero__content taller than the space above
+     the footer's absolute position, so it was overlapping "Alexandra Kerr"
+     and the Compass block underneath. Flow it after the content instead of
+     overlaying — .hero has min-height (not a fixed height), so the section
+     just grows past one viewport on short phones instead of colliding. */
+  .hero__footer {
+    position: static; width: 100%;
+    flex-direction: column; align-items: flex-start; gap: 1.2rem;
+    padding: 2.4rem var(--gutter) 1.8rem;
+  }
   .hero__contact { text-align: left; justify-items: start; }
   .newsletter__submit { justify-self: stretch; width: 100%; }
 }
