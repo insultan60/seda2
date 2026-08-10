@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Effects from "./components/Effects";
+import Cursor from "./components/Cursor";
 import RouteProgress from "./components/RouteProgress";
 import { REVEAL_BOOTSTRAP } from "./reveal-bootstrap";
 import { AGENT, SITE_NAME, SITE_URL } from "./site";
@@ -114,6 +115,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <Effects />
+        <Cursor />
       </body>
     </html>
   );

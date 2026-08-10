@@ -81,6 +81,44 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 }
 
 /* ==========================================================================
+   Custom cursor — trailing AK monogram
+   Fine-pointer only, and off entirely under reduced-motion. A tiny dot tracks
+   the pointer exactly; a lagging glow behind it carries the monogram, cropped
+   from the real logo mark (public/assets/logo-*.png) and recolored to a warm
+   clay-gold so it reads against both the dark hero and the parchment sections
+   below it. Grows slightly over links/buttons so it still signals "clickable".
+   ========================================================================== */
+.cursor-dot, .cursor-glow { display: none; }
+
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .cursor-dot {
+    display: block; position: fixed; z-index: 500; pointer-events: none;
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--ink);
+    transform: translate(-50%, -50%);
+    top: 0; left: 0; opacity: 0;
+  }
+  body.has-cursor .cursor-dot { opacity: 1; }
+  body.has-cursor .cursor-glow { opacity: 1; }
+  .cursor-glow {
+    display: flex; align-items: center; justify-content: center;
+    position: fixed; z-index: 499; pointer-events: none;
+    width: 40px; height: 40px;
+    transform: translate(-50%, -50%);
+    top: 0; left: 0;
+    opacity: 0;
+    transition: width 220ms var(--ease), height 220ms var(--ease), opacity 220ms var(--ease);
+  }
+  .cursor-mark {
+    width: 34px; height: auto; display: block;
+    filter: drop-shadow(0 1px 6px rgba(28, 28, 26, 0.3));
+    transition: width 220ms var(--ease);
+  }
+  .cursor-glow.is-hover { width: 52px; height: 52px; }
+  .cursor-glow.is-hover .cursor-mark { width: 46px; }
+}
+
+/* ==========================================================================
    Route-change feedback
    A thin clay bar across the very top during client-side navigation, plus the
    skeletons below for routes that stream in. Both exist for the same reason:
