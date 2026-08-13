@@ -562,6 +562,16 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
   font-family: var(--serif); font-weight: 500; font-size: clamp(2.4rem, 4vw, 3.6rem);
   color: var(--parchment); line-height: 1; font-variant-numeric: tabular-nums;
 }
+/* The badges themselves are dark ink on transparent, drawn for a light
+   background — a parchment plate under them keeps them legible against the
+   dark moss section instead of nearly vanishing into it. */
+.stats__awards {
+  margin-top: 2rem; display: flex; flex-wrap: wrap; align-items: center;
+  gap: 1.8rem; width: fit-content;
+  background: var(--parchment); padding: 1rem 1.5rem;
+}
+.stats__award-img { height: 28px; width: auto; display: block; }
+.stats__award-img--tall { height: 42px; }
 
 /* ==========================================================================
    5 · TESTIMONIALS  (parchment)

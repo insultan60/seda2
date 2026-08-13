@@ -132,6 +132,25 @@ export default function AboutPage() {
                 </a>
               </div>
             </article>
+
+            <article className="ab-card ab-card--wide">
+              <span className="ab-card-ic"><Icon.Star /></span>
+              <p className="ab-card-label">Recognition</p>
+              <div className="ab-awards">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  className="ab-award-img"
+                  src="/assets/awards/realtrends-verified.png"
+                  alt="RealTrends Verified"
+                />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  className="ab-award-img ab-award-img--tall"
+                  src="/assets/awards/la-magazine-all-stars.png"
+                  alt="Los Angeles Magazine Real Estate All-Stars"
+                />
+              </div>
+            </article>
           </div>
         </div>
       </section>

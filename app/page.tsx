@@ -141,6 +141,20 @@ export default function Home() {
           <div className="stats__lead reveal">
             <p className="eyebrow eyebrow--clay">A Record That Speaks Quietly</p>
             <h2 className="h2 h2--light">Trusted by Los Angeles homeowners for over a decade.</h2>
+            <div className="stats__awards">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                className="stats__award-img"
+                src="/assets/awards/realtrends-verified.png"
+                alt="RealTrends Verified"
+              />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                className="stats__award-img stats__award-img--tall"
+                src="/assets/awards/la-magazine-all-stars.png"
+                alt="Los Angeles Magazine Real Estate All-Stars"
+              />
+            </div>
           </div>
           {/* Figures confirmed by Alexandra, August 2026. Exact counts, not
               rounded "+" claims — 179 and $184M are hers and are defensible.

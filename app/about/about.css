@@ -67,6 +67,10 @@
 
 .ab-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; max-width: 940px; margin-inline: auto; }
 .ab-card { background: var(--white); border: 1px solid var(--clay-light); padding: 1.6rem 1.75rem; }
+.ab-card--wide { grid-column: 1 / -1; }
+.ab-awards { display: flex; flex-wrap: wrap; align-items: center; gap: 2rem; margin-top: .4rem; }
+.ab-award-img { height: 32px; width: auto; }
+.ab-award-img--tall { height: 48px; }
 .ab-card-ic {
   width: 40px; height: 40px; display: grid; place-items: center;
   background: var(--parchment); color: var(--moss); margin-bottom: 1rem;
