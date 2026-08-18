@@ -73,18 +73,30 @@ export default function PortfolioPage() {
           </p>
         </div>
 
+        {/* Same career totals as the home page — Alexandra's confirmed figures,
+            not a page-local count of what's in data.ts, so this page never
+            contradicts the story the home page already tells. */}
         <dl className="pf-hero__figures">
-          <div>
-            <dt>Currently Represented</dt>
-            <dd>{FEATURED.length}</dd>
+          <div className="reveal" style={{ "--d": "0s" } as React.CSSProperties}>
+            <dt>Homes Sold</dt>
+            <dd>
+              {/* Server-rendered with the real figure, not 0 — the count-up
+                  below is an enhancement, so the number is already correct
+                  for anyone who reads it before (or without) the bundle. */}
+              <span className="stat__num" data-count="179">179</span>
+            </dd>
           </div>
-          <div>
-            <dt>Past Transactions</dt>
-            <dd>{PAST.length}</dd>
+          <div className="reveal" style={{ "--d": ".08s" } as React.CSSProperties}>
+            <dt>Total Sales</dt>
+            <dd>
+              <span className="stat__num" data-count="184" data-prefix="$" data-suffix="M">$184M</span>
+            </dd>
           </div>
-          <div>
-            <dt>Closed Volume</dt>
-            <dd>{volumeLabel}</dd>
+          <div className="reveal" style={{ "--d": ".16s" } as React.CSSProperties}>
+            <dt>Years in L.A. Real Estate</dt>
+            <dd>
+              <span className="stat__num" data-count="13">13</span>
+            </dd>
           </div>
         </dl>
       </section>
