@@ -48,6 +48,7 @@ export default function Footer() {
       </div>
       <div className="container footer__legal">
         <p>© 2026 Alexandra Kerr · DRE# 01911486. Alexandra Kerr is a real estate agent affiliated with Compass, a licensed real estate broker, and abides by Equal Housing Opportunity laws. All material presented herein is intended for informational purposes only and is compiled from sources deemed reliable but has not been verified.</p>
+        <p className="footer__credit">Site by EM Creative Studio</p>
       </div>
     </footer>
   );

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
+import "./contact/contact.css";
 import NewsletterForm from "./components/NewsletterForm";
 import StatsAwards from "./components/StatsAwards";
 import { LATEST_POSTS } from "./journal/data";
@@ -352,6 +353,24 @@ export default function Home() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* 9b · MAP */}
+      <section className="ck-map" id="office-map">
+        <div className="container">
+          <div className="ck-map__head reveal">
+            <p className="eyebrow">Find Us</p>
+            <h2>Visit the Office</h2>
+            <p>6430 W Sunset Blvd, 6th Floor, Los Angeles, CA 90028</p>
+          </div>
+          <iframe
+            className="ck-map__frame"
+            title="Alexandra Kerr office location"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            src="https://maps.google.com/maps?q=6430%20W%20Sunset%20Blvd%2C%20Los%20Angeles%2C%20CA%2090028&t=&z=15&ie=UTF8&iwloc=&output=embed"
+          />
         </div>
       </section>
 

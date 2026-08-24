@@ -836,6 +836,7 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 }
 .footer__legal { border-top: 1px solid rgba(245,240,225,.12); padding-block: 1.8rem 2.2rem; }
 .footer__legal p { font-size: var(--fs-micro); color: rgba(245,240,225,.5); max-width: 90ch; line-height: 1.7; }
+.footer__credit { margin-top: .6rem; }
 
 /* ==========================================================================
    RESPONSIVE
