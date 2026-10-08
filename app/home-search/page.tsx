@@ -15,14 +15,16 @@ export const metadata: Metadata = {
 export default async function HomeSearchPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string | string[] }>;
+  searchParams: Promise<{ q?: string | string[]; status?: string | string[] }>;
 }) {
-  const [{ q }, listings] = await Promise.all([searchParams, getListings()]);
+  const [{ q, status }, listings] = await Promise.all([searchParams, getListings()]);
   const initialQuery = (Array.isArray(q) ? q[0] : q) ?? "";
+  // /home-search?status=sold opens on the Sold tab.
+  const initialStatus = String(Array.isArray(status) ? status[0] : status ?? "").toLowerCase() === "sold" ? "Sold" : "Active";
 
   return (
     <main id="main" className="page-search">
-      <SearchClient initialQuery={initialQuery} listings={listings} />
+      <SearchClient initialQuery={initialQuery} initialStatus={initialStatus} listings={listings} />
     </main>
   );
 }

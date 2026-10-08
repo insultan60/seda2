@@ -1,4 +1,5 @@
 import type { Listing } from "../properties/data";
+import { idxResultsUrl } from "../site";
 
 export type Hood = {
   name: string;
@@ -12,6 +13,10 @@ export type Hood = {
   alt?: string;
   /** Renders taller in the woven grid. */
   tall?: boolean;
+  /** ZIP codes that cover the area, for the full-MLS search on IDX. A ZIP is
+   *  a close fit for a neighborhood, not an exact boundary (90026 is shared by
+   *  Silver Lake and Echo Park, for example). */
+  zips?: readonly string[];
 };
 
 /**
@@ -26,6 +31,7 @@ export type Hood = {
 export const FEATURED: Hood[] = [
   {
     name: "Los Feliz",
+    zips: ["90027"],
     match: "Los Feliz",
     blurb:
       "Storied estates below Griffith Park, where early Hollywood built and the architecture still shows it — Lloyd Wright, Neutra, and Spanish Colonial on the same winding street.",
@@ -36,6 +42,7 @@ export const FEATURED: Hood[] = [
   },
   {
     name: "Hollywood Hills",
+    zips: ["90068", "90046"],
     match: "Hollywood Hills",
     blurb:
       "Mid-century glass and canyon quiet, minutes above the city. Buyers here are paying for the view and the privacy — the finishes are the tiebreaker.",
@@ -45,6 +52,7 @@ export const FEATURED: Hood[] = [
   },
   {
     name: "Silver Lake",
+    zips: ["90026", "90039"],
     blurb:
       "Craftsman bones and creative energy around the reservoir. Hillside lots reward anyone who knows how to read a slope and a permit history.",
     short: "Craftsman charm, creative energy",
@@ -53,6 +61,7 @@ export const FEATURED: Hood[] = [
   },
   {
     name: "Hancock Park",
+    zips: ["90004", "90020"],
     match: "Hancock Park",
     blurb:
       "Wide streets, deep lots, and period homes held to a standard. One of the few parts of Los Angeles where the streetscape has been protected for a century.",
@@ -62,6 +71,7 @@ export const FEATURED: Hood[] = [
   },
   {
     name: "Windsor Square",
+    zips: ["90004", "90020"],
     match: "Windsor Square",
     blurb:
       "Formal, tree-lined, and quietly grand. Turnover is slow here, which is exactly why the homes that do come up move on relationships as much as listings.",
@@ -70,6 +80,7 @@ export const FEATURED: Hood[] = [
   },
   {
     name: "Sunset Strip",
+    zips: ["90069"],
     match: "Sunset Strip",
     blurb:
       "Cantilevered and city-facing, with the shortest walk to the west side of the night. A market of its own, priced on view corridor and access.",
@@ -86,12 +97,12 @@ export const FEATURED: Hood[] = [
  *  portfolio is there and `countIn` reads a real number off it — an area with
  *  a closing behind it earns its place on the list. */
 export const ALSO_SERVING: Hood[] = [
-  { name: "Echo Park", blurb: "Hillside bungalows and lake-adjacent walkability." },
-  { name: "Beverly Hills", blurb: "The flats and the hills behave like two separate markets." },
-  { name: "Brentwood", blurb: "Established, private, and consistently defensive in a soft market." },
-  { name: "Santa Monica", blurb: "Ocean proximity priced by the block, not the neighborhood." },
-  { name: "Venice", blurb: "Walk streets, canals, and a rebuild market that trades on light and lot width." },
-  { name: "Mar Vista", match: "Mar Vista", blurb: "Post-war stock steadily giving way to considered rebuilds." },
+  { name: "Echo Park", zips: ["90026"], blurb: "Hillside bungalows and lake-adjacent walkability." },
+  { name: "Beverly Hills", zips: ["90210", "90211", "90212"], blurb: "The flats and the hills behave like two separate markets." },
+  { name: "Brentwood", zips: ["90049"], blurb: "Established, private, and consistently defensive in a soft market." },
+  { name: "Santa Monica", zips: ["90401", "90402", "90403", "90404", "90405"], blurb: "Ocean proximity priced by the block, not the neighborhood." },
+  { name: "Venice", zips: ["90291"], blurb: "Walk streets, canals, and a rebuild market that trades on light and lot width." },
+  { name: "Mar Vista", zips: ["90066"], match: "Mar Vista", blurb: "Post-war stock steadily giving way to considered rebuilds." },
 ];
 
 /** The three broad regions Alexandra covers beyond the named areas above.
@@ -121,11 +132,19 @@ export function countIn(hood: Hood, listings: Listing[]) {
   };
 }
 
-/** Label + destination for a neighborhood tile, derived from what's actually there. */
+/** Label + destination for a neighborhood tile, derived from what's actually there.
+ *  Alexandra's own active listings come first; otherwise the tile opens every
+ *  home for sale in the area on the MLS (IDX), rather than an empty search of
+ *  her portfolio. */
 export function hoodLink(hood: Hood, listings: Listing[]) {
-  const { active, sold } = countIn(hood, listings);
+  const { active } = countIn(hood, listings);
   const q = `/home-search?q=${encodeURIComponent(hood.match ?? hood.name)}`;
   if (active > 0) return { label: `${active} active listing${active === 1 ? "" : "s"}`, href: q };
-  if (sold > 0) return { label: `${sold} recently sold`, href: "/properties" };
+  if (hood.zips?.length) return { label: "Homes for sale", href: mlsLink(hood) };
   return { label: "Search this area", href: q };
+}
+
+/** Every home for sale in the area, across the whole MLS. */
+export function mlsLink(hood: Hood) {
+  return idxResultsUrl({ zips: hood.zips });
 }

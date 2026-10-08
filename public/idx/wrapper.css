@@ -1,0 +1,123 @@
+/* ==========================================================================
+   IDX wrapper styles — the site's header, side menu and footer, for IDX
+   Broker's hosted MLS pages (see app/idx-wrapper/route.ts).
+
+   A trimmed copy of the matching rules in app/globals.css. Everything is
+   scoped to .ak-shell so none of it restyles IDX's own search, results and
+   listing markup. If the header or footer design changes in globals.css,
+   mirror it here.
+   ========================================================================== */
+
+:root {
+  --moss: #4F5847;
+  --moss-deep: #3A4233;
+  --parchment: #F5F0E1;
+  --clay: #CBBBA0;
+  --clay-light: #DED2BD;
+  --off-white: #FAFAF5;
+  --white: #FFFFFF;
+  --ink: #1C1C1A;
+  --ink-soft: #55534C;
+  --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --sans: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+  --fs-small: 0.875rem;
+  --fs-micro: 0.75rem;
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
+  --container: 1200px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+}
+
+body.ak-idx { margin: 0; background: var(--off-white); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+
+/* IDX content sits below the fixed header. */
+.ak-idx-main { padding-top: 90px; min-height: 60vh; }
+.ak-idx-content { max-width: 1280px; margin: 0 auto; padding: 2rem var(--gutter) 4rem; }
+
+/* ---------- Scoped reset ---------- */
+.ak-shell, .ak-shell *, .ak-shell *::before, .ak-shell *::after { box-sizing: border-box; margin: 0; padding: 0; }
+.ak-shell { font-family: var(--sans); line-height: 1.65; }
+.ak-shell a { color: inherit; text-decoration: none; }
+.ak-shell ul { list-style: none; }
+.ak-shell button { font: inherit; background: none; border: 0; cursor: pointer; color: inherit; }
+.ak-shell img { display: block; max-width: 100%; }
+.ak-shell address { font-style: normal; }
+.ak-shell h3 { font-family: var(--sans); }
+.ak-shell .container { max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
+.ak-shell a:focus-visible, .ak-shell button:focus-visible { outline: 2px solid var(--parchment); outline-offset: 3px; }
+
+/* ---------- Button ---------- */
+.ak-shell .btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--sans); font-size: var(--fs-small); font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; border: 1px solid transparent;
+  transition: background-color 180ms var(--ease), color 180ms var(--ease);
+}
+.ak-shell .btn--outline-light { border-color: rgba(245,240,225,.5); color: var(--parchment); min-height: 40px; padding: .45rem 1.2rem; }
+.ak-shell .btn--outline-light:hover { background: var(--parchment); color: var(--moss-deep); }
+
+/* ---------- Header (always solid here: IDX pages have no photo hero) ---------- */
+.ak-shell.nav { position: fixed; inset-inline: 0; top: 0; z-index: 1000; background: var(--moss-deep); box-shadow: 0 1px 0 rgba(245,240,225,.12); }
+.ak-shell .nav__inner { max-width: var(--container); margin-inline: auto; padding: 1rem var(--gutter); display: flex; align-items: center; gap: 2.5rem; }
+.ak-shell .nav__logo { display: flex; align-items: center; flex-shrink: 0; }
+.ak-shell .nav__logo-img { width: auto; height: 58px; object-fit: contain; }
+.ak-shell .nav__links { display: flex; gap: 1.9rem; margin-left: auto; }
+.ak-shell .nav__links a { color: var(--parchment); font-size: var(--fs-small); font-weight: 500; letter-spacing: .1em; text-transform: uppercase; padding-block: .55rem; position: relative; }
+.ak-shell .nav__links a::after { content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 100%; background: var(--clay); transform: scaleX(0); transform-origin: left; transition: transform 200ms var(--ease); }
+.ak-shell .nav__links a:hover::after { transform: scaleX(1); }
+.ak-shell .nav__cta { flex-shrink: 0; }
+.ak-shell .nav__burger { display: flex; flex-direction: column; gap: 6px; padding: 12px 8px; flex-shrink: 0; }
+.ak-shell .nav__burger span { display: block; width: 28px; height: 1.5px; background: var(--parchment); }
+
+/* ---------- Side menu ---------- */
+.ak-shell.drawer { position: fixed; inset: 0; z-index: 1100; }
+.ak-shell.drawer[hidden] { display: none; }
+.ak-shell .drawer__backdrop { position: absolute; inset: 0; background: rgba(28,28,26,.45); opacity: 0; transition: opacity 240ms var(--ease); }
+.ak-shell .drawer__panel { position: absolute; top: 0; right: 0; bottom: 0; width: min(420px, 92vw); background: var(--white); color: var(--ink); transform: translateX(100%); transition: transform 280ms var(--ease); overflow-y: auto; padding: 1.2rem 2rem 3rem; }
+.ak-shell.drawer.is-open .drawer__backdrop { opacity: 1; }
+.ak-shell.drawer.is-open .drawer__panel { transform: none; }
+.ak-shell .drawer__close { display: block; margin-left: auto; padding: 12px; color: var(--ink); }
+.ak-shell .drawer__nav { margin-top: .4rem; }
+.ak-shell .drawer__item { display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%; padding: 1.05rem 0; text-align: left; font-family: var(--serif); font-weight: 500; font-size: 1.3rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink); border-bottom: 1px solid rgba(28,28,26,.12); transition: color 220ms var(--ease); }
+.ak-shell .drawer__item:hover { color: var(--moss); }
+.ak-shell .drawer__chev { flex-shrink: 0; transition: transform 200ms var(--ease); }
+.ak-shell .drawer__toggle[aria-expanded="true"] .drawer__chev { transform: rotate(180deg); }
+.ak-shell .drawer__group { border-bottom: 1px solid rgba(28,28,26,.12); }
+.ak-shell .drawer__group .drawer__item { border-bottom: 0; }
+.ak-shell .drawer__sub { overflow: hidden; max-height: 0; transition: max-height 240ms var(--ease); }
+.ak-shell .drawer__group.is-open .drawer__sub { max-height: 24rem; }
+.ak-shell .drawer__sub a { display: block; padding: .6rem 0 .6rem 1.3rem; font-size: var(--fs-small); letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft); transition: color 220ms var(--ease); }
+.ak-shell .drawer__sub a:hover { color: var(--moss); }
+.ak-shell .drawer__sub a[aria-disabled="true"] { opacity: .5; pointer-events: none; }
+.ak-shell .drawer__sub a:last-child { padding-bottom: 1rem; }
+
+/* ---------- Footer ---------- */
+.ak-shell.footer { background: var(--moss-deep); color: rgba(245,240,225,.85); padding-top: clamp(4rem, 9vw, 8rem); margin-top: 3rem; }
+.ak-shell .footer__grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 2fr) minmax(0, 2fr) minmax(0, 3fr); gap: clamp(2rem, 5vw, 4rem); padding-bottom: 3.5rem; }
+.ak-shell .footer__logo { --logo-w: 110px; width: var(--logo-w); height: auto; margin-left: calc(var(--logo-w) * -75 / 900); margin-bottom: 1.2rem; }
+.ak-shell .footer__name { font-family: var(--serif); font-size: 1.5rem; color: var(--parchment); letter-spacing: .06em; }
+.ak-shell .footer__title { font-size: var(--fs-micro); letter-spacing: .12em; text-transform: uppercase; color: var(--clay); margin: .5rem 0 1.4rem; }
+.ak-shell .footer__contact { display: grid; gap: .35rem; }
+.ak-shell .footer__contact a { font-size: var(--fs-small); padding-block: .25rem; }
+.ak-shell .footer__contact a:hover, .ak-shell .footer__col a:hover, .ak-shell .footer__office-addr a:hover { color: var(--parchment); }
+.ak-shell .footer__dre { font-size: var(--fs-small); padding-block: .25rem; color: rgba(245,240,225,.7); }
+.ak-shell .footer__col h3 { font-size: var(--fs-micro); font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--clay); margin-bottom: 1.1rem; }
+.ak-shell .footer__col a { display: block; font-size: var(--fs-small); padding-block: .38rem; }
+.ak-shell .footer__office-addr { font-size: var(--fs-small); line-height: 1.8; }
+.ak-shell .footer__compass { --compass-w: 132px; width: var(--compass-w); height: auto; margin-left: calc(var(--compass-w) * -7 / 176); margin-top: calc(var(--compass-w) * -21 / 176); margin-bottom: calc(var(--compass-w) * -21 / 176 + .9rem); opacity: .9; }
+.ak-shell .footer__badges { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.4rem; }
+.ak-shell .footer__badges span { font-size: 0.65rem; font-weight: 600; letter-spacing: .16em; border: 1px solid rgba(203,187,160,.4); color: var(--clay); padding: .4rem .6rem; }
+.ak-shell .footer__legal { border-top: 1px solid rgba(245,240,225,.12); padding-block: 1.8rem 2.2rem; }
+.ak-shell .footer__legal p { font-size: var(--fs-micro); color: rgba(245,240,225,.5); max-width: 90ch; line-height: 1.7; }
+.ak-shell .footer__credit { margin-top: .6rem; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1023px) {
+  .ak-shell .nav__links, .ak-shell .nav__cta { display: none; }
+  .ak-shell .nav__burger { margin-left: auto; }
+  .ak-shell .footer__grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 639px) {
+  .ak-shell .nav__logo-img { height: 46px; }
+  .ak-idx-main { padding-top: 78px; }
+  .ak-shell .footer__grid { grid-template-columns: 1fr; }
+}

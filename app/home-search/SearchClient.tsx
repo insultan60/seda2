@@ -10,6 +10,19 @@ import {
   priceLabel,
   type Listing,
 } from "../properties/data";
+import { ALSO_SERVING, FEATURED } from "../neighborhoods/data";
+import { idxResultsUrl } from "../site";
+
+/** The ZIPs to hand IDX for whatever is in the location box: a neighborhood
+ *  name she serves, or any 5-digit ZIP typed in. Empty means "all of the MLS". */
+function zipsFor(query: string): string[] {
+  const q = query.trim().toLowerCase();
+  if (!q) return [];
+  const typed = q.match(/\b9\d{4}\b/g);
+  if (typed) return typed;
+  const hood = [...FEATURED, ...ALSO_SERVING].find((h) => h.name.toLowerCase().includes(q) || q.includes(h.name.toLowerCase()));
+  return hood?.zips ? [...hood.zips] : [];
+}
 
 /* Ported from the static build (f/alexandra-kerr/home-search.html + js/search.js).
    The one deliberate departure: that page carried its own hardcoded PROPS array,
@@ -52,16 +65,20 @@ const SORTS = ["Newest", "Price: High to Low", "Price: Low to High", "Sq.Ft."] a
 type Sort = (typeof SORTS)[number];
 
 const STATUSES = ["Active", "Sold"] as const;
+type Status = (typeof STATUSES)[number];
 
 export default function SearchClient({
   initialQuery = "",
+  initialStatus = "Active",
   listings,
 }: {
   initialQuery?: string;
+  initialStatus?: Status;
   listings: Listing[];
 }) {
   const [query, setQuery] = useState(initialQuery);
-  const [statuses, setStatuses] = useState<string[]>(["Active"]);
+  /* Active / Sold tabs, the same two views as the portfolio. */
+  const [status, setStatus] = useState<Status>(initialStatus);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
   const [beds, setBeds] = useState(0);
@@ -71,13 +88,12 @@ export default function SearchClient({
   const [view, setView] = useState<"map" | "list">("map");
   const [layer, setLayer] = useState<LayerKey>("street");
   const [layersOpen, setLayersOpen] = useState(false);
-  const [saved, setSaved] = useState(false);
   const [hot, setHot] = useState<string | null>(null);
 
-  const results = useMemo(() => {
+  /* Every filter except the tab, so each tab can show its own count. */
+  const matching = useMemo(() => {
     const q = query.trim().toLowerCase();
-    const out = listings.filter((l) => {
-      if (statuses.length && !statuses.includes(l.status)) return false;
+    return listings.filter((l) => {
       if (q && ![l.addr, l.city, l.zip, l.hood].some((f) => f?.toLowerCase().includes(q)))
         return false;
       const p = priceValue(l);
@@ -89,15 +105,25 @@ export default function SearchClient({
       if (baths && Number(l.baths ?? 0) < baths) return false;
       return true;
     });
+  }, [listings, query, minPrice, maxPrice, beds, baths]);
+  const counts = {
+    Active: matching.filter((l) => l.status === "Active").length,
+    Sold: matching.filter((l) => l.status === "Sold").length,
+  };
 
-    const sorted = [...out];
+  const results = useMemo(() => {
+    const sorted = matching.filter((l) => l.status === status);
     if (sort === "Price: High to Low") sorted.sort((a, b) => priceValue(b) - priceValue(a));
     if (sort === "Price: Low to High") sorted.sort((a, b) => priceValue(a) - priceValue(b));
     if (sort === "Sq.Ft.") sorted.sort((a, b) => sqftValue(b) - sqftValue(a));
     return sorted;
-  }, [listings, query, statuses, minPrice, maxPrice, beds, baths, sort]);
+  }, [matching, status, sort]);
 
   const pinned = results.filter((l) => l.lat != null && l.lng != null);
+
+  /* The same filters, run against the entire MLS on IDX — where visitors can
+     also save the search and get email alerts with an IDX account. */
+  const mlsUrl = idxResultsUrl({ zips: zipsFor(query), minPrice, maxPrice, beds, baths });
 
   /* The static build hardcoded `top: 56px` for the filter bar because its nav
      was a fixed 56px. This project's <Header> is fluid, so measure it instead
@@ -205,8 +231,6 @@ export default function SearchClient({
     if (m) m.openPopup();
   }, []);
 
-  const toggleStatus = (s: string) =>
-    setStatuses((prev) => (prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s]));
 
   const panel = (key: string, label: string, body: React.ReactNode, cls = "") => (
     <div className="sbar__filter">
@@ -256,19 +280,20 @@ export default function SearchClient({
             />
           </div>
 
-          {panel(
-            "status",
-            `Status${statuses.length ? ` (${statuses.length})` : ""}`,
-            <fieldset>
-              <legend className="sr-only">Listing status</legend>
-              {STATUSES.map((s) => (
-                <label className="sbar__check" key={s}>
-                  <input type="checkbox" checked={statuses.includes(s)} onChange={() => toggleStatus(s)} />
-                  {s}
-                </label>
-              ))}
-            </fieldset>,
-          )}
+          <div className="sbar__tabs" role="tablist" aria-label="Listing status">
+            {STATUSES.map((s) => (
+              <button
+                key={s}
+                type="button"
+                role="tab"
+                aria-selected={status === s}
+                className={status === s ? "is-active" : ""}
+                onClick={() => setStatus(s)}
+              >
+                {s} <span className="sbar__tab-count">{counts[s]}</span>
+              </button>
+            ))}
+          </div>
 
           {panel(
             "price",
@@ -320,13 +345,12 @@ export default function SearchClient({
             "sbar__dropdown--beds",
           )}
 
-          <button
-            type="button"
-            className={`sbar__save${saved ? " is-saved" : ""}`}
-            onClick={() => setSaved(true)}
-          >
-            {saved ? "Search Saved ✓" : "Save Search"}
-          </button>
+          {/* Was a "Save Search" button that only flipped its own label and
+              saved nothing. Saving a search for real happens on IDX, with an
+              account and email alerts, so the button goes there. */}
+          <a className="sbar__save sbar__save--mls" href={mlsUrl}>
+            Search The MLS
+          </a>
         </div>
       </form>
 
@@ -361,7 +385,13 @@ export default function SearchClient({
           </button>
           <span className="rbar__count">
             <strong>{results.length}</strong> results{" "}
-            <span className="rbar__note">· Alexandra&rsquo;s listings, live from the MLS</span>
+            <span className="rbar__note">
+              <span className="rbar__long">· Alexandra&rsquo;s listings · </span>
+              <a href={mlsUrl} className="rbar__mls">
+                <span className="rbar__long">See every home for sale on the MLS</span>
+                <span className="rbar__short">Search the MLS</span>&nbsp;&rarr;
+              </a>
+            </span>
           </span>
         </div>
         <div>
@@ -446,7 +476,8 @@ export default function SearchClient({
 
             {!results.length && (
               <p className="results__empty">
-                No listings match those filters. Widen the price range or clear the location.
+                None of Alexandra&rsquo;s listings match those filters.{" "}
+                <a href={mlsUrl} className="rbar__mls">Search the entire MLS with them&nbsp;&rarr;</a>
               </p>
             )}
           </div>

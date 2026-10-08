@@ -43,6 +43,20 @@
   transition: border-color 140ms var(--ease), background-color 140ms var(--ease);
 }
 .sbar__btn:hover { border-color: var(--clay); background: var(--off-white); }
+
+/* Active / Sold tabs */
+.sbar__tabs { display: inline-flex; flex-shrink: 0; padding: 3px; gap: 2px; background: var(--parchment); border-radius: 6px; }
+.sbar__tabs button {
+  height: 30px; padding: 0 12px; border-radius: 4px;
+  font-size: 13px; font-weight: 600; letter-spacing: .04em; color: var(--ink-soft);
+  transition: background-color 140ms var(--ease), color 140ms var(--ease);
+}
+.sbar__tabs button:hover { color: var(--ink); }
+.sbar__tabs button.is-active { background: var(--moss); color: var(--parchment); }
+.sbar__tab-count { font-weight: 500; opacity: .75; margin-left: 2px; }
+/* The MLS button is the page's main call to action, so it is filled. */
+.sbar__save.sbar__save--mls { background: var(--moss); color: var(--parchment); }
+.sbar__save.sbar__save--mls:hover { background: var(--moss-deep); }
 .sbar__btn[aria-expanded="true"] { border-color: var(--moss); background: var(--off-white); }
 .sbar__btn svg { transition: transform 140ms var(--ease); flex-shrink: 0; }
 .sbar__btn[aria-expanded="true"] svg { transform: rotate(180deg); }
@@ -54,8 +68,12 @@
   white-space: nowrap;
   transition: background-color 140ms var(--ease), color 140ms var(--ease);
 }
-.sbar__save:hover, .sbar__save.is-saved { background: var(--moss); color: var(--parchment); }
-.sbar__save.is-saved { pointer-events: none; }
+.sbar__save { display: inline-flex; align-items: center; }
+.sbar__save:hover { background: var(--moss); color: var(--parchment); }
+.rbar__mls { color: var(--moss); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--clay); }
+.rbar__mls:hover { text-decoration-color: var(--moss); }
+.rbar__note { white-space: nowrap; }
+.rbar__short { display: none; }
 
 /* Dropdown panels */
 .sbar__dropdown {
@@ -154,9 +172,10 @@
 /* ---------- Split: map + results ---------- */
 .search-split {
   position: fixed; top: calc(var(--ak-header, 68px) + 90px); left: 0; right: 0; bottom: 0;
-  display: grid; grid-template-columns: 1fr 480px;
+  /* Results take a wider share so the listings sit two to a row. */
+  display: grid; grid-template-columns: minmax(0, 1fr) min(800px, 56%);
 }
-@media (min-width: 1600px) { .search-split { grid-template-columns: 1fr 560px; } }
+@media (min-width: 1600px) { .search-split { grid-template-columns: minmax(0, 1fr) 900px; } }
 
 /* Map */
 .map { position: relative; background: var(--parchment); }
@@ -236,7 +255,8 @@
 /* Single-column list reusing the homepage .listing card component
    (identical styling — .listing rules live in styles.css) */
 .results__grid {
-  display: flex; flex-direction: column; gap: clamp(2rem, 4vw, 2.75rem);
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.25rem 1.5rem; align-items: start;
   padding: 20px;
 }
 /* pin ↔ card sync highlight (search-only affordance) */
@@ -263,7 +283,14 @@
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1023px) {
-  .page-search { overflow: auto; height: auto; }
+  /* The filter bar is sticky here, and a sticky element starts in the flow —
+     which put it underneath the fixed header until the visitor scrolled. */
+  /* overflow: visible, not auto — a scroll container here made the sticky
+     bars measure their offset from inside its padding, 90px too low. */
+  .page-search { overflow: visible; height: auto; padding-top: var(--ak-header, 68px); }
+  /* Leaflet's panes sit at z-index 400+; keep them inside the map so the
+     sticky bars stay on top while scrolling. */
+  .map { z-index: 0; isolation: isolate; }
   .sbar { position: sticky; }
   .sbar__inner { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
   .sbar__inner::-webkit-scrollbar { display: none; }
@@ -273,12 +300,19 @@
   .map { height: 52vh; min-height: 360px; }
   .results { border-left: 0; }
 }
+@media (min-width: 640px) and (max-width: 1023px) {
+  .results__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 @media (max-width: 639px) {
   .sbar { top: var(--ak-header, 60px); }
   .rbar { top: calc(var(--ak-header, 60px) + 50px); }
   .nav--compact .nav__logo-img { height: 34px; }
   .map { height: 44vh; min-height: 300px; }
-  .results__grid { padding: 16px; gap: 2rem; }
+  .results__grid { grid-template-columns: 1fr; padding: 16px; gap: 2rem; }
+  /* Phones: the MLS button is off the end of the scrolling filter bar, so
+     the results bar carries a short, always-visible link instead. */
+  .rbar__long { display: none; }
+  .rbar__short { display: inline; font-weight: 600; }
 }
 
 @media (prefers-reduced-motion: reduce) {

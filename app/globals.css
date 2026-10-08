@@ -348,7 +348,7 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 .drawer__group { border-bottom: 1px solid rgba(28,28,26,.12); }
 .drawer__group .drawer__item { border-bottom: 0; }
 .drawer__sub { overflow: hidden; max-height: 0; transition: max-height 240ms var(--ease); }
-.drawer__group.is-open .drawer__sub { max-height: 16rem; }
+.drawer__group.is-open .drawer__sub { max-height: 24rem; }
 .drawer__sub a {
   position: relative; display: block; padding: .6rem 0 .6rem 1.3rem;
   font-size: var(--fs-small); letter-spacing: .16em; text-transform: uppercase;

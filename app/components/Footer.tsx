@@ -1,4 +1,8 @@
 import Link from "next/link";
+import { FOOTER_EXPLORE, FOOTER_RESOURCES, isExternal, type NavLink } from "./nav";
+
+const FooterLink = ({ l }: { l: NavLink }) =>
+  isExternal(l.href) ? <a href={l.href}>{l.t}</a> : <Link href={l.href}>{l.t}</Link>;
 
 export default function Footer() {
   return (
@@ -18,19 +22,11 @@ export default function Footer() {
         </div>
         <nav className="footer__col" aria-label="Explore">
           <h3>Explore</h3>
-          <Link href="/about">About Alexandra</Link>
-          <Link href="/properties">Portfolio</Link>
-          <Link href="/neighborhoods">Neighborhoods</Link>
-          <Link href="/journal">Journal</Link>
+          {FOOTER_EXPLORE.map((l) => <FooterLink key={l.t} l={l} />)}
         </nav>
         <nav className="footer__col" aria-label="Resources">
           <h3>Resources</h3>
-          <Link href="/home-search">Home Search</Link>
-          <Link href="/my-search-portal">My Search Portal</Link>
-          <Link href="/relocation">Relocation</Link>
-          <Link href="/testimonials">Testimonials</Link>
-          <Link href="/home-valuation">Home Valuation</Link>
-          <Link href="/compass-concierge">Compass Concierge</Link>
+          {FOOTER_RESOURCES.map((l) => <FooterLink key={l.t} l={l} />)}
         </nav>
         <div className="footer__col footer__office">
           <h3>Office</h3>

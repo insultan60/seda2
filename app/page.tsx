@@ -9,6 +9,7 @@ import { ALSO_SERVING, FEATURED as FEATURED_HOODS } from "./neighborhoods/data";
 import { hasSpecs, locationLabel, priceLabel } from "./properties/data";
 import { getListings } from "./properties/listings";
 import { TESTIMONIALS } from "./testimonials/data";
+import { IDX } from "./site";
 
 // helper for the CSS reveal-delay custom property
 const d = (val: string) => ({ "--d": val }) as CSSProperties;
@@ -269,7 +270,10 @@ export default async function Home() {
             <p className="lede">Search every active listing across the Greater Los Angeles MLS — or tell Alexandra what character means to you, and let the right home find you.</p>
           </div>
           <div className="mls__ctas">
-            <a className="btn btn--solid-moss" href="/home-search">Search The MLS</a>
+            {/* The whole MLS lives on IDX; /home-search is Alexandra's own
+                listings on a map. Both are one click from here. */}
+            <a className="btn btn--solid-moss" href={IDX.mapSearch}>Search The MLS</a>
+            <a className="btn btn--outline-moss" href={IDX.signup}>Get New Listing Alerts</a>
             <a className="btn btn--outline-moss" href="/contact">Request A Consultation</a>
           </div>
         </div>

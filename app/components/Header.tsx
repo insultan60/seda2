@@ -3,24 +3,20 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import {
+  DRAWER_GROUPS,
+  DRAWER_GROUPS_2,
+  DRAWER_ITEMS_END,
+  DRAWER_ITEMS_MID,
+  PRIMARY_LINKS,
+  isExternal,
+} from "./nav";
 
 const Chevron = () => (
   <svg className="drawer__chev" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none">
     <path d="M3 6l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
-
-type DrawerGroup = { label: string; sub: { t: string; href: string; disabled?: boolean }[] };
-
-const DRAWER_GROUPS: DrawerGroup[] = [
-  { label: "About", sub: [{ t: "Meet Alexandra", href: "/about" }, { t: "Testimonials", href: "/testimonials" }] },
-  { label: "Home Search", sub: [{ t: "Search The MLS", href: "/home-search" }, { t: "My Search Portal", href: "/my-search-portal" }] },
-  { label: "Buyers", sub: [{ t: "Neighborhoods", href: "/neighborhoods" }, { t: "Relocation", href: "/relocation" }] },
-  { label: "Sellers", sub: [{ t: "Home Valuation", href: "/home-valuation" }, { t: "Compass Concierge", href: "/compass-concierge" }] },
-];
-const DRAWER_GROUPS_2: DrawerGroup[] = [
-  { label: "Compass Services", sub: [{ t: "Compass Concierge", href: "/compass-concierge" }, { t: "Private Exclusives", href: "#", disabled: true }] },
-];
 
 // Routes that open on a full-bleed image hero — the nav rides transparent over
 // them until the user scrolls. Everywhere else it stays solid from the start.
@@ -49,10 +45,13 @@ export default function Header() {
             <img className="nav__logo-img" src="/assets/logo-white.png" alt="Alexandra Kerr — AK monogram" />
           </Link>
           <nav className="nav__links" aria-label="Primary">
-            <Link href="/properties">Portfolio</Link>
-            <Link href="/home-search">Home Search</Link>
-            <Link href="/relocation">Relocation</Link>
-            <Link href="/journal">The Latest Real Estate News</Link>
+            {PRIMARY_LINKS.map((l) =>
+              isExternal(l.href) ? (
+                <a key={l.t} href={l.href}>{l.t}</a>
+              ) : (
+                <Link key={l.t} href={l.href}>{l.t}</Link>
+              ),
+            )}
           </nav>
           <Link className="btn btn--outline-light nav__cta" href="/contact">Let&rsquo;s Connect</Link>
           <button className="nav__burger" aria-label="Open menu" aria-expanded="false" aria-controls="sideMenu">
@@ -85,9 +84,9 @@ export default function Header() {
                 </div>
               </div>
             ))}
-            <Link className="drawer__item" href="/properties">Portfolio</Link>
-            <Link className="drawer__item" href="/home-valuation">Home Valuation</Link>
-            <Link className="drawer__item" href="/neighborhoods">Neighborhoods</Link>
+            {DRAWER_ITEMS_MID.map((l) => (
+              <Link key={l.t} className="drawer__item" href={l.href}>{l.t}</Link>
+            ))}
             {DRAWER_GROUPS_2.map((g) => (
               <div className="drawer__group" key={g.label}>
                 <button className="drawer__item drawer__toggle" type="button" aria-expanded="false">
@@ -101,9 +100,13 @@ export default function Header() {
                 </div>
               </div>
             ))}
-            <Link className="drawer__item" href="/journal">The Latest Real Estate News</Link>
-            <Link className="drawer__item" href="/contact">Let&rsquo;s Connect</Link>
-            <Link className="drawer__item" href="/my-search-portal">My Search Portal</Link>
+            {DRAWER_ITEMS_END.map((l) =>
+              isExternal(l.href) ? (
+                <a key={l.t} className="drawer__item" href={l.href}>{l.t}</a>
+              ) : (
+                <Link key={l.t} className="drawer__item" href={l.href}>{l.t}</Link>
+              ),
+            )}
           </nav>
         </aside>
       </div>
