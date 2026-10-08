@@ -2,17 +2,15 @@
  * Single source of truth for the things every page's metadata needs.
  *
  * ─────────────────────────────────────────────────────────────────────────────
- * ACTION REQUIRED BEFORE LAUNCH: confirm the production domain.
+ * The production domain is aklahomes.com (confirmed Oct 9, 2026).
  *
  * `SITE_URL` is what absolute URLs in the sitemap, the canonical tags and the
- * social link previews are built from. The fallback below is a guess. Set
- * NEXT_PUBLIC_SITE_URL in the hosting environment to the real domain — if this
- * is wrong, every link preview and every sitemap entry points at a domain that
- * isn't hers, and search engines will index it that way.
+ * social link previews are built from. NEXT_PUBLIC_SITE_URL in the hosting
+ * environment overrides it; leave that unset or set it to the same domain.
  * ─────────────────────────────────────────────────────────────────────────────
  */
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://alexandrakerr.com"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://aklahomes.com"
 ).replace(/\/$/, "");
 
 export const AGENT = {

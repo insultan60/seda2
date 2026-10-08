@@ -46,7 +46,7 @@ const pretty = (n: string) => n.replace(/^\+1-?/, "").replace(/^(\d{3})-(\d{3})-
 
 export async function GET(request: Request) {
   // Whatever domain IDX fetched this from — the site's real domain once it
-  // has one, seda2.vercel.app until then.
+  // has one (aklahomes.com).
   const origin = new URL(request.url).origin;
   const abs = (href: string) => (/^(https?:|mailto:|tel:|#)/.test(href) ? href : `${origin}${href}`);
   const a = (l: NavLink, cls = "") =>

@@ -207,14 +207,14 @@ and then landed on "Listing Coming Soon". Detail pages now render whatever a
 listing actually has — a sold home with no gallery gets its photo, price, specs
 and contact panel rather than a holding page.
 
-### 4. Search visibility ✅ Built · 📦 needs the domain
+### 4. Search visibility ✅ Done
 Sitemap (56 URLs, generated from the live data), robots file, AK favicon, a
 generated social share card, and `RealEstateAgent` structured data carrying her
 licence, phone, office and service areas.
 
-**Needed:** confirmation of the production domain. It is currently assumed to be
-`alexandrakerr.com` — set `NEXT_PUBLIC_SITE_URL` to the real one. If this is
-wrong, Google indexes the wrong domain.
+**Domain:** `aklahomes.com`, confirmed Oct 9, 2026, and set as the site's
+default. If `NEXT_PUBLIC_SITE_URL` is set in Vercel, it must be
+`https://aklahomes.com` as well.
 
 ### 5. Dead code ✅ Done
 Removed 2,012 lines of an abandoned second search implementation that nothing
