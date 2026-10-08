@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "photos": "node scripts/photos.mjs",
-    "optimize-photos": "node scripts/optimize-photos.mjs"
+    "optimize-photos": "node scripts/optimize-photos.mjs",
+    "idx:wrapper": "node scripts/save-idx-wrapper.mjs"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

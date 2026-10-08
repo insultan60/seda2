@@ -14,6 +14,11 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "images.unsplash.com" },
     ],
   },
+  /* public/idx-wrapper.html is the static copy of /idx-wrapper that IDX
+     Broker fetches. Like the route, it stays out of search results. */
+  async headers() {
+    return [{ source: "/idx-wrapper.html", headers: [{ key: "X-Robots-Tag", value: "noindex, follow" }] }];
+  },
 };
 
 export default nextConfig;

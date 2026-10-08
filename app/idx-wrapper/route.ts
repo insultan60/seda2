@@ -32,6 +32,11 @@ import {
    The links come from app/components/nav.ts, the same lists the site's own
    Header and Footer read, so the two can't drift apart.
 
+   public/idx-wrapper.html is a saved copy of this page's output, made the
+   same way Stefanie's site does it: a plain file, which IDX fetches more
+   reliably than a function. IDX points at that file. After changing the menus
+   or footer, run `npm run idx:wrapper` with the dev server up to refresh it.
+
    Kept out of search results with an X-Robots-Tag header — not a robots
    meta tag, which IDX would copy onto every MLS page it wraps. */
 
