@@ -262,6 +262,13 @@
 /* pin ↔ card sync highlight (search-only affordance) */
 .results .listing { scroll-margin: 90px; border-radius: 2px; transition: outline-color 160ms var(--ease); outline: 2px solid transparent; outline-offset: 8px; }
 .results .listing.is-hot { outline-color: var(--clay); }
+/* The whole card opens the listing: the "View" link is stretched over the
+   card, so it stays one real link (keyboard, middle-click and screen readers
+   all work) instead of a click handler on a box. */
+.results .listing { position: relative; cursor: pointer; }
+.results .listing__view::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.results .listing:hover .listing__addr { color: var(--moss); }
+.results .listing:has(.listing__view:focus-visible) { outline-color: var(--moss); }
 
 /* Off-market strip + pager inside results */
 .results__cta {

@@ -14,6 +14,54 @@ earlier round.
 
 ---
 
+## Listings held back — Oct 9, 2026 🔁 Reversible
+
+**Decision:** the site shows what the MLS provides. Hand-entered listings the MLS
+can't confirm are held back rather than shown as "Active" with no details.
+
+**How we checked:** each address was looked up two ways on Oct 9, 2026 —
+Alexandra's own IDX feed (her featured and sold/pending listings) and a search of
+the whole California Regional MLS by address. At that point her feed held **1**
+active listing (1352 Miller Drive, a lease) and 25 sold/leased ones, while the
+site's Active tab was showing 10.
+
+**Held back (9)** — still in `app/properties/data.ts`, each with a `heldBack`
+note; photos still in `public/properties/<slug>/`:
+
+| Listing | What the site had | MLS check |
+|---|---|---|
+| 2050 N Las Palmas Avenue (90068) | $1,695,000 · 3 bd · 4 ba · 1,830 sqft, stock photo | Not in her feed; no MLS result |
+| 2861 N Beachwood | 5 photos, no price or specs | Not in her feed; no MLS result |
+| 558 Rose Ave | 3 photos, no price or specs | Not in her feed; no MLS result |
+| 712 Marine | 3 photos, no price or specs | Not in her feed; no MLS result |
+| 1747 Hollyvista | 2 photos, no price or specs | Not in her feed; no MLS result |
+| 2032 Sanborn | 2 photos, no price or specs | Not in her feed; no MLS result |
+| 8573 Franklin | 2 photos, no price or specs | Not in her feed; no MLS result |
+| 2913 3rd St | 1 photo, no price or specs | Not in her feed. The MLS has units #304 and #306 at 2913 3rd Street, Santa Monica for sale, not listed through her account |
+| 9757 Arlene Terrace | 1 photo, no price or specs | Not in her feed; no MLS result. Possibly a typo for **8757** Arlene Terrace, which the MLS shows as sold ($1,875,000) — confirm |
+
+**Corrected by the MLS, not held back:** 1954 Pinehurst, 3820 Buena Park,
+8757 Arlene Terrace, 803 Boccaccio and 726 Nowita were also marked Active by
+hand; the MLS shows them sold, and the site now shows them sold with the MLS's
+details. 1352 Miller Drive is the one listing the MLS confirms as active.
+
+**What happens now**
+- They don't appear on Portfolio, Home Search, the map, Similar Homes or the
+  sitemap. Their old URLs (e.g. `/properties/2861-n-beachwood`) redirect to
+  `/home-search` with a temporary (307) redirect.
+- If any of these addresses shows up in Alexandra's IDX feed later, it comes
+  back on its own, with the MLS's price, specs and description.
+
+**To revert:** delete the `heldBack: "…"` line from a listing in
+`app/properties/data.ts` and it is shown exactly as before. Delete all nine to
+undo this change completely.
+
+**Need from Alexandra:** what each of these is — a past sale (show as Sold),
+an off-MLS deal such as a Compass Private Exclusive, or still for sale (then:
+price, beds, baths, sqft and a short description).
+
+---
+
 ## Round 2 — received Aug 4, 2026
 
 ### Q1 · Stats bar figures ✅ Done

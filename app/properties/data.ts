@@ -37,11 +37,18 @@ export type Listing = {
   mlsId?: string;
   /** A rental rather than a sale. Leases stay out of sales totals. */
   lease?: boolean;
+  /** Set on a hand-entered listing the MLS can't confirm. It is kept here,
+   *  untouched, but not shown on the site unless the MLS feed later carries
+   *  the same address (then it appears with the MLS's own details). The text
+   *  says when and why it was held back. To bring a listing back as it was,
+   *  delete this line. See CLIENT-REQUESTS.md, "Listings held back". */
+  heldBack?: string;
 };
 
 const RAW_LISTINGS: Listing[] = [
   {
     slug: "2050-n-las-palmas",
+    heldBack: "2026-10-09: marked Active by hand, but not on the MLS (not in Alexandra's IDX feed, and an MLS address search finds no listing).",
     /* The open-house badge read "Open 7/18 · 1:00–4:00PM" well past that date,
        so the site was advertising an event that had already happened. Falls
        back to "Active" until there is a real upcoming date — restore
@@ -101,30 +108,35 @@ const RAW_LISTINGS: Listing[] = [
   },
   {
     slug: "2861-n-beachwood",
+    heldBack: "2026-10-09: marked Active by hand, but not on the MLS (not in Alexandra's IDX feed, and an MLS address search finds no listing).",
     status: "Active", badgeCls: "badge--sale", badge: "Active",
     addr: "2861 N Beachwood",
     img: "/assets/listings/photo-pending.svg",
   },
   {
     slug: "558-rose-ave",
+    heldBack: "2026-10-09: marked Active by hand, but not on the MLS (not in Alexandra's IDX feed, and an MLS address search finds no listing).",
     status: "Active", badgeCls: "badge--sale", badge: "Active",
     addr: "558 Rose Ave",
     img: "/assets/listings/photo-pending.svg",
   },
   {
     slug: "712-marine",
+    heldBack: "2026-10-09: marked Active by hand, but not on the MLS (not in Alexandra's IDX feed, and an MLS address search finds no listing).",
     status: "Active", badgeCls: "badge--sale", badge: "Active",
     addr: "712 Marine",
     img: "/assets/listings/photo-pending.svg",
   },
   {
     slug: "1747-hollyvista",
+    heldBack: "2026-10-09: marked Active by hand, but not on the MLS (not in Alexandra's IDX feed, and an MLS address search finds no listing).",
     status: "Active", badgeCls: "badge--sale", badge: "Active",
     addr: "1747 Hollyvista",
     img: "/assets/listings/photo-pending.svg",
   },
   {
     slug: "2032-sanborn",
+    heldBack: "2026-10-09: marked Active by hand, but not on the MLS (not in Alexandra's IDX feed, and an MLS address search finds no listing).",
     status: "Active", badgeCls: "badge--sale", badge: "Active",
     addr: "2032 Sanborn",
     img: "/assets/listings/photo-pending.svg",
@@ -137,18 +149,21 @@ const RAW_LISTINGS: Listing[] = [
   },
   {
     slug: "8573-franklin",
+    heldBack: "2026-10-09: marked Active by hand, but not on the MLS (not in Alexandra's IDX feed, and an MLS address search finds no listing).",
     status: "Active", badgeCls: "badge--sale", badge: "Active",
     addr: "8573 Franklin",
     img: "/assets/listings/photo-pending.svg",
   },
   {
     slug: "2913-3rd-st",
+    heldBack: "2026-10-09: marked Active by hand, but not on the MLS (not in Alexandra's IDX feed, and an MLS address search finds no listing).",
     status: "Active", badgeCls: "badge--sale", badge: "Active",
     addr: "2913 3rd St",
     img: "/assets/listings/photo-pending.svg",
   },
   {
     slug: "9757-arlene-terrace",
+    heldBack: "2026-10-09: marked Active by hand, but not on the MLS (not in Alexandra's IDX feed, and an MLS address search finds no listing).",
     status: "Active", badgeCls: "badge--sale", badge: "Active",
     addr: "9757 Arlene Terrace",
     img: "/assets/listings/photo-pending.svg",
@@ -269,6 +284,10 @@ export const locationLabel = (l: Listing) => [l.city, l.zip].filter(Boolean).joi
  *  looks like a bug, so the row is dropped unless every figure is present. */
 export const hasSpecs = (l: Listing) => Boolean(l.beds && l.baths && l.sqft);
 
+
+/** Hand-entered listings held back from the site because the MLS can't
+ *  confirm them (see `heldBack`). Their old URLs redirect to /home-search. */
+export const HELD_BACK_SLUGS = STATIC_LISTINGS.filter((l) => l.heldBack).map((l) => l.slug);
 
 /** Listings still waiting on photography — surfaced by `npm run photos`. */
 export const AWAITING_PHOTOS = STATIC_LISTINGS.filter(awaitingPhotos).map((l) => l.slug);

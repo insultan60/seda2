@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import Gallery from "./Gallery";
 import SaveListing from "../../components/SaveListing";
-import { hasSpecs, locationLabel, priceLabel } from "../data";
+import { HELD_BACK_SLUGS, hasSpecs, locationLabel, priceLabel } from "../data";
 import { getListing, getListings } from "../listings";
 import "../properties.css";
 
@@ -38,6 +39,10 @@ export default async function PropertyDetail({ params }: { params: Promise<{ slu
   const { slug } = await params;
   const listings = await getListings();
   const l = listings.find((x) => x.slug === slug);
+  // A listing held back because the MLS can't confirm it: send visitors to the
+  // search rather than an empty page. A temporary redirect, since the listing
+  // may come back (see heldBack in data.ts).
+  if (!l && HELD_BACK_SLUGS.includes(slug)) redirect("/home-search");
   const similar = listings.filter((x) => x.slug !== slug && x.status === "Sold" && !x.lease).slice(0, 3);
   const yearBuilt = l?.features?.find((f) => f.label === "Year Built")?.value;
 

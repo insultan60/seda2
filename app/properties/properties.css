@@ -202,10 +202,19 @@
 
 /* ---------- Detail ---------- */
 .pd-wrap { background: var(--off-white); }
-.pd-gallery { padding-top: clamp(5.5rem, 9vh, 7rem); }
+/* The gallery runs edge to edge from the top of the page, under the
+   transparent header (Header.tsx treats /properties/* as a hero route). The
+   dark fade along the top keeps the header's light text readable over a
+   bright photo, and lets clicks through to the photos beneath it. */
+.pd-gallery { position: relative; }
+.pd-gallery > .container { max-width: none; padding-inline: 0; }
+.pd-gallery::before {
+  content: ""; position: absolute; inset: 0 0 auto; height: 170px; z-index: 2; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(28, 28, 26, .62), rgba(28, 28, 26, 0));
+}
 .pd-gallery__grid {
   display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 1fr 1fr;
-  gap: 10px; height: clamp(320px, 46vw, 540px);
+  gap: 6px; height: clamp(420px, 62vw, 760px);
 }
 .pd-cell {
   position: relative; overflow: hidden; background: var(--clay-light);
@@ -222,7 +231,11 @@
 
 /* Single-image header for a listing with no gallery yet — same height and
    footprint as .pd-gallery__grid so the page below it doesn't shift. */
-.pd-solo { position: relative; height: clamp(320px, 46vw, 540px); background: var(--clay-light); overflow: hidden; }
+.pd-solo { position: relative; height: clamp(420px, 62vw, 760px); background: var(--clay-light); overflow: hidden; }
+
+/* A "Listing Coming Soon" page has no photo under the header, so the
+   transparent header would be light text on a light page. Keep it solid. */
+body:has(.pd-soon) .nav { background: var(--moss-deep); }
 .pd-solo img { width: 100%; height: 100%; object-fit: cover; }
 .pd-solo__note {
   position: absolute; inset-inline: 0; bottom: 0;
@@ -334,7 +347,7 @@
   .pf-hero__figures > div + div { border-left: 0; border-top: 1px solid rgba(245, 240, 225, .2); }
   .pf-featured__grid, .pf-past__grid { grid-template-columns: 1fr; }
   .pf-cta__actions .btn { width: 100%; }
-  .pd-gallery__grid { grid-template-columns: 1fr 1fr; grid-template-rows: 1.4fr 1fr; height: 380px; }
+  .pd-gallery__grid { grid-template-columns: 1fr 1fr; grid-template-rows: 1.4fr 1fr; height: 460px; }
   .pd-cell:first-child { grid-column: span 2; }
   .pd-cell:nth-child(4), .pd-cell:nth-child(5) { display: none; }
   .pd-features dl { grid-template-columns: 1fr; }

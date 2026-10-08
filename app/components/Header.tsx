@@ -24,7 +24,8 @@ const HERO_ROUTES = ["/", "/properties", "/journal"];
 
 export default function Header() {
   const pathname = usePathname();
-  const overHero = HERO_ROUTES.includes(pathname);
+  // Listing pages open on a full-bleed photo gallery too.
+  const overHero = HERO_ROUTES.includes(pathname) || pathname.startsWith("/properties/");
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {

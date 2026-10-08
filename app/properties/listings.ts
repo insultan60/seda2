@@ -11,7 +11,9 @@ import { fetchIdxListings, fromIdx, mlsFacts, photosOf, type RawIdxListing } fro
    - MLS records with no hand-entered twin are added in full, with the MLS's
      own photos and remarks.
    - Hand-entered listings the feed doesn't carry (older sales from before the
-     feed's history, off-MLS deals) are shown exactly as entered.
+     feed's history, off-MLS deals) are shown exactly as entered — except
+     those flagged `heldBack` in data.ts: "Active" listings the MLS can't
+     confirm. Those stay out unless the feed picks the address up.
 
    If the feed is unavailable this is just the hand-entered set. */
 
@@ -76,16 +78,16 @@ const priceOf = (l: Listing) => Number((l.price ?? "").replace(/[^0-9]/g, "")) |
 
 export async function getListings(): Promise<Listing[]> {
   const feed = await fetchIdxListings();
-  if (!feed) return STATIC_LISTINGS;
+  if (!feed) return STATIC_LISTINGS.filter((l) => !l.heldBack);
 
   const rows = dedupe(feed);
   const used = new Set<RawIdxListing>();
 
-  const merged = STATIC_LISTINGS.map((l) => {
+  const merged = STATIC_LISTINGS.flatMap((l) => {
     const r = rows.find((x) => !used.has(x) && streetKey(x.address) === streetKey(l.addr));
-    if (!r) return l;
+    if (!r) return l.heldBack ? [] : [l];
     used.add(r);
-    return merge(l, r);
+    return [merge(l, r)];
   });
 
   /* The same sale is sometimes filed under two addresses (a corner lot: 803
