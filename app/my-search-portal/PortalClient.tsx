@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { hasSpecs, LISTINGS, locationLabel, priceLabel } from "../properties/data";
+import { hasSpecs, locationLabel, priceLabel, type Listing } from "../properties/data";
 import { useFavorites } from "./useFavorites";
 
 const HeartIcon = ({ filled }: { filled: boolean }) => (
@@ -23,7 +23,7 @@ type Sort = (typeof SORTS)[number];
 const priceValue = (p?: string) => Number((p ?? "").replace(/[^0-9]/g, "")) || 0;
 
 /* eslint-disable @next/next/no-img-element */
-export default function PortalClient() {
+export default function PortalClient({ listings }: { listings: Listing[] }) {
   const { slugs, ready, remove, clear } = useFavorites();
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<Sort>("Recently saved");
@@ -32,8 +32,8 @@ export default function PortalClient() {
     // Preserve save order, and silently drop any slug whose listing has since
     // come off the site rather than rendering a hole in the grid.
     const found = slugs
-      .map((s) => LISTINGS.find((l) => l.slug === s))
-      .filter((l): l is (typeof LISTINGS)[number] => Boolean(l));
+      .map((s) => listings.find((l) => l.slug === s))
+      .filter((l): l is Listing => Boolean(l));
 
     const q = query.trim().toLowerCase();
     const filtered = q
@@ -46,7 +46,7 @@ export default function PortalClient() {
     if (sort === "Price: High to Low") out.sort((a, b) => priceValue(b.price) - priceValue(a.price));
     if (sort === "Price: Low to High") out.sort((a, b) => priceValue(a.price) - priceValue(b.price));
     return out;
-  }, [slugs, query, sort]);
+  }, [listings, slugs, query, sort]);
 
   const activeCount = saved.filter((l) => l.status === "Active").length;
 

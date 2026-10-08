@@ -1,4 +1,4 @@
-import { LISTINGS } from "../properties/data";
+import type { Listing } from "../properties/data";
 
 export type Hood = {
   name: string;
@@ -112,9 +112,9 @@ export const REGIONS = ["the Eastside", "the San Fernando Valley", "the Westside
  * valid answer — an area Alexandra works is not a claim that she has inventory
  * in it this week.
  */
-export function countIn(hood: Hood) {
+export function countIn(hood: Hood, listings: Listing[]) {
   const key = hood.match ?? hood.name;
-  const inArea = LISTINGS.filter((l) => l.hood === key);
+  const inArea = listings.filter((l) => l.hood === key);
   return {
     active: inArea.filter((l) => l.status === "Active").length,
     sold: inArea.filter((l) => l.status === "Sold").length,
@@ -122,8 +122,8 @@ export function countIn(hood: Hood) {
 }
 
 /** Label + destination for a neighborhood tile, derived from what's actually there. */
-export function hoodLink(hood: Hood) {
-  const { active, sold } = countIn(hood);
+export function hoodLink(hood: Hood, listings: Listing[]) {
+  const { active, sold } = countIn(hood, listings);
   const q = `/home-search?q=${encodeURIComponent(hood.match ?? hood.name)}`;
   if (active > 0) return { label: `${active} active listing${active === 1 ? "" : "s"}`, href: q };
   if (sold > 0) return { label: `${sold} recently sold`, href: "/properties" };

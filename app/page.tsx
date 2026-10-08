@@ -6,7 +6,8 @@ import NewsletterForm from "./components/NewsletterForm";
 import StatsAwards from "./components/StatsAwards";
 import { LATEST_POSTS } from "./journal/data";
 import { ALSO_SERVING, FEATURED as FEATURED_HOODS } from "./neighborhoods/data";
-import { hasSpecs, LISTINGS, locationLabel, priceLabel } from "./properties/data";
+import { hasSpecs, locationLabel, priceLabel } from "./properties/data";
+import { getListings } from "./properties/listings";
 import { TESTIMONIALS } from "./testimonials/data";
 
 // helper for the CSS reveal-delay custom property
@@ -17,8 +18,10 @@ const d = (val: string) => ({ "--d": val }) as CSSProperties;
 /* The home page teases the portfolio, it doesn't reproduce it — "View Portfolio"
    goes to the full set. Capped at 4 because the active list jumped from 2 to 15
    in August 2026 and an unbounded 2-up grid put eight rows on the front page. */
-const FEATURED = LISTINGS.filter((l) => l.status === "Active").slice(0, 4);
-const SOLD = LISTINGS.filter((l) => l.status === "Sold");
+/* Recently Sold is capped too: with her MLS history connected there are
+   dozens of closings, and the front page shows the six strongest sales
+   (leases excluded) — the portfolio has the rest. */
+export const revalidate = 900;
 
 /* Both card grids are 3-up on desktop, 2-up on tablet, 1-up on phones — this
    tells the browser that up front so it downloads a card-sized image instead of
@@ -39,7 +42,11 @@ const HOODS = FEATURED_HOODS.slice(0, 3);
 const HOOD_INDEX = ALSO_SERVING.map((h) => h.name);
 
 /* eslint-disable @next/next/no-img-element */
-export default function Home() {
+export default async function Home() {
+  const listings = await getListings();
+  const FEATURED = listings.filter((l) => l.status === "Active").slice(0, 4);
+  const SOLD = listings.filter((l) => l.status === "Sold" && !l.lease).slice(0, 6);
+
   return (
     <main id="main">
       {/* 1 · HERO */}

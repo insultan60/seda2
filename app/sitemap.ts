@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { POSTS } from "./journal/data";
-import { ALL_SLUGS } from "./properties/data";
+import { getListings } from "./properties/listings";
 import { SITE_URL } from "./site";
 
 /**
@@ -11,7 +11,10 @@ import { SITE_URL } from "./site";
  * /my-search-portal is deliberately absent: it renders whatever this browser has
  * starred in localStorage, so there is nothing there for a crawler to index.
  */
-export default function sitemap(): MetadataRoute.Sitemap {
+export const revalidate = 900;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const listings = await getListings();
   const now = new Date();
 
   const staticRoutes: { path: string; priority: number; freq: MetadataRoute.Sitemap[number]["changeFrequency"] }[] = [
@@ -35,7 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: r.freq,
       priority: r.priority,
     })),
-    ...ALL_SLUGS.map((slug) => ({
+    ...listings.map(({ slug }) => ({
       url: `${SITE_URL}/properties/${slug}`,
       lastModified: now,
       changeFrequency: "weekly" as const,

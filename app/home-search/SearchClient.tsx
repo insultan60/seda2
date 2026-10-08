@@ -6,7 +6,6 @@ import type * as L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import {
   hasSpecs,
-  LISTINGS,
   locationLabel,
   priceLabel,
   type Listing,
@@ -15,8 +14,9 @@ import {
 /* Ported from the static build (f/alexandra-kerr/home-search.html + js/search.js).
    The one deliberate departure: that page carried its own hardcoded PROPS array,
    eight entries of which duplicated listings already in app/properties/data.ts.
-   This reads LISTINGS instead, so the map, the portfolio and the detail pages
-   cannot drift apart. Listings without lat/lng simply list without a pin. */
+   This takes the same merged listing set the portfolio renders (hand-entered
+   plus Alexandra's live MLS feed, app/properties/listings.ts), passed down from
+   the server, so the map, the portfolio and the detail pages cannot drift apart. Listings without lat/lng simply list without a pin. */
 
 const TILES = {
   street: {
@@ -53,7 +53,13 @@ type Sort = (typeof SORTS)[number];
 
 const STATUSES = ["Active", "Sold"] as const;
 
-export default function SearchClient({ initialQuery = "" }: { initialQuery?: string }) {
+export default function SearchClient({
+  initialQuery = "",
+  listings,
+}: {
+  initialQuery?: string;
+  listings: Listing[];
+}) {
   const [query, setQuery] = useState(initialQuery);
   const [statuses, setStatuses] = useState<string[]>(["Active"]);
   const [minPrice, setMinPrice] = useState(0);
@@ -70,7 +76,7 @@ export default function SearchClient({ initialQuery = "" }: { initialQuery?: str
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
-    const out = LISTINGS.filter((l) => {
+    const out = listings.filter((l) => {
       if (statuses.length && !statuses.includes(l.status)) return false;
       if (q && ![l.addr, l.city, l.zip, l.hood].some((f) => f?.toLowerCase().includes(q)))
         return false;
@@ -89,7 +95,7 @@ export default function SearchClient({ initialQuery = "" }: { initialQuery?: str
     if (sort === "Price: Low to High") sorted.sort((a, b) => priceValue(a) - priceValue(b));
     if (sort === "Sq.Ft.") sorted.sort((a, b) => sqftValue(b) - sqftValue(a));
     return sorted;
-  }, [query, statuses, minPrice, maxPrice, beds, baths, sort]);
+  }, [listings, query, statuses, minPrice, maxPrice, beds, baths, sort]);
 
   const pinned = results.filter((l) => l.lat != null && l.lng != null);
 
@@ -355,7 +361,7 @@ export default function SearchClient({ initialQuery = "" }: { initialQuery?: str
           </button>
           <span className="rbar__count">
             <strong>{results.length}</strong> results{" "}
-            <span className="rbar__note">· Alexandra&rsquo;s listings — live IDX feed connects at launch</span>
+            <span className="rbar__note">· Alexandra&rsquo;s listings, live from the MLS</span>
           </span>
         </div>
         <div>

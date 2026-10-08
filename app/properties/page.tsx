@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { hasSpecs, LISTINGS, locationLabel, priceLabel, type Listing } from "./data";
+import { hasSpecs, locationLabel, priceLabel, type Listing } from "./data";
+import { getListings } from "./listings";
 import "./properties.css";
 
 export const metadata: Metadata = {
@@ -10,8 +11,8 @@ export const metadata: Metadata = {
     "A portfolio of Los Angeles homes with character — currently represented and recently sold by Alexandra Kerr, Estates Director at Compass.",
 };
 
-const FEATURED = LISTINGS.filter((l) => l.status === "Active");
-const PAST = LISTINGS.filter((l) => l.status === "Sold");
+/* Live MLS listings are cached for fifteen minutes; the page follows suit. */
+export const revalidate = 900;
 
 /* Matches .pf-grid: 3-up on desktop, 2-up on tablet, 1-up on phones. */
 const CARD_SIZES = "(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw";
@@ -20,8 +21,6 @@ const FEATURE_SIZES = "(max-width: 639px) 100vw, 50vw";
 
 /** "$7,775,000" → 7775000, so the volume figure can never drift from the listings. */
 const toNumber = (price?: string) => Number((price ?? "").replace(/[^0-9]/g, "")) || 0;
-const soldVolume = PAST.reduce((sum, l) => sum + toNumber(l.price), 0);
-const volumeLabel = `$${(soldVolume / 1_000_000).toFixed(1)}M`;
 
 /* eslint-disable @next/next/no-img-element */
 function PastCard({ l, delay }: { l: Listing; delay: string }) {
@@ -52,7 +51,14 @@ function PastCard({ l, delay }: { l: Listing; delay: string }) {
   );
 }
 
-export default function PortfolioPage() {
+export default async function PortfolioPage() {
+  const listings = await getListings();
+  const FEATURED = listings.filter((l) => l.status === "Active");
+  const PAST = listings.filter((l) => l.status === "Sold");
+  // Sales only: a monthly rent is not sale volume.
+  const soldVolume = PAST.filter((l) => !l.lease).reduce((sum, l) => sum + toNumber(l.price), 0);
+  const volumeLabel = `$${(soldVolume / 1_000_000).toFixed(1)}M`;
+
   return (
     <main id="main">
       {/* ---------- HERO ---------- */}
@@ -247,7 +253,7 @@ export default function PortfolioPage() {
             <p className="eyebrow">A Portfolio of Results</p>
             <h2 className="pf-head__title">Past Transactions</h2>
             <p className="pf-head__sub">
-              {volumeLabel} closed across Hancock Park, Windsor Square, and the Westside — sellers
+              {volumeLabel} in sales closed across Los Angeles, from Hancock Park to the Westside — sellers
               represented, buyers guided, escrows held together.
             </p>
           </div>

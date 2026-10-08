@@ -2,16 +2,21 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Gallery from "./Gallery";
 import SaveListing from "../../components/SaveListing";
-import { ALL_SLUGS, getListing, hasSpecs, LISTINGS, locationLabel, priceLabel } from "../data";
+import { hasSpecs, locationLabel, priceLabel } from "../data";
+import { getListing, getListings } from "../listings";
 import "../properties.css";
 
-export function generateStaticParams() {
-  return ALL_SLUGS.map((slug) => ({ slug }));
+/* Pre-rendered for every listing known at build time; a listing that joins
+   the MLS feed later renders on first request and is cached from then on. */
+export const revalidate = 900;
+
+export async function generateStaticParams() {
+  return (await getListings()).map((l) => ({ slug: l.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const l = getListing(slug);
+  const l = await getListing(slug);
   if (l) {
     const where = locationLabel(l);
     return {
@@ -31,8 +36,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 /* eslint-disable @next/next/no-img-element */
 export default async function PropertyDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const l = getListing(slug);
-  const similar = LISTINGS.filter((x) => x.slug !== slug && x.status === "Sold").slice(0, 3);
+  const listings = await getListings();
+  const l = listings.find((x) => x.slug === slug);
+  const similar = listings.filter((x) => x.slug !== slug && x.status === "Sold" && !x.lease).slice(0, 3);
+  const yearBuilt = l?.features?.find((f) => f.label === "Year Built")?.value;
 
   /* Only a slug that matches nothing gets the holding page. A listing used to
      land here whenever it had no `gallery`, which sent five sold homes and two
@@ -89,7 +96,7 @@ export default async function PropertyDetail({ params }: { params: Promise<{ slu
       <div className="container">
         <div className="pd-head">
           <div>
-            <span className="pd-status">{l.status}</span>
+            <span className="pd-status">{l.badge}</span>
             <h1 className="pd-title">{l.addr}</h1>
             {locationLabel(l) && <p className="pd-addr">{locationLabel(l)}</p>}
           </div>
@@ -101,7 +108,7 @@ export default async function PropertyDetail({ params }: { params: Promise<{ slu
 
         {/* Dropped entirely rather than rendered with blanks when a listing is
             still awaiting its figures. */}
-        {(hasSpecs(l) || l.features?.[1]) && (
+        {(hasSpecs(l) || yearBuilt) && (
           <div className="pd-stats">
             {hasSpecs(l) && (
               <>
@@ -110,7 +117,7 @@ export default async function PropertyDetail({ params }: { params: Promise<{ slu
                 <div className="pd-stat"><b>{l.sqft}</b><span>Sq Ft</span></div>
               </>
             )}
-            {l.features?.[1] && <div className="pd-stat"><b>{l.features[1].value}</b><span>Year Built</span></div>}
+            {yearBuilt && <div className="pd-stat"><b>{yearBuilt}</b><span>Year Built</span></div>}
           </div>
         )}
 
@@ -181,13 +188,17 @@ export default async function PropertyDetail({ params }: { params: Promise<{ slu
               {similar.map((s) => (
                 <Link className="listing reveal" href={`/properties/${s.slug}`} key={s.slug}>
                   <figure className="listing__media">
-                    <img src={s.img} alt={`${s.addr}, ${s.city}`} data-fallback />
+                    <img src={s.img} alt={[s.addr, s.city].filter(Boolean).join(", ")} data-fallback />
                     <span className={`badge ${s.badgeCls}`}>{s.badge}</span>
                   </figure>
                   <div className="listing__body">
-                    <p className="listing__price">{s.price}</p>
+                    <p className="listing__price">{priceLabel(s)}</p>
                     <h3 className="listing__addr">{s.addr}</h3>
-                    <p className="listing__city">{s.city} {s.zip} · {s.beds} Bd · {s.baths} Ba · {s.sqft} Sq.Ft.</p>
+                    <p className="listing__city">
+                      {[locationLabel(s), hasSpecs(s) && `${s.beds} Bd · ${s.baths} Ba · ${s.sqft} Sq.Ft.`]
+                        .filter(Boolean)
+                        .join(" · ")}
+                    </p>
                   </div>
                 </Link>
               ))}

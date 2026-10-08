@@ -33,6 +33,10 @@ export type Listing = {
   gallery?: string[];
   overview?: string[];
   features?: { label: string; value: string }[];
+  /** MLS number, set when the listing is matched to Alexandra's IDX feed. */
+  mlsId?: string;
+  /** A rental rather than a sale. Leases stay out of sales totals. */
+  lease?: boolean;
 };
 
 const RAW_LISTINGS: Listing[] = [
@@ -248,7 +252,9 @@ function withPhotos(l: Listing): Listing {
   };
 }
 
-export const LISTINGS: Listing[] = RAW_LISTINGS.map(withPhotos);
+/** The hand-entered listings. Pages read the merged set from listings.ts,
+ *  where Alexandra's live MLS feed corrects and extends these. */
+export const STATIC_LISTINGS: Listing[] = RAW_LISTINGS.map(withPhotos);
 
 /** What to print where a price would go. "Price Upon Request" is a real
  *  luxury-listing convention, so a listing awaiting figures still reads as
@@ -263,9 +269,6 @@ export const locationLabel = (l: Listing) => [l.city, l.zip].filter(Boolean).joi
  *  looks like a bug, so the row is dropped unless every figure is present. */
 export const hasSpecs = (l: Listing) => Boolean(l.beds && l.baths && l.sqft);
 
-export const DEMO_SLUG = "414-s-windsor-blvd";
-export const getListing = (slug: string) => LISTINGS.find((l) => l.slug === slug);
-export const ALL_SLUGS = LISTINGS.map((l) => l.slug);
 
 /** Listings still waiting on photography — surfaced by `npm run photos`. */
-export const AWAITING_PHOTOS = LISTINGS.filter(awaitingPhotos).map((l) => l.slug);
+export const AWAITING_PHOTOS = STATIC_LISTINGS.filter(awaitingPhotos).map((l) => l.slug);

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getListings } from "../properties/listings";
 import { ALSO_SERVING, FEATURED, hoodLink, REGIONS } from "./data";
 import "./neighborhoods.css";
 
@@ -14,7 +15,11 @@ export const metadata: Metadata = {
 const COLUMNS = [FEATURED.slice(0, 2), FEATURED.slice(2, 4), FEATURED.slice(4, 6)];
 
 /* eslint-disable @next/next/no-img-element */
-export default function NeighborhoodsPage() {
+/* Tile counts come from the live MLS feed (cached fifteen minutes). */
+export const revalidate = 900;
+
+export default async function NeighborhoodsPage() {
+  const listings = await getListings();
   return (
     <main id="main">
       {/* ---------- HERO ---------- */}
@@ -80,7 +85,7 @@ export default function NeighborhoodsPage() {
             {COLUMNS.map((col, c) => (
               <div className="nb-col" key={c}>
                 {col.map((h, i) => {
-                  const { label, href } = hoodLink(h);
+                  const { label, href } = hoodLink(h, listings);
                   return (
                     <Link
                       key={h.name}
@@ -124,7 +129,7 @@ export default function NeighborhoodsPage() {
                 key={h.name}
                 style={{ "--d": `${(i % 3) * 0.06}s` } as React.CSSProperties}
               >
-                <Link href={hoodLink(h).href}>
+                <Link href={hoodLink(h, listings).href}>
                   <span className="nb-also__name">{h.name}</span>
                   <span className="nb-also__blurb">{h.blurb}</span>
                 </Link>

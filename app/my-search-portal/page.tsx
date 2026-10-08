@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PortalClient from "./PortalClient";
+import { getListings } from "../properties/listings";
 import "./portal.css";
 
 export const metadata: Metadata = {
@@ -8,7 +9,10 @@ export const metadata: Metadata = {
     "Your saved Los Angeles listings, kept on this device. Star any home on the site and it waits for you here — no account required.",
 };
 
-export default function SearchPortalPage() {
+export const revalidate = 900;
+
+export default async function SearchPortalPage() {
+  const listings = await getListings();
   return (
     <main id="main" className="mp-page">
       <section className="mp-head">
@@ -23,7 +27,7 @@ export default function SearchPortalPage() {
       </section>
 
       <section className="mp-body">
-        <PortalClient />
+        <PortalClient listings={listings} />
       </section>
     </main>
   );

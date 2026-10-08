@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SearchClient from "./SearchClient";
+import { getListings } from "../properties/listings";
 import "./search.css";
 
 export const metadata: Metadata = {
@@ -16,12 +17,12 @@ export default async function HomeSearchPage({
 }: {
   searchParams: Promise<{ q?: string | string[] }>;
 }) {
-  const { q } = await searchParams;
+  const [{ q }, listings] = await Promise.all([searchParams, getListings()]);
   const initialQuery = (Array.isArray(q) ? q[0] : q) ?? "";
 
   return (
     <main id="main" className="page-search">
-      <SearchClient initialQuery={initialQuery} />
+      <SearchClient initialQuery={initialQuery} listings={listings} />
     </main>
   );
 }
