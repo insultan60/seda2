@@ -45,6 +45,11 @@ export default function Header() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="nav__logo-img" src="/assets/logo-white.png" alt="Alexandra Kerr — AK monogram" />
           </Link>
+          {/* Phones and tablets only (CSS). On desktop the Compass mark sits in
+              the hero's corner block, but on a phone that block flows below the
+              first screen, so without this the brokerage never showed on load. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="nav__compass" src="/assets/compass-white.png" alt="Compass" />
           <nav className="nav__links" aria-label="Primary">
             {PRIMARY_LINKS.map((l) =>
               isExternal(l.href) ? (

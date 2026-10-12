@@ -320,6 +320,19 @@
      the results bar carries a short, always-visible link instead. */
   .rbar__long { display: none; }
   .rbar__short { display: inline; font-weight: 600; }
+
+  /* iOS Safari zooms the page into any field under 16px when it is tapped,
+     and leaves it zoomed. The location box and the sort select were 14px and
+     13px. */
+  .sbar__location input { font-size: 16px; }
+  /* The results bar ran 5px past a 390px screen (the sort select hung off the
+     right edge), and taking the select to 16px needs more room again. The
+     view toggles and spacing tighten to make it. */
+  .rbar { padding: 0 8px; }
+  .rbar__left { gap: 4px; min-width: 0; }
+  .rbar__view { padding: 4px 6px; }
+  .rbar__count { padding-left: 6px; min-width: 0; }
+  .rbar__sort { font-size: 16px; flex-shrink: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

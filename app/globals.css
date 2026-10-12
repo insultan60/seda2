@@ -273,13 +273,32 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
   background: transparent;
   transition: background-color 220ms var(--ease), box-shadow 220ms var(--ease);
 }
-.nav.is-solid { background: var(--moss-deep); box-shadow: 0 1px 0 rgba(245,240,225,.12); }
+/* Scrolled: frosted glass rather than a solid bar, so the page shows
+   through as it scrolls under. Moss-deep at 62% keeps the cream logo and
+   links readable over the white and parchment sections (fully clear, they
+   would vanish there); the blur stops the content behind from fighting the
+   type. Browsers without backdrop-filter fall back to a near-solid bar. */
+.nav.is-solid {
+  background: rgba(58, 66, 51, .9);
+  box-shadow: 0 1px 0 rgba(245,240,225,.12);
+}
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .nav.is-solid {
+    background: rgba(58, 66, 51, .62);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+            backdrop-filter: blur(14px) saturate(140%);
+  }
+}
 .nav__inner {
   max-width: var(--container); margin-inline: auto; padding: 1rem var(--gutter);
   display: flex; align-items: center; gap: 2.5rem;
 }
 .nav__logo { display: flex; align-items: center; color: var(--parchment); flex-shrink: 0; }
 .nav__logo-img { width: auto; height: 58px; object-fit: contain; }
+/* Brokerage mark beside the monogram, phones and tablets only - see the
+   max-width:1023px block. Same artwork as .hero__compass, so the same
+   padding correction: 176x65 with the wordmark inset 7px from the left. */
+.nav__compass { display: none; }
 .nav__wordmark { font-family: var(--serif); font-size: 1.2rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; }
 .nav__links { display: flex; gap: 1.9rem; margin-left: auto; }
 .nav__links a {
@@ -844,7 +863,22 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 @media (max-width: 1023px) {
   .nav__links, .nav__cta { display: none; }
   .nav__burger { margin-left: auto; }
-  .nav.is-solid { background: var(--moss-deep); }
+  .nav__inner { gap: 1rem; }
+  .nav__compass {
+    --compass-w: 104px;
+    display: block; width: var(--compass-w); height: auto; object-fit: contain;
+    /* a hairline between the monogram and the brokerage, as on her Compass
+       signage; the image's own 7px left inset is the gap after the rule */
+    padding-left: .9rem; border-left: 1px solid rgba(245, 240, 225, .35);
+    opacity: .92;
+  }
+
+  /* Footer: the four desktop columns (brand, Explore, Resources, Office) were
+     never given a narrow layout, so at phone width they stayed four columns
+     of ~80px and every link broke a word per line. Brand and Office take the
+     full width; the two link lists sit side by side between them. */
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 2.6rem 1.5rem; }
+  .footer__brand, .footer__office { grid-column: 1 / -1; }
 
   .paths__grid { grid-template-columns: 1fr; }
   .about__grid, .stats__grid, .mls__inner, .newsletter__inner, .relo__inner { grid-template-columns: 1fr; }
@@ -874,6 +908,11 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
     padding: 2.4rem var(--gutter) 1.8rem;
   }
   .hero__contact { text-align: left; justify-items: start; }
+  /* the phone, email and office links here were 18-23px tall - too small to
+     hit with a thumb. Padding grows the hit area; the negative margin keeps
+     the lines exactly where they were. */
+  .hero__id a, .hero__contact a { display: inline-block; padding-block: .55rem; margin-block: -.55rem; }
+  .footer__contact a { padding-block: .5rem; }
   .newsletter__submit { justify-self: stretch; width: 100%; }
 }
 

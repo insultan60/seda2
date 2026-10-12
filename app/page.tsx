@@ -59,9 +59,18 @@ export default async function Home() {
           loop
           playsInline
           preload="metadata"
-          poster="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2400&auto=format&fit=crop"
+          /* The poster is the film's own opening frame, not stock: it is what
+             shows while the video loads, and what stays up wherever autoplay
+             is refused (iOS Low Power Mode, data saver). An unrelated house
+             there flashed a different property before the film started. */
+          poster="/assets/intro-video-poster.webp"
           aria-label="Introduction video — Alexandra Kerr, Los Angeles real estate"
         >
+          {/* Phones get a portrait cut: the centre 540x720 of the same film, the
+              part object-fit:cover shows on a portrait screen anyway, at 4.4 MB
+              instead of 10.6. The browser takes the first <source> whose media
+              query matches, so the mobile one has to come first. */}
+          <source src="/assets/intro-video-mobile.mp4" type="video/mp4" media="(max-width: 767px)" />
           <source src="/assets/intro-video.mp4" type="video/mp4" />
         </video>
         <div className="hero__scrim" aria-hidden="true"></div>

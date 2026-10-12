@@ -131,3 +131,9 @@
 /* Errors on the valuation bar sit on the dark band, so the alert red used
    elsewhere would go muddy — this is the light-on-dark equivalent. */
 .hv-search-status.is-error { color: #E8C2C2; }
+
+/* iOS Safari zooms into any field under 16px when it is tapped; the address
+   fields were .93rem (14.9px). Phones only, so the desktop size is unchanged. */
+@media (max-width: 639px) {
+  .hv-search-field input { font-size: 16px; }
+}

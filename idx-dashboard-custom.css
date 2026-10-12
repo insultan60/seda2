@@ -1,0 +1,539 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   ALEXANDRA KERR — IDX GLOBAL STYLESHEET
+   Paste into: IDX Broker dashboard → Design → Website → Custom CSS
+   (account seda2.idxbroker.com). This file is the source copy; it is not
+   served by the site.
+   ─────────────────────────────────────────────────────────────────────
+   Adapted from Andrew Liberty's IDX stylesheet. Changes from his:
+     · Colours and fonts are Alexandra's. Her wrapper.css (aklahomes.com/
+       idx/wrapper.css) defines these variables on every IDX page; the
+       fallback after each one is the same value, for safety:
+         --moss #4F5847 · --moss-deep #3A4233 · --parchment #F5F0E1
+         --clay #CBBBA0 · --off-white #FAFAF5 · --white #FFFFFF
+         --ink #1C1C1A · --ink-soft #55534C
+         --serif "Cormorant Garamond" · --sans "DM Sans"
+     · Shapes follow her site: squared corners (4px) and spaced uppercase
+       on buttons, instead of Andrew's round pills.
+     · The sign-up form rules (labels, inputs, submit button) are now
+       scoped to the sign-up modal. Unscoped, `.IDX-btn.IDX-btn-primary`
+       turned the results page's Any Price / Apply Filters / Save Search
+       buttons into full-width coloured pills, and the label/input rules
+       restyled the results page's filter fields.
+
+   SECTIONS
+     1  Page background
+     2  Hide search-type nav buttons
+     3  Filter buttons (Status / Price / Bed & Baths / Type / More)
+     4  Filter dropdown panels (ANY / ACTIVE / SOLD + Apply)
+     5  Search bar (City, County, Zip)
+     6  Lead tools bar (Welcome / My Account)
+     7  Registration / Sign-up modal
+     8  Responsive (tablet · mobile · small phone)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+
+/* ═══════════════════════════════════════════════════════════
+   1 · PAGE BACKGROUND — her off-white, as on aklahomes.com
+   ═══════════════════════════════════════════════════════════ */
+html,
+body,
+#IDX-main,
+#IDX-searchPageWrapper,
+#prime-map-search-page,
+#prime-map-search--results,
+#prime-map-search--main-content-container {
+  background: var(--off-white, #FAFAF5) !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   2 · HIDE SEARCH-TYPE NAV BUTTONS
+   ═══════════════════════════════════════════════════════════ */
+.idx-nav-button-container {
+  display: none !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   3 · FILTER BUTTONS
+   ═══════════════════════════════════════════════════════════ */
+.filter-buttons-container {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  align-items: center !important;
+}
+
+.idx-filter-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  background: var(--white, #FFFFFF) !important;
+  border: 1px solid var(--clay-light, #DED2BD) !important;
+  border-radius: 4px !important;
+  color: var(--ink, #1C1C1A) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+  transition: border-color 180ms cubic-bezier(0.23,1,0.32,1), background 180ms ease !important;
+}
+.idx-filter-button:hover {
+  border-color: var(--moss, #4F5847) !important;
+  background: var(--parchment, #F5F0E1) !important;
+}
+
+.idx-filter-button > div {
+  display: flex !important;
+  align-items: center !important;
+  gap: 9px !important;
+  padding: 12px 20px !important;
+}
+
+/* label: her site's nav style - small, spaced uppercase */
+.idx-filter-button span:first-child {
+  font-family: var(--sans, 'DM Sans', 'Helvetica Neue', Arial, sans-serif) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: var(--ink, #1C1C1A) !important;
+}
+
+.idx-filter-button svg {
+  width: 15px !important;
+  height: 15px !important;
+  position: relative !important;
+  top: 1px !important;
+}
+.idx-filter-button svg path {
+  stroke: var(--ink, #1C1C1A) !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   4 · FILTER DROPDOWN PANELS (open state)
+   ═══════════════════════════════════════════════════════════ */
+.idx-filter-input-section,
+.property-status-filter-container {
+  position: absolute !important;
+  z-index: 1100 !important;
+  background: var(--white, #FFFFFF) !important;
+  border: 1px solid var(--clay-light, #DED2BD) !important;
+  border-radius: 6px !important;
+  padding: 14px !important;
+  box-shadow: 0 16px 40px rgba(28,28,26,0.14) !important;
+  min-width: 200px !important;
+}
+
+.property-status-filter.header-label-text-format {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 8px 6px !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  transition: background 150ms ease !important;
+}
+.property-status-filter.header-label-text-format:hover {
+  background: var(--parchment, #F5F0E1) !important;
+}
+.property-status-filter.header-label-text-format label {
+  font-family: var(--sans, 'DM Sans', 'Helvetica Neue', Arial, sans-serif) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  color: var(--ink, #1C1C1A) !important;
+  cursor: pointer !important;
+  margin: 0 !important;
+}
+.property-status-filter.header-label-text-format input[type="checkbox"] {
+  width: 18px !important;
+  height: 18px !important;
+  accent-color: var(--moss, #4F5847) !important;
+  cursor: pointer !important;
+  margin: 0 !important;
+}
+
+/* Apply button - moss, squared */
+.idx-filter-apply-button {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  margin-top: 10px !important;
+  background: var(--moss, #4F5847) !important;
+  color: var(--parchment, #F5F0E1) !important;
+  font-family: var(--sans, 'DM Sans', 'Helvetica Neue', Arial, sans-serif) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  padding: 12px 20px !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  transition: background 180ms ease !important;
+}
+.idx-filter-apply-button:hover {
+  background: var(--moss-deep, #3A4233) !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   5 · SEARCH BAR (City, County, Zip)
+   ═══════════════════════════════════════════════════════════ */
+.pm-ccz-fly-to-field {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  background: var(--white, #FFFFFF) !important;
+  border: 1px solid var(--clay-light, #DED2BD) !important;
+  border-radius: 4px !important;
+  padding: 12px 18px !important;
+  max-width: 300px !important;
+  box-shadow: none !important;
+  transition: border-color 180ms cubic-bezier(0.23,1,0.32,1), box-shadow 180ms ease !important;
+}
+.pm-ccz-fly-to-field:hover {
+  border-color: var(--moss, #4F5847) !important;
+}
+.pm-ccz-fly-to-field:focus-within {
+  border-color: var(--moss, #4F5847) !important;
+  box-shadow: 0 0 0 3px rgba(203,187,160,0.35) !important;
+}
+.pm-ccz-fly-to-field section svg {
+  width: 18px !important;
+  height: 18px !important;
+  flex: none !important;
+}
+.pm-ccz-fly-to-field section svg path {
+  fill: var(--ink-soft, #55534C) !important;
+}
+.vue-tags-input {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  background: transparent !important;
+}
+.ti-input { border: none !important; padding: 0 !important; }
+.ti-tags { margin: 0 !important; padding: 0 !important; list-style: none !important; }
+.ti-new-tag-input {
+  font-family: var(--sans, 'DM Sans', 'Helvetica Neue', Arial, sans-serif) !important;
+  font-size: 14px !important;
+  color: var(--ink, #1C1C1A) !important;
+  width: 100% !important;
+  border: none !important;
+  outline: none !important;
+  background: transparent !important;
+}
+.ti-new-tag-input::placeholder {
+  color: var(--ink-soft, #55534C) !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   6 · LEAD TOOLS BAR (Welcome / My Account) — moss
+   ═══════════════════════════════════════════════════════════ */
+#IDX-leadToolsBar {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 6px 16px !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 10px 24px !important;
+  background: var(--moss, #4F5847) !important;
+  background-color: var(--moss, #4F5847) !important;
+  color: var(--parchment, #F5F0E1) !important;
+  box-sizing: border-box !important;
+  font-family: var(--sans, 'DM Sans', 'Helvetica Neue', Arial, sans-serif) !important;
+  font-size: 13px !important;
+  text-align: left !important;
+  height: auto !important;
+  line-height: 1.4 !important;
+}
+#IDX-leadInfo {
+  font-weight: 600 !important;
+  color: var(--parchment, #F5F0E1) !important;
+  height: auto !important;
+  line-height: 1.4 !important;
+  padding: 0 !important;
+}
+#IDX-leadLogOutLink {
+  font-size: 12px !important;
+  color: rgba(245,240,225,0.75) !important;
+  height: auto !important;
+  line-height: 1.4 !important;
+}
+#IDX-leadLogOutLink a {
+  color: var(--clay, #CBBBA0) !important;
+  text-decoration: none !important;
+}
+#IDX-leadLogOutLink a:hover { text-decoration: underline !important; }
+#IDX-leadAccountLink {
+  margin-left: auto !important;
+  height: auto !important;
+}
+#IDX-leadAccountLink a {
+  display: inline-flex !important;
+  align-items: center !important;
+  background: transparent !important;
+  border: 1px solid rgba(245,240,225,0.45) !important;
+  color: var(--parchment, #F5F0E1) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  padding: 7px 16px !important;
+  border-radius: 2px !important;
+  transition: all 180ms ease !important;
+}
+#IDX-leadAccountLink a:hover {
+  background: rgba(245,240,225,0.12) !important;
+  border-color: var(--parchment, #F5F0E1) !important;
+}
+#IDX-leadToolsBar .IDX-clear { display: none !important; }
+
+
+/* ═══════════════════════════════════════════════════════════
+   7 · SIGN-UP / LOGIN MODAL
+   Every rule here is scoped to the modal (.IDX-registrationModal or
+   #IDX-registration), so none of it reaches the search or results pages.
+   ═══════════════════════════════════════════════════════════ */
+
+/* Backdrop */
+.ui-widget-overlay {
+  background: rgba(28, 28, 26, 0.45) !important;
+  opacity: 1 !important;
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+}
+
+/* Modal container */
+.ui-dialog.IDX-registrationModal {
+  background: var(--off-white, #FAFAF5) !important;
+  border: none !important;
+  border-radius: 6px !important;
+  box-shadow: 0 40px 100px rgba(28,28,26,0.28) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  max-width: calc(100vw - 24px) !important;
+  max-height: calc(100vh - 24px) !important;
+  overflow-y: auto !important;
+  font-family: var(--sans, 'DM Sans', 'Helvetica Neue', Arial, sans-serif) !important;
+}
+
+/* Header - light, serif title, small mark on the left */
+.IDX-registrationModal .ui-dialog-titlebar {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 26px 30px 8px !important;
+  text-align: left !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+}
+.IDX-registrationModal .ui-dialog-titlebar::after { display: none !important; }
+
+/* House mark before the title, in moss */
+.IDX-registrationModal .ui-dialog-titlebar::before {
+  content: "";
+  display: inline-block;
+  width: 28px; height: 28px;
+  margin-right: 12px;
+  flex: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234F5847' stroke-width='1.6'%3E%3Cpath d='M4 11l8-6 8 6M6 10v9h12v-9'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+/* Cormorant is a light, small-bodied face, so it runs a size up and a
+   weight down from Andrew's Fraunces to sit at the same visual weight. */
+.IDX-registrationModal .ui-dialog-title {
+  font-family: var(--serif, 'Cormorant Garamond', Georgia, 'Times New Roman', serif) !important;
+  font-size: 30px !important;
+  font-weight: 500 !important;
+  color: var(--ink, #1C1C1A) !important;
+  line-height: 1.1 !important;
+  text-align: left !important;
+  width: auto !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+}
+
+/* Close - thin × */
+.IDX-registrationModal .ui-dialog-titlebar-close {
+  background: transparent !important;
+  border: none !important;
+  width: 30px !important;
+  height: 30px !important;
+  position: absolute !important;
+  right: 22px !important;
+  top: 24px !important;
+  cursor: pointer !important;
+}
+.IDX-registrationModal .ui-dialog-titlebar-close .ui-icon {
+  background: none !important; text-indent: 0 !important; font-size: 0 !important;
+  width: 100% !important; height: 100% !important; position: relative !important;
+}
+.IDX-registrationModal .ui-dialog-titlebar-close .ui-icon::before {
+  content: "\2715";
+  font-size: 18px;
+  color: var(--ink, #1C1C1A);
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Body */
+#IDX-registration.ui-dialog-content {
+  padding: 12px 30px 30px !important;
+  background: var(--off-white, #FAFAF5) !important;
+  box-sizing: border-box !important;
+}
+#IDX-registration p {
+  font-size: 13px !important;
+  color: var(--ink-soft, #55534C) !important;
+  text-align: center !important;
+  line-height: 1.6 !important;
+  margin-bottom: 18px !important;
+}
+
+/* Labels - scoped to the modal (unscoped, these restyled the results
+   page's filter labels) */
+#IDX-registration .IDX-control-label {
+  display: block !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  color: var(--moss, #4F5847) !important;
+  margin-bottom: 6px !important;
+}
+#IDX-registration .IDX-control-label .IDX-required { color: var(--moss-deep, #3A4233) !important; margin-left: 2px; }
+#IDX-registration .IDX-control-group { margin-bottom: 14px !important; }
+
+/* Inputs - scoped to the modal */
+#IDX-registration .IDX-input {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 13px 16px !important;
+  border: 1px solid var(--clay-light, #DED2BD) !important;
+  border-radius: 4px !important;
+  background: var(--white, #FFFFFF) !important;
+  font-family: var(--sans, 'DM Sans', 'Helvetica Neue', Arial, sans-serif) !important;
+  font-size: 15px !important;
+  color: var(--ink, #1C1C1A) !important;
+  transition: border-color 200ms ease, box-shadow 200ms ease !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+#IDX-registration .IDX-input::placeholder { color: var(--ink-soft, #55534C) !important; opacity: 0.7 !important; }
+#IDX-registration .IDX-input:focus {
+  outline: none !important;
+  border-color: var(--moss, #4F5847) !important;
+  box-shadow: 0 0 0 3px rgba(203,187,160,0.35) !important;
+}
+
+/* Submit - moss, squared, spaced uppercase. Scoped to the modal: on its
+   own, `.IDX-btn.IDX-btn-primary` also matched the results page's filter
+   buttons and stretched them into full-width coloured pills. */
+.IDX-registrationModal .IDX-btn.IDX-btn-primary,
+#IDX-formSubmit {
+  width: 100% !important;
+  background: var(--moss, #4F5847) !important;
+  color: var(--parchment, #F5F0E1) !important;
+  border: 0 !important;
+  border-radius: 4px !important;
+  padding: 15px 24px !important;
+  font-family: var(--sans, 'DM Sans', 'Helvetica Neue', Arial, sans-serif) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  transition: background 200ms ease !important;
+}
+.IDX-registrationModal .IDX-btn.IDX-btn-primary:hover,
+#IDX-formSubmit:hover {
+  background: var(--moss-deep, #3A4233) !important;
+}
+
+/* reCAPTCHA fine print */
+.IDX-registrationModal .IDX-googleRecaptchaPolicy {
+  font-size: 10px !important;
+  color: var(--ink-soft, #55534C) !important;
+  text-align: center !important;
+  line-height: 1.4 !important;
+  margin: 14px 0 0 !important;
+}
+.IDX-registrationModal .IDX-googleRecaptchaPolicy a { color: var(--moss, #4F5847) !important; text-decoration: underline !important; }
+
+/* Login toggle */
+.IDX-registrationModal .IDX-signupLoginToggleWrap {
+  text-align: center !important;
+  margin-top: 16px !important;
+  padding-top: 14px !important;
+  border-top: 1px solid var(--clay-light, #DED2BD) !important;
+}
+.IDX-registrationModal .IDX-signupLoginToggle {
+  color: var(--moss, #4F5847) !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid var(--clay, #CBBBA0) !important;
+  padding-bottom: 2px !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   8 · RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Tablet (≤ 1024px) ── */
+@media (max-width: 1024px) {
+  #prime-map-search--results { width: 58% !important; flex: 0 0 58% !important; }
+  #prime-map-search--map { width: 42% !important; flex: 0 0 42% !important; }
+  .idx-filter-button > div { padding: 11px 16px !important; }
+}
+
+/* ── Mobile (≤ 768px) ── */
+@media (max-width: 768px) {
+  #prime-map-search--main-content-container { flex-direction: column !important; }
+  #prime-map-search--map {
+    width: 100% !important; flex: 0 0 auto !important;
+    height: 300px !important; order: 0 !important;
+  }
+  #prime-map-search--results { width: 100% !important; flex: 0 0 auto !important; order: 1 !important; }
+
+  #prime-map-search--filter-bar { flex-wrap: wrap !important; gap: 8px !important; }
+  #prime-map-search--filter-bar__flyto { flex: 1 1 100% !important; }
+  .pm-ccz-fly-to-field { max-width: 100% !important; width: 100% !important; }
+  .ti-new-tag-input { font-size: 16px !important; } /* prevents iOS zoom */
+  .filter-buttons-container { gap: 6px !important; }
+  .idx-filter-button > div { padding: 10px 13px !important; }
+  .idx-filter-button span:first-child { font-size: 11px !important; letter-spacing: 0.1em !important; }
+
+  .idx-filter-input-section,
+  .property-status-filter-container {
+    max-width: calc(100vw - 24px) !important; min-width: 0 !important;
+  }
+
+  .listing-card__parent { width: 100% !important; }
+  .listing-card__single-item.listing-card__listing-price { font-size: 21px !important; }
+
+  #IDX-leadToolsBar { padding: 8px 16px !important; font-size: 12px !important; }
+  #IDX-leadAccountLink a { padding: 6px 12px !important; font-size: 10px !important; }
+
+  .ui-dialog.IDX-registrationModal { width: calc(100vw - 16px) !important; }
+  #IDX-registration.ui-dialog-content { padding: 20px 20px 22px !important; }
+  #IDX-registration .IDX-input { font-size: 16px !important; } /* prevents iOS zoom */
+  .IDX-registrationModal .ui-dialog-title { font-size: 25px !important; }
+}
+
+/* ── Small phones (≤ 480px) ── */
+@media (max-width: 480px) {
+  .idx-filter-button > div { padding: 9px 11px !important; gap: 6px !important; }
+  .idx-filter-button span:first-child { font-size: 10.5px !important; }
+  .idx-filter-button svg { width: 14px !important; height: 14px !important; }
+  #prime-map-search--map { height: 240px !important; }
+  .listing-card__single-item.listing-card__listing-price { font-size: 19px !important; }
+  .listing-card__details { padding: 14px !important; }
+}

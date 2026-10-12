@@ -97,7 +97,11 @@ export default function RootLayout({
     // `data-scroll-behavior` tells Next the smooth scrolling in globals.css is
     // intentional, so it suppresses it during route transitions instead of
     // animating the jump to the top of each new page.
-    <html lang="en" data-scroll-behavior="smooth">
+    // suppressHydrationWarning: the reveal bootstrap below adds .js-reveal to
+    // <html> during parse, before React hydrates, so React saw a class it never
+    // rendered and reported a mismatch on every page load. The flag covers this
+    // element's own attributes only; anything below it is still checked.
+    <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
         {/* Must stay a blocking inline script in <head>: it arms the scroll
             reveals before the first paint, so sections are never gated on the
