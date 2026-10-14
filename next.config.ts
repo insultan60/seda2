@@ -17,7 +17,20 @@ const nextConfig: NextConfig = {
   /* public/idx-wrapper.html is the static copy of /idx-wrapper that IDX
      Broker fetches. Like the route, it stays out of search results. */
   async headers() {
-    return [{ source: "/idx-wrapper.html", headers: [{ key: "X-Robots-Tag", value: "noindex, follow" }] }];
+    return [
+      { source: "/idx-wrapper.html", headers: [{ key: "X-Robots-Tag", value: "noindex, follow" }] },
+      /* Keep the <project>.vercel.app alias out of Google. It serves the same
+         site as aklahomes.com, and Vercel only noindexes PREVIEW deployments
+         on its own, not the production alias. A header rather than a
+         robots.txt rule, because a URL Google is barred from fetching is one
+         whose noindex it never reads. Anchored to .vercel.app only, so an
+         odd Host header can never noindex the real domain. */
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "(.*\\.)?vercel\\.app" }],
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+    ];
   },
 };
 

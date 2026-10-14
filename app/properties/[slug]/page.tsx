@@ -29,6 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       ]
         .filter(Boolean)
         .join(" — "),
+      alternates: { canonical: `/properties/${slug}` },
     };
   }
   return { title: "Listing — Alexandra Kerr" };

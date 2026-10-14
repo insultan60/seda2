@@ -3,6 +3,7 @@ import ContactForm from "./ContactForm";
 import "./contact.css";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/contact" },
   title: "Contact — Alexandra Kerr | Los Angeles Real Estate",
   description:
     "Get in touch with Alexandra Kerr — call, email, or send a message about buying, selling, relocating, or a home valuation in Los Angeles. Compass · DRE# 01911486.",

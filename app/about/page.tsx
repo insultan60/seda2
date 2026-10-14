@@ -3,6 +3,7 @@ import Link from "next/link";
 import "./about.css";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/about" },
   title: "Meet Alexandra — Alexandra Kerr | Los Angeles Real Estate",
   description:
     "Alexandra Kerr, REALTOR® and Estates Director at Compass — a specialist in Los Angeles homes with character, history, and distinctive architecture. DRE# 01911486.",

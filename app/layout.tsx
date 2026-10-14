@@ -40,14 +40,16 @@ export const metadata: Metadata = {
     template: "%s",
   },
   description: DESCRIPTION,
-  alternates: { canonical: "/" },
+  /* No canonical or og:url here. Layout metadata is inherited by every page
+     that does not set its own, so the "/" that used to sit here told Google
+     every inner page was a copy of the home page. Each page declares its own
+     canonical; app/page.tsx carries "/". */
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
     title: "Alexandra Kerr — Los Angeles Real Estate | Homes with Character",
     description: DESCRIPTION,
     locale: "en_US",
-    url: "/",
   },
   twitter: {
     card: "summary_large_image",

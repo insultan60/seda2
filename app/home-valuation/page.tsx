@@ -4,6 +4,7 @@ import ValuationSearch from "./ValuationSearch";
 import "./valuation.css";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/home-valuation" },
   title: "Home Valuation — Alexandra Kerr | What's Your Home Worth?",
   description:
     "Get an estimate of your Los Angeles home's value, read by an agent who knows the street — not just an algorithm. Free and confidential.",

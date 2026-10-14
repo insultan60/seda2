@@ -4,6 +4,7 @@ import { getListings } from "../properties/listings";
 import "./search.css";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/home-search" },
   title: "Home Search — Alexandra Kerr | Search the Los Angeles MLS",
   description:
     "Search Los Angeles listings with Alexandra Kerr — filter by neighborhood, price, beds, baths, and status, with a live map.",

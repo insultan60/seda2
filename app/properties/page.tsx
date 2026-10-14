@@ -6,6 +6,7 @@ import { getListings } from "./listings";
 import "./properties.css";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/properties" },
   title: "Portfolio — Alexandra Kerr | Los Angeles Real Estate",
   description:
     "A portfolio of Los Angeles homes with character — currently represented and recently sold by Alexandra Kerr, Estates Director at Compass.",

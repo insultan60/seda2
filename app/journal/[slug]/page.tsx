@@ -21,6 +21,7 @@ export async function generateMetadata({
   return {
     title: `${post.title} — Alexandra Kerr | Los Angeles Real Estate`,
     description: post.excerpt,
+    alternates: { canonical: `/journal/${slug}` },
   };
 }
 

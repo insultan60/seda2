@@ -3,6 +3,7 @@ import Link from "next/link";
 import "./concierge.css";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/compass-concierge" },
   title: "Compass Concierge — Alexandra Kerr | Sell Faster, For More",
   description:
     "Compass Concierge fronts the cost of home improvement services — staging, painting, flooring and more — with zero due until closing. Prepare your Los Angeles home for market with Alexandra Kerr.",

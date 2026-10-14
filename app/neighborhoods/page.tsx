@@ -5,6 +5,7 @@ import { ALSO_SERVING, FEATURED, hoodLink, REGIONS } from "./data";
 import "./neighborhoods.css";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/neighborhoods" },
   title: "Neighborhoods — Alexandra Kerr | Los Angeles Real Estate",
   description:
     "The Los Angeles neighborhoods Alexandra Kerr knows best — Los Feliz, Hancock Park, Windsor Square, the Hollywood Hills, Silver Lake, the Sunset Strip, Beverly Hills, Brentwood, Santa Monica and Venice.",

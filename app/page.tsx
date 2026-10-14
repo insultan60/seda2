@@ -10,6 +10,13 @@ import { hasSpecs, locationLabel, priceLabel } from "./properties/data";
 import { getListings } from "./properties/listings";
 import { TESTIMONIALS } from "./testimonials/data";
 import { IDX } from "./site";
+import type { Metadata } from "next";
+
+/* Title and description come from the layout; only the canonical is the home
+   page's own (see the note in app/layout.tsx). */
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 // helper for the CSS reveal-delay custom property
 const d = (val: string) => ({ "--d": val }) as CSSProperties;

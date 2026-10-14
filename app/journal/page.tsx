@@ -4,6 +4,7 @@ import { POSTS } from "./data";
 import "./journal.css";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/journal" },
   title: "The Latest Real Estate News — Alexandra Kerr | Los Angeles",
   description:
     "Market notes, buying and selling guidance, and home information for Los Angeles — from Alexandra Kerr, Estates Director at Compass.",

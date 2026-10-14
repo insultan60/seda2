@@ -4,6 +4,7 @@ import { TESTIMONIALS } from "../testimonials/data";
 import "./relocation.css";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/relocation" },
   title: "Relocation — Alexandra Kerr | Moving To or From Los Angeles",
   description:
     "Relocating to Los Angeles, or leaving it? Alexandra Kerr has guided moves in and out of L.A. for over a decade — neighborhood shortlists, video tours, and a sale managed from two time zones away.",

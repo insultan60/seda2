@@ -4,6 +4,7 @@ import { TESTIMONIALS } from "./data";
 import "./testimonials.css";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/testimonials" },
   title: "Testimonials — Alexandra Kerr | Client Reviews",
   description:
     "Reviews from Los Angeles clients who have bought and sold homes with Alexandra Kerr, Estates Director at Compass.",

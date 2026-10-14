@@ -4,6 +4,7 @@ import { getListings } from "../properties/listings";
 import "./portal.css";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/my-search-portal" },
   title: "My Search Portal — Alexandra Kerr | Saved Los Angeles Homes",
   description:
     "Your saved Los Angeles listings, kept on this device. Star any home on the site and it waits for you here — no account required.",
