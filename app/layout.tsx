@@ -55,6 +55,9 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
   },
   robots: { index: true, follow: true },
+  /* Search Console ownership: renders as
+     <meta name="google-site-verification" content="..."> on every page. */
+  verification: { google: "yA1BPStqlZDl7HARpvmrtmsTa355-Xv6WgS1pS6X-Y4" },
 };
 
 /* Structured data — this is what puts an agent in the local/knowledge results
