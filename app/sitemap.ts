@@ -23,6 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/home-search", priority: 0.8, freq: "daily" },
     { path: "/about", priority: 0.8, freq: "monthly" },
     { path: "/neighborhoods", priority: 0.8, freq: "monthly" },
+    { path: "/neighborhoods/los-feliz", priority: 0.8, freq: "weekly" },
     { path: "/contact", priority: 0.7, freq: "yearly" },
     { path: "/testimonials", priority: 0.7, freq: "monthly" },
     { path: "/relocation", priority: 0.7, freq: "monthly" },

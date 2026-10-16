@@ -452,10 +452,11 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 .hero__title em { font-style: italic; font-weight: 400; }
 /* Client-specified two-line headline. Each line is its own block so the break
    is fixed rather than left to the viewport, and the vw term is steeper than
-   --fs-h1 so the longer line ("Luxury Real Estate,") still fits at 390px
-   without being allowed to wrap and break the intended shape. */
+   --fs-h1 so the longer line ("Los Angeles Real Estate Agent,", October 2026
+   copy) still fits at 390px without being allowed to wrap and break the
+   intended shape. Sized for that 30-character line; the old one was 19. */
 .hero__title--stack {
-  font-size: clamp(1.85rem, 1.05rem + 3.9vw, 5rem);
+  font-size: clamp(1.55rem, .8rem + 3.1vw, 4.1rem);
   text-wrap: nowrap;
 }
 .hero__title--stack span { display: block; }
@@ -861,6 +862,66 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 .footer__credit { margin-top: .6rem; }
 
 /* ==========================================================================
+   HOME PAGE COPY BLOCKS, October 2026 brief
+   Intro, the neighborhood list, the FAQ (shared, see components/Faq.tsx)
+   and the closing call.
+   ========================================================================== */
+.intro { background: var(--white); padding-block: var(--section-y) 0; }
+.intro__grid {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: clamp(2rem, 5vw, 4.5rem); align-items: start;
+}
+.intro__body p { color: var(--ink-soft); max-width: 62ch; }
+.intro__body p + p { margin-top: 1.1rem; }
+
+.about__copy .lede + .lede { margin-top: 1rem; }
+.about__btn { margin-top: 2.2rem; }
+
+/* All six core areas, name and line, under the three image tiles. */
+.hoods__list {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 clamp(1.5rem, 3vw, 3rem); margin-top: clamp(2rem, 4vw, 3rem);
+}
+.hoods__list li { border-top: 1px solid var(--clay-light); }
+.hoods__list a { display: block; padding: 1.2rem 0; }
+.hoods__list h3 {
+  font-family: var(--serif); font-weight: 500; font-size: 1.3rem; color: var(--ink);
+  transition: color 200ms var(--ease);
+}
+.hoods__list a:hover h3 { color: var(--moss); }
+.hoods__list p { font-size: var(--fs-small); line-height: 1.6; color: var(--ink-soft); margin-top: .3rem; }
+.hoods__foot {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.2rem 2rem;
+  border-top: 1px solid var(--clay-light); padding-top: 1.5rem;
+}
+.hoods__also { font-size: var(--fs-small); line-height: 1.7; color: var(--ink-soft); max-width: 70ch; }
+
+/* FAQ accordion, shared by every page that renders <FaqSection>. */
+.faq { background: var(--off-white); padding-block: var(--section-y); }
+.faq__list { border-top: 1px solid var(--clay); }
+.faq__item { border-bottom: 1px solid var(--clay); }
+.faq__item > summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+  padding: 1.5rem 0; cursor: pointer; list-style: none;
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(1.05rem, 1.7vw, 1.25rem); color: var(--ink);
+}
+.faq__item > summary::-webkit-details-marker { display: none; }
+.faq__plus { position: relative; width: 18px; height: 18px; flex: none; }
+.faq__plus::before, .faq__plus::after {
+  content: ""; position: absolute; background: var(--moss); transition: transform 260ms var(--ease);
+}
+.faq__plus::before { left: 0; top: 50%; width: 18px; height: 1.6px; transform: translateY(-50%); }
+.faq__plus::after { left: 50%; top: 0; width: 1.6px; height: 18px; transform: translateX(-50%); }
+.faq__item[open] .faq__plus::after { transform: translateX(-50%) scaleY(0); }
+.faq__body { padding: 0 0 1.6rem; max-width: 82ch; }
+.faq__body p { line-height: 1.75; color: var(--ink-soft); }
+
+.closing { background: var(--white); padding-block: var(--section-y); text-align: center; }
+.closing .lede { margin-inline: auto; }
+.closing__ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 2.2rem; }
+
+/* ==========================================================================
    RESPONSIVE
    ========================================================================== */
 @media (max-width: 1023px) {
@@ -889,6 +950,8 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
   .listings__grid, .journal__grid, .sold__grid { grid-template-columns: 1fr 1fr; }
   .hoods__grid { grid-template-rows: repeat(2, minmax(200px, 30vw)); }
   .mls__ctas { flex-direction: row; flex-wrap: wrap; }
+  .intro__grid { grid-template-columns: 1fr; }
+  .hoods__list { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 639px) {
@@ -898,7 +961,8 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
   .hood--tall { grid-row: auto; }
   .stats__figures { grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr)); gap: 1.8rem 1rem; }
   .section-head--split { align-items: flex-start; flex-direction: column; }
-  .hero__ctas .btn, .relo__ctas .btn { width: 100%; }
+  .hero__ctas .btn, .relo__ctas .btn, .closing__ctas .btn { width: 100%; }
+  .hoods__list { grid-template-columns: 1fr; }
   /* Stacked full-width CTAs push .hero__content taller than the space above
      the footer's absolute position, so it was overlapping "Alexandra Kerr"
      and the Compass block underneath it. Flow the footer after the content

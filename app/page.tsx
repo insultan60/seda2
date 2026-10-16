@@ -6,18 +6,58 @@ import HeroVideo from "./components/HeroVideo";
 import NewsletterForm from "./components/NewsletterForm";
 import StatsAwards from "./components/StatsAwards";
 import { LATEST_POSTS } from "./journal/data";
-import { ALSO_SERVING, FEATURED as FEATURED_HOODS } from "./neighborhoods/data";
+import { ALSO_SERVING, FEATURED as FEATURED_HOODS, hoodId, type Hood } from "./neighborhoods/data";
 import { hasSpecs, locationLabel, priceLabel } from "./properties/data";
 import { getListings } from "./properties/listings";
 import { TESTIMONIALS } from "./testimonials/data";
-import { IDX } from "./site";
+import FaqSection from "./components/Faq";
+import { IDX, SITE_NAME } from "./site";
 import type { Metadata } from "next";
 
-/* Title and description come from the layout; only the canonical is the home
-   page's own (see the note in app/layout.tsx). */
+/* Title and description from the October 2026 SEO copy (55 and 150
+   characters). The layout's own title and description still stand as the
+   fallback for any page that sets none. openGraph is restated in full because
+   a page's openGraph replaces the layout's rather than merging with it. */
+const TITLE = "Los Angeles Real Estate Agent | Alexandra Kerr, Compass";
+const DESCRIPTION =
+  "Alexandra Kerr is a Los Angeles real estate agent at Compass, specializing in luxury homes with character. Buy, sell, or relocate with a local expert.";
+
 export const metadata: Metadata = {
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    title: TITLE,
+    description: DESCRIPTION,
+    locale: "en_US",
+  },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
+
+const FAQS = [
+  {
+    q: "How do I choose a luxury real estate agent in Los Angeles?",
+    a: "Look for a sales record in your specific neighborhood and price range. Ask how the agent markets homes and who handles photography and negotiation. You can also confirm any agent’s license on the California Department of Real Estate website.",
+  },
+  {
+    q: "What should I check before buying a hillside home?",
+    a: "Review the permit history, retaining walls, drainage, and the slope and access of the lot. Check insurance availability early, since coverage in hillside areas can be hard to find. Alexandra reads these records with buyers before an offer is written.",
+  },
+  {
+    q: "Can I buy or sell a Los Angeles home if I live out of state?",
+    a: "Yes. Alexandra works with clients across the country using video tours, digital signing, and a trusted network of local vendors. Sellers can list, prepare, and close without returning to the city.",
+  },
+  {
+    q: "What is a Compass Concierge?",
+    a: "It is a Compass program that helps sellers cover home preparation costs, such as repairs, staging, or cleaning, and pay them at closing. Terms and availability vary, so ask Alexandra for current details.",
+  },
+  {
+    q: "How does Alexandra price a luxury home?",
+    a: "She starts with recent comparable sales on the same street and in the same micro-market. Then she adjusts for view, lot, condition, and permit history. She shares the reasoning, so you can see how the number was reached.",
+  },
+];
 
 // helper for the CSS reveal-delay custom property
 const d = (val: string) => ({ "--d": val }) as CSSProperties;
@@ -49,6 +89,8 @@ const JOURNAL_DELAYS = ["", ".08s", ".16s"];
 const HOOD_DELAYS = ["", ".08s", ".16s"];
 const HOODS = FEATURED_HOODS.slice(0, 3);
 const HOOD_INDEX = ALSO_SERVING.map((h) => h.name);
+/** An area's own page if it has one, else its write-up on /neighborhoods. */
+const hoodHref = (h: Hood) => h.page ?? `/neighborhoods#${hoodId(h)}`;
 
 /* eslint-disable @next/next/no-img-element */
 export default async function Home() {
@@ -63,20 +105,20 @@ export default async function Home() {
         <HeroVideo />
         <div className="hero__scrim" aria-hidden="true"></div>
         <div className="hero__content">
-          {/* Headline and subhead supplied verbatim by the client (Seda, Aug 2026).
-              The two lines are explicit spans rather than a natural wrap — the
-              client asked for this exact break, so it must hold at every width
-              instead of reflowing with the viewport. */}
+          {/* Headline and subhead from the October 2026 SEO copy, which keeps
+              the client's two-line shape (Aug 2026) and puts the search term
+              in the first line. The two lines are explicit spans rather than a
+              natural wrap, so the break holds at every width. */}
           <h1 className="hero__title hero__title--stack">
-            <span>Luxury Real Estate,</span>
+            <span>Los Angeles Real Estate Agent,</span>
             <span>Thoughtfully Guided</span>
           </h1>
           <p className="hero__sub">
-            Helping clients buy, sell, and relocate with confidence throughout Greater Los Angeles.
+            Luxury homes with character across Greater Los Angeles. Buy, sell, and relocate with confidence.
           </p>
           <div className="hero__ctas">
+            <a className="btn btn--solid-light" href="/contact">Schedule a Consultation</a>
             <a className="btn btn--ghost-light" href="#listings">View Portfolio</a>
-            <a className="btn btn--solid-light" href="/contact">Let&rsquo;s Connect</a>
           </div>
         </div>
         <div className="hero__footer">
@@ -101,20 +143,43 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* 1b · INTRO */}
+      <section className="intro" id="intro">
+        <div className="container intro__grid">
+          <div className="reveal">
+            <p className="eyebrow">Alexandra Kerr · Compass</p>
+            <h2 className="h2">Luxury Real Estate in Los Angeles</h2>
+          </div>
+          <div className="intro__body reveal" style={d(".1s")}>
+            <p>
+              Alexandra Kerr is a Los Angeles real estate agent and Estates Director at Compass. She
+              works with buyers and sellers in Los Feliz, Hancock Park, the Hollywood Hills, and
+              beyond. Her focus is homes with history, character, and distinctive architecture.
+            </p>
+            <p>
+              The market changes block by block, and a single street can shift a home&rsquo;s value.
+              After more than a decade in Los Angeles luxury real estate, Alexandra knows which
+              streets hold their value and which permit histories deserve a close read before you
+              make an offer.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* 2 · TRIPLE CTA */}
       <section className="paths" id="paths">
         <div className="container">
           <div className="paths__grid">
             {[
-              { n: "01", t: "Looking to Buy?", b: "From first showing to final walkthrough — find a home with a story worth telling, guided at every step.", href: "/properties", d: "" },
-              { n: "02", t: "Looking to Sell?", b: "Meticulous preparation, editorial‑grade marketing, and fierce negotiation to earn your home its best result.", href: "/contact", d: ".08s" },
-              { n: "03", t: "Let's Connect", b: "Buying, selling, or simply curious about the market — start a conversation with a specialist who listens.", href: "/contact", d: ".16s" },
+              { n: "01", t: "Looking to Buy?", b: "Find luxury homes for sale in Los Angeles with a story worth telling. Alexandra guides you from the first showing to the final walkthrough.", cta: "Browse Luxury Homes", href: "/properties", d: "" },
+              { n: "02", t: "Looking to Sell?", b: "Selling your house in Los Angeles takes careful preparation, strong marketing, and firm negotiation. Start with a home valuation.", cta: "Get Your Home Value", href: "/home-valuation", d: ".08s" },
+              { n: "03", t: "Let's Connect", b: "Buying, selling, or just watching the market? Start a conversation with an agent who listens first.", cta: "Start a Conversation", href: "/contact", d: ".16s" },
             ].map((p) => (
               <a className="path-card reveal" href={p.href} key={p.n} style={p.d ? d(p.d) : undefined}>
                 <span className="path-card__num" aria-hidden="true">{p.n}</span>
                 <h2 className="path-card__title">{p.t}</h2>
                 <p className="path-card__body">{p.b}</p>
-                <span className="path-card__link">Explore<i className="arrow" aria-hidden="true"></i></span>
+                <span className="path-card__link">{p.cta}<i className="arrow" aria-hidden="true"></i></span>
               </a>
             ))}
           </div>
@@ -130,14 +195,13 @@ export default async function Home() {
           </figure>
           <div className="about__copy reveal" style={d(".1s")}>
             <p className="eyebrow">Meet Alexandra</p>
-            <h2 className="h2">Dedication. Expertise.<br /><em>Results.</em></h2>
-            <p className="lede">The three qualities that distinguish Alexandra as a real estate agent are her dedication, thorough knowledge of the L.A. marketplace, and her efficiency. Regardless of circumstances, she successfully gets the job done for her clients.</p>
-            <ul className="about__creds">
-              <li>REALTOR® · Estates Director · Senior Real Estate Specialist</li>
-              <li>Compass · Los Angeles</li>
-              <li>DRE# 01911486</li>
-            </ul>
-            <Link className="btn btn--solid-moss" href="/about">Learn More About Alexandra</Link>
+            <h2 className="h2">Your Los Angeles Realtor at Compass</h2>
+            <p className="lede">Alexandra has worked in Los Angeles real estate for over a decade. Clients describe her as dedicated, efficient, and calm under pressure.</p>
+            <p className="lede">As a Compass agent, she brings the brokerage&rsquo;s marketing tools and private exclusives to every listing. Her work has been recognized by RealTrends and Los Angeles Magazine.</p>
+            <p className="lede">She is a REALTOR®, Estates Director, and Senior Real Estate Specialist, licensed under DRE# 01911486.</p>
+            {/* The credentials list that sat here said the same as the
+                paragraph above, which the October 2026 copy added. */}
+            <Link className="btn btn--solid-moss about__btn" href="/about">Learn More About Alexandra</Link>
           </div>
         </div>
       </section>
@@ -182,6 +246,7 @@ export default async function Home() {
             <div>
               <p className="eyebrow">Featured Listings</p>
               <h2 className="h2">Currently Represented</h2>
+              <p className="lede">From Hancock Park estates to Westside rebuilds, these are Alexandra&rsquo;s current listings and recent results.</p>
             </div>
             <Link className="text-link" href="/properties">View Portfolio<i className="arrow" aria-hidden="true"></i></Link>
           </div>
@@ -263,26 +328,68 @@ export default async function Home() {
         <div className="container mls__inner reveal">
           <div className="mls__copy">
             <p className="eyebrow">Newest MLS Listings</p>
-            <h2 className="h2">The full Los Angeles market,<br />curated to your taste.</h2>
-            <p className="lede">Search every active listing across the Greater Los Angeles MLS — or tell Alexandra what character means to you, and let the right home find you.</p>
+            <h2 className="h2">Search Los Angeles Homes for Sale</h2>
+            <p className="lede">Browse every active listing on the Greater Los Angeles MLS. Filter by price, bedrooms, and area, or tell Alexandra what character means to you and let the right home find you.</p>
           </div>
           <div className="mls__ctas">
             {/* The whole MLS lives on IDX; /home-search is Alexandra's own
                 listings on a map. Both are one click from here. */}
-            <a className="btn btn--solid-moss" href={IDX.mapSearch}>Search The MLS</a>
+            <a className="btn btn--solid-moss" href={IDX.mapSearch}>Search the MLS</a>
             <a className="btn btn--outline-moss" href={IDX.signup}>Get New Listing Alerts</a>
-            <a className="btn btn--outline-moss" href="/contact">Request A Consultation</a>
+            <a className="btn btn--outline-moss" href="/contact">Request a Consultation</a>
           </div>
         </div>
       </section>
 
-      {/* 7b · RELOCATION */}
+      {/* 8 · NEIGHBORHOODS (before relocation, in the October 2026 copy's order) */}
+      <section className="hoods" id="neighborhoods">
+        <div className="container">
+          <div className="section-head section-head--split reveal">
+            <div>
+              <p className="eyebrow">Featured Neighborhoods</p>
+              <h2 className="h2">Los Angeles Neighborhoods We Know Best</h2>
+              <p className="lede">Each area works like its own market. Here is where Alexandra spends most of her time.</p>
+            </div>
+          </div>
+          {/* Tiles and list open the area's own page where there is one (Los
+              Feliz), and otherwise its write-up on /neighborhoods rather than a
+              seeded search: most of these areas carry no active inventory this
+              week, and a tile that opens an empty result set reads as broken. */}
+          <div className="hoods__grid">
+            {HOODS.map((h, i) => {
+              const delay = HOOD_DELAYS[i];
+              return (
+                <Link className={`hood${h.tall ? " hood--tall" : ""} reveal`} href={hoodHref(h)} key={h.name} style={delay ? d(delay) : undefined}>
+                  {h.img && <img src={h.img} alt={h.alt ?? h.name} data-fallback />}
+                  <div className="hood__label"><h3>{h.name}</h3><span>{h.short ?? h.blurb}</span></div>
+                </Link>
+              );
+            })}
+          </div>
+          <ul className="hoods__list">
+            {FEATURED_HOODS.map((h, i) => (
+              <li className="reveal" key={h.name} style={d(`${(i % 3) * 0.06}s`)}>
+                <Link href={hoodHref(h)}>
+                  <h3>{h.name}</h3>
+                  <p>{h.homeBlurb ?? h.blurb}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <div className="hoods__foot reveal">
+            <p className="hoods__also">Also serving: {HOOD_INDEX.slice(0, -1).join(", ")}, and {HOOD_INDEX.at(-1)}.</p>
+            <Link className="btn btn--outline-moss" href="/neighborhoods">Explore All Neighborhoods</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 8b · RELOCATION */}
       <section className="relo" id="relocation">
         <div className="container relo__inner">
           <div className="relo__copy reveal">
             <p className="eyebrow eyebrow--clay">Relocation Specialist</p>
-            <h2 className="h2 h2--light">Moving to Los Angeles —<br /><em>or moving on?</em> Consider it handled.</h2>
-            <p className="relo__sub">Alexandra has guided relocations in and out of Los Angeles for over a decade — executives on a deadline, families changing coasts, sellers managing everything from two time zones away. When your next chapter starts in another city, she&rsquo;s the first call to make.</p>
+            <h2 className="h2 h2--light">Moving to or from Los Angeles</h2>
+            <p className="relo__sub">Alexandra has guided relocations in both directions for over a decade. Her clients include executives on tight deadlines and families changing coasts.</p>
             <div className="relo__ctas">
               <Link className="btn btn--solid-light" href="/relocation">Plan Your Relocation</Link>
               <a className="btn btn--ghost-light" href="tel:+13107951440">Call (310) 795‑1440</a>
@@ -290,9 +397,9 @@ export default async function Home() {
           </div>
           <ul className="relo__points">
             {[
-              { t: "Arriving", b: "Neighborhood shortlists matched to your commute, schools, and taste — with video tours and offer strategy handled before you ever board the plane.", d: ".05s" },
-              { t: "Departing", b: "Your L.A. home prepared, marketed, and sold while you settle elsewhere — staging, photography, and escrow managed without a single return trip.", d: ".1s" },
-              { t: "Every step between", b: "A trusted nationwide agent network, corporate relocation timelines, and one point of contact from the first box packed to the final signature.", d: ".15s" },
+              { t: "Arriving", b: "Neighborhood shortlists matched to your commute, schools, and taste. Video tours and offer strategy are handled before you board the plane.", d: ".05s" },
+              { t: "Departing", b: "Your Los Angeles home is prepared, marketed, and sold while you settle elsewhere. Staging, photography, and escrow run without a return trip.", d: ".1s" },
+              { t: "Every step between", b: "A trusted nationwide agent network and one point of contact, from the first packed box to the final signature.", d: ".15s" },
             ].map((p) => (
               <li className="reveal" key={p.t} style={d(p.d)}>
                 <h3>{p.t}</h3>
@@ -303,35 +410,19 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 8 · NEIGHBORHOODS */}
-      <section className="hoods" id="neighborhoods">
-        <div className="container">
-          <div className="section-head section-head--split reveal">
-            <div>
-              <p className="eyebrow">Featured Neighborhoods</p>
-              <h2 className="h2">Where character lives.</h2>
-            </div>
-            <Link className="text-link" href="/neighborhoods">View All Neighborhoods<i className="arrow" aria-hidden="true"></i></Link>
+      {/* 8c · FAQ (also emits the page's FAQPage schema) */}
+      <FaqSection items={FAQS} title="Los Angeles Real Estate Questions" />
+
+      {/* 8d · CLOSING CALL */}
+      <section className="closing" id="talk">
+        <div className="container reveal">
+          <p className="eyebrow">Let&rsquo;s Talk</p>
+          <h2 className="h2">Talk to a Los Angeles Real Estate Agent</h2>
+          <p className="lede">Whether you are buying a hillside home, selling a family estate, or moving across the country, a short conversation is the best first step. Call (310) 795-1440 or send a message.</p>
+          <div className="closing__ctas">
+            <a className="btn btn--solid-moss" href="tel:+13107951440">Call (310) 795‑1440</a>
+            <Link className="btn btn--outline-moss" href="/contact">Send a Message</Link>
           </div>
-          {/* Both the tiles and the index point at /neighborhoods rather than a
-              seeded search: most of these areas carry no active inventory this
-              week, and a tile that opens an empty result set reads as broken. */}
-          <div className="hoods__grid">
-            {HOODS.map((h, i) => {
-              const delay = HOOD_DELAYS[i];
-              return (
-                <Link className={`hood${h.tall ? " hood--tall" : ""} reveal`} href="/neighborhoods" key={h.name} style={delay ? d(delay) : undefined}>
-                  {h.img && <img src={h.img} alt={h.alt ?? h.name} data-fallback />}
-                  <div className="hood__label"><h3>{h.name}</h3><span>{h.short ?? h.blurb}</span></div>
-                </Link>
-              );
-            })}
-          </div>
-          <ul className="hoods__index reveal">
-            {HOOD_INDEX.map((n) => (
-              <li key={n}><Link href="/neighborhoods">{n}</Link></li>
-            ))}
-          </ul>
         </div>
       </section>
 

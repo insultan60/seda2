@@ -161,8 +161,82 @@
 .nb-cta__actions { display: flex; flex-direction: column; gap: .9rem; min-width: min(280px, 100%); }
 .nb-cta__actions .btn { justify-content: center; }
 
+/* ---------- Guide sections, October 2026 copy ---------- */
+/* The guide H1 is twice the length of "Neighborhoods", so it steps down a size
+   and balances its lines instead of leaving one word on the second. */
+.nb-hero__title--long {
+  font-size: clamp(1.7rem, 1rem + 2.9vw, 3.4rem); line-height: 1.12;
+  letter-spacing: .03em; text-wrap: balance; max-width: 22ch; margin-inline: auto;
+}
+
+.nb-guide { background: var(--white); padding-block: clamp(3.5rem, 7vw, 6rem); }
+.nb-guide__inner { max-width: 52rem; }
+.nb-guide__inner .lede { max-width: 66ch; }
+
+/* One area per row: name on the left, the write-up and its link on the right. */
+.nb-profiles { margin-top: clamp(3.5rem, 7vw, 6rem); border-top: 1px solid var(--clay); }
+.nb-profile {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 1rem clamp(2rem, 5vw, 4.5rem); padding-block: clamp(1.8rem, 3.5vw, 2.6rem);
+  border-bottom: 1px solid var(--clay-light);
+  /* Clear of the fixed header when the home page links straight here. */
+  scroll-margin-top: calc(var(--ak-header, 68px) + 1.5rem);
+}
+.nb-profile__name {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(1.5rem, 1.25rem + .9vw, 2.1rem); line-height: 1.15; color: var(--ink);
+}
+.nb-profile__body p { color: var(--ink-soft); max-width: 66ch; }
+.nb-profile__body p + p { margin-top: 1rem; }
+.nb-profile__body .text-link { margin-top: 1.3rem; }
+
+.nb-compare { background: var(--white); padding-block: var(--section-y); }
+/* Wide table on a phone: it scrolls inside its own box instead of pushing the
+   page sideways. */
+.nb-compare__scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.nb-compare__table { width: 100%; min-width: 640px; border-collapse: collapse; font-size: var(--fs-small); }
+.nb-compare__table th, .nb-compare__table td {
+  text-align: left; vertical-align: top; padding: 1rem 1.2rem 1rem 0;
+  border-bottom: 1px solid var(--clay-light); line-height: 1.55;
+}
+.nb-compare__table thead th {
+  font-size: var(--fs-micro); font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--moss); border-bottom-color: var(--clay);
+}
+.nb-compare__table tbody th { font-family: var(--serif); font-weight: 500; font-size: 1.15rem; color: var(--ink); }
+.nb-compare__table td { color: var(--ink-soft); }
+
+.nb-prose { background: var(--parchment); padding-block: var(--section-y); }
+.nb-prose__grid {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: clamp(2rem, 5vw, 4.5rem); align-items: start;
+}
+.nb-prose__body p { color: var(--ink-soft); max-width: 64ch; }
+.nb-prose__body p + p { margin-top: 1.1rem; }
+
+.nb-choose { background: var(--white); padding-block: var(--section-y); }
+.nb-choose__list {
+  list-style: none; padding: 0; margin: 0; counter-reset: choose;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(2rem, 4vw, 3.5rem);
+}
+.nb-choose__list li {
+  counter-increment: choose; border-top: 1px solid var(--clay); padding-block: 1.5rem;
+}
+.nb-choose__list h3 {
+  font-family: var(--serif); font-weight: 500; font-size: 1.3rem; color: var(--ink);
+}
+.nb-choose__list h3::before {
+  content: counter(choose, decimal-leading-zero) "  "; white-space: pre;
+  font-style: italic; color: var(--clay);
+}
+.nb-choose__list p { font-size: var(--fs-small); line-height: 1.7; color: var(--ink-soft); margin-top: .5rem; }
+.nb-choose__note {
+  border-top: 1px solid var(--clay); padding-top: 1.5rem; color: var(--ink-soft); max-width: 66ch;
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 1023px) {
+  .nb-profile, .nb-prose__grid { grid-template-columns: 1fr; }
   .nb-intro__grid { grid-template-columns: 1fr; }
   .nb-grid { grid-template-columns: 1fr 1fr; }
   .nb-col:nth-child(2) { margin-top: 0; }
@@ -177,6 +251,7 @@
   /* Touch has no hover, so the blurb always shows. */
   .nb-card__label p { max-height: 9rem; opacity: 1; margin-top: .55rem; }
   .nb-also__list { grid-template-columns: 1fr; }
+  .nb-choose__list { grid-template-columns: 1fr; }
   .nb-cta__actions .btn { width: 100%; }
 }
 @media (hover: none) {

@@ -1,0 +1,130 @@
+/* ==========================================================================
+   Los Feliz — the first neighborhood page. Hero, intro, CTA band and the
+   nearby list come from ../neighborhoods.css (nb-); listing cards and the FAQ
+   from globals.css. Prefix: lf-
+   ========================================================================== */
+
+.lf-hero__ctas {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 2rem;
+}
+
+/* Heading column on the left, prose on the right. */
+.lf-split {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  gap: clamp(2rem, 5vw, 4.5rem); align-items: start;
+}
+.lf-prose p { color: var(--ink-soft); max-width: 64ch; }
+.lf-prose p + p { margin-top: 1.1rem; }
+.lf-prose .lf-h3 { margin-top: 2rem; }
+.lf-prose .btn { margin-top: 1.8rem; }
+.lf-inline { color: var(--moss); border-bottom: 1px solid var(--clay); }
+.lf-inline:hover { border-color: var(--moss); }
+
+.lf-h3 {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(1.3rem, 1.15rem + .5vw, 1.6rem); line-height: 1.2; color: var(--ink);
+  margin-bottom: .7rem;
+}
+
+.lf-intro { background: var(--white); padding-block: var(--section-y); }
+.lf-trust { margin-top: 1.8rem; border-left: 2px solid var(--clay); padding-left: 1.4rem; display: grid; gap: .55rem; }
+.lf-trust li { font-size: var(--fs-small); color: var(--ink-soft); letter-spacing: .02em; }
+
+/* ---------- Listings with Available / Sold tabs ---------- */
+.lf-listings { background: var(--off-white); }
+.lf-tabs__list { display: flex; gap: 2rem; border-bottom: 1px solid var(--clay-light); margin-bottom: 2.2rem; }
+.lf-tabs__tab {
+  background: none; border: 0; cursor: pointer; padding: .9rem 0; margin-bottom: -1px;
+  font: inherit; font-size: var(--fs-micro); font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--ink-soft); border-bottom: 2px solid transparent;
+  transition: color 160ms var(--ease), border-color 160ms var(--ease);
+}
+.lf-tabs__tab:hover { color: var(--moss); }
+.lf-tabs__tab.is-active { color: var(--moss); border-bottom-color: var(--moss); }
+.lf-tabs__lede { color: var(--ink-soft); max-width: 60ch; margin-bottom: 2rem; }
+.lf-empty {
+  color: var(--ink-soft); max-width: 60ch; padding: 1.6rem 0;
+  border-top: 1px solid var(--clay-light); border-bottom: 1px solid var(--clay-light);
+}
+.lf-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.2rem; }
+
+/* ---------- Architecture and buying ---------- */
+.lf-arch { background: var(--white); padding-block: var(--section-y); }
+.lf-buy { background: var(--parchment); padding-block: var(--section-y); }
+.lf-cols {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 3rem);
+}
+.lf-cols article { border-top: 1px solid var(--clay); padding-top: 1.5rem; }
+.lf-cols p { font-size: var(--fs-small); line-height: 1.7; color: var(--ink-soft); }
+.lf-cols p + p { margin-top: .9rem; }
+
+.lf-areas { margin-top: clamp(3rem, 6vw, 4.5rem); }
+.lf-areas > p { color: var(--ink-soft); }
+.lf-areas__list {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(1.5rem, 3vw, 3rem); margin-top: 1.5rem;
+}
+.lf-areas__list > div { border-top: 1px solid var(--clay-light); padding-block: 1.1rem; }
+.lf-areas__list dt { font-family: var(--serif); font-size: 1.2rem; color: var(--ink); }
+.lf-areas__list dd { font-size: var(--fs-small); line-height: 1.6; color: var(--ink-soft); margin: .3rem 0 0; }
+
+.lf-steps { margin-top: clamp(3rem, 6vw, 4.5rem); }
+.lf-steps ol { list-style: none; padding: 0; counter-reset: step; display: grid; gap: 1rem; margin: 1.2rem 0 2rem; max-width: 66ch; }
+.lf-steps li {
+  counter-increment: step; position: relative; padding-left: 2.6rem;
+  color: var(--ink-soft); line-height: 1.7;
+}
+.lf-steps li::before {
+  content: counter(step, decimal-leading-zero); position: absolute; left: 0; top: 0;
+  font-family: var(--serif); font-style: italic; color: var(--clay); font-size: 1.1rem;
+}
+.lf-steps strong { color: var(--ink); font-weight: 600; }
+
+/* ---------- Selling (dark band) ---------- */
+.lf-sell { background: var(--moss-deep); padding-block: var(--section-y); }
+.lf-sell__lede { color: rgba(245, 240, 225, .82); max-width: 56ch; margin-top: 1.1rem; }
+.lf-sell__h3 {
+  font-size: var(--fs-micro); font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--clay-light);
+}
+.lf-sell__list { display: grid; gap: .8rem; margin-top: 1.1rem; }
+.lf-sell__list li {
+  border-left: 2px solid var(--clay); padding-left: 1.2rem;
+  color: var(--parchment); font-size: var(--fs-small); line-height: 1.6;
+}
+.lf-sell__btn { margin-top: 1.8rem; }
+.lf-sell :focus-visible { outline-color: var(--parchment); }
+
+.lf-market { background: var(--white); padding-block: var(--section-y); }
+.lf-living { background: var(--off-white); padding-block: var(--section-y); }
+
+/* ---------- Client stories ---------- */
+.lf-stories { background: var(--parchment); padding-block: var(--section-y); }
+.lf-stories__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.5rem, 3vw, 2.5rem); }
+.lf-story {
+  margin: 0; background: var(--off-white); border: 1px solid var(--clay-light);
+  padding: clamp(1.8rem, 3vw, 2.6rem);
+}
+.lf-story p {
+  font-family: var(--serif); font-style: italic; font-size: clamp(1.15rem, 1rem + .5vw, 1.4rem);
+  line-height: 1.5; color: var(--ink);
+}
+.lf-story footer { margin-top: 1.4rem; display: grid; gap: .2rem; }
+.lf-story cite { font-style: normal; font-weight: 600; color: var(--ink); font-size: var(--fs-small); }
+.lf-story footer span {
+  font-size: var(--fs-micro); letter-spacing: .16em; text-transform: uppercase; color: var(--moss);
+}
+
+.lf-nearby { background: var(--white); }
+.lf-cta { padding-top: var(--section-y); }
+
+@media (max-width: 1023px) {
+  .lf-split { grid-template-columns: 1fr; }
+  .lf-cols { grid-template-columns: 1fr; }
+  .lf-stories__grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 639px) {
+  .lf-areas__list { grid-template-columns: 1fr; }
+  .lf-hero__ctas .btn, .lf-actions .btn { width: 100%; }
+}
