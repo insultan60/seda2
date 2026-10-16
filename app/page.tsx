@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import "./contact/contact.css";
+import HeroVideo from "./components/HeroVideo";
 import NewsletterForm from "./components/NewsletterForm";
 import StatsAwards from "./components/StatsAwards";
 import { LATEST_POSTS } from "./journal/data";
@@ -59,31 +60,7 @@ export default async function Home() {
     <main id="main">
       {/* 1 · HERO */}
       <section className="hero">
-        <video
-          className="hero__img"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          /* The poster is the film's own opening frame, not stock: it is what
-             shows while the video loads, and what stays up wherever autoplay
-             is refused (iOS Low Power Mode, data saver). An unrelated house
-             there flashed a different property before the film started. */
-          poster="/assets/intro-video-poster.webp"
-          aria-label="Introduction video — Alexandra Kerr, Los Angeles real estate"
-        >
-          {/* Portrait screens get a portrait cut (406x720). It is not a fixed
-              centre crop: the window moves shot by shot to keep Alexandra in
-              frame, because a centre crop cut her head off in the cafe shot,
-              where she stands left of centre. Selected by orientation rather
-              than width so a portrait iPad gets it too; object-fit:cover on
-              the landscape film showed it only the middle 42%. The browser
-              takes the first <source> whose media query matches, so this one
-              has to come first. */}
-          <source src="/assets/intro-video-mobile.mp4" type="video/mp4" media="(orientation: portrait)" />
-          <source src="/assets/intro-video.mp4" type="video/mp4" />
-        </video>
+        <HeroVideo />
         <div className="hero__scrim" aria-hidden="true"></div>
         <div className="hero__content">
           {/* Headline and subhead supplied verbatim by the client (Seda, Aug 2026).
