@@ -129,12 +129,15 @@ export default function RootLayout({
         {/* Sienna accessibility widget (free, MIT, no account), the same one
             Stefanie Pollack's site uses. Pinned to one version so the code
             running on every page cannot change without us choosing to update
-            it. It pins its own button to a bottom corner. Loaded here because
+            it. data-asw-position puts its button bottom-right (its default
+            is bottom-left, where it sat over the hero contact details on
+            phones). Loaded here because
             the root layout is not remounted on client-side navigation, so the
             widget and the settings a visitor picks survive every route change. */}
         <Script
           src="https://cdn.jsdelivr.net/npm/sienna-accessibility@2.2.333/dist/sienna-accessibility.umd.js"
           strategy="afterInteractive"
+          data-asw-position="bottom-right"
         />
       </body>
     </html>
