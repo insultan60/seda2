@@ -428,6 +428,9 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
   overflow: hidden; background: var(--moss-deep);
 }
 .hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* Fades in over the still of its own first frame once a frame is painted. */
+.hero__video { opacity: 0; transition: opacity 0.8s ease; }
+.hero__video.is-shown { opacity: 1; }
 /* neutral dark scrim @ 40% — green tint removed per client note */
 .hero__scrim {
   position: absolute; inset: 0;
