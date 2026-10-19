@@ -1,7 +1,8 @@
 /* ==========================================================================
-   Los Feliz — the first neighborhood page. Hero, intro, CTA band and the
-   nearby list come from ../neighborhoods.css (nb-); listing cards and the FAQ
-   from globals.css. Prefix: lf-
+   Neighborhood pages: Los Feliz, and the shared template in [area]/ for
+   Hancock Park, Silver Lake and the Hollywood Hills. Hero, CTA band and the
+   nearby list come from ./neighborhoods.css (nb-); listing cards and the FAQ
+   from globals.css. Prefix: lf-, from Los Feliz, the first of them.
    ========================================================================== */
 
 .lf-hero__ctas {
@@ -115,6 +116,41 @@
 .lf-story footer span {
   font-size: var(--fs-micro); letter-spacing: .16em; text-transform: uppercase; color: var(--moss);
 }
+
+/* ---------- Shared-template additions ([area]/page.tsx) ---------- */
+.lf-back {
+  display: inline-flex; align-items: center; gap: .5rem; margin-bottom: 1.4rem;
+  font-size: var(--fs-small); color: rgba(245, 240, 225, .82);
+}
+.lf-back:hover { color: var(--parchment); }
+.lf-trust__label {
+  margin-top: 1.8rem; font-size: var(--fs-micro); font-weight: 600;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--moss);
+}
+.lf-trust__label + .lf-trust { margin-top: .9rem; }
+.lf-checks {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  gap: clamp(1.5rem, 3vw, 3rem);
+}
+.lf-checks > div { border-top: 1px solid var(--clay); padding-top: 1.5rem; }
+.lf-check { display: grid; gap: .7rem; }
+.lf-check li {
+  position: relative; padding-left: 1.4rem; color: var(--ink-soft);
+  font-size: var(--fs-small); line-height: 1.65;
+}
+.lf-check li::before {
+  content: ""; position: absolute; left: 0; top: .6em;
+  width: 7px; height: 7px; border-radius: 50%; background: var(--clay);
+}
+.lf-after { color: var(--ink-soft); max-width: 66ch; margin-bottom: 1.6rem; }
+.lf-sales { margin-top: .4rem; border-top: 1px solid var(--clay-light); }
+.lf-sales li {
+  display: flex; justify-content: space-between; gap: 1rem; padding: .8rem 0;
+  border-bottom: 1px solid var(--clay-light); font-size: var(--fs-small);
+}
+.lf-sales a { color: var(--ink); }
+.lf-sales a:hover { color: var(--moss); }
+.lf-sales span { color: var(--ink-soft); white-space: nowrap; }
 
 .lf-nearby { background: var(--white); }
 .lf-cta { padding-top: var(--section-y); }

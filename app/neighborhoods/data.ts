@@ -61,6 +61,7 @@ export const FEATURED: Hood[] = [
     name: "Hollywood Hills",
     zips: ["90068", "90046"],
     match: "Hollywood Hills",
+    page: "/neighborhoods/hollywood-hills",
     blurb: "Mid-century glass, canyon quiet, and views above the city.",
     short: "Mid-century views above the city",
     homeBlurb:
@@ -76,6 +77,7 @@ export const FEATURED: Hood[] = [
   {
     name: "Silver Lake",
     zips: ["90026", "90039"],
+    page: "/neighborhoods/silver-lake",
     blurb: "Craftsman charm and creative energy around the reservoir.",
     short: "Craftsman charm, creative energy",
     homeBlurb:
@@ -92,6 +94,7 @@ export const FEATURED: Hood[] = [
     name: "Hancock Park",
     zips: ["90004", "90020"],
     match: "Hancock Park",
+    page: "/neighborhoods/hancock-park",
     blurb: "Wide streets, deep lots, and period homes held to a standard.",
     homeBlurb:
       "Wide streets, deep lots, and period homes in one of the few areas where the streetscape has been protected for a century.",
@@ -195,6 +198,23 @@ export function hoodLink(hood: Hood, listings: Listing[]) {
   if (active > 0) return { label: `${active} active listing${active === 1 ? "" : "s"}`, href: q };
   if (hood.zips?.length) return { label: "Homes for sale", href: mlsLink(hood) };
   return { label: "Search this area", href: q };
+}
+
+/**
+ * Her listings that belong on an area page.
+ *
+ * Hand-entered listings carry the neighborhood. MLS records for addresses the
+ * MLS calls plain "Los Angeles" do not, so those are placed by ZIP, but only
+ * by a ZIP no other named area uses: 90004 and 90020 are shared by Hancock
+ * Park and Windsor Square, and placing by them would put a Windsor Square
+ * sale on the Hancock Park page.
+ */
+export function listingsIn(hood: Hood, listings: Listing[]): Listing[] {
+  const key = hood.match ?? hood.name;
+  const others = [...FEATURED, ...ALSO_SERVING].filter((h) => h.name !== hood.name);
+  const ownZip = (zip?: string) =>
+    !!zip && !!hood.zips?.includes(zip) && !others.some((h) => h.zips?.includes(zip));
+  return listings.filter((l) => l.hood === key || (!l.hood && ownZip(l.zip)));
 }
 
 /** Anchor id for an area's write-up on /neighborhoods ("Hancock Park" ->

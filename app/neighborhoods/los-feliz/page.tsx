@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import FaqSection from "../../components/Faq";
-import { hasSpecs, locationLabel, priceLabel, type Listing } from "../../properties/data";
+import type { Listing } from "../../properties/data";
 import { getListings } from "../../properties/listings";
 import { TESTIMONIALS } from "../../testimonials/data";
 import { IDX, SITE_URL } from "../../site";
 import { FEATURED, hoodId, mlsLink } from "../data";
-import ListingTabs from "./ListingTabs";
+import ListingCards from "../ListingCards";
+import ListingTabs from "../ListingTabs";
 import "../neighborhoods.css";
-import "./los-feliz.css";
+import "../area.css";
 
 /* Copy from the October 2026 Los Feliz brief, which targets "los feliz real
    estate". The root layout's title template adds nothing, so the brand is
@@ -26,7 +26,6 @@ export const metadata: Metadata = {
 export const revalidate = 900;
 
 const d = (val: string) => ({ "--d": val }) as CSSProperties;
-const CARD_SIZES = "(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw";
 
 const LOS_FELIZ = FEATURED.find((h) => h.name === "Los Feliz")!;
 const SEARCH_URL = mlsLink(LOS_FELIZ);
@@ -107,33 +106,6 @@ const JSON_LD = {
   ],
 };
 
-function Cards({ items, sold }: { items: Listing[]; sold?: boolean }) {
-  return (
-    <div className={sold ? "sold__grid" : "listings__grid"}>
-      {items.map((l) => (
-        <article className={`listing${sold ? " listing--sold" : ""}`} key={l.slug}>
-          <figure className="listing__media">
-            <Image src={l.img} alt={[l.addr, l.city].filter(Boolean).join(", ")} fill sizes={CARD_SIZES} />
-            <span className={`badge ${l.badgeCls}`}>{l.badge}</span>
-          </figure>
-          <div className="listing__body">
-            <p className="listing__price">{priceLabel(l)}</p>
-            <h3 className="listing__addr">{l.addr}</h3>
-            <p className="listing__city">
-              {[locationLabel(l), hasSpecs(l) && `${l.beds} Bd · ${l.baths} Ba · ${l.sqft} Sq.Ft.`]
-                .filter(Boolean)
-                .join(" · ")}
-            </p>
-            <Link className="text-link listing__view" href={`/properties/${l.slug}`} aria-label={`View ${l.addr}`}>
-              View<i className="arrow" aria-hidden="true"></i>
-            </Link>
-          </div>
-        </article>
-      ))}
-    </div>
-  );
-}
-
 /* eslint-disable @next/next/no-img-element */
 export default async function LosFelizPage() {
   const listings = (await getListings()).filter(inLosFeliz);
@@ -210,10 +182,11 @@ export default async function LosFelizPage() {
           </div>
           <div className="reveal">
             <ListingTabs
+              label="Los Feliz listings"
               available={
                 <>
                   {active.length > 0 ? (
-                    <Cards items={active} />
+                    <ListingCards items={active} />
                   ) : (
                     <p className="lf-empty">
                       Alexandra has no Los Feliz listing of her own on the market this week. Every
@@ -232,7 +205,7 @@ export default async function LosFelizPage() {
                     Recent closed sales show what buyers actually paid, and how quickly homes moved,
                     on the streets you are considering.
                   </p>
-                  {sold.length > 0 && <Cards items={sold} sold />}
+                  {sold.length > 0 && <ListingCards items={sold} sold />}
                   <div className="lf-actions">
                     <Link className="btn btn--solid-moss" href="/properties">View Sold Los Feliz Homes</Link>
                     <a className="btn btn--outline-moss" href={IDX.signup}>Get New Los Feliz Listings</a>

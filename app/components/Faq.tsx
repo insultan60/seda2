@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { CSSProperties } from "react";
 
 export type FaqItem = { q: string; a: string };
@@ -19,11 +20,14 @@ export default function FaqSection({
   title,
   eyebrow = "FAQ",
   id = "faq",
+  cta,
 }: {
   items: readonly FaqItem[];
   title: string;
   eyebrow?: string;
   id?: string;
+  /** Optional button under the questions, e.g. "Ask Alexandra a Question". */
+  cta?: { label: string; href: string };
 }) {
   const jsonLd = {
     "@context": "https://schema.org",
@@ -55,6 +59,11 @@ export default function FaqSection({
             </details>
           ))}
         </div>
+        {cta && (
+          <div className="faq__cta reveal">
+            <Link className="btn btn--outline-moss" href={cta.href}>{cta.label}</Link>
+          </div>
+        )}
       </div>
       <script
         type="application/ld+json"

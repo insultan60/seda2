@@ -9,17 +9,26 @@ import { useId, useState, type ReactNode } from "react";
  * listings are in the HTML for crawlers and for anyone without the bundle.
  * Arrow keys move between tabs, per the WAI-ARIA tabs pattern.
  */
-export default function ListingTabs({ available, sold }: { available: ReactNode; sold: ReactNode }) {
+export default function ListingTabs({
+  available,
+  sold,
+  label,
+}: {
+  available: ReactNode;
+  sold: ReactNode;
+  /** Names the tab list for screen readers, e.g. "Los Feliz listings". */
+  label: string;
+}) {
   const [tab, setTab] = useState<0 | 1>(0);
   const id = useId();
   const tabs = ["Available", "Sold"] as const;
 
   return (
     <div className="lf-tabs">
-      <div className="lf-tabs__list" role="tablist" aria-label="Los Feliz listings">
-        {tabs.map((label, i) => (
+      <div className="lf-tabs__list" role="tablist" aria-label={label}>
+        {tabs.map((name, i) => (
           <button
-            key={label}
+            key={name}
             type="button"
             role="tab"
             id={`${id}-tab-${i}`}
@@ -35,7 +44,7 @@ export default function ListingTabs({ available, sold }: { available: ReactNode;
               document.getElementById(`${id}-tab-${next}`)?.focus();
             }}
           >
-            {label}
+            {name}
           </button>
         ))}
       </div>

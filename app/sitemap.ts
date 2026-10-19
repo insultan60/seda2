@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { POSTS } from "./journal/data";
+import { AREA_SLUGS } from "./neighborhoods/areas";
 import { getListings } from "./properties/listings";
 import { SITE_URL } from "./site";
 
@@ -24,6 +25,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/about", priority: 0.8, freq: "monthly" },
     { path: "/neighborhoods", priority: 0.8, freq: "monthly" },
     { path: "/neighborhoods/los-feliz", priority: 0.8, freq: "weekly" },
+    ...AREA_SLUGS.map((a) => ({ path: `/neighborhoods/${a}`, priority: 0.8, freq: "weekly" as const })),
     { path: "/contact", priority: 0.7, freq: "yearly" },
     { path: "/testimonials", priority: 0.7, freq: "monthly" },
     { path: "/relocation", priority: 0.7, freq: "monthly" },

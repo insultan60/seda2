@@ -916,6 +916,7 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 .faq__item[open] .faq__plus::after { transform: translateX(-50%) scaleY(0); }
 .faq__body { padding: 0 0 1.6rem; max-width: 82ch; }
 .faq__body p { line-height: 1.75; color: var(--ink-soft); }
+.faq__cta { margin-top: 2.2rem; }
 
 .closing { background: var(--white); padding-block: var(--section-y); text-align: center; }
 .closing .lede { margin-inline: auto; }
