@@ -22,8 +22,8 @@ import "../area.css";
 export const dynamicParams = false;
 export const generateStaticParams = () => AREA_SLUGS.map((area) => ({ area }));
 
-/* Listings come from the live MLS feed (cached fifteen minutes). */
-export const revalidate = 900;
+/* Listings come from the live MLS feed (cached for six hours). */
+export const revalidate = 21600;
 
 const d = (val: string) => ({ "--d": val }) as CSSProperties;
 

@@ -9,7 +9,7 @@ import "../properties.css";
 
 /* Pre-rendered for every listing known at build time; a listing that joins
    the MLS feed later renders on first request and is cached from then on. */
-export const revalidate = 900;
+export const revalidate = 21600;
 
 export async function generateStaticParams() {
   return (await getListings()).map((l) => ({ slug: l.slug }));

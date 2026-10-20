@@ -12,8 +12,8 @@ export const metadata: Metadata = {
     "A portfolio of Los Angeles homes with character — currently represented and recently sold by Alexandra Kerr, Estates Director at Compass.",
 };
 
-/* Live MLS listings are cached for fifteen minutes; the page follows suit. */
-export const revalidate = 900;
+/* Live MLS listings are cached for six hours; the page follows suit. */
+export const revalidate = 21600;
 
 /* Matches .pf-grid: 3-up on desktop, 2-up on tablet, 1-up on phones. */
 const CARD_SIZES = "(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw";

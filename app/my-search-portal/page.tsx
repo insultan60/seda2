@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "Your saved Los Angeles listings, kept on this device. Star any home on the site and it waits for you here — no account required.",
 };
 
-export const revalidate = 900;
+export const revalidate = 21600;
 
 export default async function SearchPortalPage() {
   const listings = await getListings();

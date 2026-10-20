@@ -70,7 +70,7 @@ const d = (val: string) => ({ "--d": val }) as CSSProperties;
 /* Recently Sold is capped too: with her MLS history connected there are
    dozens of closings, and the front page shows the six strongest sales
    (leases excluded) — the portfolio has the rest. */
-export const revalidate = 900;
+export const revalidate = 21600;
 
 /* Both card grids are 3-up on desktop, 2-up on tablet, 1-up on phones — this
    tells the browser that up front so it downloads a card-sized image instead of

@@ -6,8 +6,8 @@ import { photoPath } from "./photoProxy";
 
    IDX_BROKER_ACCESS_KEY never reaches the browser: pages fetch here on the
    server and pass plain Listing objects down. The feed is her account's
-   featured (active) listings plus its sold/pending history, cached for fifteen
-   minutes — the same cadence as the pages that render it.
+   featured (active) listings plus its sold/pending history, cached for six hours —
+   the same cadence as the pages that render it.
 
    Failure is soft. No key, IDX down, or a bad response returns null and the
    site falls back to the hand-entered listings in data.ts, so a feed outage
@@ -69,7 +69,7 @@ export const fetchIdxListings = unstable_cache(
     }
   },
   ["ak-idx-listings"],
-  { revalidate: 900, tags: ["idx-listings"] },
+  { revalidate: 21600, tags: ["idx-listings"] },
 );
 
 /* ------------------------------------------------------------ mapping */

@@ -22,8 +22,8 @@ export const metadata: Metadata = {
     "Alexandra Kerr is a Los Feliz real estate agent at Compass. Browse Los Feliz homes for sale, from Spanish Colonial to mid-century hillside homes.",
 };
 
-/* Listings and counts come from the live MLS feed (cached fifteen minutes). */
-export const revalidate = 900;
+/* Listings and counts come from the live MLS feed (cached for six hours). */
+export const revalidate = 21600;
 
 const d = (val: string) => ({ "--d": val }) as CSSProperties;
 

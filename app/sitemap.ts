@@ -12,7 +12,7 @@ import { SITE_URL } from "./site";
  * /my-search-portal is deliberately absent: it renders whatever this browser has
  * starred in localStorage, so there is nothing there for a crawler to index.
  */
-export const revalidate = 900;
+export const revalidate = 86400;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const listings = await getListings();

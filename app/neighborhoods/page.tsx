@@ -71,8 +71,8 @@ const BREADCRUMBS = {
 };
 
 /* eslint-disable @next/next/no-img-element */
-/* Tile counts come from the live MLS feed (cached fifteen minutes). */
-export const revalidate = 900;
+/* Tile counts come from the live MLS feed (cached for six hours). */
+export const revalidate = 21600;
 
 export default async function NeighborhoodsPage() {
   const listings = await getListings();
