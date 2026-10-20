@@ -56,7 +56,8 @@ export async function GET(request: Request) {
   const abs = (href: string) => (/^(https?:|mailto:|tel:|#)/.test(href) ? href : `${origin}${href}`);
   const a = (l: NavLink, cls = "") =>
     `<a${cls ? ` class="${cls}"` : ""} href="${esc(abs(l.href))}"${l.disabled ? ' aria-disabled="true"' : ""}>${esc(l.t)}</a>`;
-  const group = (g: DrawerGroup) => `
+  const group = (g: DrawerGroup) => g.href ? `
+      ${a({ t: g.label, href: g.href }, "drawer__item")}` : `
         <div class="drawer__group">
           <button class="drawer__item drawer__toggle" type="button" aria-expanded="false">${esc(g.label)}${CHEVRON}</button>
           <div class="drawer__sub">${g.sub.map((s) => a(s)).join("")}</div>

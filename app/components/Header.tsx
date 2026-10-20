@@ -77,19 +77,23 @@ export default function Header() {
           </button>
           <nav className="drawer__nav" aria-label="Full menu">
             <Link className="drawer__item" href="/">Home</Link>
-            {DRAWER_GROUPS.map((g) => (
-              <div className="drawer__group" key={g.label}>
-                <button className="drawer__item drawer__toggle" type="button" aria-expanded="false">
-                  {g.label}
-                  <Chevron />
-                </button>
-                <div className="drawer__sub">
-                  {g.sub.map((s) => (
-                    <a key={s.t} href={s.href} aria-disabled={s.disabled ? "true" : undefined}>{s.t}</a>
-                  ))}
+            {DRAWER_GROUPS.map((g) =>
+              g.href ? (
+                <Link key={g.label} className="drawer__item" href={g.href}>{g.label}</Link>
+              ) : (
+                <div className="drawer__group" key={g.label}>
+                  <button className="drawer__item drawer__toggle" type="button" aria-expanded="false">
+                    {g.label}
+                    <Chevron />
+                  </button>
+                  <div className="drawer__sub">
+                    {g.sub.map((s) => (
+                      <a key={s.t} href={s.href} aria-disabled={s.disabled ? "true" : undefined}>{s.t}</a>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ),
+            )}
             {DRAWER_ITEMS_MID.map((l) => (
               <Link key={l.t} className="drawer__item" href={l.href}>{l.t}</Link>
             ))}

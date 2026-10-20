@@ -7,7 +7,8 @@ import { IDX } from "../site";
    client module, and its exports can't be read as plain data on the server. */
 
 export type NavLink = { t: string; href: string; disabled?: boolean };
-export type DrawerGroup = { label: string; sub: NavLink[] };
+/** A drawer group with `href` and no `sub` is drawn as a plain link. */
+export type DrawerGroup = { label: string; href?: string; sub: NavLink[] };
 
 export const PRIMARY_LINKS: NavLink[] = [
   { t: "Portfolio", href: "/properties" },
@@ -20,17 +21,11 @@ export const PRIMARY_LINKS: NavLink[] = [
    and footer via /idx-wrapper. */
 export const DRAWER_GROUPS: DrawerGroup[] = [
   { label: "About", sub: [{ t: "Meet Alexandra", href: "/about" }, { t: "Testimonials", href: "/testimonials" }] },
-  {
-    label: "Home Search",
-    sub: [
-      { t: "Alexandra's Listings", href: "/home-search" },
-      { t: "Search The MLS", href: IDX.mapSearch },
-      { t: "Advanced Search", href: IDX.advancedSearch },
-      { t: "New Listing Alerts", href: IDX.emailAlerts },
-      { t: "My Saved Searches", href: IDX.account },
-      { t: "My Search Portal", href: "/my-search-portal" },
-    ],
-  },
+  /* One link, no sub-menu (client request). Search The MLS, New Listing
+     Alerts, My Search Portal and Sign In stay in the footer; Advanced
+     Search and My Saved Searches are reached from the MLS pages and the
+     IDX account. */
+  { label: "Home Search", href: "/home-search", sub: [] },
   {
     label: "Buyers",
     sub: [
@@ -62,8 +57,7 @@ export const DRAWER_ITEMS_MID: NavLink[] = [
    Header and the IDX wrapper render unchanged. */
 export const DRAWER_GROUPS_2: DrawerGroup[] = [];
 
-/* The journal is parked (journal/data.ts), and My Search Portal is already
-   in the Home Search group. */
+/* The journal is parked (journal/data.ts). */
 export const DRAWER_ITEMS_END: NavLink[] = [
   { t: "Let’s Connect", href: "/contact" },
   { t: "Sign In / Create Account", href: IDX.login },
