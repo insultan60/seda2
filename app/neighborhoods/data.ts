@@ -114,6 +114,7 @@ export const FEATURED: Hood[] = [
     name: "Windsor Square",
     zips: ["90004", "90020"],
     match: "Windsor Square",
+    page: "/neighborhoods/windsor-square",
     blurb: "Formal, tree-lined, and quietly grand, where homes often sell through relationships.",
     homeBlurb:
       "Formal and tree-lined, with slow turnover. Many homes sell through relationships before they reach the MLS.",
@@ -131,6 +132,7 @@ export const FEATURED: Hood[] = [
     name: "Sunset Strip",
     zips: ["90069"],
     match: "Sunset Strip",
+    page: "/neighborhoods/sunset-strip",
     blurb: "Cantilevered, city-facing homes with the shortest walk to the west side of the night.",
     homeBlurb:
       "Cantilevered, city-facing homes close to the west side’s nightlife. Prices follow view corridors and access.",

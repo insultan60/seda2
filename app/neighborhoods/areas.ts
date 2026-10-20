@@ -3,8 +3,8 @@ import type { FaqItem } from "../components/Faq";
 /**
  * Copy for the neighborhood pages that share one template
  * (app/neighborhoods/[area]/page.tsx), from the October 2026 content briefs.
- * Los Feliz came first and has its own page; these three follow the same
- * shape, so they are data rather than three copies of the markup.
+ * Los Feliz came first and has its own page; the rest follow the same
+ * shape, so they are data rather than copies of the markup.
  *
  * What was deliberately left out of the briefs, and why:
  *
@@ -17,8 +17,6 @@ import type { FaqItem } from "../components/Faq";
  *   from her own listing records.
  * - Client stories, unless a real testimonial from that area exists in
  *   app/testimonials/data.ts. The brief is explicit: no written-by-us quotes.
- * - Links to pages that do not exist yet (a Windsor Square page) point at
- *   that area's write-up in the Neighborhoods guide instead.
  */
 
 export type Checklist = { title: string; items: string[] };
@@ -39,6 +37,10 @@ export type AreaCopy = {
   selling: { h2: string; paras: string[] };
   market: { h2: string; paras: string[] };
   living: { h2: string; paras: string[]; zip: string };
+  /** Testimonial places, besides this area, whose quotes belong here (a
+   *  West Hollywood client on the Sunset Strip page). Shown under their own
+   *  place name, never relabelled as this area. */
+  storyPlaces?: string[];
   faqTitle: string;
   faqs: FaqItem[];
   nearby: Nearby[];
@@ -93,7 +95,7 @@ export const AREA_PAGES: Record<string, AreaCopy> = {
         {
           title: "Hancock Park and Windsor Square",
           paras: [
-            "Windsor Square sits to the east, and the two neighborhoods are often mentioned together. Hancock Park runs from Melrose Avenue to Wilshire Boulevard and from Highland Avenue to Rossmore Avenue, and it surrounds the Wilshire Country Club. For a closer look at its neighbor, see Windsor Square in our Los Angeles neighborhood guide.",
+            "Windsor Square sits to the east, and the two neighborhoods are often mentioned together. Hancock Park runs from Melrose Avenue to Wilshire Boulevard and from Highland Avenue to Rossmore Avenue, and it surrounds the Wilshire Country Club. For a closer look at its neighbor, see the Windsor Square page.",
           ],
         },
       ],
@@ -162,7 +164,7 @@ export const AREA_PAGES: Record<string, AreaCopy> = {
       },
       {
         q: "How is Hancock Park different from Windsor Square and Larchmont?",
-        a: "Windsor Square is a smaller historic neighborhood just to the east, and Larchmont is the village and shopping area nearby. Hancock Park is the larger area of period homes between Melrose and Wilshire that surrounds the Wilshire Country Club. Buyers often compare them, and our Los Angeles neighborhood guide covers Windsor Square too.",
+        a: "Windsor Square is a smaller historic neighborhood just to the east, and Larchmont is the village and shopping area nearby. Hancock Park is the larger area of period homes between Melrose and Wilshire that surrounds the Wilshire Country Club. Buyers often compare them, and the Windsor Square page covers it in more detail.",
       },
       {
         q: "How do I choose a real estate agent in Hancock Park?",
@@ -173,7 +175,7 @@ export const AREA_PAGES: Record<string, AreaCopy> = {
       {
         name: "Windsor Square",
         blurb: "A smaller historic neighborhood just east, with its own period homes and an active neighborhood association.",
-        href: "/neighborhoods#windsor-square",
+        href: "/neighborhoods/windsor-square",
       },
       {
         name: "Larchmont Village",
@@ -461,12 +463,350 @@ export const AREA_PAGES: Record<string, AreaCopy> = {
       {
         name: "Sunset Strip",
         blurb: "City-facing homes close to the west side’s nightlife.",
-        href: "/neighborhoods#sunset-strip",
+        href: "/neighborhoods/sunset-strip",
       },
     ],
     closing: {
       h2: "Talk to a Hollywood Hills Real Estate Agent",
       text: "Buying a home with a view, or selling one with a story, starts with a short conversation. Call (310) 795-1440 or send a message, and Alexandra will take it from there.",
+    },
+  },
+
+  "windsor-square": {
+    name: "Windsor Square",
+    title: "Windsor Square Real Estate Agent & Homes for Sale | Compass",
+    description:
+      "Windsor Square real estate agent Alexandra Kerr of Compass helps you buy or sell homes with character. See listings and the neighborhood guide.",
+    h1: "Windsor Square Real Estate Agent",
+    heroLine:
+      "Homes with character deserve an agent who knows them well. Alexandra Kerr, Estates Director at Compass, helps buyers and sellers across Windsor Square.",
+    intro: {
+      h2: "Windsor Square Real Estate",
+      paras: [
+        "Windsor Square is a planned neighborhood in central Los Angeles. It was subdivided in 1911 with large lots, deep front yards and wide, tree-lined parkways. Over a century later, that plan still shapes how it looks and feels.",
+        "Today, Windsor Square real estate is a mix of Period Revival, Craftsman and other classic homes on quiet, leafy streets. Larchmont Village is close by, so shops, cafes and everyday errands are never far away.",
+        "Alexandra Kerr is Estates Director at Compass, and she works with buyers and sellers who love homes with character. Whether you are looking at Windsor Square luxury real estate for the first time or ready to sell a home you have loved for years, she can guide you through each step.",
+      ],
+      trust: [
+        "Compass agent and Estates Director",
+        "Knows how period homes are built, priced and presented",
+        "Plain answers at every step, whether you are buying or selling",
+        "Exterior-review rules checked before you plan any work",
+      ],
+    },
+    listings: {
+      lead: "These Windsor Square, Los Angeles homes for sale update as new listings come to market. You will find Windsor Square houses for sale across a range of styles, from classic period homes to updated estates. Many are historic, so read the section on architecture below before you tour.",
+      empty: "No Windsor Square homes are listed right now. Sign up for alerts, or contact Alexandra and tell her what you are looking for, and you will hear about new listings as they appear.",
+    },
+    architecture: {
+      h2: "Architecture and Historic Homes in Windsor Square",
+      paras: [
+        "Windsor Square was built over several decades, and the architecture shows it. Windsor Square historic homes tend to sit on lots in proportion to the house, with deep landscaped setbacks, and many keep the original look of their street-facing facades.",
+      ],
+      sections: [
+        {
+          title: "The early homes",
+          paras: [
+            "The first homes include Craftsman designs and Beaux Arts or Classical Revival houses, built as the neighborhood’s large lots were first sold.",
+          ],
+        },
+        {
+          title: "Period Revival and later styles",
+          paras: [
+            "Later homes lean into Period Revival styles such as Spanish Colonial, Mediterranean, Tudor, English, French and American Colonial Revival. Some Contemporary and California Ranch homes are part of the mix too.",
+          ],
+        },
+        {
+          title: "The Windsor Square HPOZ",
+          paras: [
+            "The neighborhood has its own Historic Preservation Overlay Zone, known as the Windsor Square HPOZ. It comes with a Preservation Plan that guides changes to the outside of a home.",
+            "Each overlay zone has its own plan, so it is worth checking which one covers a home you are considering.",
+          ],
+        },
+      ],
+    },
+    buying: {
+      h2: "Buying a Home in Windsor Square",
+      paras: [
+        "If you want to buy a house in Windsor Square, a clear plan makes the search easier. Houses for sale in Windsor Square vary widely, so Alexandra helps you narrow things down to the street, style and condition that suit your life.",
+      ],
+      checklists: [
+        {
+          title: "How the process usually works",
+          items: [
+            "Talk it through. Share your goals, budget and timeline.",
+            "Set up your search. Get new listings sent to you as they come to market.",
+            "Tour homes. Look closely at condition, past updates and any approved work.",
+            "Make an offer. Plan the price and terms together.",
+            "Close and settle in. Alexandra stays with you until the keys are in your hand.",
+          ],
+        },
+        {
+          title: "Questions to ask about an older home",
+          items: [
+            "The age and condition of the roof, plumbing, electrical and foundation",
+            "Whether past changes to the house were approved",
+            "Whether exterior work you have in mind would need review, raised before you make an offer",
+          ],
+        },
+      ],
+      after: "Many Windsor Square homes date from the 1920s. Older does not mean a problem, but it does mean asking good questions, and Alexandra asks them with you.",
+    },
+    selling: {
+      h2: "Selling Your Windsor Square Home",
+      paras: [
+        "If you want to sell your house in Windsor Square, start with the price. Windsor Square home values depend on the street, the lot, the style and the condition, and no two homes are alike.",
+        "Homes with character reward careful presentation. The original details that buyers love should be easy to see in the photos, the listing and every showing. Buyers of historic homes often ask about the overlay zone and past work, so having approvals and records ready can help the sale go more smoothly.",
+        "Wondering how much your home is worth in Windsor Square? Request a home valuation and Alexandra will talk you through what recent sales suggest.",
+      ],
+    },
+    market: {
+      h2: "Windsor Square Real Estate Market",
+      paras: [
+        "The Windsor Square real estate market moves with the wider Los Angeles market, but each home is priced on its own merits. Windsor Square home prices vary with the lot, the style and the condition, so recent nearby sales tell you more than any single average.",
+        "A median home price can be a useful starting point. It should not be the only number you look at.",
+      ],
+    },
+    living: {
+      h2: "Living in Windsor Square, Los Angeles",
+      paras: [
+        "The Windsor Square neighborhood sits in central Los Angeles, in the Wilshire area. It is roughly bounded by Beverly Boulevard to the north, Wilshire Boulevard to the south, Arden Boulevard to the west and Van Ness Avenue to the east.",
+        "About 1,100 homes make up the neighborhood, according to the Windsor Square Association. The streets are wide and lined with trees, and many front yards are deep. An active neighborhood association helps keep that character in place.",
+        "Larchmont Village is close by, with local shops and restaurants for everyday errands. There are no schools within the neighborhood’s boundaries, so families should check which schools serve a specific address.",
+      ],
+      zip: "The Windsor Square ZIP code you will see most often is 90004. Some addresses use 90020, and areas near the edges use 90010. Always check the ZIP code for a specific address.",
+    },
+    faqTitle: "Windsor Square FAQ",
+    faqs: [
+      {
+        q: "Where is Windsor Square in Los Angeles?",
+        a: "Windsor Square is in central Los Angeles, in the Wilshire area, close to Hancock Park and Larchmont Village. It is roughly between Beverly Boulevard and Wilshire Boulevard, from Arden Boulevard to Van Ness Avenue.",
+      },
+      {
+        q: "What ZIP codes does Windsor Square cover?",
+        a: "Windsor Square addresses use 90004 and 90020, and some areas near the edges use 90010. Check the ZIP code for any specific address.",
+      },
+      {
+        q: "Is Windsor Square a good place to live?",
+        a: "Many people love it for the tree-lined streets, the large lots, the historic homes and the nearby shops of Larchmont Village. Whether it suits you depends on your budget and how you feel about owning an older home with exterior review rules. There are no schools within the neighborhood’s boundaries, so families should check the schools for a specific address.",
+      },
+      {
+        q: "How is Windsor Square different from Hancock Park?",
+        a: "They are neighbors, and both are historic Los Angeles neighborhoods. Each has its own Historic Preservation Overlay Zone and Preservation Plan, and many buyers search them together. Alexandra can show you homes in both, and the Hancock Park page covers that neighborhood in more detail.",
+      },
+      {
+        q: "How is Windsor Square different from Larchmont?",
+        a: "Larchmont Village is the village-style shopping and dining area close to Windsor Square. Windsor Square itself is a residential neighborhood of about 1,100 homes.",
+      },
+      {
+        q: "How much is my home worth in Windsor Square?",
+        a: "Value depends on the location, the lot, the style, the condition and recent nearby sales. Request a home valuation and Alexandra will walk you through it.",
+      },
+      {
+        q: "How do I choose a real estate agent in Windsor Square?",
+        a: "Look for local experience, a record of recent sales nearby and knowledge of historic homes. Ask how an agent would price and market your home, and ask to see examples of homes they have sold.",
+      },
+      {
+        q: "Do exterior changes to a Windsor Square home need approval?",
+        a: "In a Historic Preservation Overlay Zone, work on parts of a home that are visible from the street may need review. The Windsor Square Preservation Plan guides what is allowed. Check with the City before planning exterior work, and talk to Alexandra before you buy if you have renovation plans.",
+      },
+    ],
+    nearby: [
+      {
+        name: "Hancock Park",
+        blurb: "Right next door, with its own historic overlay zone and a similar leafy feel.",
+        href: "/neighborhoods/hancock-park",
+      },
+      {
+        name: "Los Feliz",
+        blurb: "Architect-designed homes and a village atmosphere.",
+        href: "/neighborhoods/los-feliz",
+      },
+      {
+        name: "Silver Lake",
+        blurb: "A mix of older homes around the reservoir and the surrounding hills.",
+        href: "/neighborhoods/silver-lake",
+      },
+      {
+        name: "Hollywood Hills",
+        blurb: "Hillside homes shaped by the land.",
+        href: "/neighborhoods/hollywood-hills",
+      },
+    ],
+    closing: {
+      h2: "Talk to a Windsor Square Real Estate Agent",
+      text: "Ready to buy, sell or just start exploring? Call (310) 795-1440 or send a message, and Alexandra will talk through your plans and answer your questions about Windsor Square.",
+    },
+  },
+
+  "sunset-strip": {
+    name: "Sunset Strip",
+    title: "Sunset Strip Real Estate Agent & Homes for Sale | Compass",
+    description:
+      "Sunset Strip real estate agent Alexandra Kerr of Compass guides buyers and sellers through West Hollywood condos and homes. See listings and the guide.",
+    h1: "Sunset Strip Real Estate Agent",
+    heroLine:
+      "The Sunset Strip is one of West Hollywood’s best-known addresses. Alexandra Kerr, Estates Director at Compass, helps buyers and sellers find the right place on it, or just above it.",
+    intro: {
+      h2: "Sunset Strip Real Estate",
+      paras: [
+        "The Sunset Strip is the stretch of Sunset Boulevard that runs through West Hollywood, between Los Angeles to the east and Beverly Hills to the west. It is best known as a lively boulevard. It is also a place where people live.",
+        "Sunset Strip West Hollywood real estate is a mix of condominium buildings, smaller multi-family buildings and some single-family homes. The hills just above the boulevard are a different market, and they are covered on the Hollywood Hills page.",
+        "Alexandra Kerr, Estates Director at Compass, works with clients who want more than a standard listing. For anyone exploring Sunset Strip luxury real estate, she helps you compare buildings, streets and prices, then choose with confidence.",
+      ],
+      trust: [
+        "Compass agent and Estates Director",
+        "Buildings, streets and prices compared side by side",
+        "Paperwork read with you, not handed to you",
+        "One point of contact from first showing to closing",
+      ],
+    },
+    listings: {
+      lead: "Browse current Sunset Strip homes for sale below, from units in the area’s buildings to Sunset Strip houses for sale and luxury homes on the surrounding streets. Want a house in the hills above the Strip instead? The Hollywood Hills page covers that market.",
+      empty: "No Sunset Strip homes are listed right now. Sign up for alerts and you will hear first when one comes to market.",
+    },
+    architecture: {
+      h2: "Architecture Around the Sunset Strip",
+      paras: [
+        "Sunset Strip architecture is mostly about buildings, not single estates. Listings in the area include condominium buildings of different ages and sizes, townhouses, small multi-family buildings and some houses.",
+      ],
+      sections: [
+        {
+          title: "Condominium buildings",
+          paras: [
+            "Much of what comes up for sale is in the area’s buildings, which range widely in age and size. The building matters as much as the unit inside it.",
+          ],
+        },
+        {
+          title: "Houses and townhouses",
+          paras: [
+            "Townhouses, small multi-family buildings and some single-family houses sit on the streets around the boulevard. They come up less often than units in the buildings.",
+          ],
+        },
+        {
+          title: "What to look at when you tour",
+          paras: [
+            "Look beyond the unit. Check the building’s age, its upkeep and what the owners’ association covers.",
+          ],
+        },
+      ],
+    },
+    buying: {
+      h2: "Buying Near the Sunset Strip",
+      paras: [
+        "If you want to buy a house in Sunset Strip, the options are fewer than the condo market, so it helps to know early what you want. Houses for sale in Sunset Strip come up less often than units in the area’s buildings. Alexandra can tell you what is realistic for your budget and timeline.",
+      ],
+      checklists: [
+        {
+          title: "Check the location",
+          items: [
+            "Visit at different times of day, not just once",
+            "Check noise, parking and access for yourself",
+            "Walk the block: every block near the boulevard feels different",
+          ],
+        },
+        {
+          title: "Check the building",
+          items: [
+            "The building’s age and how well it has been kept up",
+            "What the owners’ association covers, and its fees and rules",
+            "Any planned projects that could affect owners",
+          ],
+        },
+      ],
+      after: "This is a busy, central area. Alexandra helps you weigh the location and the building alongside the home itself.",
+    },
+    selling: {
+      h2: "Selling Your Sunset Strip Home",
+      paras: [
+        "If you want to sell your house in Sunset Strip, or a unit in one of its buildings, price is only part of the story. Buyers also look at the location, the building and the details of your home. Sunset Strip home values can differ a lot from one building or street to the next.",
+        "For a unit in a building, buyers will ask about fees, rules and the health of the building. Having your documents ready early can keep a sale moving.",
+        "Not sure where you stand? Request a home valuation and Alexandra will walk you through what recent nearby sales suggest.",
+      ],
+    },
+    market: {
+      h2: "Sunset Strip Real Estate Market",
+      paras: [
+        "The Sunset Strip real estate market is shaped by its mix of condos, townhouses and a smaller number of houses. Because those property types sell differently, one price figure rarely tells the whole story.",
+        "When you look at Sunset Strip home prices, compare like with like. A condo in one building is not a good guide to a house on another street. Recent nearby sales help most.",
+      ],
+    },
+    living: {
+      h2: "Living Near the Sunset Strip, West Hollywood",
+      paras: [
+        "The Sunset Strip neighborhood sits inside the city of West Hollywood, which became its own city in 1984. Before that, the area was part of unincorporated Los Angeles County.",
+        "Day to day, this is an urban way to live. Restaurants, shops and the boulevard itself are close at hand, and the hills rise just to the north. Residents choose it for the location and the lifestyle.",
+      ],
+      zip: "The Sunset Strip ZIP code is 90069. Some streets just above the boulevard use a Los Angeles mailing address with the same ZIP code. Always check the ZIP code for a specific address.",
+    },
+    /* The West Hollywood client quote is the nearest real one; the page
+       labels it West Hollywood, not Sunset Strip. */
+    storyPlaces: ["West Hollywood"],
+    faqTitle: "Sunset Strip FAQ",
+    faqs: [
+      {
+        q: "Is the Sunset Strip in Los Angeles or West Hollywood?",
+        a: "The Sunset Strip is the stretch of Sunset Boulevard inside the city of West Hollywood. It sits between the city of Los Angeles on the east and Beverly Hills on the west. Some streets in the hills just above have a Los Angeles mailing address.",
+      },
+      {
+        q: "What ZIP code is the Sunset Strip in?",
+        a: "The Sunset Strip ZIP code is 90069, including some Los Angeles mailing addresses in the hills above. Check the ZIP code for a specific address.",
+      },
+      {
+        q: "Is the Sunset Strip a good place to live?",
+        a: "It suits people who like an urban, central setting with the hills close by. It may not suit those who want a quiet street. Visit at different times of day before you decide.",
+      },
+      {
+        q: "Are there houses or condos for sale on the Sunset Strip?",
+        a: "Both, but condos make up much of what is for sale. You may also see townhouses and some houses on nearby streets. Alexandra can show you what fits your budget.",
+      },
+      {
+        q: "How is the Sunset Strip different from the Hollywood Hills?",
+        a: "The Strip is the boulevard and the buildings around it. The Hollywood Hills are the hillside streets and houses above. They are close together but different markets, and the Hollywood Hills page covers that one.",
+      },
+      {
+        q: "How is the Sunset Strip different from the rest of West Hollywood?",
+        a: "The Sunset Strip is one stretch of Sunset Boulevard. West Hollywood is the whole city around it.",
+      },
+      {
+        q: "How much is my home worth near the Sunset Strip?",
+        a: "Value depends on the property type, the building or street, the condition and recent nearby sales. Request a home valuation and Alexandra will walk you through it.",
+      },
+      {
+        q: "How do I choose a real estate agent near the Sunset Strip?",
+        a: "Look for local experience, a record of recent sales nearby and a clear plan for pricing and marketing. If you are buying in a building, ask how the agent reviews the building’s documents.",
+      },
+    ],
+    nearby: [
+      {
+        name: "Hollywood Hills",
+        blurb: "The hillside streets above the Strip, with their own market.",
+        href: "/neighborhoods/hollywood-hills",
+      },
+      {
+        name: "Hancock Park",
+        blurb: "Historic homes in central Los Angeles.",
+        href: "/neighborhoods/hancock-park",
+      },
+      {
+        name: "Windsor Square",
+        blurb: "A planned neighborhood near Hancock Park.",
+        href: "/neighborhoods/windsor-square",
+      },
+      {
+        name: "Los Feliz",
+        blurb: "Architect-designed homes and a village atmosphere.",
+        href: "/neighborhoods/los-feliz",
+      },
+      {
+        name: "Silver Lake",
+        blurb: "Older homes around the reservoir.",
+        href: "/neighborhoods/silver-lake",
+      },
+    ],
+    closing: {
+      h2: "Work With a Sunset Strip Real Estate Agent",
+      text: "Whether you are weighing a condo, a house or a sale, Alexandra can help you plan the next step. Call (310) 795-1440 or send a message and tell her what you have in mind.",
     },
   },
 };

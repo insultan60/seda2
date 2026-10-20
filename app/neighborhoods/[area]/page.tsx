@@ -15,7 +15,8 @@ import "../neighborhoods.css";
 import "../area.css";
 
 /**
- * Hancock Park, Silver Lake and the Hollywood Hills: one template, filled
+ * Hancock Park, Silver Lake, the Hollywood Hills, Windsor Square and the
+ * Sunset Strip: one template, filled
  * from ./areas.ts. Los Feliz has its own folder, which Next matches before
  * this one. Only the slugs in AREA_PAGES exist; anything else is a 404.
  */
@@ -59,7 +60,8 @@ export default async function AreaPage({ params }: { params: Promise<{ area: str
   const sold = listings.filter((l) => l.status === "Sold" && !l.lease);
   /* Only real quotes from clients in this area; the section is left out
      when there are none, as the brief asks. */
-  const stories = TESTIMONIALS.filter((t) => t.place === name);
+  const places = [name, ...(copy.storyPlaces ?? [])];
+  const stories = TESTIMONIALS.filter((t) => places.includes(t.place));
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -297,7 +299,7 @@ export default async function AreaPage({ params }: { params: Promise<{ area: str
                   <p>&ldquo;{t.quote}&rdquo;</p>
                   <footer>
                     <cite>{t.cite}</cite>
-                    <span>{t.type}, {name}</span>
+                    <span>{t.type}, {t.place}</span>
                   </footer>
                 </blockquote>
               ))}
