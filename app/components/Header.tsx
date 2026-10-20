@@ -79,7 +79,11 @@ export default function Header() {
             <Link className="drawer__item" href="/">Home</Link>
             {DRAWER_GROUPS.map((g) =>
               g.href ? (
-                <Link key={g.label} className="drawer__item" href={g.href}>{g.label}</Link>
+                isExternal(g.href) ? (
+                  <a key={g.label} className="drawer__item" href={g.href}>{g.label}</a>
+                ) : (
+                  <Link key={g.label} className="drawer__item" href={g.href}>{g.label}</Link>
+                )
               ) : (
                 <div className="drawer__group" key={g.label}>
                   <button className="drawer__item drawer__toggle" type="button" aria-expanded="false">

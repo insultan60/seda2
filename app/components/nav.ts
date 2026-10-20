@@ -21,35 +21,25 @@ export const PRIMARY_LINKS: NavLink[] = [
    and footer via /idx-wrapper. */
 export const DRAWER_GROUPS: DrawerGroup[] = [
   { label: "About", sub: [{ t: "Meet Alexandra", href: "/about" }, { t: "Testimonials", href: "/testimonials" }] },
-  /* One link, no sub-menu (client request). Search The MLS, New Listing
-     Alerts, My Search Portal and Sign In stay in the footer; Advanced
-     Search and My Saved Searches are reached from the MLS pages and the
-     IDX account. */
+  /* Everything else is a plain link (client request). Home Search used to
+     open six MLS and account links: Search The MLS, New Listing Alerts, My
+     Search Portal and Sign In stay in the footer, and Advanced Search and
+     My Saved Searches are reached from the MLS pages and the IDX account.
+     Buyers and Sellers were only folders with no page of their own, so
+     their links sit here directly. */
+  { label: "Portfolio", href: "/properties", sub: [] },
   { label: "Home Search", href: "/home-search", sub: [] },
-  {
-    label: "Buyers",
-    sub: [
-      { t: "Neighborhoods", href: "/neighborhoods" },
-      { t: "Relocation", href: "/relocation" },
-      { t: "Market Reports", href: IDX.marketReports },
-      { t: "Mortgage Calculator", href: IDX.mortgage },
-    ],
-  },
-  {
-    label: "Sellers",
-    sub: [
-      { t: "Home Valuation", href: "/home-valuation" },
-      { t: "Compass Concierge", href: "/compass-concierge" },
-    ],
-  },
+  { label: "Neighborhoods", href: "/neighborhoods", sub: [] },
+  { label: "Relocation", href: "/relocation", sub: [] },
+  { label: "Home Valuation", href: "/home-valuation", sub: [] },
+  { label: "Compass Concierge", href: "/compass-concierge", sub: [] },
+  { label: "Market Reports", href: IDX.marketReports, sub: [] },
+  { label: "Mortgage Calculator", href: IDX.mortgage, sub: [] },
 ];
 
-/** Plain drawer entries that sit between the two sets of groups. Each link
- *  appears once in the drawer: Home Valuation and Neighborhoods live in the
- *  Sellers and Buyers groups above, so they are not repeated here. */
-export const DRAWER_ITEMS_MID: NavLink[] = [
-  { t: "Portfolio", href: "/properties" },
-];
+/** Plain drawer entries that sit between the two sets of groups. Empty now:
+ *  Portfolio moved into DRAWER_GROUPS to keep the menu in reading order. */
+export const DRAWER_ITEMS_MID: NavLink[] = [];
 
 /* Compass Services repeated Compass Concierge from Sellers, and Private
    Exclusives had no page behind it. Kept as an empty slot so the Header
