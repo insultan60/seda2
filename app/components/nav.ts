@@ -40,7 +40,6 @@ export const DRAWER_GROUPS: DrawerGroup[] = [
     sub: [
       { t: "Home Valuation", href: "/home-valuation" },
       { t: "Compass Concierge", href: "/compass-concierge" },
-      { t: "Private Exclusives", href: "#", disabled: true },
     ],
   },
 ];
@@ -52,9 +51,9 @@ export const DRAWER_ITEMS_MID: NavLink[] = [
   { t: "Portfolio", href: "/properties" },
 ];
 
-/* Compass Services repeated Compass Concierge from Sellers; Private
-   Exclusives moved into Sellers with it. Kept as an empty slot so the
-   Header and the IDX wrapper render unchanged. */
+/* Compass Services repeated Compass Concierge from Sellers, and Private
+   Exclusives had no page behind it. Kept as an empty slot so the Header
+   and the IDX wrapper render unchanged. */
 export const DRAWER_GROUPS_2: DrawerGroup[] = [];
 
 /* The journal is parked (journal/data.ts). */
