@@ -12,8 +12,8 @@ export type DrawerGroup = { label: string; sub: NavLink[] };
 export const PRIMARY_LINKS: NavLink[] = [
   { t: "Portfolio", href: "/properties" },
   { t: "Home Search", href: "/home-search" },
+  { t: "Neighborhoods", href: "/neighborhoods" },
   { t: "Relocation", href: "/relocation" },
-  { t: "The Latest Real Estate News", href: "/journal" },
 ];
 
 /* MLS entries open IDX Broker's hosted pages, which wear this site's header
@@ -40,24 +40,32 @@ export const DRAWER_GROUPS: DrawerGroup[] = [
       { t: "Mortgage Calculator", href: IDX.mortgage },
     ],
   },
-  { label: "Sellers", sub: [{ t: "Home Valuation", href: "/home-valuation" }, { t: "Compass Concierge", href: "/compass-concierge" }] },
+  {
+    label: "Sellers",
+    sub: [
+      { t: "Home Valuation", href: "/home-valuation" },
+      { t: "Compass Concierge", href: "/compass-concierge" },
+      { t: "Private Exclusives", href: "#", disabled: true },
+    ],
+  },
 ];
 
-/** Plain drawer entries that sit between the two sets of groups. */
+/** Plain drawer entries that sit between the two sets of groups. Each link
+ *  appears once in the drawer: Home Valuation and Neighborhoods live in the
+ *  Sellers and Buyers groups above, so they are not repeated here. */
 export const DRAWER_ITEMS_MID: NavLink[] = [
   { t: "Portfolio", href: "/properties" },
-  { t: "Home Valuation", href: "/home-valuation" },
-  { t: "Neighborhoods", href: "/neighborhoods" },
 ];
 
-export const DRAWER_GROUPS_2: DrawerGroup[] = [
-  { label: "Compass Services", sub: [{ t: "Compass Concierge", href: "/compass-concierge" }, { t: "Private Exclusives", href: "#", disabled: true }] },
-];
+/* Compass Services repeated Compass Concierge from Sellers; Private
+   Exclusives moved into Sellers with it. Kept as an empty slot so the
+   Header and the IDX wrapper render unchanged. */
+export const DRAWER_GROUPS_2: DrawerGroup[] = [];
 
+/* The journal is parked (journal/data.ts), and My Search Portal is already
+   in the Home Search group. */
 export const DRAWER_ITEMS_END: NavLink[] = [
-  { t: "The Latest Real Estate News", href: "/journal" },
   { t: "Let’s Connect", href: "/contact" },
-  { t: "My Search Portal", href: "/my-search-portal" },
   { t: "Sign In / Create Account", href: IDX.login },
 ];
 
@@ -65,7 +73,6 @@ export const FOOTER_EXPLORE: NavLink[] = [
   { t: "About Alexandra", href: "/about" },
   { t: "Portfolio", href: "/properties" },
   { t: "Neighborhoods", href: "/neighborhoods" },
-  { t: "Journal", href: "/journal" },
 ];
 
 export const FOOTER_RESOURCES: NavLink[] = [

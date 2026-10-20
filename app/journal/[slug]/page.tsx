@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import { POSTS, getPost, readingTime, relatedPosts } from "../data";
+import { notFound, redirect } from "next/navigation";
+import { JOURNAL_LIVE, POSTS, getPost, readingTime, relatedPosts } from "../data";
 import ShareRow from "./ShareRow";
 import "../journal.css";
 import "./article.css";
@@ -22,6 +22,7 @@ export async function generateMetadata({
     title: `${post.title} — Alexandra Kerr | Los Angeles Real Estate`,
     description: post.excerpt,
     alternates: { canonical: `/journal/${slug}` },
+    ...(JOURNAL_LIVE ? {} : { robots: { index: false, follow: true } }),
   };
 }
 
@@ -34,6 +35,8 @@ const BackArrow = () => (
 /* eslint-disable @next/next/no-img-element */
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  // Parked: next.config.ts already redirects these; this is the fallback.
+  if (!JOURNAL_LIVE) redirect("/journal");
   const post = getPost(slug);
   if (!post) notFound();
 

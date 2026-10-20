@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { POSTS } from "./data";
+import { JOURNAL_LIVE, POSTS } from "./data";
 import "./journal.css";
 
 export const metadata: Metadata = {
@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   title: "The Latest Real Estate News — Alexandra Kerr | Los Angeles",
   description:
     "Market notes, buying and selling guidance, and home information for Los Angeles — from Alexandra Kerr, Estates Director at Compass.",
+  // A coming-soon panel is not a page worth indexing (see JOURNAL_LIVE).
+  ...(JOURNAL_LIVE ? {} : { robots: { index: false, follow: true } }),
 };
 
 /**
@@ -46,7 +48,26 @@ export default function JournalPage() {
         </div>
       </section>
 
+      {/* ---------- COMING SOON (while JOURNAL_LIVE is false) ---------- */}
+      {!JOURNAL_LIVE && (
+        <section className="jr-feed">
+          <div className="container jr-soon reveal">
+            <p className="eyebrow">Coming Soon</p>
+            <h2 className="h2">The journal is on its way.</h2>
+            <p className="jr-soon__text">
+              Market notes, neighborhood guides and plain-English reads on the Los Angeles market are being
+              written now. In the meantime, Alexandra is happy to answer any question directly.
+            </p>
+            <div className="jr-soon__actions">
+              <Link className="btn btn--solid-moss" href="/contact">Ask Alexandra</Link>
+              <Link className="btn btn--outline-moss" href="/neighborhoods">Explore Neighborhoods</Link>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ---------- FEED ---------- */}
+      {JOURNAL_LIVE && (
       <section className="jr-feed">
         <div className="container">
           <div className="jr-masonry">
@@ -86,6 +107,7 @@ export default function JournalPage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* ---------- NEWSLETTER CTA ---------- */}
       <section className="jr-cta">

@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { JOURNAL_LIVE } from "./app/journal/live";
 
 const nextConfig: NextConfig = {
   images: {
@@ -31,6 +32,13 @@ const nextConfig: NextConfig = {
         headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
       },
     ];
+  },
+  /* The journal is parked behind a coming-soon page (app/journal/live.ts).
+     A real 307 here, not the page's own redirect(): the articles are
+     prebuilt, and a prebuilt page can only redirect with a meta refresh
+     after the article has already loaded. Temporary, as the posts return. */
+  async redirects() {
+    return JOURNAL_LIVE ? [] : [{ source: "/journal/:slug", destination: "/journal", permanent: false }];
   },
 };
 

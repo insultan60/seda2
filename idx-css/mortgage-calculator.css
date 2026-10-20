@@ -1,0 +1,364 @@
+/* ==========================================================================
+   IDX Broker — Mortgage Calculator (Pages > Listing > Mortgage Calculator)
+   Alexandra Kerr / aklahomes.com brand: moss, parchment, clay;
+   Cormorant Garamond headings, DM Sans text (both loaded by the wrapper).
+   Paste into BOTH the Desktop and Mobile tabs; the phone layout is in the
+   media query at the bottom.
+   ========================================================================== */
+
+#IDX-mortgageCalculatorContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 0 3rem;
+  font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+  color: #1C1C1A;
+}
+
+/* ---------- Page heading ---------- */
+#IDX-mortgageCalculatorContainer #IDX-mortgageCalculatorHeader {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(2.2rem, 1.6rem + 2vw, 3.2rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: #1C1C1A;
+  margin: 0 0 2.4rem;
+  padding: 0;
+  border: 0;
+}
+#IDX-mortgageCalculatorContainer #IDX-mortgageCalculatorHeader::before {
+  content: "Plan Your Purchase";
+  display: block;
+  margin-bottom: .9rem;
+  font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #4F5847;
+}
+
+/* ---------- Two-column layout ---------- */
+#IDX-mortgageCalculatorContainer .idx-mortgage-calculator {
+  display: grid;
+  grid-template-columns: minmax(300px, 380px) minmax(0, 1fr);
+  gap: 1.75rem;
+  align-items: start;
+  font-family: inherit;
+  margin: 0 !important;
+  background: transparent;
+  color: #1C1C1A;
+}
+#IDX-mortgageCalculatorContainer .idx-mortgage-calculator > * {
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  float: none !important;
+}
+
+/* ---------- Form card ---------- */
+#IDX-mortgageCalculatorContainer .idx-input-form {
+  gap: 0;
+  background: #FFFFFF;
+  border: 1px solid #DED2BD;
+  padding: 2rem 1.8rem 1.8rem;
+}
+#IDX-mortgageCalculatorContainer .idx-calculator-header {
+  display: block;
+  margin: 0 0 1.4rem;
+  padding: 0 0 .9rem;
+  border-bottom: 1px solid #DED2BD;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #1C1C1A;
+  background: none;
+  text-transform: none;
+  letter-spacing: 0;
+}
+#IDX-mortgageCalculatorContainer .idx-form-group { margin: 0 0 1.15rem; flex-grow: 0; }
+#IDX-mortgageCalculatorContainer .idx-form-group:empty,
+#IDX-mortgageCalculatorContainer .idx-form-group:not(:has(label, input)) { display: none; }
+#IDX-mortgageCalculatorContainer .idx-form-group > label {
+  display: block;
+  margin: 0 0 .45rem;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #55534C;
+}
+#IDX-mortgageCalculatorContainer .idx-form-group > label abbr {
+  text-decoration: none;
+  border: 0;
+  cursor: help;
+}
+
+/* Inputs: one bordered field, the $ / % / Years add-ons sitting inside it */
+#IDX-mortgageCalculatorContainer .idx-input-group {
+  display: flex;
+  align-items: stretch;
+  margin: 0;
+  background: #FAFAF5;
+  border: 1px solid #DED2BD;
+  border-radius: 0;
+  transition: border-color 180ms ease, background-color 180ms ease;
+}
+#IDX-mortgageCalculatorContainer .idx-input-group:focus-within,
+#IDX-mortgageCalculatorContainer .idx-input-group.idx-input--focused {
+  border-color: #4F5847;
+  background: #FFFFFF;
+}
+#IDX-mortgageCalculatorContainer .idx-input-group--error { border-color: #A04040; }
+#IDX-mortgageCalculatorContainer .idx-form-control {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 46px;
+  padding: 0 .85rem;
+  border: 0 !important;
+  border-radius: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-family: inherit;
+  font-size: 1rem;
+  color: #1C1C1A;
+}
+#IDX-mortgageCalculatorContainer .idx-form-control:focus { outline: none; }
+#IDX-mortgageCalculatorContainer .idx-form-control:disabled { color: #55534C; }
+#IDX-mortgageCalculatorContainer .idx-input-group-text {
+  display: flex;
+  align-items: center;
+  padding: 0 .85rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  font-size: .85rem;
+  color: #55534C;
+}
+#IDX-mortgageCalculatorContainer .idx-input-group-prepend { padding-right: 0; }
+#IDX-mortgageCalculatorContainer .idx-input-group-append { padding-left: 0; }
+
+/* Down payment: amount and percent side by side, one line */
+#IDX-mortgageCalculatorContainer .idx-down-payment-group {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 96px;
+  gap: .6rem;
+}
+
+/* Mortgage insurance checkbox */
+#IDX-mortgageCalculatorContainer .idx-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  margin-top: .7rem;
+  cursor: pointer;
+}
+#IDX-mortgageCalculatorContainer .idx-checkbox-label__custom {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #CBBBA0;
+  border-radius: 0;
+  background: #FFFFFF;
+}
+#IDX-mortgageCalculatorContainer .idx-checkbox-label__text {
+  font-size: .82rem;
+  line-height: 1.4;
+  color: #55534C;
+}
+
+/* Calculate */
+#IDX-mortgageCalculatorContainer .idx-button--row { margin-top: 1.4rem; }
+#IDX-mortgageCalculatorContainer .idx-btn.idx-button-bottom { margin-top: 0; height: auto; filter: none; }
+#IDX-mortgageCalculatorContainer .idx-btn.idx-btn-primary {
+  display: block;
+  width: 100%;
+  min-height: 52px;
+  padding: .9rem 1.4rem;
+  border: 1px solid #4F5847;
+  border-radius: 0;
+  background: #4F5847;
+  box-shadow: none;
+  color: #F5F0E1;
+  font-family: inherit;
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+#IDX-mortgageCalculatorContainer .idx-btn.idx-btn-primary:hover,
+#IDX-mortgageCalculatorContainer .idx-btn.idx-btn-primary:focus {
+  background: #3A4233;
+  border-color: #3A4233;
+  color: #F5F0E1;
+}
+#IDX-mortgageCalculatorContainer .idx-btn.idx-btn-primary:focus-visible {
+  outline: 2px solid #CBBBA0;
+  outline-offset: 3px;
+}
+
+/* ---------- Results card ---------- */
+#IDX-mortgageCalculatorContainer .idx-tab-container {
+  padding: 0;
+  background: #FFFFFF;
+  border: 1px solid #DED2BD;
+  border-radius: 0;
+  box-shadow: none;
+}
+#IDX-mortgageCalculatorContainer .idx-tab-container__header {
+  background: none;
+  border: 0;
+  padding: 0 2rem;
+}
+#IDX-mortgageCalculatorContainer .idx-tab-container__header-top:empty,
+#IDX-mortgageCalculatorContainer .idx-tab-container__title:empty { display: none; }
+#IDX-mortgageCalculatorContainer .idx-tab-container__tabs {
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid #DED2BD;
+  width: 100%;
+  height: auto;
+  justify-content: flex-start;
+}
+#IDX-mortgageCalculatorContainer .idx-tab-container__tab {
+  flex: 0 0 auto;
+  margin: 0 0 -1px;
+  padding: 1.3rem 0 1rem;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: none;
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #55534C;
+  cursor: pointer;
+}
+#IDX-mortgageCalculatorContainer .idx-tab-container__tab--active {
+  color: #4F5847;
+  border-bottom-color: #4F5847;
+  background: none;
+}
+#IDX-mortgageCalculatorContainer .idx-tab-container__body {
+  padding: 2rem;
+  border: 0;
+}
+
+/* The total: a dark moss panel, the amount set large in the serif */
+#IDX-mortgageCalculatorContainer .idx-tab-content__header {
+  margin: 0 0 2rem;
+  padding: 0;
+  background: none;
+}
+#IDX-mortgageCalculatorContainer .idx-tab-content__total {
+  margin: 0;
+  padding: 2rem 2.2rem;
+  background: #3A4233;
+  color: rgba(245, 240, 225, .78);
+  font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  text-align: left;
+  line-height: 1.4;
+}
+#IDX-mortgageCalculatorContainer .idx-tab-content__total span {
+  display: block;
+  margin-top: .5rem;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.6rem, 2rem + 2vw, 3.6rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  line-height: 1;
+  color: #F5F0E1;
+}
+
+/* Breakdown table and chart side by side */
+#IDX-mortgageCalculatorContainer .idx-tab-content__graph-table {
+  align-items: center;
+}
+#IDX-mortgageCalculatorContainer .idx-tab-content__table-item {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  padding: 1rem 0;
+  border: 0;
+  border-bottom: 1px solid #DED2BD;
+}
+#IDX-mortgageCalculatorContainer .idx-tab-content__table-item:first-child {
+  border-top: 1px solid #DED2BD;
+}
+#IDX-mortgageCalculatorContainer .idx-tab-content__table-label {
+  flex: 1 1 auto;
+  font-size: .95rem;
+  color: #55534C;
+  justify-content: flex-start;
+  text-align: left;
+}
+#IDX-mortgageCalculatorContainer .idx-tab-content__table-value {
+  font-size: .95rem;
+  font-weight: 600;
+  color: #1C1C1A;
+}
+
+/* The chart is drawn by Chart.js in IDX's blue, which CSS cannot recolour
+   directly. The same filter on the chart and on the legend dots turns the
+   blue into the site's moss and keeps every slice matched to its dot. */
+#IDX-mortgageCalculatorContainer canvas,
+#IDX-mortgageCalculatorContainer .idx-tab-content__table-item-circle {
+  filter: hue-rotate(-128deg) saturate(.32) brightness(.82);
+}
+
+/* Amortization tab (shown when IDX enables it) */
+#IDX-mortgageCalculatorContainer .idx-amortization__header {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #1C1C1A;
+}
+#IDX-mortgageCalculatorContainer .idx-amortization table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .9rem;
+}
+#IDX-mortgageCalculatorContainer .idx-amortization th {
+  padding: .7rem .6rem;
+  border-bottom: 1px solid #CBBBA0;
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #55534C;
+  text-align: left;
+}
+#IDX-mortgageCalculatorContainer .idx-amortization td {
+  padding: .7rem .6rem;
+  border-bottom: 1px solid #DED2BD;
+  color: #1C1C1A;
+}
+
+/* ---------- Tablet and phone ---------- */
+@media (max-width: 900px) {
+  #IDX-mortgageCalculatorContainer .idx-mortgage-calculator {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  #IDX-mortgageCalculatorContainer { padding-top: .5rem; }
+  #IDX-mortgageCalculatorContainer #IDX-mortgageCalculatorHeader { margin-bottom: 1.6rem; }
+  #IDX-mortgageCalculatorContainer .idx-input-form { padding: 1.5rem 1.2rem 1.3rem; }
+  #IDX-mortgageCalculatorContainer .idx-tab-container__header { padding: 0 1.2rem; }
+  #IDX-mortgageCalculatorContainer .idx-tab-container__body { padding: 1.4rem 1.2rem; }
+  #IDX-mortgageCalculatorContainer .idx-tab-content__total { padding: 1.5rem 1.4rem; }
+  #IDX-mortgageCalculatorContainer .idx-tab-content__graph-table { display: block; }
+  #IDX-mortgageCalculatorContainer .idx-tab-content__graph { max-width: 240px; margin: 1.6rem auto 0; }
+  #IDX-mortgageCalculatorContainer .idx-form-control { font-size: 16px; } /* no iOS zoom on focus */
+}

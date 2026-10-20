@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { POSTS } from "./journal/data";
+import { JOURNAL_LIVE, POSTS } from "./journal/data";
 import { AREA_SLUGS } from "./neighborhoods/areas";
 import { getListings } from "./properties/listings";
 import { SITE_URL } from "./site";
@@ -31,7 +31,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/relocation", priority: 0.7, freq: "monthly" },
     { path: "/home-valuation", priority: 0.7, freq: "monthly" },
     { path: "/compass-concierge", priority: 0.6, freq: "yearly" },
-    { path: "/journal", priority: 0.6, freq: "weekly" },
   ];
 
   return [
@@ -47,7 +46,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly" as const,
       priority: 0.7,
     })),
-    ...POSTS.map((p) => ({
+    // The journal is parked behind a coming-soon page (journal/data.ts).
+    ...(JOURNAL_LIVE ? POSTS : []).map((p) => ({
       url: `${SITE_URL}/journal/${p.slug}`,
       // The article's own publish date, not the build date — a crawler reading
       // "modified today" on a piece from July learns nothing from it.

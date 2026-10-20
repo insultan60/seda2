@@ -5,7 +5,7 @@ import "./contact/contact.css";
 import HeroVideo from "./components/HeroVideo";
 import NewsletterForm from "./components/NewsletterForm";
 import StatsAwards from "./components/StatsAwards";
-import { LATEST_POSTS } from "./journal/data";
+import { JOURNAL_LIVE, LATEST_POSTS } from "./journal/data";
 import { ALSO_SERVING, FEATURED as FEATURED_HOODS, hoodId, type Hood } from "./neighborhoods/data";
 import { hasSpecs, locationLabel, priceLabel } from "./properties/data";
 import { getListings } from "./properties/listings";
@@ -426,7 +426,8 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 9 · JOURNAL */}
+      {/* 9 · JOURNAL (hidden while the journal is parked; see journal/data.ts) */}
+      {JOURNAL_LIVE && (
       <section className="journal" id="journal">
         <div className="container">
           <div className="section-head section-head--split reveal">
@@ -454,6 +455,7 @@ export default async function Home() {
           </div>
         </div>
       </section>
+      )}
 
       {/* 9b · MAP */}
       <section className="ck-map" id="office-map">

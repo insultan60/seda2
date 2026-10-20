@@ -8,7 +8,9 @@ const res = await fetch("http://localhost:3000/idx-wrapper", {
   headers: { "x-forwarded-host": "www.aklahomes.com", "x-forwarded-proto": "https" },
 });
 let html = await res.text();
-html = html.replaceAll("http://localhost:3000", "https://www.aklahomes.com");
+// `next start` ignores x-forwarded-host and keeps the forwarded proto, so the
+// links can come back as https://localhost:3000 as well as http://.
+html = html.replace(/https?:\/\/localhost:3000/g, "https://www.aklahomes.com");
 if (!html.includes('id="idxStart"') || !html.includes('id="idxStop"')) {
   throw new Error("The wrapper is missing its idxStart/idxStop markers; not saved.");
 }
