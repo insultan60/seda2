@@ -3,7 +3,16 @@
    Compact utility page: tight spacing, full-viewport map + results split.
    ========================================================================== */
 
-.page-search { overflow: hidden; height: 100vh; height: 100dvh; }
+/* The page scrolls: a short intro, the search app as one screen-high block,
+   then the buying guide below it. The app used to be the whole page, fixed to
+   the viewport with scrolling switched off. */
+.page-search { padding-top: var(--ak-header, 68px); }
+.search-app {
+  display: flex; flex-direction: column;
+  height: calc(100vh - var(--ak-header, 68px));
+  height: calc(100dvh - var(--ak-header, 68px));
+  min-height: 560px;
+}
 
 /* Compact nav variant (keeps brand, trims height) */
 .nav--compact .nav__inner { padding-block: .5rem; }
@@ -12,7 +21,7 @@
 
 /* ---------- Filter bar (single line) ---------- */
 .sbar {
-  position: fixed; top: var(--ak-header, 68px); left: 0; right: 0; z-index: 90;
+  position: relative; z-index: 90; flex-shrink: 0;
   background: var(--white); border-bottom: 1px solid var(--clay-light);
 }
 .sbar__inner {
@@ -144,7 +153,7 @@
 
 /* ---------- Results bar ---------- */
 .rbar {
-  position: fixed; top: calc(var(--ak-header, 68px) + 50px); left: 0; right: 0; z-index: 80;
+  position: relative; z-index: 80; flex-shrink: 0;
   display: flex; align-items: center; justify-content: space-between;
   height: 40px; padding: 0 12px;
   background: var(--off-white); border-bottom: 1px solid var(--clay-light);
@@ -171,7 +180,7 @@
 
 /* ---------- Split: map + results ---------- */
 .search-split {
-  position: fixed; top: calc(var(--ak-header, 68px) + 90px); left: 0; right: 0; bottom: 0;
+  position: relative; flex: 1; min-height: 0;
   /* Results take a wider share so the listings sit two to a row. */
   display: grid; grid-template-columns: minmax(0, 1fr) min(800px, 56%);
 }
@@ -179,6 +188,10 @@
 
 /* Map */
 .map { position: relative; background: var(--parchment); }
+/* Leaflet panes sit at z-index 400+. Now that the page scrolls, the map passes
+   under the fixed header, so its layers are kept inside the map at every
+   width (this used to be a tablet-only rule). */
+.map { z-index: 0; isolation: isolate; }
 #map { width: 100%; height: 100%; }
 
 /* Leaflet price pins */
@@ -294,11 +307,11 @@
      which put it underneath the fixed header until the visitor scrolled. */
   /* overflow: visible, not auto — a scroll container here made the sticky
      bars measure their offset from inside its padding, 90px too low. */
-  .page-search { overflow: visible; height: auto; padding-top: var(--ak-header, 68px); }
+  .search-app { height: auto; min-height: 0; }
   /* Leaflet's panes sit at z-index 400+; keep them inside the map so the
      sticky bars stay on top while scrolling. */
   .map { z-index: 0; isolation: isolate; }
-  .sbar { position: sticky; }
+  .sbar { position: sticky; top: var(--ak-header, 68px); }
   .sbar__inner { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
   .sbar__inner::-webkit-scrollbar { display: none; }
   .sbar__save { margin-left: 6px; }
@@ -364,3 +377,15 @@
 /* The page owns the viewport on this route; the global footer would otherwise
    sit below a fixed, full-height split and be unreachable. */
 .page-search ~ .footer { display: none; }
+
+/* ---------- Intro band above the search ---------- */
+.hs-intro { padding-block: clamp(2rem, 4vw, 3.25rem); border-bottom: 1px solid var(--clay-light); }
+.hs-intro__inner {
+  display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  gap: clamp(1.5rem, 4vw, 4rem); align-items: end;
+}
+.hs-intro__text { color: var(--ink-soft); max-width: 62ch; }
+.hs-intro .cp-actions { margin-top: 1.2rem; }
+@media (max-width: 1023px) {
+  .hs-intro__inner { grid-template-columns: 1fr; align-items: start; }
+}

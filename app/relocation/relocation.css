@@ -105,3 +105,32 @@
   .rl-steps__grid { grid-template-columns: 1fr; }
   .rl-cta__actions .btn { width: 100%; }
 }
+
+/* ---------- October 2026 brief additions ---------- */
+.rl-hero__support { color: rgba(245, 240, 225, .9); max-width: 60ch; margin: 1rem auto 0; font-size: var(--fs-small); line-height: 1.7; }
+.rl-hero__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .8rem; margin-top: 1.6rem; }
+
+/* Figures between the intro and the stages, on the same off-white. */
+.rl-proof { background: var(--off-white); padding-block: clamp(2.5rem, 5vw, 4rem) 0; }
+
+/* The stage cards end in one link; the card copy is unchanged. */
+.rl-stage { display: flex; flex-direction: column; }
+.rl-stage p { flex-grow: 1; }
+.rl-stage__link { margin-top: 1.2rem; align-self: flex-start; }
+
+/* "Not sure which one fits?" under the neighborhood grid. */
+.rl-fit {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1.5rem 3rem; align-items: center;
+  margin-top: clamp(2rem, 4vw, 3rem); padding: clamp(1.5rem, 3vw, 2.25rem);
+  background: var(--parchment); border: 1px solid var(--clay-light);
+}
+.rl-fit h3 { font-family: var(--serif); font-weight: 500; font-size: var(--fs-h3); color: var(--ink); }
+.rl-fit p { margin-top: .5rem; color: var(--ink-soft); max-width: 58ch; }
+.rl-fit__actions { display: flex; flex-direction: column; align-items: flex-start; gap: .9rem; }
+@media (max-width: 1023px) {
+  .rl-fit { grid-template-columns: 1fr; }
+}
+@media (max-width: 639px) {
+  .rl-hero__actions .btn, .rl-fit__actions .btn { width: 100%; justify-content: center; }
+  .rl-fit__actions { align-items: stretch; }
+}

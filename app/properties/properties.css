@@ -354,3 +354,12 @@ body:has(.pd-soon) .nav { background: var(--moss-deep); }
   .pd-lb-nav { width: 42px; height: 42px; } .pd-lb-prev { left: 8px; } .pd-lb-next { right: 8px; }
   .pd-lb-thumb { width: 68px; height: 48px; }
 }
+
+/* "Thinking of selling?" under the past-transactions grid (October 2026 brief). */
+.pf-sell {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem 1.6rem;
+  margin-top: clamp(2.5rem, 5vw, 3.5rem); padding-top: clamp(1.8rem, 3vw, 2.4rem);
+  border-top: 1px solid var(--clay-light); text-align: center;
+}
+.pf-sell p { font-family: var(--serif); font-size: clamp(1.2rem, 1.05rem + .6vw, 1.5rem); color: var(--ink); }
+@media (max-width: 639px) { .pf-sell .btn { width: 100%; justify-content: center; } }

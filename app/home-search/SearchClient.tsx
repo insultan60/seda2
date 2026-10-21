@@ -160,9 +160,14 @@ export default function SearchClient({
       const leaflet = (await import("leaflet")).default;
       if (cancelled || !mapEl.current || mapRef.current) return;
       LRef.current = leaflet;
-      const map = leaflet.map(mapEl.current, { zoomControl: true, scrollWheelZoom: true })
+      /* The page scrolls past the map to the copy below it, so the wheel only
+         zooms once the map has been clicked, and lets go when the pointer
+         leaves. Otherwise scrolling down the page stalls on the map. */
+      const map = leaflet.map(mapEl.current, { zoomControl: true, scrollWheelZoom: false })
         .setView([34.055, -118.36], 12);
       map.zoomControl.setPosition("topleft");
+      map.on("click focus", () => map.scrollWheelZoom.enable());
+      map.on("mouseout blur", () => map.scrollWheelZoom.disable());
       tileRef.current = leaflet.tileLayer(TILES.street.url, { attribution: TILES.street.attr }).addTo(map);
       mapRef.current = map;
       setMapReady(true);
@@ -260,7 +265,9 @@ export default function SearchClient({
   const priceOptions = [0, 500_000, 1_000_000, 2_000_000, 3_000_000, 5_000_000, 8_000_000];
 
   return (
-    <>
+    /* One screen-high block: the copy above and below it scrolls with the
+       page, the bars stay pinned only while the map is in view. */
+    <div className="search-app">
       {/* ---------- FILTER BAR ---------- */}
       <form className="sbar" role="search" aria-label="Property search filters" onSubmit={(e) => e.preventDefault()}>
         <div className="sbar__inner">
@@ -489,6 +496,6 @@ export default function SearchClient({
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

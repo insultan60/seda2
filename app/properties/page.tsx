@@ -3,13 +3,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { hasSpecs, locationLabel, priceLabel, type Listing } from "./data";
 import { getListings } from "./listings";
+import FaqSection, { type FaqItem } from "../components/Faq";
+import "../components/copy.css";
 import "./properties.css";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/properties" },
-  title: "Portfolio — Alexandra Kerr | Los Angeles Real Estate",
+  title: "Los Angeles Luxury Home Sales & Portfolio | Alexandra Kerr",
   description:
-    "A portfolio of Los Angeles homes with character — currently represented and recently sold by Alexandra Kerr, Estates Director at Compass.",
+    "See Alexandra Kerr’s Los Angeles luxury home portfolio: current listings and past sales from Hancock Park to the Westside, with $184M in total sales.",
 };
 
 /* Live MLS listings are cached for six hours; the page follows suit. */
@@ -22,6 +24,33 @@ const FEATURE_SIZES = "(max-width: 639px) 100vw, 50vw";
 
 /** "$7,775,000" → 7775000, so the volume figure can never drift from the listings. */
 const toNumber = (price?: string) => Number((price ?? "").replace(/[^0-9]/g, "")) || 0;
+
+/* Rounded from the sale prices already published on the neighborhood pages. */
+const BY_HOOD = [
+  ["Windsor Square", "/neighborhoods/windsor-square", "$3.6M and $7.8M on Windsor Boulevard."],
+  ["Hancock Park", "/neighborhoods/hancock-park", "from $3.65M to $6.3M."],
+  ["Hollywood Hills", "/neighborhoods/hollywood-hills", "from $1.7M to $3.1M."],
+  ["Los Feliz", "/neighborhoods/los-feliz", "from $1.8M to $2.7M."],
+];
+
+const FAQ: FaqItem[] = [
+  {
+    q: "What does this portfolio show?",
+    a: "The featured properties are homes Alexandra currently represents. Past Transactions shows recent sales and leases across Los Angeles, from Hancock Park to the Westside.",
+  },
+  {
+    q: "Are the sold prices the final closing prices?",
+    a: "Sold homes show the price at which the sale closed, as recorded in the MLS. Leases show the monthly rent.",
+  },
+  {
+    q: "Can I see more detail on a sold home?",
+    a: "Open any property for photos and key facts. For the full picture, including recent sales nearby, ask Alexandra.",
+  },
+  {
+    q: "How do I find out what my home is worth?",
+    a: "Start with a home valuation. Alexandra compares your home with recent sales on your street, then adjusts for lot, view, condition, and the quality of past work.",
+  },
+];
 
 /* eslint-disable @next/next/no-img-element */
 function PastCard({ l, delay }: { l: Listing; delay: string }) {
@@ -75,8 +104,8 @@ export default async function PortfolioPage() {
           <p className="eyebrow eyebrow--clay">Alexandra Kerr · Compass</p>
           <h1 className="pf-hero__title">Portfolio</h1>
           <p className="pf-hero__sub">
-            Homes with character, history, and architecture worth preserving — currently
-            represented, and a record of results across Los Angeles.
+            Luxury homes in Los Angeles with character, history, and architecture worth preserving —
+            currently represented, and a record of results across the city.
           </p>
         </div>
 
@@ -252,10 +281,12 @@ export default async function PortfolioPage() {
         <div className="container">
           <div className="pf-head reveal">
             <p className="eyebrow">A Portfolio of Results</p>
-            <h2 className="pf-head__title">Past Transactions</h2>
+            <h2 className="pf-head__title">Past Transactions: Luxury Homes Sold Across Los Angeles</h2>
+            {/* Says which figure is which: the grid total here, the career
+                total in the hero. They used to read as a contradiction. */}
             <p className="pf-head__sub">
-              {volumeLabel} in sales closed across Los Angeles, from Hancock Park to the Westside — sellers
-              represented, buyers guided, escrows held together.
+              The homes below are recent transactions, with {volumeLabel} in sales closed across Los Angeles, from
+              Hancock Park to the Westside. Alexandra&rsquo;s career total is $184M across 179 homes sold.
             </p>
           </div>
 
@@ -264,8 +295,50 @@ export default async function PortfolioPage() {
               <PastCard key={l.slug} l={l} delay={["", ".06s", ".12s"][i % 3]} />
             ))}
           </div>
+
+          <div className="pf-sell reveal">
+            <p>Thinking of selling? See what recent sales suggest for your home.</p>
+            <Link className="btn btn--solid-moss" href="/home-valuation">Get Your Home Value</Link>
+          </div>
         </div>
       </section>
+
+      {/* ---------- SALES BY NEIGHBORHOOD ---------- */}
+      <section className="cp cp--cream">
+        <div className="container cp-split">
+          <div className="cp-head reveal">
+            <p className="eyebrow">Where the Work Is</p>
+            <h2 className="cp-title">Sales by Neighborhood</h2>
+            <p className="cp-sub">
+              The same standard of work looks different on every street. Here is where Alexandra&rsquo;s recent
+              sales have closed:
+            </p>
+          </div>
+          <div className="cp-prose reveal" style={{ "--d": ".08s" } as React.CSSProperties}>
+            <ul className="cp-list">
+              {BY_HOOD.map(([name, href, range]) => (
+                <li key={name}>
+                  <Link className="cp-list__lead" href={href}>{name}</Link>: {range}
+                </li>
+              ))}
+            </ul>
+            <p style={{ marginTop: "1.2rem" }}>
+              Looking at <Link href="/neighborhoods/silver-lake">Silver Lake</Link> or the{" "}
+              <Link href="/neighborhoods/sunset-strip">Sunset Strip</Link>? Ask Alexandra for recent results in those
+              areas.
+            </p>
+            <div className="cp-actions">
+              <Link className="btn btn--outline-moss" href="/neighborhoods">Explore Los Angeles Neighborhoods</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <FaqSection
+        items={FAQ}
+        title="Portfolio FAQ"
+        cta={{ label: "Schedule a Consultation", href: "/contact" }}
+      />
 
       {/* ---------- CLOSING CTA ---------- */}
       <section className="pf-cta">
@@ -276,8 +349,8 @@ export default async function PortfolioPage() {
               The right home is often the one<br />that never reaches the MLS.
             </h2>
             <p className="pf-cta__sub">
-              Tell Alexandra what character means to you — private exclusives, pocket listings, and
-              off-market opportunities are shared first with the people she knows are looking.
+              Tell Alexandra what character means to you. Private exclusives and off-market opportunities
+              are shared first with the people she knows best.
             </p>
           </div>
           <div className="pf-cta__actions">
