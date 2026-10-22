@@ -5,6 +5,8 @@ import { hasSpecs, locationLabel, priceLabel, type Listing } from "./data";
 import { getListings } from "./listings";
 import FaqSection, { type FaqItem } from "../components/Faq";
 import "../components/copy.css";
+import JsonLd from "../components/JsonLd";
+import { PORTFOLIO } from "../schema";
 import "./properties.css";
 
 export const metadata: Metadata = {
@@ -91,6 +93,7 @@ export default async function PortfolioPage() {
 
   return (
     <main id="main">
+      <JsonLd data={PORTFOLIO} />
       {/* ---------- HERO ---------- */}
       <section className="pf-hero">
         <img

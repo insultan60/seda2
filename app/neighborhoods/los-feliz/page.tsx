@@ -5,11 +5,13 @@ import FaqSection from "../../components/Faq";
 import type { Listing } from "../../properties/data";
 import { getListings } from "../../properties/listings";
 import { TESTIMONIALS } from "../../testimonials/data";
-import { IDX, SITE_URL } from "../../site";
+import { IDX } from "../../site";
 import { FEATURED, hoodId, mlsLink } from "../data";
 import ListingCards from "../ListingCards";
 import ListingTabs from "../ListingTabs";
 import "../neighborhoods.css";
+import JsonLd from "../../components/JsonLd";
+import { AREA_SCHEMA } from "../../schema";
 import "../area.css";
 
 /* Copy from the October 2026 Los Feliz brief, which targets "los feliz real
@@ -73,38 +75,6 @@ const FAQS = [
 
 /* Breadcrumbs, plus the page as a WebPage about the place. The agent is the
    RealEstateAgent node the root layout emits, referenced by its @id. */
-const JSON_LD = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
-        { "@type": "ListItem", position: 2, name: "Neighborhoods", item: `${SITE_URL}/neighborhoods` },
-        { "@type": "ListItem", position: 3, name: "Los Feliz", item: `${SITE_URL}/neighborhoods/los-feliz` },
-      ],
-    },
-    {
-      "@type": "WebPage",
-      "@id": `${SITE_URL}/neighborhoods/los-feliz`,
-      url: `${SITE_URL}/neighborhoods/los-feliz`,
-      name: "Los Feliz Real Estate Agent & Homes for Sale",
-      about: {
-        "@type": "Place",
-        name: "Los Feliz",
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: "Los Angeles",
-          addressRegion: "CA",
-          postalCode: "90027",
-          addressCountry: "US",
-        },
-        containedInPlace: { "@type": "City", name: "Los Angeles" },
-      },
-      provider: { "@id": `${SITE_URL}/#agent` },
-    },
-  ],
-};
 
 /* eslint-disable @next/next/no-img-element */
 export default async function LosFelizPage() {
@@ -114,10 +84,7 @@ export default async function LosFelizPage() {
 
   return (
     <main id="main">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
-      />
+      <JsonLd data={AREA_SCHEMA["los-feliz"]} />
 
       {/* ---------- HERO ---------- */}
       <section className="nb-hero lf-hero">

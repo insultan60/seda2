@@ -1,0 +1,78 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://aklahomes.com/neighborhoods/windsor-square#webpage",
+      "url": "https://aklahomes.com/neighborhoods/windsor-square",
+      "name": "Windsor Square Real Estate Agent & Homes for Sale | Compass",
+      "description": "Windsor Square real estate agent Alexandra Kerr of Compass helps you buy or sell homes with character. See listings and the neighborhood guide.",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@id": "https://aklahomes.com/#website"
+      },
+      "about": {
+        "@id": "https://aklahomes.com/neighborhoods/windsor-square#place"
+      },
+      "breadcrumb": {
+        "@id": "https://aklahomes.com/neighborhoods/windsor-square#breadcrumb"
+      }
+    },
+    {
+      "@type": "Place",
+      "@id": "https://aklahomes.com/neighborhoods/windsor-square#place",
+      "name": "Windsor Square, Los Angeles",
+      "description": "Windsor Square is a planned historic neighborhood in central Los Angeles, in the Wilshire area near Larchmont Village, with its own Historic Preservation Overlay Zone. Most addresses use ZIP code 90004 or 90020.",
+      "containedInPlace": {
+        "@type": "City",
+        "name": "Los Angeles",
+        "containedInPlace": {
+          "@type": "State",
+          "name": "California"
+        }
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://aklahomes.com/neighborhoods/windsor-square#service",
+      "name": "Windsor Square Real Estate Services",
+      "serviceType": [
+        "Home buying",
+        "Home selling",
+        "Home valuation"
+      ],
+      "description": "Buying, selling, and valuation services for Windsor Square homes with Alexandra Kerr of Compass.",
+      "url": "https://aklahomes.com/neighborhoods/windsor-square",
+      "provider": {
+        "@id": "https://aklahomes.com/#agent"
+      },
+      "areaServed": {
+        "@id": "https://aklahomes.com/neighborhoods/windsor-square#place"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://aklahomes.com/neighborhoods/windsor-square#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://aklahomes.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Neighborhoods",
+          "item": "https://aklahomes.com/neighborhoods"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Windsor Square",
+          "item": "https://aklahomes.com/neighborhoods/windsor-square"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://aklahomes.com/neighborhoods/silver-lake#webpage",
+      "url": "https://aklahomes.com/neighborhoods/silver-lake",
+      "name": "Silver Lake Real Estate Agent & Homes for Sale | Compass",
+      "description": "Alexandra Kerr is a Silver Lake real estate agent at Compass. Find homes for sale near the reservoir, sell with confidence, and get local advice.",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@id": "https://aklahomes.com/#website"
+      },
+      "about": {
+        "@id": "https://aklahomes.com/neighborhoods/silver-lake#place"
+      },
+      "breadcrumb": {
+        "@id": "https://aklahomes.com/neighborhoods/silver-lake#breadcrumb"
+      }
+    },
+    {
+      "@type": "Place",
+      "@id": "https://aklahomes.com/neighborhoods/silver-lake#place",
+      "name": "Silver Lake, Los Angeles",
+      "description": "Silver Lake is a neighborhood of Los Angeles centered on the Silver Lake Reservoir, with craftsman, mid-century, and modern homes. It is mainly covered by ZIP codes 90026 and 90039.",
+      "containedInPlace": {
+        "@type": "City",
+        "name": "Los Angeles",
+        "containedInPlace": {
+          "@type": "State",
+          "name": "California"
+        }
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://aklahomes.com/neighborhoods/silver-lake#service",
+      "name": "Silver Lake Real Estate Services",
+      "serviceType": [
+        "Home buying",
+        "Home selling",
+        "Home valuation"
+      ],
+      "description": "Buying, selling, and valuation services for Silver Lake homes with Alexandra Kerr of Compass.",
+      "url": "https://aklahomes.com/neighborhoods/silver-lake",
+      "provider": {
+        "@id": "https://aklahomes.com/#agent"
+      },
+      "areaServed": {
+        "@id": "https://aklahomes.com/neighborhoods/silver-lake#place"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://aklahomes.com/neighborhoods/silver-lake#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://aklahomes.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Neighborhoods",
+          "item": "https://aklahomes.com/neighborhoods"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Silver Lake",
+          "item": "https://aklahomes.com/neighborhoods/silver-lake"
+        }
+      ]
+    }
+  ]
+}

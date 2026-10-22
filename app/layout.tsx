@@ -8,7 +8,8 @@ import Effects from "./components/Effects";
 import Cursor from "./components/Cursor";
 import RouteProgress from "./components/RouteProgress";
 import { REVEAL_BOOTSTRAP } from "./reveal-bootstrap";
-import { AGENT, SITE_NAME, SITE_URL } from "./site";
+import { SITE_ENTITIES } from "./schema";
+import { SITE_NAME, SITE_URL } from "./site";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -63,38 +64,6 @@ export const metadata: Metadata = {
   verification: { google: "yA1BPStqlZDl7HARpvmrtmsTa355-Xv6WgS1pS6X-Y4" },
 };
 
-/* Structured data — this is what puts an agent in the local/knowledge results
-   rather than leaving Google to infer everything from the page copy. Kept in
-   sync with app/site.ts so the phone number and licence exist in exactly one
-   place. */
-const JSON_LD = {
-  "@context": "https://schema.org",
-  "@type": "RealEstateAgent",
-  "@id": `${SITE_URL}/#agent`,
-  name: AGENT.name,
-  jobTitle: AGENT.jobTitle,
-  url: SITE_URL,
-  image: `${SITE_URL}/assets/alexandra-headshot.jpg`,
-  telephone: AGENT.phone,
-  email: `mailto:${AGENT.email}`,
-  sameAs: [AGENT.instagram],
-  parentOrganization: { "@type": "Organization", name: AGENT.brokerage },
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: AGENT.office.street,
-    addressLocality: AGENT.office.city,
-    addressRegion: AGENT.office.region,
-    postalCode: AGENT.office.postalCode,
-    addressCountry: AGENT.office.country,
-  },
-  areaServed: AGENT.areas.map((name) => ({ "@type": "Place", name })),
-  /* The licence, in the field Google actually reads for it. */
-  hasCredential: {
-    "@type": "EducationalOccupationalCredential",
-    credentialCategory: "Real Estate License",
-    identifier: `DRE# ${AGENT.license}`,
-  },
-};
 
 export default function RootLayout({
   children,
@@ -115,7 +84,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: REVEAL_BOOTSTRAP }} />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(SITE_ENTITIES).replace(/</g, "\u003c") }}
         />
       </head>
       <body className={`${cormorant.variable} ${dmSans.variable}`}>

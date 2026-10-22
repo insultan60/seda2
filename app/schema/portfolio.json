@@ -1,0 +1,129 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://aklahomes.com/properties#webpage",
+      "url": "https://aklahomes.com/properties",
+      "name": "Los Angeles Luxury Home Sales & Portfolio | Alexandra Kerr",
+      "description": "See Alexandra Kerr's Los Angeles luxury home portfolio: current listings and past sales from Hancock Park to the Westside, with $184M in total sales.",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@id": "https://aklahomes.com/#website"
+      },
+      "about": {
+        "@id": "https://aklahomes.com/#agent"
+      },
+      "breadcrumb": {
+        "@id": "https://aklahomes.com/properties#breadcrumb"
+      },
+      "mainEntity": {
+        "@id": "https://aklahomes.com/properties#list"
+      }
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://aklahomes.com/properties#list",
+      "name": "Alexandra Kerr portfolio: current listings and past transactions",
+      "numberOfItems": 13,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "1352 Miller Drive",
+          "url": "https://aklahomes.com/properties/1352-miller-drive"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "414 S Windsor Blvd",
+          "url": "https://aklahomes.com/properties/414-s-windsor-blvd"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "356 S Rossmore Ave",
+          "url": "https://aklahomes.com/properties/356-s-rossmore-ave"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "621 N McCadden Pl",
+          "url": "https://aklahomes.com/properties/621-n-mccadden-pl"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "514 N McCadden Pl",
+          "url": "https://aklahomes.com/properties/514-n-mccadden-pl"
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "name": "206 N Windsor Blvd",
+          "url": "https://aklahomes.com/properties/206-n-windsor-blvd"
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "name": "2120 N Berendo Street",
+          "url": "https://aklahomes.com/properties/2120-n-berendo-street-los-angeles-90027"
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "name": "4185 Holly Knoll Drive",
+          "url": "https://aklahomes.com/properties/4185-holly-knoll-drive-los-angeles-90027"
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "name": "2033 High Tower Drive",
+          "url": "https://aklahomes.com/properties/2033-high-tower-drive-los-angeles-90068"
+        },
+        {
+          "@type": "ListItem",
+          "position": 10,
+          "name": "1954 Pinehurst",
+          "url": "https://aklahomes.com/properties/1954-pinehurst"
+        },
+        {
+          "@type": "ListItem",
+          "position": 11,
+          "name": "8757 Arlene Terrace",
+          "url": "https://aklahomes.com/properties/8757-arlene-terrace"
+        },
+        {
+          "@type": "ListItem",
+          "position": 12,
+          "name": "6937 Camrose Drive",
+          "url": "https://aklahomes.com/properties/6937-camrose-drive-los-angeles-90068"
+        },
+        {
+          "@type": "ListItem",
+          "position": 13,
+          "name": "5523 Tuxedo Terrace",
+          "url": "https://aklahomes.com/properties/5523-tuxedo-terrace-los-angeles-90068"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://aklahomes.com/properties#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://aklahomes.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Portfolio",
+          "item": "https://aklahomes.com/properties"
+        }
+      ]
+    }
+  ]
+}

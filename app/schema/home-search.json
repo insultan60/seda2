@@ -1,0 +1,40 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://aklahomes.com/home-search#webpage",
+      "url": "https://aklahomes.com/home-search",
+      "name": "Los Angeles Homes for Sale | Luxury Homes | Alexandra Kerr",
+      "description": "Search Los Angeles homes for sale with Alexandra Kerr of Compass. Luxury, mid-century, and historic homes across Los Feliz, Hollywood Hills, and beyond.",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@id": "https://aklahomes.com/#website"
+      },
+      "about": {
+        "@id": "https://aklahomes.com/#agent"
+      },
+      "breadcrumb": {
+        "@id": "https://aklahomes.com/home-search#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://aklahomes.com/home-search#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://aklahomes.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Home Search",
+          "item": "https://aklahomes.com/home-search"
+        }
+      ]
+    }
+  ]
+}

@@ -5,6 +5,8 @@ import FaqSection, { type FaqItem } from "../components/Faq";
 import { getListings } from "../properties/listings";
 import { IDX } from "../site";
 import "../components/copy.css";
+import JsonLd from "../components/JsonLd";
+import { HOME_SEARCH } from "../schema";
 import "./search.css";
 
 /* Copy from the October 2026 content brief ("Home Search Page Copy"). The
@@ -77,6 +79,7 @@ export default async function HomeSearchPage({
 
   return (
     <main id="main" className="page-search">
+      <JsonLd data={HOME_SEARCH} />
       {/* ---------- INTRO ---------- */}
       <section className="cp cp--cream hs-intro">
         <div className="container hs-intro__inner">

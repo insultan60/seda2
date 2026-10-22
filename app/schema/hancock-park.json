@@ -1,0 +1,78 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://aklahomes.com/neighborhoods/hancock-park#webpage",
+      "url": "https://aklahomes.com/neighborhoods/hancock-park",
+      "name": "Hancock Park Real Estate Agent & Homes for Sale | Compass",
+      "description": "Alexandra Kerr is a Hancock Park real estate agent at Compass. Find historic homes for sale and get local advice on preservation rules.",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@id": "https://aklahomes.com/#website"
+      },
+      "about": {
+        "@id": "https://aklahomes.com/neighborhoods/hancock-park#place"
+      },
+      "breadcrumb": {
+        "@id": "https://aklahomes.com/neighborhoods/hancock-park#breadcrumb"
+      }
+    },
+    {
+      "@type": "Place",
+      "@id": "https://aklahomes.com/neighborhoods/hancock-park#place",
+      "name": "Hancock Park, Los Angeles",
+      "description": "Hancock Park is a historic residential neighborhood in the Wilshire area of central Los Angeles, a Historic Preservation Overlay Zone known for period revival homes. Most addresses use ZIP code 90004 or 90020.",
+      "containedInPlace": {
+        "@type": "City",
+        "name": "Los Angeles",
+        "containedInPlace": {
+          "@type": "State",
+          "name": "California"
+        }
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://aklahomes.com/neighborhoods/hancock-park#service",
+      "name": "Hancock Park Real Estate Services",
+      "serviceType": [
+        "Home buying",
+        "Home selling",
+        "Home valuation"
+      ],
+      "description": "Buying, selling, and valuation services for Hancock Park homes with Alexandra Kerr of Compass.",
+      "url": "https://aklahomes.com/neighborhoods/hancock-park",
+      "provider": {
+        "@id": "https://aklahomes.com/#agent"
+      },
+      "areaServed": {
+        "@id": "https://aklahomes.com/neighborhoods/hancock-park#place"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://aklahomes.com/neighborhoods/hancock-park#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://aklahomes.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Neighborhoods",
+          "item": "https://aklahomes.com/neighborhoods"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Hancock Park",
+          "item": "https://aklahomes.com/neighborhoods/hancock-park"
+        }
+      ]
+    }
+  ]
+}

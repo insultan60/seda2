@@ -1,0 +1,78 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://aklahomes.com/neighborhoods/los-feliz#webpage",
+      "url": "https://aklahomes.com/neighborhoods/los-feliz",
+      "name": "Los Feliz Real Estate Agent & Homes for Sale | Alexandra Kerr",
+      "description": "Alexandra Kerr is a Los Feliz real estate agent at Compass. Browse Los Feliz homes for sale, from Spanish Colonial to mid-century hillside homes.",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@id": "https://aklahomes.com/#website"
+      },
+      "about": {
+        "@id": "https://aklahomes.com/neighborhoods/los-feliz#place"
+      },
+      "breadcrumb": {
+        "@id": "https://aklahomes.com/neighborhoods/los-feliz#breadcrumb"
+      }
+    },
+    {
+      "@type": "Place",
+      "@id": "https://aklahomes.com/neighborhoods/los-feliz#place",
+      "name": "Los Feliz, Los Angeles",
+      "description": "Los Feliz is a neighborhood in the City of Los Angeles, east of Hollywood and just south of Griffith Park, known for Spanish Colonial, Lloyd Wright, and Neutra homes. Most addresses use ZIP code 90027.",
+      "containedInPlace": {
+        "@type": "City",
+        "name": "Los Angeles",
+        "containedInPlace": {
+          "@type": "State",
+          "name": "California"
+        }
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://aklahomes.com/neighborhoods/los-feliz#service",
+      "name": "Los Feliz Real Estate Services",
+      "serviceType": [
+        "Home buying",
+        "Home selling",
+        "Home valuation"
+      ],
+      "description": "Buying, selling, and valuation services for Los Feliz homes with Alexandra Kerr of Compass.",
+      "url": "https://aklahomes.com/neighborhoods/los-feliz",
+      "provider": {
+        "@id": "https://aklahomes.com/#agent"
+      },
+      "areaServed": {
+        "@id": "https://aklahomes.com/neighborhoods/los-feliz#place"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://aklahomes.com/neighborhoods/los-feliz#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://aklahomes.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Neighborhoods",
+          "item": "https://aklahomes.com/neighborhoods"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Los Feliz",
+          "item": "https://aklahomes.com/neighborhoods/los-feliz"
+        }
+      ]
+    }
+  ]
+}

@@ -4,6 +4,8 @@ import { TESTIMONIALS } from "../testimonials/data";
 import { FEATURED } from "../neighborhoods/data";
 import FaqSection, { type FaqItem } from "../components/Faq";
 import "../components/copy.css";
+import JsonLd from "../components/JsonLd";
+import { RELOCATION } from "../schema";
 import "./relocation.css";
 
 export const metadata: Metadata = {
@@ -142,6 +144,7 @@ const FAQ: FaqItem[] = [
 export default function RelocationPage() {
   return (
     <main id="main">
+      <JsonLd data={RELOCATION} />
       {/* ---------- HERO ---------- */}
       <section className="rl-hero">
         <img

@@ -1,0 +1,78 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://aklahomes.com/neighborhoods/hollywood-hills#webpage",
+      "url": "https://aklahomes.com/neighborhoods/hollywood-hills",
+      "name": "Hollywood Hills Real Estate Agent & Homes for Sale | Compass",
+      "description": "Alexandra Kerr is a Hollywood Hills real estate agent at Compass. Find homes for sale, sell with confidence, and get local advice on hillside properties.",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@id": "https://aklahomes.com/#website"
+      },
+      "about": {
+        "@id": "https://aklahomes.com/neighborhoods/hollywood-hills#place"
+      },
+      "breadcrumb": {
+        "@id": "https://aklahomes.com/neighborhoods/hollywood-hills#breadcrumb"
+      }
+    },
+    {
+      "@type": "Place",
+      "@id": "https://aklahomes.com/neighborhoods/hollywood-hills#place",
+      "name": "Hollywood Hills, Los Angeles",
+      "description": "The Hollywood Hills are a hillside neighborhood of the City of Los Angeles on the slopes of the Santa Monica Mountains above Hollywood, within ZIP codes 90046, 90068, and 90069.",
+      "containedInPlace": {
+        "@type": "City",
+        "name": "Los Angeles",
+        "containedInPlace": {
+          "@type": "State",
+          "name": "California"
+        }
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://aklahomes.com/neighborhoods/hollywood-hills#service",
+      "name": "Hollywood Hills Real Estate Services",
+      "serviceType": [
+        "Home buying",
+        "Home selling",
+        "Home valuation"
+      ],
+      "description": "Buying, selling, and valuation services for Hollywood Hills homes with Alexandra Kerr of Compass.",
+      "url": "https://aklahomes.com/neighborhoods/hollywood-hills",
+      "provider": {
+        "@id": "https://aklahomes.com/#agent"
+      },
+      "areaServed": {
+        "@id": "https://aklahomes.com/neighborhoods/hollywood-hills#place"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://aklahomes.com/neighborhoods/hollywood-hills#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://aklahomes.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Neighborhoods",
+          "item": "https://aklahomes.com/neighborhoods"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Hollywood Hills",
+          "item": "https://aklahomes.com/neighborhoods/hollywood-hills"
+        }
+      ]
+    }
+  ]
+}

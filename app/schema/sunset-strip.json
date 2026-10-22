@@ -1,0 +1,78 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://aklahomes.com/neighborhoods/sunset-strip#webpage",
+      "url": "https://aklahomes.com/neighborhoods/sunset-strip",
+      "name": "Sunset Strip Real Estate Agent & Homes for Sale | Compass",
+      "description": "Sunset Strip real estate agent Alexandra Kerr of Compass guides buyers and sellers through West Hollywood condos and homes. See listings and the guide.",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@id": "https://aklahomes.com/#website"
+      },
+      "about": {
+        "@id": "https://aklahomes.com/neighborhoods/sunset-strip#place"
+      },
+      "breadcrumb": {
+        "@id": "https://aklahomes.com/neighborhoods/sunset-strip#breadcrumb"
+      }
+    },
+    {
+      "@type": "Place",
+      "@id": "https://aklahomes.com/neighborhoods/sunset-strip#place",
+      "name": "Sunset Strip, West Hollywood",
+      "description": "The Sunset Strip is the stretch of Sunset Boulevard inside the city of West Hollywood, ZIP code 90069, with condominium buildings, townhouses, and some houses.",
+      "containedInPlace": {
+        "@type": "City",
+        "name": "West Hollywood",
+        "containedInPlace": {
+          "@type": "State",
+          "name": "California"
+        }
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://aklahomes.com/neighborhoods/sunset-strip#service",
+      "name": "Sunset Strip Real Estate Services",
+      "serviceType": [
+        "Home buying",
+        "Home selling",
+        "Home valuation"
+      ],
+      "description": "Buying, selling, and valuation services for Sunset Strip homes with Alexandra Kerr of Compass.",
+      "url": "https://aklahomes.com/neighborhoods/sunset-strip",
+      "provider": {
+        "@id": "https://aklahomes.com/#agent"
+      },
+      "areaServed": {
+        "@id": "https://aklahomes.com/neighborhoods/sunset-strip#place"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://aklahomes.com/neighborhoods/sunset-strip#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://aklahomes.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Neighborhoods",
+          "item": "https://aklahomes.com/neighborhoods"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Sunset Strip",
+          "item": "https://aklahomes.com/neighborhoods/sunset-strip"
+        }
+      ]
+    }
+  ]
+}

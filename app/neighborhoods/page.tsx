@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import FaqSection from "../components/Faq";
 import { getListings } from "../properties/listings";
-import { SITE_URL } from "../site";
 import { ALSO_SERVING, FEATURED, hoodId, hoodLink, mlsLink, REGIONS } from "./data";
+import JsonLd from "../components/JsonLd";
+import { NEIGHBORHOODS } from "../schema";
 import "./neighborhoods.css";
 
 /* Title, description and H1 from the October 2026 SEO copy, which targets
@@ -59,17 +60,6 @@ const FAQS = [
   },
 ];
 
-/* Breadcrumb trail for search results, alongside the FAQPage the FAQ section
-   emits. The agent node itself lives in the root layout. */
-const BREADCRUMBS = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
-    { "@type": "ListItem", position: 2, name: "Neighborhoods", item: `${SITE_URL}/neighborhoods` },
-  ],
-};
-
 /* eslint-disable @next/next/no-img-element */
 /* Tile counts come from the live MLS feed (cached for six hours). */
 export const revalidate = 21600;
@@ -78,10 +68,7 @@ export default async function NeighborhoodsPage() {
   const listings = await getListings();
   return (
     <main id="main">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMBS) }}
-      />
+      <JsonLd data={NEIGHBORHOODS} />
 
       {/* ---------- HERO ---------- */}
       <section className="nb-hero">

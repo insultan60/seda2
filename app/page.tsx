@@ -12,6 +12,8 @@ import { getListings } from "./properties/listings";
 import { TESTIMONIALS } from "./testimonials/data";
 import FaqSection from "./components/Faq";
 import { IDX, SITE_NAME } from "./site";
+import JsonLd from "./components/JsonLd";
+import { HOME_PAGE } from "./schema";
 import type { Metadata } from "next";
 
 /* Title and description from the October 2026 SEO copy (55 and 150
@@ -100,6 +102,7 @@ export default async function Home() {
 
   return (
     <main id="main">
+      <JsonLd data={HOME_PAGE} />
       {/* 1 · HERO */}
       <section className="hero">
         <HeroVideo />

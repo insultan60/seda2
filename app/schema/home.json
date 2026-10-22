@@ -1,0 +1,237 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "RealEstateAgent",
+      "@id": "https://aklahomes.com/#agent",
+      "name": "Alexandra Kerr — Los Angeles Real Estate",
+      "url": "https://aklahomes.com/",
+      "description": "Los Angeles real estate agent Alexandra Kerr of Compass helps buyers and sellers with homes that have character, history, and distinctive architecture.",
+      "telephone": "+1-310-795-1440",
+      "email": "alexandra.kerr@compass.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "6430 W Sunset Blvd, 6th Floor",
+        "addressLocality": "Los Angeles",
+        "addressRegion": "CA",
+        "postalCode": "90028",
+        "addressCountry": "US"
+      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+1-310-795-1440",
+          "contactType": "customer service",
+          "areaServed": "US",
+          "availableLanguage": "English"
+        },
+        {
+          "@type": "ContactPoint",
+          "telephone": "+1-323-593-6999",
+          "contactType": "office",
+          "areaServed": "US",
+          "availableLanguage": "English"
+        }
+      ],
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Los Angeles",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "California"
+          }
+        },
+        {
+          "@type": "City",
+          "name": "West Hollywood"
+        },
+        {
+          "@type": "City",
+          "name": "Beverly Hills"
+        },
+        {
+          "@type": "City",
+          "name": "Santa Monica"
+        },
+        {
+          "@type": "Place",
+          "name": "Los Feliz",
+          "containedInPlace": {
+            "@type": "City",
+            "name": "Los Angeles"
+          }
+        },
+        {
+          "@type": "Place",
+          "name": "Hollywood Hills",
+          "containedInPlace": {
+            "@type": "City",
+            "name": "Los Angeles"
+          }
+        },
+        {
+          "@type": "Place",
+          "name": "Silver Lake",
+          "containedInPlace": {
+            "@type": "City",
+            "name": "Los Angeles"
+          }
+        },
+        {
+          "@type": "Place",
+          "name": "Hancock Park",
+          "containedInPlace": {
+            "@type": "City",
+            "name": "Los Angeles"
+          }
+        },
+        {
+          "@type": "Place",
+          "name": "Windsor Square",
+          "containedInPlace": {
+            "@type": "City",
+            "name": "Los Angeles"
+          }
+        },
+        {
+          "@type": "Place",
+          "name": "Sunset Strip",
+          "containedInPlace": {
+            "@type": "City",
+            "name": "Los Angeles"
+          }
+        },
+        {
+          "@type": "Place",
+          "name": "Echo Park",
+          "containedInPlace": {
+            "@type": "City",
+            "name": "Los Angeles"
+          }
+        },
+        {
+          "@type": "Place",
+          "name": "Brentwood",
+          "containedInPlace": {
+            "@type": "City",
+            "name": "Los Angeles"
+          }
+        },
+        {
+          "@type": "Place",
+          "name": "Venice",
+          "containedInPlace": {
+            "@type": "City",
+            "name": "Los Angeles"
+          }
+        },
+        {
+          "@type": "Place",
+          "name": "Mar Vista",
+          "containedInPlace": {
+            "@type": "City",
+            "name": "Los Angeles"
+          }
+        }
+      ],
+      "knowsAbout": [
+        "Los Angeles luxury real estate",
+        "Historic homes",
+        "Mid-century modern homes",
+        "Hillside homes",
+        "Spanish Colonial Revival architecture",
+        "Craftsman homes",
+        "Historic Preservation Overlay Zones",
+        "Out-of-state and relocation home buying and selling"
+      ],
+      "parentOrganization": {
+        "@id": "https://www.compass.com/#organization"
+      },
+      "employee": {
+        "@id": "https://aklahomes.com/#alexandra"
+      },
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "California DRE License",
+        "value": "01911486"
+      },
+      "sameAs": [
+        "https://instagram.com/alexandrakerrlarealestate",
+        "https://www.compass.com/agents/alexandra-kerr/",
+        "https://www.facebook.com/AlexandraKerrL.A.RealEstate/"
+      ],
+      "slogan": "Los Angeles homes with character",
+      "mainEntityOfPage": {
+        "@id": "https://aklahomes.com/#webpage"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://aklahomes.com/#alexandra",
+      "name": "Alexandra Kerr",
+      "jobTitle": "Estates Director, Senior Real Estate Specialist",
+      "description": "REALTOR® and Estates Director at Compass, specializing in Los Angeles homes with character, history, and distinctive architecture.",
+      "url": "https://aklahomes.com/about",
+      "email": "alexandra.kerr@compass.com",
+      "telephone": "+1-310-795-1440",
+      "worksFor": {
+        "@id": "https://www.compass.com/#organization"
+      },
+      "knowsAbout": [
+        "Los Angeles luxury real estate",
+        "Historic homes",
+        "Mid-century modern homes",
+        "Hillside homes",
+        "Spanish Colonial Revival architecture",
+        "Craftsman homes",
+        "Historic Preservation Overlay Zones",
+        "Out-of-state and relocation home buying and selling"
+      ],
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "California DRE License",
+        "value": "01911486"
+      },
+      "sameAs": [
+        "https://instagram.com/alexandrakerrlarealestate",
+        "https://www.compass.com/agents/alexandra-kerr/",
+        "https://www.facebook.com/AlexandraKerrL.A.RealEstate/"
+      ],
+      "award": [
+        "RealTrends Verified",
+        "Los Angeles Magazine Real Estate All-Stars"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.compass.com/#organization",
+      "name": "Compass",
+      "url": "https://www.compass.com/"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://aklahomes.com/#website",
+      "url": "https://aklahomes.com/",
+      "name": "Alexandra Kerr — Los Angeles Real Estate",
+      "inLanguage": "en-US",
+      "publisher": {
+        "@id": "https://aklahomes.com/#agent"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://aklahomes.com/#webpage",
+      "url": "https://aklahomes.com/",
+      "name": "Los Angeles Real Estate Agent | Alexandra Kerr, Compass",
+      "description": "Alexandra Kerr is a Los Angeles real estate agent and Estates Director at Compass, specializing in homes with character, history, and distinctive architecture.",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@id": "https://aklahomes.com/#website"
+      },
+      "about": {
+        "@id": "https://aklahomes.com/#agent"
+      }
+    }
+  ]
+}

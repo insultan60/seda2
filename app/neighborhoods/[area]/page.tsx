@@ -6,12 +6,14 @@ import FaqSection from "../../components/Faq";
 import { priceLabel } from "../../properties/data";
 import { getListings } from "../../properties/listings";
 import { TESTIMONIALS } from "../../testimonials/data";
-import { IDX, SITE_URL } from "../../site";
+import { IDX } from "../../site";
 import { AREA_PAGES, AREA_SLUGS } from "../areas";
 import { FEATURED, listingsIn, mlsLink } from "../data";
 import ListingCards from "../ListingCards";
 import ListingTabs from "../ListingTabs";
 import "../neighborhoods.css";
+import JsonLd from "../../components/JsonLd";
+import { AREA_SCHEMA } from "../../schema";
 import "../area.css";
 
 /**
@@ -52,7 +54,6 @@ export default async function AreaPage({ params }: { params: Promise<{ area: str
   if (!page) notFound();
   const { copy, hood } = page;
   const name = copy.name;
-  const url = `${SITE_URL}/neighborhoods/${area}`;
   const searchUrl = mlsLink(hood);
 
   const listings = listingsIn(hood, await getListings());
@@ -63,43 +64,10 @@ export default async function AreaPage({ params }: { params: Promise<{ area: str
   const places = [name, ...(copy.storyPlaces ?? [])];
   const stories = TESTIMONIALS.filter((t) => places.includes(t.place));
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
-          { "@type": "ListItem", position: 2, name: "Neighborhoods", item: `${SITE_URL}/neighborhoods` },
-          { "@type": "ListItem", position: 3, name, item: url },
-        ],
-      },
-      {
-        "@type": "WebPage",
-        "@id": url,
-        url,
-        name: copy.h1,
-        description: copy.description,
-        about: {
-          "@type": "Place",
-          name,
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: "Los Angeles",
-            addressRegion: "CA",
-            ...(hood.zips?.[0] ? { postalCode: hood.zips[0] } : {}),
-            addressCountry: "US",
-          },
-          containedInPlace: { "@type": "City", name: "Los Angeles" },
-        },
-        provider: { "@id": `${SITE_URL}/#agent` },
-      },
-    ],
-  };
 
   return (
     <main id="main">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {AREA_SCHEMA[area] && <JsonLd data={AREA_SCHEMA[area]} />}
 
       {/* ---------- HERO ---------- */}
       <section className="nb-hero lf-hero">
