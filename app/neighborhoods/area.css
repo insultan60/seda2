@@ -164,3 +164,7 @@
   .lf-areas__list { grid-template-columns: 1fr; }
   .lf-hero__ctas .btn, .lf-actions .btn { width: 100%; }
 }
+
+/* Link to a journal article under the buying checklists (AreaCopy.reading). */
+.lf-reading { display: inline-flex; margin: 1.25rem 0 0 1.5rem; vertical-align: middle; }
+@media (max-width: 639px) { .lf-reading { display: flex; margin: 1.1rem 0 0; } }

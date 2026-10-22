@@ -34,6 +34,8 @@ export type AreaCopy = {
   listings: { lead: string; empty: string };
   architecture: { h2: string; paras: string[]; sections: Prose[] };
   buying: { h2: string; paras: string[]; checklists: Checklist[]; after: string };
+  /** A journal article that goes deeper on buying here, linked under the checklists. */
+  reading?: { label: string; href: string };
   selling: { h2: string; paras: string[] };
   market: { h2: string; paras: string[] };
   living: { h2: string; paras: string[]; zip: string };
@@ -339,6 +341,10 @@ export const AREA_PAGES: Record<string, AreaCopy> = {
 
   "hollywood-hills": {
     name: "Hollywood Hills",
+    reading: {
+      label: "Read the guide: Buying a Hillside Home in the Hollywood Hills",
+      href: "/journal/buying-a-hillside-home-in-the-hollywood-hills",
+    },
     title: "Hollywood Hills Real Estate Agent & Homes for Sale | Compass",
     description:
       "Alexandra Kerr is a Hollywood Hills real estate agent at Compass. Find homes for sale, sell with confidence, and get local advice on hillside properties.",

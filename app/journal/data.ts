@@ -8,7 +8,13 @@ export type Block =
   | { k: "h2"; t: string }
   | { k: "h3"; t: string }
   | { k: "ul"; items: string[] }
-  | { k: "quote"; t: string };
+  | { k: "ol"; items: string[] }
+  | { k: "img"; src: string; alt: string; cap?: string }
+  | { k: "quote"; t: string }
+  /** Where the post's `faq` renders; at the end of the body when absent. */
+  | { k: "faq" };
+/* Inside "p" and list items, [text](/path) becomes a link (see the article
+   page's inline renderer). Nothing else is parsed. */
 
 export type Post = {
   slug: string;
@@ -30,12 +36,155 @@ export type Post = {
   body?: Block[];
   /** Optional override; otherwise estimated from the body length. */
   read?: string;
+  /** Title tag, when it should differ from the headline. */
+  seoTitle?: string;
+  /** Meta description, when it should differ from the excerpt. */
+  description?: string;
+  /** Alt text for `img`, when it is the article's own photograph. */
+  imgAlt?: string;
+  /** Questions shown after the body, with FAQPage structured data. */
+  faq?: { q: string; a: string }[];
 };
-
-export { JOURNAL_LIVE } from "./live";
 
 // Newest first. `img` values are stock placeholders pending the real article art.
 export const POSTS: Post[] = [
+  {
+    slug: "buying-a-hillside-home-in-the-hollywood-hills",
+    title: "Buying a Hillside Home in the Hollywood Hills",
+    seoTitle: "Buying a Hillside Home in the Hollywood Hills",
+    description:
+      "What to check before buying a hillside home in the Hollywood Hills: city rules, retaining walls, fire zone, insurance and a pre-offer checklist.",
+    date: "October 22, 2026",
+    iso: "2026-10-22",
+    tag: "Buying",
+    excerpt:
+      "Buying a hillside home in the Hollywood Hills is not like buying a house in the flats. The view, the privacy and the architecture come with steep lots, retaining walls, narrow roads and a fire zone. Here is what to check before you make an offer.",
+    img: "/journal/hollywood-hills-hillside-deck.jpg",
+    imgAlt: "Deck of a Hollywood Hills home looking across the hillside to neighboring homes",
+    body: [
+      { k: "h2", t: "What Makes Hollywood Hills Homes Different" },
+      { k: "p", t: "The Hollywood Hills climb the Santa Monica Mountains above Hollywood and the Sunset Strip. Most homes sit on steep lots along winding streets, often on a small flat building area called a pad." },
+      { k: "p", t: "Each canyon has its own feel. Beachwood Canyon and Hollywood Knolls sit on the east side, close to Griffith Park and Lake Hollywood. Nichols Canyon, Laurel Canyon, Outpost Estates, Mount Olympus and the Bird Streets sit to the west, mostly in ZIP codes 90068, 90046 and 90069." },
+      { k: "p", t: "Price follows the lot as much as the house. Alexandra Kerr's recent Hollywood Hills sales include homes on High Tower Drive, Pinehurst, Camrose Drive, Arlene Terrace and Tuxedo Terrace, and they sold for about $1.7 million to $3.1 million. Two homes of the same size can sit far apart in value because of the view, the pad, the road and the condition of the walls." },
+      { k: "p", t: "For more on each area, see the [Hollywood Hills neighborhood guide](/neighborhoods/hollywood-hills)." },
+
+      { k: "h2", t: "Check the Lot Before You Check the House" },
+      { k: "h3", t: "Look at the pad and the slope" },
+      { k: "p", t: "Start with where the house sits on the slope. A home at the top relies on its walls and drainage. A home below a steep slope can take runoff and debris from above." },
+      { k: "p", t: "Walk the whole lot, including the edges you cannot see from the living room. Look at the ground above, below and beside the house." },
+      {
+        k: "img",
+        src: "/journal/hollywood-hills-hillside-deck-long.jpg",
+        alt: "Long deck along the side of a Hollywood Hills home, with railings over the slope",
+        cap: "A deck built out over the slope at a Hollywood Hills home Alexandra sold on Pinehurst.",
+      },
+      { k: "h3", t: "Think about views and privacy" },
+      { k: "p", t: "A view is worth paying for, but it is rarely guaranteed. In most cases a view is not protected unless a recorded easement or a neighborhood rule says so." },
+      { k: "p", t: "Ask your agent to check the title report and look at what the neighbors could build." },
+
+      { k: "h2", t: "Know the City Hillside Rules" },
+      { k: "p", t: "Most of the Hollywood Hills sit inside the City of Los Angeles. Many lots fall in a mapped Hillside Area, which adds limits on house size, height and grading under the City's Baseline Hillside Ordinance." },
+      { k: "p", t: "The City sets the maximum floor area using the slope of the land. A steep lot can allow a smaller house than the lot size suggests, which matters if you plan to build up or out." },
+      { k: "p", t: "Look up the address on [ZIMAS](https://zimas.lacity.org/), the City's online zoning map, and read the zoning and Hillside Area notes. Then ask City Planning to confirm what you can build. A short check now can prevent a costly surprise later." },
+
+      { k: "h2", t: "Request These Records Before You Offer" },
+      { k: "p", t: "Ask the seller's agent for these documents as early as possible:" },
+      {
+        k: "ul",
+        items: [
+          "Permit history for the house, additions, pool, decks and retaining walls",
+          "Geology and soils reports, plus the approval letters from the LADBS Grading Division",
+          "The Natural Hazard Disclosure and any fire-zone documents",
+          "The LADBS Residential Property Report, which sellers in the City of Los Angeles provide to buyers",
+          "Records of slope repairs, wall replacements or drainage work",
+          "Past insurance claims for fire, water or slope damage",
+          "The road maintenance agreement, if the street is private",
+        ],
+      },
+      { k: "p", t: "A geotechnical report shows what an engineer found in the soil and what the work must follow. A City approval letter means the Grading Division reviewed the report and set conditions." },
+      { k: "p", t: "Pay close attention to unpermitted work. Decks, walls and additions without permits are common on older hillside homes. They can complicate insurance, financing and resale, and they can hide structural work that affects the slope." },
+
+      { k: "h2", t: "Inspect Retaining Walls, Drainage and Foundations" },
+      { k: "p", t: "On a hillside, the ground matters as much as the house. A general inspector usually notes symptoms and leaves slope stability to specialists, so plan to hire a structural or geotechnical engineer when the lot has tall walls or signs of movement." },
+      { k: "p", t: "Signs to look for:" },
+      {
+        k: "ul",
+        items: [
+          "Leaning or bulging retaining walls",
+          "Horizontal or stair-step cracks in walls and foundations",
+          "Water stains, seepage or soggy ground near the house",
+          "Downspouts that empty onto open slope",
+          "Interior cracks that keep returning after patching",
+          "Doors and windows that stick",
+        ],
+      },
+      { k: "p", t: "Treat drainage as part of the structure. Water behind a wall or under a slab is a common cause of slope and wall trouble." },
+      { k: "p", t: "Book the specialists on day one. Wall and soil assessments can take a week or two to schedule and report, and your contingency period keeps running." },
+
+      { k: "h2", t: "Fire Zone, Brush Clearance and Insurance" },
+      { k: "p", t: "Nearly all of the Hollywood Hills sit in a very high fire hazard zone on CAL FIRE's 2025 map, according to Time Out Los Angeles. The Natural Hazard Disclosure will confirm the zone for your exact address." },
+      { k: "p", t: "In these zones, the Los Angeles Fire Department requires owners to clear brush within 200 feet of structures and keep grass cut to three inches. Roof surfaces need five feet of clearance from overhanging branches. LAFD inspects each year and charges an inspection fee." },
+      { k: "p", t: "Insurance comes before the offer. Stanford researchers found that the state's FAIR Plan covered about 5% of California single-family homes in March 2026, up from 1.5% in December 2020. They also found that homeowners insurance premiums rose 84% since 2020." },
+      { k: "p", t: "The FAIR Plan mainly covers fire, so many owners add a second policy for other risks. Standard policies often exclude earth movement, so ask each broker about it." },
+      { k: "p", t: "Get written quotes for the exact address before you remove contingencies, and ideally before you offer. Ask which upgrades lower the premium. Ember-resistant vents, a fire-rated roof and good defensible space often help." },
+
+      { k: "h2", t: "Road Access, Parking and Daily Life" },
+      { k: "p", t: "Drive to the house at night and again at rush hour. Note the road width, the turns, the driveway slope and where guests will park." },
+      { k: "p", t: "Narrow streets affect more than convenience. Trash pickup, deliveries, contractors and fire trucks all depend on the road. For new projects, City rules can require street improvements in some cases, so ask City Planning before you assume you can build." },
+      { k: "p", t: "If the road is private, ask who repairs it, who pays and whether a written agreement exists. Shared roads can lead to shared bills." },
+
+      { k: "h2", t: "Remodels and Additions on a Hillside Lot" },
+      { k: "p", t: "Many buyers love a hillside home for what it could become. The rules decide how much that is." },
+      { k: "p", t: "The Baseline Hillside Ordinance applies to many single-family zones in mapped Hillside Areas. Grading and retaining walls need City permits, and large earthwork can trigger extra approvals. In the City's hillside grading area, projects that move more than 1,000 cubic yards of earth require notice to nearby owners, per LADBS plan check requirements." },
+      { k: "p", t: "Pay for the house as it stands today. Treat any addition as a bonus that still needs approval." },
+
+      { k: "h2", t: "Buying a Hillside Home in the Hollywood Hills: Pre-Offer Checklist" },
+      {
+        k: "ol",
+        items: [
+          "Pull the zoning, Hillside Area and fire-zone details for the address on ZIMAS and in the Natural Hazard Disclosure.",
+          "Request permits, geology reports and City approval letters.",
+          "Get insurance quotes for the exact address, including earth movement coverage.",
+          "Hire a general inspector, plus a structural or geotechnical specialist for walls and slope.",
+          "Drive the road, test the driveway and check parking.",
+          "Review the road agreement if the street is private.",
+          "Ask City Planning what you can build if you plan changes.",
+          "Compare prices with hillside sales that match on view, pad, access and condition.",
+          "Set your contingency period so the reports arrive before you remove contingencies.",
+          "Ask your lender about appraisal and insurance timing.",
+        ],
+      },
+
+      // The questions (faq, below) sit here, between the checklist and the close.
+      { k: "faq" },
+
+      { k: "h2", t: "Before You Write the Offer" },
+      { k: "p", t: "Buying a hillside home in the Hollywood Hills rewards buyers who check the lot, the records, the walls, the fire zone and the insurance first. The view is the easy part to love. The paperwork and the ground under the house decide whether the home holds its value." },
+      { k: "p", t: "Thinking about a hillside home? Contact Alexandra Kerr at [310.795.1440](tel:+13107951440) or through the [contact page](/contact). She will walk you through the reports, the specialists and the numbers before you write an offer." },
+    ],
+    faq: [
+      {
+        q: "Are all Hollywood Hills homes in the City of Los Angeles?",
+        a: "Most are, but not all. Some addresses near the Sunset Strip and ZIP code 90069 sit in the City of West Hollywood, which has its own building and planning rules. Confirm the city for your exact address before you plan any work.",
+      },
+      {
+        q: "How do I know if the asking price is fair?",
+        a: "Compare it with recent sales of homes that match on view, pad size, road access and condition, not only the same street. Then adjust for wall, drainage and insurance costs you will carry. A local agent who works these streets can show you the sales that truly match.",
+      },
+      {
+        q: "Will a lender finance a hillside home?",
+        a: "Often yes, but steep lots and unusual builds can slow an appraisal. Lenders also want proof of homeowners insurance before they fund the loan. Talk to a lender who knows hillside homes before you start touring.",
+      },
+      {
+        q: "When should I tour or inspect a hillside home?",
+        a: "Visit in daylight, and again after a rain if you can. Wet weather shows where water collects and which walls seep. If the weather stays dry, ask the seller for photos or records of how the property handled past storms.",
+      },
+      {
+        q: "Do I need an agent who specializes in hillside homes?",
+        a: "It helps. Records, reports and City rules shape value on a hillside, and a general agent may not read them often. Look for an agent who can explain each report and knows which specialists to bring in.",
+      },
+    ],
+  },
   {
     slug: "14-years-running-favorite-investment",
     title: "14 Years Running: Why Real Estate Is Still America's Favorite Investment",
@@ -282,16 +431,30 @@ export const POSTS: Post[] = [
  * Home-page teaser: the three newest posts that carry art, so the home grid
  * never renders a card with an empty figure.
  */
-export const LATEST_POSTS = POSTS.filter((p) => p.img).slice(0, 3);
+/**
+ * Posts with their full article copy. Only these are published: the rest are
+ * titles from the Compass feed awaiting their bodies, and they stay off the
+ * site (no page, no listing, no sitemap entry) until the copy arrives.
+ */
+export const PUBLISHED = POSTS.filter((p) => p.body?.length);
 
-export const getPost = (slug: string) => POSTS.find((p) => p.slug === slug);
+/**
+ * The journal is live once there is at least one finished article. Until then
+ * /journal shows its coming-soon panel (noindex), the menus leave it out and
+ * the home page hides its journal section.
+ */
+export const JOURNAL_LIVE = PUBLISHED.length > 0;
+
+export const LATEST_POSTS = PUBLISHED.filter((p) => p.img).slice(0, 3);
+
+export const getPost = (slug: string) => PUBLISHED.find((p) => p.slug === slug);
 
 /** Reading time at ~220 wpm, rounded up. Returns null when there is no body. */
 export function readingTime(post: Post): string | null {
   if (post.read) return post.read;
   if (!post.body?.length) return null;
   const words = post.body
-    .map((b) => (b.k === "ul" ? b.items.join(" ") : b.t))
+    .map((b) => ("items" in b ? b.items.join(" ") : "t" in b ? b.t : ""))
     .join(" ")
     .split(/\s+/)
     .filter(Boolean).length;
@@ -304,7 +467,7 @@ export function readingTime(post: Post): string | null {
  */
 export function relatedPosts(slug: string, n = 3): Post[] {
   const current = getPost(slug);
-  const rest = POSTS.filter((p) => p.slug !== slug);
+  const rest = PUBLISHED.filter((p) => p.slug !== slug);
   if (!current) return rest.slice(0, n);
   const sameTag = rest.filter((p) => p.tag === current.tag);
   return [...sameTag, ...rest.filter((p) => p.tag !== current.tag)].slice(0, n);

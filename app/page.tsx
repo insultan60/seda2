@@ -426,8 +426,9 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 9 · JOURNAL (hidden while the journal is parked; see journal/data.ts) */}
-      {JOURNAL_LIVE && (
+      {/* 9 · JOURNAL: shown once three illustrated articles are published, so the
+          grid never runs with empty slots (see journal/data.ts) */}
+      {JOURNAL_LIVE && LATEST_POSTS.length >= 3 && (
       <section className="journal" id="journal">
         <div className="container">
           <div className="section-head section-head--split reveal">

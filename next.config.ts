@@ -1,5 +1,4 @@
 import type { NextConfig } from "next";
-import { JOURNAL_LIVE } from "./app/journal/live";
 
 const nextConfig: NextConfig = {
   images: {
@@ -33,12 +32,15 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  /* The journal is parked behind a coming-soon page (app/journal/live.ts).
-     A real 307 here, not the page's own redirect(): the articles are
-     prebuilt, and a prebuilt page can only redirect with a meta refresh
-     after the article has already loaded. Temporary, as the posts return. */
+  /* Articles live at /journal/<slug>; the SEO briefs (and anyone typing the
+     usual path) say /blog/<slug>. Permanent, so search engines settle on the
+     /journal address. Unpublished journal slugs are simply not generated
+     (dynamicParams = false in app/journal/[slug]) and return a 404. */
   async redirects() {
-    return JOURNAL_LIVE ? [] : [{ source: "/journal/:slug", destination: "/journal", permanent: false }];
+    return [
+      { source: "/blog", destination: "/journal", permanent: true },
+      { source: "/blog/:slug", destination: "/journal/:slug", permanent: true },
+    ];
   },
 };
 

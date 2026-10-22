@@ -1,4 +1,5 @@
 import { IDX } from "../site";
+import { JOURNAL_LIVE } from "../journal/data";
 
 /* The site's menus and footer links, in one place. Read by the Header and
    Footer components and by the IDX wrapper (app/idx-wrapper/route.ts), which
@@ -35,6 +36,7 @@ export const DRAWER_GROUPS: DrawerGroup[] = [
   { label: "Compass Concierge", href: "/compass-concierge", sub: [] },
   { label: "Market Reports", href: IDX.marketReports, sub: [] },
   { label: "Mortgage Calculator", href: IDX.mortgage, sub: [] },
+  ...(JOURNAL_LIVE ? [{ label: "Journal", href: "/journal", sub: [] }] : []),
 ];
 
 /** Plain drawer entries that sit between the two sets of groups. Empty now:
@@ -46,7 +48,8 @@ export const DRAWER_ITEMS_MID: NavLink[] = [];
    and the IDX wrapper render unchanged. */
 export const DRAWER_GROUPS_2: DrawerGroup[] = [];
 
-/* The journal is parked (journal/data.ts). */
+/* The journal joins the drawer and footer once an article is published
+   (JOURNAL_LIVE in journal/data.ts). */
 export const DRAWER_ITEMS_END: NavLink[] = [
   { t: "Let’s Connect", href: "/contact" },
   { t: "Sign In / Create Account", href: IDX.login },
@@ -56,6 +59,7 @@ export const FOOTER_EXPLORE: NavLink[] = [
   { t: "About Alexandra", href: "/about" },
   { t: "Portfolio", href: "/properties" },
   { t: "Neighborhoods", href: "/neighborhoods" },
+  ...(JOURNAL_LIVE ? [{ t: "Journal", href: "/journal" }] : []),
 ];
 
 export const FOOTER_RESOURCES: NavLink[] = [

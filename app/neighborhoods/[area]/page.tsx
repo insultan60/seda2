@@ -219,6 +219,11 @@ export default async function AreaPage({ params }: { params: Promise<{ area: str
           <div className="lf-steps reveal">
             <p className="lf-after">{copy.buying.after}</p>
             <a className="btn btn--solid-moss" href={searchUrl}>Start Your {name} Home Search</a>
+            {copy.reading && (
+              <Link className="text-link lf-reading" href={copy.reading.href}>
+                {copy.reading.label}<i className="arrow" aria-hidden="true"></i>
+              </Link>
+            )}
           </div>
         </div>
       </section>

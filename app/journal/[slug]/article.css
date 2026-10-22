@@ -165,3 +165,36 @@
   .ar-author__bio { max-width: none; }
   .ar-byline { justify-content: center; }
 }
+
+/* ---------- Links, numbered checklist, figures ---------- */
+.ar-body a {
+  color: var(--moss); text-decoration: underline; text-underline-offset: 3px;
+  text-decoration-color: var(--clay); transition: color 200ms var(--ease);
+}
+.ar-body a:hover { color: var(--moss-deep); }
+
+.ar-steps { margin: 1.35rem 0 0; padding: 0; list-style: none; counter-reset: step; }
+.ar-steps li {
+  counter-increment: step; position: relative;
+  padding: .95rem 0 .95rem 3.1rem; line-height: 1.65; color: var(--ink-soft);
+  border-bottom: 1px solid var(--clay-light);
+}
+.ar-steps li:first-child { border-top: 1px solid var(--clay-light); }
+.ar-steps li + li { margin-top: 0; }
+.ar-steps li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute; left: 0; top: .95rem; width: auto; height: auto; background: none;
+  font-family: var(--serif); font-size: 1.25rem; line-height: 1.35; color: var(--moss);
+}
+
+.ar-figure { margin: 2.25rem 0; }
+.ar-figure img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; background: var(--clay-light); }
+.ar-figure figcaption {
+  margin-top: .7rem; font-size: var(--fs-micro); line-height: 1.6;
+  color: var(--ink-soft); letter-spacing: .02em;
+}
+
+/* The article's FAQ uses the shared accordion; this only trims its spacing so
+   it sits inside the reading flow rather than as a full page section. */
+.ar-faq .faq { padding-block: clamp(1.5rem, 4vw, 2.5rem); background: transparent; }
+.ar-faq .faq .container { max-width: 44rem; }

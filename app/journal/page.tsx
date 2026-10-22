@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { JOURNAL_LIVE, POSTS } from "./data";
+import { JOURNAL_LIVE, PUBLISHED } from "./data";
 import "./journal.css";
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
  */
 const COLUMN_COUNT = 3;
 const COLUMNS = Array.from({ length: COLUMN_COUNT }, (_, c) =>
-  POSTS.map((post, index) => ({ post, index })).filter((_, i) => i % COLUMN_COUNT === c)
+  PUBLISHED.map((post, index) => ({ post, index })).filter((_, i) => i % COLUMN_COUNT === c)
 );
 
 /* eslint-disable @next/next/no-img-element */
@@ -48,7 +48,7 @@ export default function JournalPage() {
         </div>
       </section>
 
-      {/* ---------- COMING SOON (while JOURNAL_LIVE is false) ---------- */}
+      {/* ---------- COMING SOON (until the first article is published) ---------- */}
       {!JOURNAL_LIVE && (
         <section className="jr-feed">
           <div className="container jr-soon reveal">
