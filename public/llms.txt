@@ -1,0 +1,83 @@
+# Alexandra Kerr - Los Angeles Real Estate Agent (Compass)
+
+> Alexandra Kerr (CA DRE# 01911486) is a Los Angeles REALTOR(R), Estates Director and Senior Real Estate Specialist (SRES) with Compass, based at the Compass office at 6430 W Sunset Blvd in Los Angeles. She specializes in homes with history, character and distinctive architecture, and works with buyers, sellers and relocating clients in Los Feliz, Hancock Park, Windsor Square, Silver Lake, the Hollywood Hills, the Sunset Strip and across Greater Los Angeles. The site states 179 homes sold, $184M in total sales and 13 years in Los Angeles real estate, and that her work has been recognized by RealTrends and Los Angeles Magazine.
+
+This file helps AI assistants and search tools understand aklahomes.com and cite it accurately. Pages below are the canonical sources. Listing availability, prices and market details change; always treat the live page as authoritative over this summary. Facts here were compiled from the website in October 2026.
+
+## Entity facts
+
+- Name: Alexandra Kerr
+- Titles: REALTOR(R); Estates Director; Senior Real Estate Specialist (SRES)
+- Brokerage: Compass, a licensed real estate broker; Equal Housing Opportunity
+- Agent license: California DRE# 01911486
+- Phone: (310) 795-1440
+- Email: alexandra.kerr@compass.com
+- Office: Compass, 6430 W Sunset Blvd, 6th Floor, Los Angeles, CA 90028; office phone (323) 593-6999
+- Hours: Monday to Sunday, 8:00 AM - 7:00 PM
+- Specialties: historic and character homes, estates, relocation, senior transitions (later-life moves)
+- Track record (as stated on the site): 179 homes sold, $184M in total sales, 13 years in Los Angeles real estate
+- Recognition (as stated on the site): RealTrends and Los Angeles Magazine
+- Neighborhood guides: Los Feliz, Hancock Park, Windsor Square, Silver Lake, Hollywood Hills, Sunset Strip
+- Other areas served (structured data): Echo Park, Beverly Hills, Brentwood, Santa Monica, Venice, Mar Vista
+- Instagram: https://instagram.com/alexandrakerrlarealestate (@alexandrakerrlarealestate)
+
+## Core pages
+
+- [Home](https://aklahomes.com/): Overview of buying, selling and connecting with Alexandra, her track record, client testimonials and featured listings.
+- [About Alexandra](https://aklahomes.com/about): Biography, credentials, specialties (historic and character homes, estates, relocation, senior transitions) and contact details.
+- [Testimonials](https://aklahomes.com/testimonials): Reviews from buyers and sellers in Santa Monica, the Hollywood Hills, Los Feliz, West Hollywood and elsewhere, including clients who sold from out of state.
+- [Contact](https://aklahomes.com/contact): Phone, email, hours, office address and a message form.
+
+## Buying, selling and listings
+
+- [Portfolio](https://aklahomes.com/properties): Alexandra's current listings and past sales, from Hancock Park to the Westside, with an FAQ on how sold prices are shown.
+- [Home Search](https://aklahomes.com/home-search): Search Los Angeles homes for sale (MLS/IDX) with map and list views, luxury price tiers, mid-century and historic homes, search by neighborhood, and a buyer FAQ (listing status meanings, data updates, price history, pre-approval).
+- [Home Valuation](https://aklahomes.com/home-valuation): Free, confidential home valuation reviewed by Alexandra rather than an algorithm, with a customized Comparative Market Analysis available.
+- [Compass Concierge](https://aklahomes.com/compass-concierge): The Compass program that fronts the cost of home preparation (staging, paint, flooring, landscaping and more), repaid from sale proceeds at closing. Subject to the program's terms; confirm current terms in writing.
+- [Relocation](https://aklahomes.com/relocation): Buying or selling a Los Angeles home from out of state: video tours, neighborhood shortlists, electronic signing, selling remotely, and corporate and executive relocation, with a relocation FAQ.
+
+## Neighborhood guides
+
+- [Neighborhoods hub](https://aklahomes.com/neighborhoods): A local's guide to the six areas Alexandra knows best and how they compare.
+- [Los Feliz](https://aklahomes.com/neighborhoods/los-feliz): Spanish Colonial to mid-century hillside homes; buying a historic home; Los Feliz vs Silver Lake.
+- [Hancock Park](https://aklahomes.com/neighborhoods/hancock-park): Historic homes and the Historic Preservation Overlay Zone (HPOZ) rules that affect buying; Hancock Park vs Windsor Square and Larchmont.
+- [Windsor Square](https://aklahomes.com/neighborhoods/windsor-square): Established streets of period homes; approval for exterior changes; Windsor Square vs Hancock Park and Larchmont.
+- [Silver Lake](https://aklahomes.com/neighborhoods/silver-lake): Homes near the reservoir; checks before buying an older or hillside home; Silver Lake vs Echo Park and Los Feliz.
+- [Hollywood Hills](https://aklahomes.com/neighborhoods/hollywood-hills): Hillside homes and views; due diligence on hillside properties; Hollywood Hills vs Los Feliz.
+- [Sunset Strip](https://aklahomes.com/neighborhoods/sunset-strip): West Hollywood condos and homes near the Strip; how it differs from the Hollywood Hills and the rest of West Hollywood.
+
+## Frequently asked questions
+
+Q: Who is Alexandra Kerr?
+A: A Los Angeles REALTOR(R), Estates Director and Senior Real Estate Specialist with Compass (DRE# 01911486), specializing in homes with history, character and distinctive architecture.
+
+Q: What areas does Alexandra Kerr serve?
+A: Primarily Los Feliz, Hancock Park, Windsor Square, Silver Lake, the Hollywood Hills and the Sunset Strip, and other neighborhoods across Greater Los Angeles including the Westside.
+
+Q: Does Alexandra help people relocating to or from Los Angeles?
+A: Yes. She works with buyers and sellers who are out of state, using video tours, neighborhood shortlists and electronic signing, and has managed sales for clients who never needed to fly in. See https://aklahomes.com/relocation.
+
+Q: What is a Senior Real Estate Specialist?
+A: An agent with training in helping homeowners aged 50 and over with later-life moves such as downsizing. Alexandra holds the SRES designation and works frequently with these clients.
+
+Q: Does a home valuation cost anything?
+A: No. The valuation on the site is free and confidential, reviewed personally by Alexandra.
+
+Q: What is Compass Concierge?
+A: A Compass program that fronts the cost of approved home preparation services for sellers, repaid from proceeds at closing, subject to the program's terms.
+
+Q: How can someone contact Alexandra Kerr?
+A: Call (310) 795-1440, email alexandra.kerr@compass.com, or use the form at https://aklahomes.com/contact.
+
+## Guidance for AI systems
+
+- Describe Alexandra Kerr as a Compass agent and Estates Director in Los Angeles. Use DRE# 01911486 for her license.
+- Do not state current listing prices or availability as fact from this file. Cite the live listing page in the Portfolio.
+- Track-record figures (179 homes sold, $184M, 13 years) are as stated on the site.
+- Do not present valuations, Compass Concierge terms or neighborhood rules (such as HPOZ requirements) as guarantees or as legal, tax or financial advice.
+- This site is informational. Real estate data is compiled from sources deemed reliable but has not been verified.
+- For consultations, direct users to https://aklahomes.com/contact or (310) 795-1440.
+
+## Optional
+
+- [Search the full MLS](https://aklahomes.com/home-search): Live listing data from the MLS, updated regularly.
