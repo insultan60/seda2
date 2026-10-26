@@ -7,14 +7,17 @@ export type Block =
   | { k: "p"; t: string }
   | { k: "h2"; t: string }
   | { k: "h3"; t: string }
+  | { k: "h4"; t: string }
+  | { k: "table"; head: string[]; rows: string[][] }
   | { k: "ul"; items: string[] }
   | { k: "ol"; items: string[] }
   | { k: "img"; src: string; alt: string; cap?: string }
   | { k: "quote"; t: string }
   /** Where the post's `faq` renders; at the end of the body when absent. */
   | { k: "faq" };
-/* Inside "p" and list items, [text](/path) becomes a link (see the article
-   page's inline renderer). Nothing else is parsed. */
+/* Inside "p", list items and table cells, [text](/path) becomes a link and
+   **text** is bold (see the article page's inline renderer). Nothing else is
+   parsed. */
 
 export type Post = {
   slug: string;
@@ -48,6 +51,212 @@ export type Post = {
 
 // Newest first. `img` values are stock placeholders pending the real article art.
 export const POSTS: Post[] = [
+  {
+    slug: "5-things-to-know-before-buying-a-hollywood-hills-home",
+    title: "5 Things to Know Before Buying a Hollywood Hills Home",
+    seoTitle: "5 Things to Know Before Buying a Hollywood Hills Home",
+    description:
+      "Buying in the Hollywood Hills? Learn the 5 things to check first: slope, fire access, insurance, true costs, and permits.",
+    date: "October 26, 2026",
+    iso: "2026-10-26",
+    tag: "Buying",
+    excerpt:
+      "Check the slope, soil, and walls; confirm the fire zone and fire truck access; get an insurance quote before you offer; budget for the full cost, which is about $2.9 million at the median list price plus roughly $35,000 a year in property tax; and check permits and zoning before you plan any changes.",
+    img: "/journal/hollywood-hills-hillside-home.jpg",
+    imgAlt: "Modern hillside home with a pool above the canyon in the Hollywood Hills",
+    body: [
+      { k: "p", t: "Each one can change your price, your loan, or your insurance. Here is how to check them, in order." },
+
+      { k: "h2", t: "Things to Know Before Buying a Hollywood Hills Home" },
+
+      { k: "h3", t: "The Ground Moves: Check the Slope, Soil, and Walls" },
+      { k: "p", t: "Water and weak soil can move a hill, so inspect the slope, walls, and drains before you offer." },
+      { k: "h4", t: "Why the slope matters" },
+      {
+        k: "ul",
+        items: [
+          "Los Angeles has special hillside rules called the [Baseline Hillside Ordinance](https://planning.lacity.org/plans-policies/initiatives-policies/baseline-hillside-ordinance). They cover grading, drainage, parking, and street width.",
+          "Many hillside projects need a soils or geology report before the city gives a permit.",
+          "In March 2024, a landslide in the Hollywood Hills area led to four homes being red-tagged. A red tag means a home is unsafe to live in.",
+        ],
+      },
+      { k: "h4", t: "Retaining walls" },
+      { k: "p", t: "Most walls that hold a slope need a permit, an engineer's plan, and a city inspection." },
+      { k: "p", t: "**Red flags at a showing:**" },
+      {
+        k: "ul",
+        items: [
+          "Walls that lean, bulge, or show stair-step cracks",
+          "No drain holes at the base of a wall",
+          "Fresh cut or filled slopes with no permit papers",
+          "Downspouts that send water toward the slope",
+        ],
+      },
+      { k: "p", t: "**Questions for the seller:**" },
+      {
+        k: "ul",
+        items: [
+          "Can you share permits and final inspections for walls, decks, driveways, and additions?",
+          "Has this lot or a nearby lot had a slide or soil movement?",
+        ],
+      },
+      { k: "h4", t: "Earthquake and landslide zones" },
+      { k: "p", t: "California sellers give buyers a Natural Hazard Disclosure. It shows if the home sits in a fire zone, an earthquake fault zone, or a landslide or liquefaction zone." },
+      { k: "p", t: "The Hollywood Fault runs roughly nine miles along the southern edge of the hills, according to the Southern California Earthquake Center. A zone label does not mean a home will fail. It means an expert should look closer." },
+      { k: "h4", t: "Experts to call" },
+      {
+        k: "ul",
+        items: [
+          "A home inspector for the whole house",
+          "A structural engineer for foundation or wall problems",
+          "A geotechnical engineer (a soils expert) for steep lots",
+          "A sewer camera inspector, since the sewer line to the street is usually the owner's job",
+        ],
+      },
+
+      { k: "h3", t: "Can a Fire Truck Reach the Door? Fire Zones and Street Access" },
+      { k: "p", t: "Much of the Hollywood Hills sits in a Very High Fire Hazard Severity Zone, so check the zone, the brush rules, and the road." },
+      { k: "h4", t: "Fire zone and brush rules" },
+      {
+        k: "ul",
+        items: [
+          "Look up the address on the [CAL FIRE hazard map](https://egis.fire.ca.gov/FHSZ/).",
+          "The Los Angeles Fire Department (LAFD) requires year-round brush clearing in these zones. Many owners must clear up to 200 feet around buildings.",
+          "Ask the seller for brush clearance records.",
+          "Ask about fire-hardening, such as ember-resistant vents, a Class A roof, and sprinklers.",
+        ],
+      },
+      { k: "h4", t: "Street width and driveways" },
+      {
+        k: "ul",
+        items: [
+          "The city calls a street “substandard hillside limited” when it is under 36 feet wide or paved under 28 feet. That can limit parking, additions, and fire rules.",
+          "Check the driveway slope, the turns, and any gate. A gate that looks fine to you may not meet fire rules.",
+          "Ask how many permitted garage spaces the home has.",
+        ],
+      },
+
+      { k: "h3", t: "Insurance Can Make or Break the Deal" },
+      { k: "p", t: "Get an insurance quote before you offer, because in high-fire areas standard insurers may say no and the state's FAIR Plan may be your fallback." },
+      { k: "h4", t: "How the FAIR Plan works" },
+      {
+        k: "ul",
+        items: [
+          "It is California's insurer of last resort, a safety net for people who cannot get regular coverage.",
+          "It mainly covers fire. Many owners add a second policy, often called a DIC policy (difference in conditions).",
+          "Rates were set to rise 29.1% for certain homeowners starting October 15, 2026.",
+          "One insurance guide reports yearly costs from about $5,000 to more than $20,000 in wildfire ZIP codes of the Santa Monica Mountains. Your quote can differ.",
+        ],
+      },
+      { k: "h4", t: "Your insurance to-do list" },
+      {
+        k: "ol",
+        items: [
+          "Ask a broker who writes high-fire homes for a written quote on your top picks.",
+          "Get the quote before you remove contingencies.",
+          "Add an insurance contingency, so you can leave the deal if you cannot get coverage on fair terms.",
+        ],
+      },
+      { k: "p", t: "The California Department of Insurance keeps [wildfire insurance resources](https://www.insurance.ca.gov/01-consumers/140-catastrophes/WildfireResources.cfm) for buyers." },
+
+      { k: "h3", t: "What a Hollywood Hills House Really Costs" },
+      { k: "p", t: "The median list price is about $2.9 million, property tax on that runs about $35,000 to $36,000 a year, and insurance and repairs come on top." },
+      { k: "h4", t: "How much is a house in the Hollywood Hills?" },
+      {
+        k: "table",
+        head: ["Measure", "Number", "Source"],
+        rows: [
+          ["Median list price", "About $2.9 million", "Ruby Home MLS data, Oct. 9, 2026"],
+          ["Average price per square foot", "About $1,452", "Ruby Home MLS data, Oct. 9, 2026"],
+          ["Average days on market", "88 days", "Ruby Home MLS data, Oct. 9, 2026"],
+        ],
+      },
+      { k: "p", t: "Searching only “Hollywood” can show Hollywood, Florida. This post covers Hollywood Hills, California." },
+      { k: "h4", t: "Prices change by pocket" },
+      {
+        k: "table",
+        head: ["Area", "Snapshot", "Source"],
+        rows: [
+          ["Whitley Heights", "About $845,000 median list price", "Realtor.com, May 2026"],
+          ["Laurel Canyon", "About $2.5 million median list price", "Ruby Home, July 2026"],
+          ["Outpost", "About $3.4 million median list price", "Realtor.com, May 2026"],
+        ],
+      },
+      { k: "p", t: "Other sites show lower medians because they count areas differently. Ask for sold prices on the exact street you like." },
+      { k: "h4", t: "Property tax and loans" },
+      {
+        k: "ul",
+        items: [
+          "New buyers in Los Angeles pay about 1.2% to 1.25% of the purchase price each year. On $2.9 million, that is about $35,000 to $36,000.",
+          "Prop 13 then caps yearly growth in assessed value at 2%.",
+          "Expect a supplemental tax bill 2 to 6 months after closing.",
+          "Many buyers here need a jumbo loan, which is a loan above the standard limit.",
+          "Lenders may flag slope or wall problems and ask for an engineer's report. Tell your lender early that the home is on a hillside.",
+        ],
+      },
+      { k: "p", t: "Want to test your budget? Try the [mortgage calculator](https://seda2.idxbroker.com/idx/mortgage), then set up [new listing alerts](https://seda2.idxbroker.com/idx/usersignup) so Hollywood Hills homes reach you first." },
+
+      { k: "h3", t: "Know the Rules Before You Plan a Remodel" },
+      { k: "p", t: "Not every hillside lot allows the remodel you want, so check permits and zoning before you offer." },
+      { k: "h4", t: "Permit history" },
+      {
+        k: "ul",
+        items: [
+          "Pull the permit history from the Los Angeles Department of Building and Safety (LADBS).",
+          "Compare it to what you see: additions, decks, walls, and converted garages.",
+          "Unpermitted work can slow your loan, your insurance, and your resale.",
+        ],
+      },
+      { k: "h4", t: "Zoning layers" },
+      { k: "p", t: "Look up the address on ZIMAS, the city's property info site. Look for these:" },
+      {
+        k: "ul",
+        items: [
+          "**A specific plan:** Hollywoodland's plan protects ridgelines, home character, and fire access.",
+          "**An HPOZ (historic overlay zone):** It adds review for outside changes. Whitley Heights is one example.",
+          "**The Baseline Hillside Ordinance:** It can limit size and add rules for slope and parking.",
+        ],
+      },
+      { k: "h4", t: "Resale" },
+      { k: "p", t: "The next buyer will ask about permits, parking, access, fire, and insurance, so keep your records. If you sell above $5.4 million inside the City of Los Angeles, the Measure ULA transfer tax applies, so confirm current rates before you list." },
+
+      { k: "h2", t: "Why Buy With a Hollywood Hills Buyer's Agent" },
+      { k: "p", t: "**A local buyer's agent checks the records, the street, and the comparable sales before you offer.** Alexandra Kerr helps Hollywood Hills buyers in four ways:" },
+      {
+        k: "ul",
+        items: [
+          "She reads permit and property records with you before an offer is written.",
+          "She pulls recent sales on the same street, so your offer fits the block, not the ZIP code.",
+          "She shows private exclusives and off-market homes through Compass, often before they reach the MLS.",
+          "She runs video tours and digital signing for buyers who live out of state.",
+        ],
+      },
+      { k: "p", t: "Alexandra is a REALTOR, Estates Director, and Senior Real Estate Specialist at Compass. She has 13 years in Los Angeles real estate, 179 homes sold, and $184 million in total sales. Her work has been recognized by RealTrends and Los Angeles Magazine." },
+      { k: "p", t: "Ready to talk through a home? [Schedule a consultation](/contact) or call [(310) 795-1440](tel:+13107951440)." },
+    ],
+    faq: [
+      {
+        q: "Is Hollywood Hills the same as Hollywood?",
+        a: "No. Hollywood Hills is the hillside area above Hollywood, in the Santa Monica Mountains. It has canyon streets, views, and its own hillside rules.",
+      },
+      {
+        q: "How long does it take to buy a Hollywood Hills home?",
+        a: "Many Los Angeles purchases close in about 30 days. Hillside checks can add time, so ask for enough days in your contingency period.",
+      },
+      {
+        q: "Can I cancel if the inspection finds slope problems?",
+        a: "If your contract has an inspection contingency, you can usually cancel or ask for repairs within the time window in the contract. After that window ends, you may lose the right. Ask your agent to confirm the dates.",
+      },
+      {
+        q: "Do I need a buyer's agent?",
+        a: "California does not require one. Buyers now usually sign a written agreement with their agent before touring homes, so ask how the agent is paid and what the service includes.",
+      },
+      {
+        q: "Can I buy a Hollywood Hills home from out of state?",
+        a: "Yes. Video tours and digital signing make it possible. Local pros still do the inspections in person.",
+      },
+    ],
+  },
   {
     slug: "buying-a-hillside-home-in-the-hollywood-hills",
     title: "Buying a Hillside Home in the Hollywood Hills",
@@ -454,7 +663,7 @@ export function readingTime(post: Post): string | null {
   if (post.read) return post.read;
   if (!post.body?.length) return null;
   const words = post.body
-    .map((b) => ("items" in b ? b.items.join(" ") : "t" in b ? b.t : ""))
+    .map((b) => ("items" in b ? b.items.join(" ") : "rows" in b ? b.rows.flat().join(" ") : "t" in b ? b.t : ""))
     .join(" ")
     .split(/\s+/)
     .filter(Boolean).length;

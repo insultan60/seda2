@@ -48,9 +48,12 @@ const BackArrow = () => (
   </svg>
 );
 
-/** [text](href) inside article copy becomes a link; everything else is text. */
+/** [text](href) inside article copy becomes a link and **text** bold;
+ *  everything else is text. */
 function inline(t: string): ReactNode[] {
-  return t.split(/(\[[^\]]+\]\([^)]+\))/g).map((part, i) => {
+  return t.split(/(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*)/g).map((part, i) => {
+    const bold = part.match(/^\*\*([^*]+)\*\*$/);
+    if (bold) return <strong key={i}>{bold[1]}</strong>;
     const m = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
     if (!m) return part;
     const [, text, href] = m;
@@ -71,6 +74,23 @@ function renderBlock(b: Exclude<Block, { k: "faq" }>, i: number) {
       return <h2 key={i}>{b.t}</h2>;
     case "h3":
       return <h3 key={i}>{b.t}</h3>;
+    case "h4":
+      return <h4 key={i}>{b.t}</h4>;
+    case "table":
+      return (
+        <div key={i} className="ar-table">
+          <table>
+            <thead>
+              <tr>{b.head.map((h) => <th key={h} scope="col">{h}</th>)}</tr>
+            </thead>
+            <tbody>
+              {b.rows.map((r) => (
+                <tr key={r.join("|")}>{r.map((c, j) => <td key={j}>{inline(c)}</td>)}</tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
     case "ul":
       return (
         <ul key={i}>

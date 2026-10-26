@@ -198,3 +198,19 @@
    it sits inside the reading flow rather than as a full page section. */
 .ar-faq .faq { padding-block: clamp(1.5rem, 4vw, 2.5rem); background: transparent; }
 .ar-faq .faq .container { max-width: 44rem; }
+
+/* ---------- Fourth-level headings and data tables ---------- */
+.ar-body h4 {
+  font-family: var(--sans, inherit); font-weight: 600; font-size: var(--fs-small);
+  letter-spacing: .12em; text-transform: uppercase; color: var(--moss);
+  margin-top: 1.75rem; margin-bottom: .4rem;
+}
+.ar-body strong { color: var(--ink); font-weight: 600; }
+.ar-table { margin: 1.5rem 0 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.ar-table table { width: 100%; border-collapse: collapse; font-size: var(--fs-small); min-width: 30rem; }
+.ar-table th {
+  text-align: left; font-weight: 600; font-size: var(--fs-micro); letter-spacing: .12em;
+  text-transform: uppercase; color: var(--moss); padding: .7rem .9rem; border-bottom: 1px solid var(--clay);
+}
+.ar-table td { padding: .75rem .9rem; color: var(--ink-soft); border-bottom: 1px solid var(--clay-light); line-height: 1.5; vertical-align: top; }
+.ar-table tbody tr:nth-child(odd) td { background: rgba(203, 187, 160, .1); }
