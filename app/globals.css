@@ -1012,3 +1012,33 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
   line-height: 1.05; letter-spacing: -0.015em; color: var(--ink);
 }
 .ck-page-head p { color: var(--ink-soft); max-width: 54ch; margin: 1.2rem auto 0; }
+
+/* ---------- Top-bar dropdown (Neighborhoods) ----------
+   Opens on hover and on keyboard focus (:focus-within). The panel's top
+   padding is an invisible bridge, so it stays open while the pointer crosses
+   from the link to the list. */
+.nav__drop { position: relative; display: flex; align-items: center; }
+.nav__drop > a { display: inline-flex; align-items: center; gap: .35rem; }
+.nav__drop .drawer__chev { width: 12px; height: 12px; transition: transform 200ms var(--ease); }
+.nav__drop:hover .drawer__chev, .nav__drop:focus-within .drawer__chev { transform: rotate(180deg); }
+.nav__menu {
+  position: absolute; top: 100%; left: 50%; min-width: 230px; padding-top: .9rem;
+  transform: translate(-50%, 6px); opacity: 0; visibility: hidden;
+  transition: opacity 180ms var(--ease), transform 180ms var(--ease), visibility 180ms;
+}
+.nav__drop:hover .nav__menu, .nav__drop:focus-within .nav__menu {
+  opacity: 1; visibility: visible; transform: translate(-50%, 0);
+}
+.nav__menu::before {
+  content: ""; position: absolute; inset: .9rem 0 0; z-index: -1;
+  background: var(--moss-deep); border: 1px solid rgba(245,240,225,.14);
+  box-shadow: 0 18px 40px -18px rgba(0,0,0,.45);
+}
+.nav__links .nav__menu a {
+  display: block; padding: .7rem 1.25rem; white-space: nowrap;
+  font-size: var(--fs-micro); letter-spacing: .12em; color: var(--parchment);
+}
+.nav__links .nav__menu a:first-child { margin-top: .4rem; }
+.nav__links .nav__menu a:last-child { margin-bottom: .4rem; }
+.nav__links .nav__menu a::after { display: none; }
+.nav__links .nav__menu a:hover, .nav__links .nav__menu a:focus-visible { color: var(--clay); background: rgba(245,240,225,.06); }

@@ -1,5 +1,6 @@
 import { IDX } from "../site";
 import { JOURNAL_LIVE } from "../journal/data";
+import { FEATURED } from "../neighborhoods/data";
 
 /* The site's menus and footer links, in one place. Read by the Header and
    Footer components and by the IDX wrapper (app/idx-wrapper/route.ts), which
@@ -7,14 +8,22 @@ import { JOURNAL_LIVE } from "../journal/data";
    changed here changes on both. Kept out of Header.tsx because that is a
    client module, and its exports can't be read as plain data on the server. */
 
-export type NavLink = { t: string; href: string; disabled?: boolean };
+export type NavLink = { t: string; href: string; disabled?: boolean; sub?: NavLink[] };
 /** A drawer group with `href` and no `sub` is drawn as a plain link. */
 export type DrawerGroup = { label: string; href?: string; sub: NavLink[] };
+
+/** Every neighborhood guide, for the Neighborhoods dropdown in the top bar
+ *  and the side menu. From neighborhoods/data.ts, so a new guide appears here
+ *  on its own. */
+export const NEIGHBORHOOD_LINKS: NavLink[] = [
+  { t: "All Neighborhoods", href: "/neighborhoods" },
+  ...FEATURED.filter((h) => h.page).map((h) => ({ t: h.name, href: h.page as string })),
+];
 
 export const PRIMARY_LINKS: NavLink[] = [
   { t: "Portfolio", href: "/properties" },
   { t: "Home Search", href: "/home-search" },
-  { t: "Neighborhoods", href: "/neighborhoods" },
+  { t: "Neighborhoods", href: "/neighborhoods", sub: NEIGHBORHOOD_LINKS },
   { t: "Relocation", href: "/relocation" },
 ];
 
@@ -30,7 +39,7 @@ export const DRAWER_GROUPS: DrawerGroup[] = [
      their links sit here directly. */
   { label: "Portfolio", href: "/properties", sub: [] },
   { label: "Home Search", href: "/home-search", sub: [] },
-  { label: "Neighborhoods", href: "/neighborhoods", sub: [] },
+  { label: "Neighborhoods", sub: NEIGHBORHOOD_LINKS },
   { label: "Relocation", href: "/relocation", sub: [] },
   { label: "Home Valuation", href: "/home-valuation", sub: [] },
   { label: "Compass Concierge", href: "/compass-concierge", sub: [] },

@@ -52,7 +52,20 @@ export default function Header() {
           <img className="nav__compass" src="/assets/compass-white.png" alt="Compass" />
           <nav className="nav__links" aria-label="Primary">
             {PRIMARY_LINKS.map((l) =>
-              isExternal(l.href) ? (
+              l.sub ? (
+                // Opens on hover and on keyboard focus (CSS :focus-within).
+                <div className="nav__drop" key={l.t}>
+                  <Link href={l.href} aria-haspopup="true">
+                    {l.t}
+                    <Chevron />
+                  </Link>
+                  <div className="nav__menu">
+                    {l.sub.map((s) => (
+                      <Link key={s.href} href={s.href}>{s.t}</Link>
+                    ))}
+                  </div>
+                </div>
+              ) : isExternal(l.href) ? (
                 <a key={l.t} href={l.href}>{l.t}</a>
               ) : (
                 <Link key={l.t} href={l.href}>{l.t}</Link>

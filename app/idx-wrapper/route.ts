@@ -56,6 +56,11 @@ export async function GET(request: Request) {
   const abs = (href: string) => (/^(https?:|mailto:|tel:|#)/.test(href) ? href : `${origin}${href}`);
   const a = (l: NavLink, cls = "") =>
     `<a${cls ? ` class="${cls}"` : ""} href="${esc(abs(l.href))}"${l.disabled ? ' aria-disabled="true"' : ""}>${esc(l.t)}</a>`;
+  // A top-bar link, or a dropdown when it has sub-links (Neighborhoods).
+  const primary = (l: NavLink) =>
+    l.sub
+      ? `<div class="nav__drop"><a href="${esc(abs(l.href))}" aria-haspopup="true">${esc(l.t)}${CHEVRON}</a><div class="nav__menu">${l.sub.map((s) => a(s)).join("")}</div></div>`
+      : a(l);
   const group = (g: DrawerGroup) => g.href ? `
       ${a({ t: g.label, href: g.href }, "drawer__item")}` : `
         <div class="drawer__group">
@@ -73,13 +78,13 @@ export async function GET(request: Request) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="${origin}/idx/wrapper.css?v=1">
+<link rel="stylesheet" href="${origin}/idx/wrapper.css?v=2">
 </head>
 <body class="ak-idx">
 <header class="ak-shell nav" id="top">
   <div class="nav__inner">
     <a class="nav__logo" href="${origin}/" aria-label="${esc(AGENT.name)} — Home"><img class="nav__logo-img" src="${origin}/assets/logo-white.png" alt="${esc(AGENT.name)} — AK monogram"></a>
-    <nav class="nav__links" aria-label="Primary">${PRIMARY_LINKS.map((l) => a(l)).join("")}</nav>
+    <nav class="nav__links" aria-label="Primary">${PRIMARY_LINKS.map(primary).join("")}</nav>
     <a class="btn btn--outline-light nav__cta" href="${origin}/contact">Let&rsquo;s Connect</a>
     <button class="nav__burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="akSideMenu"><span></span><span></span><span></span></button>
   </div>

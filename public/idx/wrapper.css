@@ -121,3 +121,33 @@ body.ak-idx { margin: 0; background: var(--off-white); color: var(--ink); font-f
   .ak-idx-main { padding-top: 78px; }
   .ak-shell .footer__grid { grid-template-columns: 1fr; }
 }
+
+/* ---------- Top-bar dropdown (Neighborhoods) ----------
+   Opens on hover and on keyboard focus (:focus-within). The panel's top
+   padding is an invisible bridge, so it stays open while the pointer crosses
+   from the link to the list. */
+.ak-shell .nav__drop { position: relative; display: flex; align-items: center; }
+.ak-shell .nav__drop > a { display: inline-flex; align-items: center; gap: .35rem; }
+.ak-shell .nav__drop .drawer__chev { width: 12px; height: 12px; transition: transform 200ms var(--ease); }
+.ak-shell .nav__drop:hover .drawer__chev, .ak-shell .nav__drop:focus-within .drawer__chev { transform: rotate(180deg); }
+.ak-shell .nav__menu {
+  position: absolute; top: 100%; left: 50%; min-width: 230px; padding-top: .9rem;
+  transform: translate(-50%, 6px); opacity: 0; visibility: hidden;
+  transition: opacity 180ms var(--ease), transform 180ms var(--ease), visibility 180ms;
+}
+.ak-shell .nav__drop:hover .nav__menu, .ak-shell .nav__drop:focus-within .nav__menu {
+  opacity: 1; visibility: visible; transform: translate(-50%, 0);
+}
+.ak-shell .nav__menu::before {
+  content: ""; position: absolute; inset: .9rem 0 0; z-index: -1;
+  background: var(--moss-deep); border: 1px solid rgba(245,240,225,.14);
+  box-shadow: 0 18px 40px -18px rgba(0,0,0,.45);
+}
+.ak-shell .nav__links .nav__menu a {
+  display: block; padding: .7rem 1.25rem; white-space: nowrap;
+  font-size: var(--fs-micro); letter-spacing: .12em; color: var(--parchment);
+}
+.ak-shell .nav__links .nav__menu a:first-child { margin-top: .4rem; }
+.ak-shell .nav__links .nav__menu a:last-child { margin-bottom: .4rem; }
+.ak-shell .nav__links .nav__menu a::after { display: none; }
+.ak-shell .nav__links .nav__menu a:hover, .ak-shell .nav__links .nav__menu a:focus-visible { color: var(--clay); background: rgba(245,240,225,.06); }
