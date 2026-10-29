@@ -52,6 +52,132 @@ export type Post = {
 // Newest first. `img` values are stock placeholders pending the real article art.
 export const POSTS: Post[] = [
   {
+    slug: "moving-from-los-angeles-to-austin",
+    title: "Moving From Los Angeles to Austin: Costs, Taxes, Homes",
+    seoTitle: "Moving From Los Angeles to Austin: Costs, Taxes, Homes",
+    description:
+      "Moving from Los Angeles to Austin? Compare home prices, taxes, and moving costs, plus how to sell your LA home first. A guide from Alexandra Kerr.",
+    date: "October 30, 2026",
+    iso: "2026-10-30",
+    tag: "Relocation",
+    excerpt:
+      "The median home in the Los Angeles metro area sold for about $860,000 in April 2026. In Austin, the metro median that month was about $435,000. That gap is why so many owners are moving from Los Angeles to Austin, and it is why the sale of your LA home matters more than the move itself.",
+    img: "/properties/1747-hollyvista/01-front.jpg",
+    imgAlt: "Front walk of a Los Angeles home Alexandra Kerr sold on Hollyvista",
+    body: [
+      { k: "p", t: "This guide covers costs, taxes, neighborhoods, and the steps to sell your Los Angeles home before you leave." },
+
+      { k: "h2", t: "Is Moving From Los Angeles to Austin Worth It?" },
+      { k: "p", t: "For many owners, yes. The savings are real, but they are less simple than most headlines suggest." },
+      {
+        k: "table",
+        head: ["", "Los Angeles", "Austin"],
+        rows: [
+          ["Median home price", "About $860,000 (metro, April 2026)", "About $435,000 (metro, April 2026)"],
+          ["State income tax", "Up to 13.3%", "None"],
+          ["Property tax", "About 1.2% to 1.25% for new buyers in the city", "1.30% median effective rate in Travis County"],
+          ["Summers", "Dry", "Hot and humid"],
+          ["Distance", "About 1,376 miles to Austin by road", "About 1,376 miles to Los Angeles by road"],
+        ],
+      },
+      { k: "p", t: "The Austin figure is a metro median. The city of Austin itself costs more, and published medians range from roughly $520,000 to $595,000 depending on the source." },
+
+      { k: "h2", t: "Cost of Living in Los Angeles vs Austin" },
+      { k: "h3", t: "Housing and Rent" },
+      { k: "p", t: "Austin prices have cooled. The metro median in April 2026 sat well below the April 2022 peak of about $551,000, and homes averaged 72 days on the market." },
+      { k: "p", t: "That gives buyers room to negotiate, which was rare in 2021. If you are unsure of your neighborhood, renting for the first few months is a low-risk way to learn the city." },
+      { k: "h3", t: "Income Tax and Property Tax" },
+      { k: "p", t: "Texas does not collect a state income tax. That alone can raise take-home pay for working households." },
+      { k: "p", t: "Property tax works differently. California’s Proposition 13 limits how fast your assessed value can rise, while Texas appraises homes every year. Travis County’s median effective rate is 1.30%, and the median annual bill is about $7,110. Some local brokerages quote combined rates of 1.8% to 2.3% before exemptions, so the number depends on your school district and any special tax districts." },
+      { k: "p", t: "Texas offers two protections for homeowners. The school district homestead exemption is $140,000, and homesteaded properties also get a 10% annual cap on appraised value increases. You must apply with the county appraisal district, and the deadline is April 30." },
+      { k: "h3", t: "Insurance and Utilities" },
+      { k: "p", t: "One Austin brokerage reports that insurance costs in Travis County have risen about 20% since 2024. Get quotes before you make an offer, just as you would on an LA hillside." },
+      { k: "p", t: "Utilities are closer than most people expect. A moving-industry price comparison put basic utilities at about $193 a month in Los Angeles and $181 in Austin. Summer air conditioning will push your Austin bill up." },
+
+      { k: "h2", t: "What Your Los Angeles Home Equity Buys in Austin" },
+      { k: "p", t: "Say you sell a home for $3 million. Before the mortgage payoff, taxes, and selling costs, that is enough to buy a median Tarrytown home and still have more than $1 million left over. Redfin put Tarrytown’s median sale price at about $1.55 million in January 2026, and Zillow put West Lake Hills near $1.96 million." },
+      { k: "p", t: "The gap shrinks fast at the top of the market. Luxury buyers get more land, newer construction, and lake or Hill Country views, but not the same architecture or history. That is worth knowing before you set a budget." },
+
+      { k: "h2", t: "Austin Neighborhoods for Los Angeles Buyers" },
+      { k: "p", t: "No Austin neighborhood matches an LA one exactly. These pairings are based on feel, so treat them as a starting point." },
+      {
+        k: "ul",
+        items: [
+          "**Silver Lake and Echo Park to East Austin.** Creative energy, restaurants, and a mix of old bungalows and new builds. The median was about $645,000 in early 2026.",
+          "**Los Feliz to Travis Heights and Zilker.** Character homes near big parks and trails. Travis Heights had a median near $956,000, and Zilker was closer to $1.4 million.",
+          "**Hancock Park and Windsor Square to Tarrytown and Pemberton Heights.** Mature trees and established streets close to downtown.",
+          "**Hollywood Hills and the Sunset Strip to West Lake Hills and Barton Creek.** Hill Country views, privacy, and Eanes ISD schools.",
+        ],
+      },
+      { k: "p", t: "Families often add Lake Travis ISD, which serves Bee Cave and Lakeway. Austin has no match for the Pacific coast, so beach lovers should plan for Lake Travis and Barton Springs instead." },
+      { k: "p", t: "Alexandra’s LA neighborhood guides can help you describe what you like about your current area: [Los Feliz](/neighborhoods/los-feliz), [Silver Lake](/neighborhoods/silver-lake), [Hancock Park](/neighborhoods/hancock-park), and [Hollywood Hills](/neighborhoods/hollywood-hills). That makes it easier for an Austin agent to find your match." },
+
+      { k: "h2", t: "How to Sell Your Los Angeles Home Before You Move" },
+      { k: "h3", t: "Sell First or Buy First" },
+      { k: "p", t: "Selling first gives you a firm budget and no double mortgage. The cost is that you may need a rental in Austin while you search." },
+      { k: "p", t: "Buying first lets you secure the Austin home you want, but you carry two homes until the LA sale closes. Some owners use a bridge loan or a home equity line for that gap, which adds cost and risk. Compare the numbers with your lender before you choose." },
+      { k: "p", t: "Alexandra offers a departing-seller service: your LA home is prepared, marketed, and sold while you settle elsewhere. Staging, photography, and escrow run without a return trip. [Compass Concierge](/compass-concierge) can also front prep costs, such as repairs or staging, and collect them at closing." },
+      { k: "h3", t: "Capital Gains and Measure ULA" },
+      { k: "p", t: "Federal tax is where many sellers save the most. You may exclude up to $250,000 of gain from the sale of your main home, or $500,000 if you file jointly. The two years of ownership and use do not have to be consecutive or right before the sale. That means you can often move to Texas first and still qualify." },
+      { k: "p", t: "California is stricter. The state taxes capital gains like ordinary income, at rates up to 13.3%. Buyers must also withhold 3 1/3% of the gross sale price on California real estate sales. A seller who qualifies for an exemption must submit Form 593 before closing to avoid that withholding, so raise it with your escrow officer early." },
+      { k: "p", t: "If your home is in the City of Los Angeles and sells for more than $5.4 million, Measure ULA applies. For closings after June 30, 2026, the rate is 4% between $5.4 million and $10.9 million and 5.5% above that, charged on the whole price, not just the excess. The tax remains in effect after a statewide measure to limit it was withdrawn in June 2026. The seller typically pays it, so it shapes pricing and negotiation." },
+      { k: "p", t: "This is general information, not tax or legal advice. Talk to a CPA before you list." },
+      { k: "h3", t: "Selling From Out of State" },
+      { k: "p", t: "You do not need to be in Los Angeles to close. Alexandra runs video walkthroughs and digital signing, and her vetted vendors handle photography, staging, and repairs. Start with a [home valuation](/home-valuation) so you know your number before you commit to a timeline." },
+
+      { k: "h2", t: "What Changes: Heat, Humidity, Driving, and Daily Life" },
+      { k: "p", t: "The climate is the first thing you will notice. Los Angeles typically ranges from 48 to 85 degrees, while Austin usually runs from 43 to 97, with much more humidity in summer. Plan for higher cooling costs from June through September." },
+      { k: "p", t: "Austin has traffic too, mostly on I-35 and MoPac, and you will still want a car. Public transit exists but covers far less ground than most LA residents hope. Spring storms and flash flooding also happen in Central Texas, so check the flood map for any property you consider." },
+      { k: "p", t: "The upside is lifestyle. Austin has more than 250 live music venues, plus Lady Bird Lake, Barton Springs, and the Hill Country within a short drive." },
+
+      { k: "h2", t: "Moving Costs and Logistics for a 1,376-Mile Move" },
+      { k: "p", t: "Full-service movers charge about $3,100 to $7,300 for a two or three-bedroom home on this route, based on March 2026 data. Your price depends on volume, timing, and how much packing you do yourself." },
+      { k: "p", t: "Containers and rental trucks usually cost less but need more work from you. With U-Pack, for example, you pack, load, and unload while the company handles the driving." },
+      { k: "p", t: "One Austin brokerage notes that moves between October and February tend to cost less. Get at least three written quotes, and confirm whether insurance, stairs, and long carries are included." },
+
+      { k: "h2", t: "Moving Timeline, Step by Step" },
+      {
+        k: "ol",
+        items: [
+          "**6 to 8 months out:** Meet with an LA agent about pricing and timing, and with a CPA about gains and residency.",
+          "**4 to 6 months out:** Shortlist Austin neighborhoods and get introduced to an Austin agent.",
+          "**3 months out:** Repair, declutter, and book photography for your LA home.",
+          "**2 months out:** List the house and collect mover quotes.",
+          "**1 month out:** Complete escrow paperwork, including Form 593, and schedule movers.",
+          "**After you arrive:** File your homestead exemption with the Travis Central Appraisal District, and mark April 30 on your calendar.",
+        ],
+      },
+
+      { k: "faq" },
+
+      { k: "h2", t: "Your Next Step in Moving From Los Angeles to Austin" },
+      { k: "p", t: "Moving from Los Angeles to Austin works best when you plan the sale first. Your LA home’s value, taxes, and timeline set what you can buy in Texas." },
+      { k: "p", t: "Alexandra has guided relocations in both directions for over a decade. [Plan your relocation](/relocation), [schedule a consultation](/contact), or call [310.795.1440](tel:+13107951440)." },
+    ],
+    faq: [
+      {
+        q: "How long do I have to get a Texas driver license and register my car?",
+        a: "You have 30 days to register your vehicle and 90 days to get a Texas driver license from the Department of Public Safety. Bring proof of insurance and your title.",
+      },
+      {
+        q: "Can I keep my LA home as a rental after I move?",
+        a: "Yes, but it has tax consequences. Years as a rental can reduce your home sale exclusion, and California still taxes income from California property. Los Angeles also has tenant rules, so plan for a local property manager.",
+      },
+      {
+        q: "Will California still tax me after I move?",
+        a: "California taxes residents on all income and nonresidents on California-source income. The state looks at where your home, family, license, and voter registration are. Keep records of your move date and speak with a CPA.",
+      },
+      {
+        q: "How do I choose an Austin agent from out of state?",
+        a: "Ask for sales in your price range and neighborhoods, and check the license on the Texas Real Estate Commission website. Alexandra connects clients with vetted agents through her nationwide network.",
+      },
+      {
+        q: "Should I buy in Austin before I visit in person?",
+        a: "Use video tours to shortlist, then fly in for three or four days. Visit each area at rush hour and on a weekend, because commute and noise vary a lot by street.",
+      },
+    ],
+  },
+  {
     slug: "luxury-real-estate-for-sale-sunset-strip",
     title: "Luxury Real Estate for Sale on the Sunset Strip",
     seoTitle: "Luxury Real Estate for Sale on the Sunset Strip",
