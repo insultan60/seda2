@@ -647,6 +647,10 @@ export const AREA_PAGES: Record<string, AreaCopy> = {
 
   "sunset-strip": {
     name: "Sunset Strip",
+    reading: {
+      label: "Read the guide: Luxury Real Estate for Sale on the Sunset Strip",
+      href: "/journal/luxury-real-estate-for-sale-sunset-strip",
+    },
     title: "Sunset Strip Real Estate Agent & Homes for Sale | Compass",
     description:
       "Sunset Strip real estate agent Alexandra Kerr of Compass guides buyers and sellers through West Hollywood condos and homes. See listings and the guide.",

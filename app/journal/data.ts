@@ -52,6 +52,157 @@ export type Post = {
 // Newest first. `img` values are stock placeholders pending the real article art.
 export const POSTS: Post[] = [
   {
+    slug: "luxury-real-estate-for-sale-sunset-strip",
+    title: "Luxury Real Estate for Sale on the Sunset Strip",
+    seoTitle: "Luxury Real Estate for Sale on the Sunset Strip",
+    description:
+      "Browse luxury real estate for sale on the Sunset Strip. See prices, neighborhoods, and what to check before you buy, from LA agent Alexandra Kerr.",
+    date: "October 29, 2026",
+    iso: "2026-10-29",
+    tag: "Buying",
+    excerpt:
+      "Luxury real estate for sale on the Sunset Strip starts near $3 million for a condo and climbs past $20 million for a hillside estate. The price depends less on square footage than on the street, the view, and the city the address sits in. This guide shows what each price level buys and what to check before you make an offer.",
+    img: "/assets/listings/representative-sunset-strip.jpg",
+    imgAlt: "Modern luxury home with palm trees in the hills above the Sunset Strip",
+    body: [
+      { k: "h2", t: "What Luxury Real Estate for Sale on the Sunset Strip Costs" },
+      { k: "p", t: "The Sunset Strip is the stretch of Sunset Boulevard that runs about a mile and a half through West Hollywood. Most luxury buyers are really shopping the hills above it. Those hills hold very different kinds of homes, so a single “average price” does not help much." },
+      { k: "p", t: "Public listing sites show the gap. Redfin’s luxury filter for the area reports a median list price near $1.14 million, but that number includes condos and smaller units. The Sunset Strip luxury homes most buyers picture sell in a different market." },
+      { k: "p", t: "Here is a rough guide to asking prices on public listing sites at the time of writing." },
+      {
+        k: "table",
+        head: ["Property type", "Typical asking range", "What drives the price"],
+        rows: [
+          ["Condos on Sunset Boulevard and Doheny Road", "About $3M to $5M, with penthouses above $10M", "Building, floor, views, and amenities"],
+          ["Hillside homes on the lower streets", "About $3.9M to $5.1M", "Lot, view, and condition"],
+          ["Homes on Sunset Plaza Drive", "About $7.5M to $10M", "View, privacy, and design"],
+          ["Bird Streets and Doheny Estates", "About $11M to $20M and up", "Views, new construction, and the lot"],
+        ],
+      },
+      { k: "p", t: "Source: asking prices on Redfin, Forbes Global Properties, and Nest Seekers. Prices change often, so ask for sold data on the street you like." },
+      { k: "p", t: "Two homes of the same size can sit millions apart. A wide view and a flat building area can outweigh extra bedrooms. That is why Alexandra compares sales on the same street, not the same ZIP code." },
+
+      { k: "h2", t: "Sunset Strip Luxury Neighborhoods, Street by Street" },
+      { k: "p", t: "Each pocket above the Strip has its own price level and feel. Here is how the main ones differ." },
+      { k: "h3", t: "Sunset Plaza" },
+      { k: "p", t: "Sunset Plaza sits just above the Strip’s shops and restaurants. It borders the Bird Streets and Doheny Estates to the west and Laurel Canyon to the north and east." },
+      { k: "p", t: "Buyers searching for Sunset Plaza homes for sale get city views and a short drive to dinner. Homes on Sunset Plaza Drive itself often list between about $7.5 million and $10 million." },
+      { k: "h3", t: "The Bird Streets" },
+      { k: "p", t: "The Bird Streets are a small group of winding roads between Beverly Hills and Sunset Plaza Drive. Many carry bird names, such as Blue Jay Way, Oriole Way, and Nightingale Drive. Their jetliner views can stretch from downtown Los Angeles to the Pacific Ocean and Catalina Island." },
+      { k: "p", t: "Supply is tight, and new architect-designed homes often set the top prices. Bird Streets homes for sale come up rarely, so listing alerts matter." },
+      { k: "h3", t: "Doheny Estates" },
+      { k: "p", t: "Doheny Estates is a section of the Bird Streets area, but the two names are not the same. It has only five streets: North Doheny Drive above Kinglet Drive, Robin Drive, Nightingale Drive, Swallow Drive, and Marcheeta Place." },
+      { k: "p", t: "According to Ruby Home, it sits in ZIP code 90069 and borders Trousdale Estates and La Collina Estates in Beverly Hills. Agents often use the two names as if they mean the same thing, so ask which street a listing is on." },
+      { k: "h3", t: "Condo Buildings on Sunset Boulevard and Doheny Road" },
+      { k: "p", t: "Not every buyer wants a hillside lot. Luxury condos on the Sunset Strip, including buildings at 9040 W Sunset Boulevard and 9255 Doheny Road, offer lock-and-leave living, and many include doorman service and shared amenities." },
+      { k: "p", t: "Penthouses at 9040 W Sunset Boulevard have listed above $10 million. Before you offer, ask for the HOA budget and the reserve study." },
+
+      { k: "h2", t: "West Hollywood or City of Los Angeles? Why the Address Matters" },
+      { k: "p", t: "Two homes on the same hillside can fall under different city governments. Some addresses near the Strip and in ZIP code 90069 sit in the City of West Hollywood, while many hillside homes sit in the City of Los Angeles. Listing sites often label the same area either way." },
+      { k: "p", t: "The city decides which planning and building office reviews your permits. It also changes which local taxes apply. For example, the Measure ULA transfer tax applies to high-value sales above a set threshold inside the City of Los Angeles, which was about $5.4 million at the time of writing." },
+      { k: "p", t: "The seller usually pays that tax, but it can still shape pricing and negotiation. Confirm the current rates with your escrow officer." },
+      { k: "p", t: "Look up the address on [ZIMAS](https://zimas.lacity.org/), the City of Los Angeles zoning map, and ask your title company to confirm the city before you tour." },
+
+      { k: "h2", t: "What You Pay For: View, Lot, and Access" },
+      { k: "p", t: "Luxury buyers on the Strip pay most for four things." },
+      {
+        k: "ul",
+        items: [
+          "**View.** A wide view of the city, the ocean, or both carries much of the premium. A view is rarely protected, so ask your agent to check the title report and see what the neighbors could build.",
+          "**Lot and pad.** A larger, flat building area leaves room for a pool, parking, and future changes. A tight pad limits all three.",
+          "**Access and privacy.** Gated or drive-on entry, a wider road, and screening from the street all add value.",
+          "**Condition and design.** New homes by known architects sell at a premium. Older homes may be priced close to the value of the land.",
+        ],
+      },
+      { k: "p", t: "In practice, a buyer who compares only bedrooms and square feet will miss most of what sets the price. The best comparison is a recent sale with a similar view, pad, and road." },
+
+      { k: "h2", t: "Costs Beyond the Purchase Price" },
+      { k: "p", t: "The list price is only the start. Plan for these costs before you shop." },
+      {
+        k: "ul",
+        items: [
+          "**Property tax.** New buyers in the City of Los Angeles pay about 1.2% to 1.25% of the purchase price each year. On a $10 million home, that is roughly $120,000 to $125,000.",
+          "**Financing.** Most purchases at this level need a jumbo loan, which is a loan above the standard limit. Lenders ask for more paperwork and may order a longer appraisal. Test your budget with the [mortgage calculator](https://seda2.idxbroker.com/idx/mortgage).",
+          "**HOA dues.** Condo owners pay monthly dues, and some buildings add special assessments for big repairs.",
+          "**Insurance.** Coverage can be hard to find in high fire zones. Get written quotes before you remove contingencies.",
+        ],
+      },
+      { k: "p", t: "This article gives general numbers, not tax or financial advice. Your lender and tax advisor can run the figures for your own purchase." },
+
+      { k: "h2", t: "Checks Specific to the Sunset Strip" },
+      { k: "p", t: "Our guides on [buying a hillside home](/journal/buying-a-hillside-home-in-the-hollywood-hills) and [what to know before buying in the Hollywood Hills](/journal/5-things-to-know-before-buying-a-hollywood-hills-home) cover slope, soil, fire zones, and insurance in detail. These are the extra checks that matter most near the Strip itself." },
+      {
+        k: "ul",
+        items: [
+          "**Neighbor plans.** Look for nearby construction that could block a view or add noise for a year or more.",
+          "**Noise and traffic.** Homes close to Sunset Boulevard can hear nightlife and traffic, while the upper streets are much quieter. Visit at night and on a weekend before you decide.",
+          "**Builder and history.** For a new or recently rebuilt home, ask who built it, when, and what warranty comes with it. Also ask for the sale history.",
+          "**Condo documents.** Read the board minutes, the reserve fund, and any pending lawsuits before you offer.",
+        ],
+      },
+
+      { k: "h2", t: "Private Exclusives and Off-Market Homes" },
+      { k: "p", t: "Some luxury homes on the Sunset Strip sell quietly before they reach a public listing site. Owners who value privacy often test the market with a small group of agents first." },
+      { k: "p", t: "Alexandra shows private exclusives and off-market homes through Compass, often before they reach the MLS. To compete, keep proof of funds or a lender letter ready, since sellers often ask for it before a showing. You can also set up [new listing alerts](https://seda2.idxbroker.com/idx/usersignup) to see fresh MLS listings as they appear." },
+
+      { k: "h2", t: "How to Buy a Luxury Home on the Sunset Strip, Step by Step" },
+      {
+        k: "ol",
+        items: [
+          "**Set your budget and property type.** Decide between a condo, a hillside house, or a Bird Streets estate.",
+          "**Get a lender letter or proof of funds.** Sellers at this level expect it.",
+          "**Pick two or three streets.** Use the neighborhood sections above to narrow your search.",
+          "**Tour in person, in daylight and at night.** Out-of-state buyers can start with video tours.",
+          "**Compare recent sales on the same street.** Adjust for view, pad, and condition.",
+          "**Write the offer with enough time for reports.** Set contingency periods so specialist findings arrive before you remove them.",
+          "**Finish inspections, review documents, and close.** Many financed purchases close in about 30 days.",
+        ],
+      },
+
+      { k: "h2", t: "Why Buy With Alexandra Kerr" },
+      { k: "p", t: "Alexandra Kerr is a REALTOR, Estates Director, and Senior Real Estate Specialist at Compass. She has 13 years in Los Angeles real estate, 179 homes sold, and $184 million in total sales. Her work has been recognized by RealTrends and Los Angeles Magazine." },
+      { k: "p", t: "Her focus is homes with history, character, and distinctive architecture. For Sunset Strip buyers, that means four things:" },
+      {
+        k: "ul",
+        items: [
+          "She reads permit and property records with you before an offer is written.",
+          "She pulls recent sales on the same street, so your offer fits the block.",
+          "She shows private exclusives and off-market homes through Compass.",
+          "She runs video tours and digital signing for buyers who live out of state.",
+        ],
+      },
+      { k: "p", t: "[Learn more about Alexandra](/about) or [see her portfolio](/properties)." },
+
+      { k: "faq" },
+
+      { k: "h2", t: "Your Next Step in Sunset Strip Luxury Real Estate" },
+      { k: "p", t: "Luxury real estate for sale on the Sunset Strip favors buyers who study the street before the house. The right address, city, and lot matter as much as the finishes. Start by setting up listing alerts, then pick two streets and book a private tour." },
+      { k: "p", t: "Ready to talk through a home? Browse the [home search](/home-search), read the [Sunset Strip neighborhood guide](/neighborhoods/sunset-strip), [schedule a consultation](/contact), or call Alexandra at [310.795.1440](tel:+13107951440)." },
+    ],
+    faq: [
+      {
+        q: "Can international buyers purchase luxury real estate on the Sunset Strip?",
+        a: "Yes. California does not require buyers to be U.S. citizens. International buyers should expect to show proof of funds and should ask a tax advisor about U.S. tax and estate rules before they buy.",
+      },
+      {
+        q: "Can I rent out a luxury home on the Sunset Strip?",
+        a: "Long-term leasing is common. Public listing sites show asking rents from about $30,000 to more than $100,000 a month for larger homes. Short-term rentals face tighter rules, and those rules differ between the City of Los Angeles and West Hollywood, so check them before you count on rental income.",
+      },
+      {
+        q: "Are luxury homes on the Sunset Strip a good investment?",
+        a: "Limited supply supports demand, but no one can promise future prices. Carrying costs are high, and values can move with interest rates and the wider market. Ask for sold data on your exact street and speak with a financial advisor.",
+      },
+      {
+        q: "How long does it take to close on a luxury home here?",
+        a: "A cash purchase can close in as little as two to three weeks if the seller agrees. A financed purchase usually takes about 30 days or longer. Confirm the timeline with your lender before you offer.",
+      },
+      {
+        q: "Should I hold title in a trust or an LLC?",
+        a: "Many luxury buyers do, mainly for privacy. It can affect financing, property tax reassessment, and transfer tax, so the right choice depends on your situation. Ask a real estate attorney and a CPA before you sign.",
+      },
+    ],
+  },
+  {
     slug: "5-things-to-know-before-buying-a-hollywood-hills-home",
     title: "5 Things to Know Before Buying a Hollywood Hills Home",
     seoTitle: "5 Things to Know Before Buying a Hollywood Hills Home",
