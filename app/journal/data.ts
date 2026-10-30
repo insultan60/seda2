@@ -52,6 +52,134 @@ export type Post = {
 // Newest first. `img` values are stock placeholders pending the real article art.
 export const POSTS: Post[] = [
   {
+    slug: "moving-from-los-angeles-to-nashville",
+    title: "Moving From Los Angeles to Nashville: Costs, Taxes, Homes",
+    seoTitle: "Moving From Los Angeles to Nashville: Costs, Taxes, Homes",
+    description:
+      "Moving from Los Angeles to Nashville? Compare home prices, taxes, winters, and moving costs, plus how to sell your LA home first. By Alexandra Kerr.",
+    date: "October 31, 2026",
+    iso: "2026-10-31",
+    tag: "Relocation",
+    excerpt:
+      "The median home in the Los Angeles metro area sold for about $860,000 in April 2026. In Nashville, the median that month was about $475,000. That gap explains much of the pull behind moving from Los Angeles to Nashville, but the move also brings real winters, higher sales tax, and a property tax system with no Prop 13 protection.",
+    img: "/journal/nashville-skyline-cumberland-river.jpg",
+    imgAlt: "Downtown Nashville skyline at sunset over the Cumberland River",
+    body: [
+      { k: "p", t: "This guide covers costs, taxes, neighborhoods, and how to sell your Los Angeles home before you leave." },
+
+      { k: "h2", t: "Is Moving From Los Angeles to Nashville Worth It?" },
+      { k: "p", t: "For many owners, yes. The savings are real, but the tax and weather trade-offs are different from what most people expect." },
+      {
+        k: "table",
+        head: ["", "Los Angeles", "Nashville"],
+        rows: [
+          ["Median home price", "About $860,000 (metro, April 2026)", "About $475,000 (metro, April 2026)"],
+          ["State income tax", "Up to 13.3%", "None on wages"],
+          ["Property tax", "About 1.2% to 1.25% for new buyers in the city", "Roughly 0.7% to 0.9% effective rate in Davidson County"],
+          ["Weather", "Typically 46 to 84 degrees, about 16 inches of rain", "Typically 27 to 89 degrees, about 49 inches of rain, 4 inches of snow"],
+          ["Distance", "About 2,000 miles to Nashville by road", "About 2,000 miles to Los Angeles by road"],
+        ],
+      },
+      { k: "p", t: "Nashville figures vary by source. Greater Nashville Realtors reported a median single-family price of about $537,000 across nine counties in June 2026, so use the number that matches the area you plan to buy in." },
+
+      { k: "h2", t: "Cost of Living in Los Angeles vs Nashville" },
+      { k: "h3", t: "Housing and Rent" },
+      { k: "p", t: "Nashville prices have flattened. The metro median in April 2026 was about 1% above a year earlier and just under the October 2025 peak of $485,000. Local brokers also report rising inventory, which gives buyers more room to negotiate than they had in 2021 and 2022." },
+      { k: "p", t: "One moving-industry comparison puts monthly basics for a single person at about $3,100 in Nashville versus $5,800 in Los Angeles, and $8,400 versus $12,700 for a family of four. If you are unsure which area fits, renting for the first few months is a low-risk way to learn the city." },
+      { k: "h3", t: "Income, Sales, and Property Tax" },
+      { k: "p", t: "Tennessee has no state income tax on wages, and the Hall Income Tax on interest and dividends ended in 2021. California’s rates run as high as 13.3%." },
+      { k: "p", t: "Tennessee makes up for that with sales tax. Nashville’s combined rate runs from 9.25% to 9.75% depending on location, so big purchases cost more than you may expect." },
+      { k: "p", t: "Property tax rates are low, with effective rates around 0.7% to 0.9% in Davidson County, but there is no Prop 13. The county reappraises every four years, and the 2025 reappraisal raised the median value by 45%. State law forces the rate down after a reappraisal, but the Metro Council can raise it again, and it did." },
+      { k: "p", t: "In Los Angeles, Prop 13 limits how fast assessments rise, though new buyers in the city still pay about 1.2% to 1.25% of the purchase price. The dollar bill in Nashville can be lower, but it is less predictable." },
+      { k: "h3", t: "Insurance and Budgeting" },
+      { k: "p", t: "Get written homeowners insurance quotes before you make an offer, and ask about storm and wind deductibles. Budget for both heating and air conditioning, since Nashville needs each." },
+
+      { k: "h2", t: "What Your Los Angeles Home Equity Buys in Nashville" },
+      { k: "p", t: "Say you sell a home for $3 million. Before the mortgage payoff, taxes, and selling costs, that would cover a median Green Hills home, which sold for about $1.385 million over the 12 months through June 2026, with well over $1.5 million left." },
+      { k: "p", t: "A median Belle Meade home would take most of it, since one 2026 market report puts that median near $2.85 million. Franklin and Brentwood offer more land and newer homes, with medians of about $813,000 and $1.275 million." },
+      { k: "p", t: "Neighborhood medians swing widely by source, so compare sold prices on the specific streets you like." },
+
+      { k: "h2", t: "Nashville Neighborhoods for Los Angeles Buyers" },
+      { k: "p", t: "No Nashville neighborhood matches an LA one exactly. These pairings are based on feel, so treat them as a starting point." },
+      {
+        k: "ul",
+        items: [
+          "**Silver Lake and Echo Park to East Nashville.** Artists, musicians, and food people. Prices run from about $400,000 to $630,000 and up.",
+          "**Los Feliz to 12 South and Hillsboro Village.** Walkable streets, boutiques, and restaurants between Belle Meade and downtown. 12 South runs about $600,000 to $900,000 and up.",
+          "**Hancock Park and Windsor Square to Belle Meade.** Established streets, large lots, and a prime-address reputation, at prices well above the other areas.",
+          "**Hollywood Hills and the Sunset Strip to Forest Hills and Green Hills.** More wooded and private. One report puts Forest Hills medians above $1.85 million.",
+          "**Families to Franklin and Brentwood.** Williamson County suburbs with larger lots and strong school reputations.",
+        ],
+      },
+      { k: "p", t: "Nashville has no ocean and no mountains. Expect rolling hills, rivers, and lakes instead, and views that are pleasant but not like the Hollywood Hills." },
+      { k: "p", t: "Alexandra’s LA neighborhood guides can help you describe what you like about your current area: [Los Feliz](/neighborhoods/los-feliz), [Silver Lake](/neighborhoods/silver-lake), [Hancock Park](/neighborhoods/hancock-park), and [Hollywood Hills](/neighborhoods/hollywood-hills). That gives a Nashville agent a clear brief." },
+
+      { k: "h2", t: "How to Sell Your Los Angeles Home Before You Move" },
+      { k: "h3", t: "Sell First or Buy First" },
+      { k: "p", t: "Some older advice told Nashville movers to buy first because both markets favored sellers. That has changed. Nashville inventory has been climbing and buyers have more room to negotiate, so selling first is a safer default." },
+      { k: "p", t: "If you do buy first, you carry two homes until the LA sale closes. Confirm any bridge loan or home equity line with your lender before you commit." },
+      { k: "p", t: "Alexandra runs sales for departing owners. She prepares, markets, and sells the LA home while you settle in Tennessee, and escrow runs without a return trip. [Compass Concierge](/compass-concierge) can cover prep costs such as repairs and staging, and you repay them at closing." },
+      { k: "h3", t: "Capital Gains and Measure ULA" },
+      { k: "p", t: "Federal tax rules help most sellers. You can exclude up to $250,000 of gain on your main home, or $500,000 on a joint return, if you owned and lived in it for two of the last five years. Those years do not have to be consecutive, so moving first often still qualifies. Our [Austin relocation guide](/journal/moving-from-los-angeles-to-austin) covers these tax rules in more depth." },
+      { k: "p", t: "California taxes gains at its regular rates, up to 13.3%, and buyers must withhold 3 1/3% of the sale price unless the seller qualifies for an exemption. File Form 593 before closing if you do, and ask your escrow officer to walk you through it." },
+      { k: "p", t: "If your home is in the City of Los Angeles and sells for more than $5.4 million, Measure ULA applies. For closings after June 30, 2026, the rate is 4% up to $10.9 million and 5.5% above that, charged on the full price. The seller typically pays it." },
+      { k: "p", t: "This is general information, not tax or legal advice. Talk to a CPA before you list." },
+      { k: "h3", t: "Selling From Out of State" },
+      { k: "p", t: "You do not need to be in Los Angeles to close. Alexandra uses video walkthroughs and digital signing, and her vendors handle photography, staging, and repairs. Start with a [home valuation](/home-valuation) so you know your number before you set a timeline." },
+
+      { k: "h2", t: "What Changes: Four Seasons, Humidity, Ice, and Daily Life" },
+      { k: "p", t: "Nashville has four seasons. Typical temperatures run from about 27 to 89 degrees, compared with roughly 46 to 84 in Los Angeles, and the city gets about 49 inches of rain a year against about 16 in LA. Fall color arrives from mid-October to mid-November." },
+      { k: "p", t: "Snow averages only about 4 inches a year, but ice is the bigger risk. Winter Storm Fern in January 2026 knocked out power to about 230,000 customers at its peak, the largest single outage in the local utility’s history. Ask about generators, tree cover, and power line routes when you tour homes." },
+      { k: "p", t: "Spring brings severe thunderstorms, so ask any seller about past storm damage. You will still want a car, though walkable pockets like 12 South, Germantown, and The Gulch let you drive less. Music runs through daily life, from the Grand Ole Opry to small clubs on any given night." },
+
+      { k: "h2", t: "Moving Costs and Logistics for a 2,000-Mile Move" },
+      { k: "p", t: "Full-service movers charge about $3,800 to $8,800 for a two or three-bedroom home on this route, based on 2026 data. The trip covers roughly 2,000 miles, and one estimate puts transit at six to 17 days." },
+      { k: "p", t: "Containers and rental trucks usually cost less but need more work from you. With a self-moving service like U-Pack, you pack, load, and unload while the company handles the driving." },
+      { k: "p", t: "Spring and fall are the busiest moving seasons, so winter can cost less. Weigh that savings against winter weather along the route, which can delay trucks. Get at least three written quotes and confirm insurance, delivery windows, and extra fees." },
+
+      { k: "h2", t: "Moving Timeline, Step by Step" },
+      {
+        k: "ol",
+        items: [
+          "**6 to 8 months out:** Meet with an LA agent about pricing and timing, and with a CPA about gains and residency.",
+          "**4 to 6 months out:** Visit Nashville once, shortlist areas, and get introduced to a Nashville agent.",
+          "**3 months out:** Repair, declutter, and book photography for your LA home.",
+          "**2 months out:** List the house and collect mover quotes.",
+          "**1 month out:** Complete escrow paperwork, including Form 593, schedule movers, and arrange utilities and insurance.",
+          "**After you arrive:** Review your first assessment notice from the Davidson County Assessor and note the appeal deadline.",
+        ],
+      },
+
+      { k: "faq" },
+
+      { k: "h2", t: "Your Next Step in Moving From Los Angeles to Nashville" },
+      { k: "p", t: "Moving from Los Angeles to Nashville works best when you plan the sale first and budget for winter. Your LA home’s value, taxes, and timeline set what you can buy in Tennessee." },
+      { k: "p", t: "Alexandra has guided relocations in both directions for over a decade. [Plan your relocation](/relocation), [schedule a consultation](/contact), or call [310.795.1440](tel:+13107951440). Still comparing cities? Read our guide to [moving from Los Angeles to Austin](/journal/moving-from-los-angeles-to-austin)." },
+    ],
+    faq: [
+      {
+        q: "How long do I have to get a Tennessee driver license and register my car?",
+        a: "Tennessee gives new residents 30 days to get a Tennessee driver license, and you surrender your California license when you apply. You also register the car through your county clerk, generally within 30 days.",
+      },
+      {
+        q: "Can I keep my LA home as a rental after I move?",
+        a: "Yes, but it has tax consequences. Years as a rental can reduce your home sale exclusion, and California still taxes income from California property. Los Angeles also has tenant rules, so plan for a local property manager.",
+      },
+      {
+        q: "Will California still tax me after I move?",
+        a: "California taxes residents on all income and nonresidents on California-source income. The state looks at where your home, family, license, and voter registration are. Keep records of your move date and speak with a CPA.",
+      },
+      {
+        q: "Does Nashville work if I work in entertainment?",
+        a: "It can, but Nashville’s entertainment economy centers on music, not film and TV, and healthcare is a major employer too. Check where your work actually happens before you commit. Remote and flexible roles make the move easier.",
+      },
+      {
+        q: "How do I choose a Nashville agent from out of state?",
+        a: "Ask for recent sales in your price range and target neighborhoods, and verify the license with the Tennessee Real Estate Commission. Alexandra connects clients with vetted agents through her nationwide network.",
+      },
+    ],
+  },
+  {
     slug: "moving-from-los-angeles-to-austin",
     title: "Moving From Los Angeles to Austin: Costs, Taxes, Homes",
     seoTitle: "Moving From Los Angeles to Austin: Costs, Taxes, Homes",
