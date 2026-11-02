@@ -52,6 +52,10 @@ export type AreaCopy = {
 export const AREA_PAGES: Record<string, AreaCopy> = {
   "hancock-park": {
     name: "Hancock Park",
+    reading: {
+      label: "Read the guide: Wealthiest Neighborhoods in Los Angeles",
+      href: "/journal/wealthiest-neighborhoods-in-los-angeles",
+    },
     title: "Hancock Park Real Estate Agent & Homes for Sale | Compass",
     description:
       "Alexandra Kerr is a Hancock Park real estate agent at Compass. Find historic homes for sale and get local advice on preservation rules.",
@@ -198,6 +202,10 @@ export const AREA_PAGES: Record<string, AreaCopy> = {
 
   "silver-lake": {
     name: "Silver Lake",
+    reading: {
+      label: "Read the guide: Mid-Century Modern Homes in Los Angeles",
+      href: "/journal/mid-century-modern-homes-los-angeles",
+    },
     title: "Silver Lake Real Estate Agent & Homes for Sale | Compass",
     description:
       "Alexandra Kerr is a Silver Lake real estate agent at Compass. Find homes for sale near the reservoir, sell with confidence, and get local advice.",
@@ -480,6 +488,10 @@ export const AREA_PAGES: Record<string, AreaCopy> = {
 
   "windsor-square": {
     name: "Windsor Square",
+    reading: {
+      label: "Read the guide: Wealthiest Neighborhoods in Los Angeles",
+      href: "/journal/wealthiest-neighborhoods-in-los-angeles",
+    },
     title: "Windsor Square Real Estate Agent & Homes for Sale | Compass",
     description:
       "Windsor Square real estate agent Alexandra Kerr of Compass helps you buy or sell homes with character. See listings and the neighborhood guide.",

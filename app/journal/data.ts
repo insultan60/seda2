@@ -52,6 +52,331 @@ export type Post = {
 // Newest first. `img` values are stock placeholders pending the real article art.
 export const POSTS: Post[] = [
   {
+    slug: "mid-century-modern-homes-los-angeles",
+    title: "Mid-Century Modern Homes in Los Angeles: A Buyer's Guide",
+    seoTitle: "Mid-Century Modern Homes in Los Angeles: Buyer's Guide",
+    description:
+      "Buying a mid-century modern home in Los Angeles? Learn the architects, best neighborhoods, inspection red flags and historic rules from a local agent.",
+    date: "November 2, 2026",
+    iso: "2026-11-02",
+    tag: "Buying",
+    excerpt:
+      "Mid-century modern homes in Los Angeles were built roughly between 1945 and 1970, with flat or low roofs, walls of glass and open floor plans. The best known sit in the Hollywood Hills, Silver Lake, Los Feliz and Mar Vista, and many were designed by architects like John Lautner, Pierre Koenig and Gregory Ain. This guide shows how to spot an authentic one, what to inspect, and how historic rules and insurance can affect your plans.",
+    img: "/journal/mid-century-modern-home-los-angeles.jpg",
+    imgAlt: "Mid-century modern house with a stone wall, breeze-block screen and palm trees",
+    body: [
+      { k: "p", t: "Figures reflect the latest public data found on October 31, 2026. Each one shows its source and date. This is general information, not financial or legal advice." },
+
+      { k: "h2", t: "What counts as a mid-century modern home?" },
+      { k: "p", t: "A mid-century modern home is a house from about 1945 to 1970 that follows a clear set of design ideas. Look for these traits:" },
+      {
+        k: "ul",
+        items: [
+          "Flat or low-slope roofs with wide overhangs",
+          "Walls of glass and high clerestory windows",
+          "Open floor plans, usually on one level",
+          "Post-and-beam structure, which frees the walls to hold glass",
+          "A link to the outdoors, through patios, courtyards or pools, with natural wood, stone and brick inside",
+        ],
+      },
+      { k: "p", t: "Los Angeles became the center of the style because of its mild climate and the Case Study House Program. The program, run by Arts & Architecture magazine from 1945 to 1966, asked architects to design modern homes for the postwar era." },
+      { k: "h3", t: "How can you tell an authentic one from a remodel?" },
+      { k: "p", t: "Start with the paperwork. Ask who designed the house, whether the original plans exist, and what the permit history shows." },
+      { k: "p", t: "Then look at the house itself. Original clerestory windows, built-in cabinets and exposed beams are good signs. A house built last year in a mid-century style is a modern home, not a mid-century one, and an older house with a chopped-up floor plan has lost part of what buyers pay for." },
+
+      { k: "h2", t: "Who designed the best mid-century modern homes in Los Angeles?" },
+      { k: "p", t: "A handful of architects shaped the style in Los Angeles, and their houses still define neighborhoods like Silver Lake and the Hollywood Hills." },
+      {
+        k: "table",
+        head: ["Architect", "Known for", "Where to look"],
+        rows: [
+          ["John Lautner", "Sculptural houses such as Silvertop (1957), the Chemosphere (1960) and the Garcia House (1962)", "Silver Lake and the Hollywood Hills"],
+          ["Pierre Koenig", "Steel-and-glass Case Study Houses, including the Stahl House (1960)", "Hollywood Hills (Woods Drive)"],
+          ["Richard Neutra", "The Neutra Colony (1948 to 1961) and the VDL Research House", "Silver Lake (Silver Lake Blvd, Neutra Place, Earl St)"],
+          ["Gregory Ain", "Affordable modern housing, including the Mar Vista Tract (1948) and Avenel Cooperative Housing", "Mar Vista and Silver Lake"],
+        ],
+      },
+      { k: "p", t: "Most of these are private homes, so view them respectfully from the street. Houses by these architects reach the market only occasionally, which is why alerts and agent relationships matter." },
+      { k: "h3", t: "Are Richard Neutra homes for sale mid-century?" },
+      { k: "p", t: "Some are, and some are not. Neutra's career began before the mid-century period, and his Lovell Health House in Los Feliz dates to 1929." },
+      { k: "p", t: "When you search for Richard Neutra homes for sale, check the year first. A 1929 house and a 1950s house need different inspections and may follow different rules." },
+      { k: "h3", t: "What about John Lautner homes in Los Angeles?" },
+      { k: "p", t: "John Lautner homes tend to be bold, sculptural and tied closely to their sites. Silvertop overlooks the Silver Lake reservoir, and the Chemosphere sits on a steep Hollywood Hills slope." },
+      { k: "p", t: "Because the structures are unusual, buyers should expect specialist inspections, and an engineer familiar with the architect's work is worth hiring." },
+
+      { k: "h2", t: "What makes a home architecturally significant?" },
+      { k: "p", t: "Architecturally significant homes share at least one of these traits:" },
+      {
+        k: "ul",
+        items: [
+          "They were designed by a recognized architect",
+          "They show a style or period in a clear, well-preserved way",
+          "They keep their original features, plans and materials",
+          "They hold an official status, such as Historic-Cultural Monument, a Historic Preservation Overlay Zone (HPOZ) or the National Register of Historic Places",
+        ],
+      },
+      { k: "p", t: "The Stahl House shows how the levels stack up. The City of Los Angeles named it a Historic-Cultural Monument in 1999, and it joined the National Register of Historic Places in 2013." },
+
+      { k: "h2", t: "Where are the best neighborhoods for mid-century modern homes?" },
+      { k: "p", t: "Four areas stand out, and each one buys you something different." },
+      {
+        k: "ul",
+        items: [
+          "**Hollywood Hills.** The Stahl House and the Chemosphere are here, and glass houses on steep lots are the signature. Slope, access and insurance decide whether a view house is a good purchase, so read our guides on [what to know before buying a Hollywood Hills home](/journal/5-things-to-know-before-buying-a-hollywood-hills-home) and [buying a hillside home](/journal/buying-a-hillside-home-in-the-hollywood-hills). You can also browse [Hollywood Hills homes for sale](/neighborhoods/hollywood-hills).",
+          "**Silver Lake.** Silvertop, the Neutra Colony and Avenel Cooperative Housing are all here. Hillside lots reward buyers who can read a slope and a permit history, because a charming house can hide an expensive foundation or drainage problem. See [Silver Lake homes for sale](/neighborhoods/silver-lake).",
+          "**Los Feliz.** The neighborhood mixes eras, from Lloyd Wright and Neutra to later modern houses on the same winding streets. Browse [Los Feliz homes for sale](/neighborhoods/los-feliz).",
+          "**Mar Vista.** Gregory Ain designed the 52 homes of the Mar Vista Tract in 1948, marketed as \"Modernique Homes.\" In 2003 it became the city's first post-World War II HPOZ, according to the City of Los Angeles. Alexandra also serves clients in Mar Vista and Echo Park, where a smaller number of mid-century homes sit among older bungalows. See the [full list of areas she covers](/neighborhoods).",
+        ],
+      },
+
+      { k: "h2", t: "What should you inspect before buying a mid-century modern home?" },
+      { k: "p", t: "Plan for specialist checks, because the features buyers love are the same ones that need care. Here is what to look at in order of priority." },
+      { k: "h3", t: "Roof and glass" },
+      { k: "p", t: "Flat and low-slope roofs need steady attention to drainage and flashing. A leak near a large glass wall can cause hidden rot." },
+      { k: "p", t: "Original single-pane glass in metal frames is common. Replacing large fixed windows with efficient glass while keeping the look can be expensive, so get quotes before you offer." },
+      { k: "h3", t: "Structure and systems" },
+      { k: "p", t: "Post-and-beam structures can often be strengthened for earthquakes without changing how the house looks. Ask whether any bracing or retrofit work has been done, and whether it was permitted." },
+      { k: "p", t: "Original heating, wiring and plumbing may still be in place. Some mid-century homes have aluminum wiring, and older finishes can contain asbestos, so ask a licensed inspector to check both." },
+      { k: "h4", t: "Red flags at a showing" },
+      {
+        k: "ul",
+        items: [
+          "Ceiling stains or soft spots near glass and roof edges",
+          "Standing water on a flat roof",
+          "Cracks in a slab floor or in retaining walls",
+          "A floor plan that has been chopped up or enclosed",
+          "New work with no permit papers",
+        ],
+      },
+      { k: "h4", t: "Questions for the seller" },
+      {
+        k: "ul",
+        items: [
+          "Who was the architect or builder, and are original plans available?",
+          "When was the roof last replaced, and by whom?",
+          "Can you share permits and final inspections for additions, decks and walls?",
+          "Has the lot had any drainage, slope or foundation repairs?",
+        ],
+      },
+      { k: "h4", t: "Experts to call" },
+      {
+        k: "ul",
+        items: [
+          "A home inspector for the whole house",
+          "A roofer who works on flat and low-slope roofs",
+          "A structural engineer for beams, walls and retrofits",
+          "A geotechnical engineer for steep lots",
+          "A sewer camera inspector, since the line to the street is usually the owner's job",
+        ],
+      },
+      { k: "p", t: "Buying a mid-century modern home goes best when these checks happen before your contingencies end. Ask your agent to confirm the dates in your contract." },
+
+      { k: "h2", t: "How do historic rules affect a mid-century home?" },
+      { k: "p", t: "Historic status can limit what you change on the outside, and it can also add value. Check the property's status before you plan a remodel." },
+      { k: "p", t: "An HPOZ adds review for exterior changes. The Mar Vista Tract is one example, and a board reviews work there to protect the original design." },
+      { k: "p", t: "A Historic-Cultural Monument or National Register listing adds its own rules and, in some cases, tax options. Some designated homes may qualify for the Mills Act property tax program, so confirm eligibility with the city's Office of Historic Resources before you count on it." },
+      { k: "p", t: "Pull the permit history from the Los Angeles Department of Building and Safety (LADBS) and compare it with what you see. Unpermitted work can slow your loan, your insurance and your resale." },
+
+      { k: "h2", t: "How much do mid-century modern homes cost, and what about insurance?" },
+      { k: "p", t: "Prices swing widely by neighborhood, architect and condition. These snapshots show the area medians, which cover all homes and not only mid-century ones." },
+      {
+        k: "table",
+        head: ["Neighborhood", "Mid-century highlights", "Price snapshot (all home types)"],
+        rows: [
+          ["Hollywood Hills", "Stahl House, Chemosphere, Garcia House", "About $2.9M median list price (Ruby Home MLS data, Oct. 9, 2026)"],
+          ["Los Feliz", "Mix of eras, from 1929 modernism to later glass houses", "About $1.92M typical home value (Zillow, June 2026)"],
+          ["Silver Lake", "Silvertop, Neutra Colony, Avenel Cooperative Housing", "About $1.46M median home value (Trulia, April 2026)"],
+          ["Echo Park", "A smaller set of mid-century homes among older bungalows", "About $1.11M typical home value (Zillow, June 2026)"],
+          ["Mar Vista", "Gregory Ain's Mar Vista Tract, 52 homes from 1948", "No reliable tract median found. Ask for sold prices on the exact street"],
+        ],
+      },
+      { k: "p", t: "An architect-designed house often sells on a different scale than its neighborhood median. Ask for sold prices on the exact street, and for any recent sale of a house by the same architect." },
+      { k: "p", t: "Insurance deserves an early look. Some insurers look closely at roof age, slope and drainage, and hillside homes may sit in a high fire hazard zone. Get a written quote before you remove contingencies." },
+      { k: "p", t: "A standard homeowners policy does not cover earthquake damage. A separate earthquake policy is available, so ask a broker about it when you price your total costs." },
+
+      { k: "h2", t: "What other architecturally significant homes can you buy in Los Angeles?" },
+      { k: "p", t: "Mid-century is only one era. Los Angeles has several others, and each needs different care." },
+      { k: "h3", t: "Lloyd Wright homes in Los Angeles" },
+      { k: "p", t: "Lloyd Wright, the son of Frank Lloyd Wright, designed several Los Feliz houses in the 1920s. His work is far earlier than mid-century, and the houses are often sculptural and heavily detailed. Expect specialist repairs and closer review of any changes." },
+      { k: "h3", t: "Craftsman homes in Los Angeles" },
+      { k: "p", t: "Craftsman homes date mostly from the early 1900s through the 1920s. Look for low-pitched gables, deep eaves, wide porches and built-in cabinets." },
+      { k: "p", t: "Silver Lake and Echo Park have many of them. Wood siding and trim need regular painting and pest care, and hillside lots can hide foundation and drainage problems." },
+      { k: "h3", t: "Spanish Colonial Revival homes in Los Angeles" },
+      { k: "p", t: "Spanish Colonial Revival homes were popular in the 1920s and 1930s. They usually have white stucco walls, red tile roofs and arched doors, and Los Feliz has many on its winding streets." },
+      { k: "p", t: "Check the roof tile, the old plumbing and any additions, since older stucco homes often have layers of past repairs." },
+
+      { k: "h2", t: "Why work with Alexandra Kerr on an architectural home?" },
+      { k: "p", t: "Alexandra Kerr is a REALTOR, Estates Director and Senior Real Estate Specialist at Compass. Her focus is homes with history, character and distinctive architecture, and she has 13 years in Los Angeles real estate, 179 homes sold and $184 million in total sales. [More about Alexandra](/about)." },
+      { k: "p", t: "She reads permit and property records with buyers before an offer is written, and she brings Compass private exclusives and off-market homes to the search. If you own a character home and plan to sell, start with a [home valuation](/home-valuation)." },
+
+      { k: "faq" },
+
+      { k: "h2", t: "Buying a mid-century modern home in Los Angeles" },
+      { k: "p", t: "Mid-century modern homes in Los Angeles reward buyers who check the architect, the permits and the structure before they fall for the view. The same house can be a good purchase or a costly project depending on its roof, its glass and its history." },
+      { k: "p", t: "If you want help finding or evaluating one, [schedule a consultation](/contact), [set up listing alerts](https://seda2.idxbroker.com/idx/usersignup), or call [(310) 795-1440](tel:+13107951440). You can also see which areas rank among the [wealthiest neighborhoods in Los Angeles](/journal/wealthiest-neighborhoods-in-los-angeles) before you narrow your search." },
+    ],
+    faq: [
+      {
+        q: "How do I find out who designed a house?",
+        a: "Start with the permit history at LADBS and ask the listing agent for the original plans. The City of Los Angeles Office of Historic Resources and the Los Angeles Conservancy can also help you check a property's history and status.",
+      },
+      {
+        q: "Will a mid-century home have high utility bills?",
+        a: "It can. Original single-pane glass, thin insulation and older heating systems often cost more to run until they are upgraded. Ask the seller for recent utility bills before you offer.",
+      },
+      {
+        q: "Is it harder to get a loan or appraisal on a one-of-a-kind home?",
+        a: "It can be. Unusual homes have fewer similar sales, so appraisers may struggle to find good comparisons. Tell your lender early that the home is architecturally significant, and use our mortgage calculator to test your budget.",
+      },
+      {
+        q: "Should I buy a restored home or an original one?",
+        a: "A restored home costs more up front and may hide changes, so ask for permits and photos of the work. An original home may need new systems but keeps more of its character. In both cases, the inspection and the permit history matter more than the finish.",
+      },
+    ],
+  },
+  {
+    slug: "wealthiest-neighborhoods-in-los-angeles",
+    title: "Wealthiest Neighborhoods in Los Angeles: Beyond Beverly Hills",
+    seoTitle: "Wealthiest Neighborhoods in Los Angeles: 2026 Price Guide",
+    description:
+      "See the wealthiest and most expensive neighborhoods in Los Angeles, with dated prices, recent sales and tips from a local Compass agent.",
+    date: "November 1, 2026",
+    iso: "2026-11-01",
+    tag: "Buying",
+    excerpt:
+      "The wealthiest neighborhoods in Los Angeles sit on the Westside, where Bel Air, Pacific Palisades and Brentwood lead on income, and Beverly Hills and Holmby Hills lead on price. A second group of buyers skips the biggest lot and pays for architecture, history and a protected street, in places like Los Feliz, Hancock Park and Windsor Square. This guide covers both groups with dated numbers and recent sales, so you can see what each address really costs.",
+    img: "/journal/beverly-hills-sign-beverly-gardens.jpg",
+    imgAlt: "The Beverly Hills sign at Beverly Gardens Park",
+    body: [
+      { k: "p", t: "Figures reflect the latest public data found on October 31, 2026. Each one shows its source and date. This is general information, not financial advice." },
+
+      { k: "h2", t: "Which are the wealthiest neighborhoods in Los Angeles?" },
+      { k: "p", t: "\"Wealthy\" and \"expensive\" are two different questions, and most lists mix them up." },
+      { k: "p", t: "Wealth is usually measured by household income. HomeSnacks' 2025 ranking of City of Los Angeles neighborhoods by median household income put Pacific Palisades first, followed by Bel Air, Beverly Glen and Brentwood." },
+      { k: "p", t: "Price tells a different story. Beverly Hills, Bel Air and Holmby Hills make up the Platinum Triangle, where the largest estates and the highest price tags sit." },
+      { k: "p", t: "The table below puts both groups next to the neighborhoods Alexandra Kerr works in every week. The numbers come from different sources, so read each row as a dated snapshot and not as an exact ranking." },
+      {
+        k: "table",
+        head: ["Neighborhood", "Setting", "What buyers pay for", "Price snapshot"],
+        rows: [
+          ["Beverly Hills (90210)", "Its own city, west of Hollywood", "Estate size, address and privacy", "About $8.85M median list price (Realtor.com, March 2026)"],
+          ["Holmby Hills", "Smallest corner of the Platinum Triangle", "Exclusivity and large lots", "Too few sales for a steady median. Redfin logged two sales in Nov. 2025, with a median of $11.6M"],
+          ["Bel Air", "Hillside estates in the Santa Monica Mountains foothills", "Privacy, views and acreage", "About $4.14M typical home value (Zillow, Sept. 2026)"],
+          ["[Sunset Strip](/neighborhoods/sunset-strip)", "Hillside above the Strip", "View corridor and access", "About $3M for a condo to over $20M for a hillside estate ([Alexandra's Sunset Strip guide](/journal/luxury-real-estate-for-sale-sunset-strip))"],
+          ["[Windsor Square](/neighborhoods/windsor-square)", "Formal, tree-lined blocks", "An established address and privacy", "About $3.28M median sale price (Redfin, Nov. 2025)"],
+          ["Pacific Palisades", "Coastal hills, still recovering from the 2025 fire", "Ocean proximity and lot size", "About $2.97M typical home value (Zillow, Sept. 2026)"],
+          ["[Hollywood Hills](/neighborhoods/hollywood-hills)", "Canyons above the city", "View and quiet", "About $2.9M median list price (Ruby Home MLS data, Oct. 9, 2026)"],
+          ["Brentwood", "Established Westside neighborhood next to Santa Monica", "Privacy and location", "About $2.83M typical home value (Zillow, Sept. 2026)"],
+          ["[Hancock Park](/neighborhoods/hancock-park)", "Flat, wide, tree-lined streets", "Lot size and a protected streetscape", "About $2.0M median sale price (Redfin, Nov. 2025)"],
+          ["[Los Feliz](/neighborhoods/los-feliz)", "Hillside streets below Griffith Park", "Pedigree and privacy", "About $1.92M typical home value (Zillow, June 2026)"],
+        ],
+      },
+      { k: "p", t: "Medians include condos and smaller homes, so they sit well below what the best houses sell for. The sections below show that gap." },
+
+      { k: "h2", t: "What are the most expensive neighborhoods in Los Angeles?" },
+      { k: "p", t: "Beverly Hills, Bel Air and Holmby Hills carry the highest prices in the city. A few coastal pockets in nearby cities go higher on median price." },
+      { k: "h3", t: "Beverly Hills, Bel Air and Holmby Hills" },
+      { k: "p", t: "Bel Air shows two numbers because they measure different things. Zillow's typical home value is about $4.14M, while Realtor.com showed a median list price of about $6.5M in ZIP code 90077 in March 2026. The second number reflects what sellers ask today, and those homes tend to be larger." },
+      { k: "p", t: "Beverly Hills is a separate city with its own rules and school district. Alexandra also serves clients there, along with Brentwood and Santa Monica. See the [full list of areas she covers](/neighborhoods)." },
+      { k: "p", t: "Holmby Hills is the hardest to measure. With only a handful of sales a year, one deal can swing the median, and the $11.6M Redfin figure came from just two sales." },
+      { k: "h3", t: "Brentwood and Pacific Palisades" },
+      { k: "p", t: "Zillow ranks Bel Air, Pacific Palisades and Brentwood as the top three Los Angeles neighborhoods by typical home value. Brentwood is established and steady." },
+      { k: "p", t: "Pacific Palisades needs more context. The January 2025 Palisades Fire destroyed more than 6,800 structures there, and CRE Daily reported in August 2026 that fewer than a third of owners of destroyed homes had rebuilding permits. Average prices had reached about $4M before the fire, so treat today's numbers as a market in recovery." },
+      { k: "p", t: "Anyone looking at a lot or a rebuild there should check permits, utilities and insurance before making an offer." },
+      { k: "h3", t: "Pricey pockets outside the city" },
+      { k: "p", t: "Redfin's metro analysis, using data from October 15, 2025, ranked Manhattan Beach's Hill Section first at a $9.425M median sale price. The Riviera in Pacific Palisades followed at $9.4M." },
+      { k: "p", t: "Calabasas' The Oaks, Malibu's Point Dume and Santa Monica's Regent Square rounded out the top five at roughly $5.5M to $6M. Many of the priciest pockets sit in other cities, which means different taxes, rules and school districts." },
+
+      { k: "h2", t: "Where do buyers pay for character instead of size?" },
+      { k: "p", t: "In Los Feliz, Hancock Park, Windsor Square, the Hollywood Hills and the Sunset Strip, price follows the street, the architecture and the view more than the lot alone." },
+      { k: "p", t: "These medians look modest next to Beverly Hills. They do not show the top of each market, which is where Alexandra's recent sales come in." },
+      { k: "h3", t: "Los Feliz" },
+      { k: "p", t: "Los Feliz sits below Griffith Park, and Lloyd Wright, Neutra and Spanish Colonial homes share the same winding streets. Zillow's $1.92M figure covers every kind of home, so the best houses trade well above it." },
+      { k: "p", t: "Buyers here weigh the pedigree of the house against a steep, private lot. Browse [homes for sale in Los Feliz](/neighborhoods/los-feliz)." },
+      { k: "h3", t: "Hancock Park" },
+      { k: "p", t: "Hancock Park is one of the few areas where the streetscape has been protected for a century. Wide streets and deep lots draw families who want space close to the city." },
+      { k: "p", t: "Ask whether a property sits inside a Historic Preservation Overlay Zone before planning exterior work. Recent sales on McCadden Place closed between $3.65M and $3.75M. See [homes for sale in Hancock Park](/neighborhoods/hancock-park)." },
+      { k: "h3", t: "Windsor Square" },
+      { k: "p", t: "Windsor Square is formal and quiet, and turnover is slow. Many homes sell through relationships before they reach the MLS." },
+      { k: "p", t: "The Windsor Square Association says nearly 90% of its roughly 1,100 homes keep the original street-facing design from the early 1920s. That history is part of what buyers pay for. Alexandra's recent sales on Windsor Boulevard closed at $3.64M and $7.775M. See [homes for sale in Windsor Square](/neighborhoods/windsor-square)." },
+      { k: "h3", t: "Hollywood Hills and Sunset Strip" },
+      { k: "p", t: "The Hollywood Hills had a median list price near $2.9M and an average of about $1,452 per square foot in Ruby Home MLS data on October 9, 2026. Slope, access and insurance matter as much as the view, so read our guides on [what to know before buying a Hollywood Hills home](/journal/5-things-to-know-before-buying-a-hollywood-hills-home) and [buying a hillside home](/journal/buying-a-hillside-home-in-the-hollywood-hills)." },
+      { k: "p", t: "The Sunset Strip sells cantilevered, city-facing homes where price follows the view corridor. Our guide to [luxury real estate on the Sunset Strip](/journal/luxury-real-estate-for-sale-sunset-strip) shows what each price level buys. You can also read more about [Hollywood Hills homes](/neighborhoods/hollywood-hills) and [Sunset Strip homes](/neighborhoods/sunset-strip)." },
+
+      { k: "h2", t: "What do $3.6M to $7.8M homes look like?" },
+      { k: "p", t: "These are recent sales by Alexandra Kerr. The price per square foot is calculated from each sale price and the listed square footage." },
+      {
+        k: "table",
+        head: ["Address", "Beds / baths", "Sq. ft.", "Sale price", "Price per sq. ft."],
+        rows: [
+          ["[414 S Windsor Blvd](/properties/414-s-windsor-blvd)", "4 / 4", "4,235", "$7,775,000", "$1,836"],
+          ["[356 S Rossmore Ave](/properties/356-s-rossmore-ave)", "8 / 6", "5,878", "$6,300,000", "$1,072"],
+          ["[11845 Pacific Ave](/properties/11845-pacific-ave)", "5 / 6", "4,648", "$4,275,000", "$920"],
+          ["[621 N McCadden Pl](/properties/621-n-mccadden-pl)", "4 / 3", "2,678", "$3,750,000", "$1,400"],
+          ["[514 N McCadden Pl](/properties/514-n-mccadden-pl)", "3 / 3", "2,483", "$3,650,000", "$1,470"],
+          ["[206 N Windsor Blvd](/properties/206-n-windsor-blvd)", "3 / 3", "2,813", "$3,639,161", "$1,294"],
+        ],
+      },
+      { k: "p", t: "The price per square foot runs from about $920 to $1,836. Each price reflects a different mix of street, lot, condition and design, which is why a neighborhood median rarely predicts what one house will sell for." },
+
+      { k: "h2", t: "What really sets the price of a luxury home in Los Angeles?" },
+      { k: "p", t: "The street, the view, the lot and the paperwork set the price more than square footage does. Five factors matter most:" },
+      {
+        k: "ol",
+        items: [
+          "**The street.** Two blocks apart can mean a different price, different privacy and different rules.",
+          "**The view corridor.** In the hills and on the Sunset Strip, a protected view is worth more than extra rooms. A neighbor's new build can take it away.",
+          "**Lot and access.** Flat lots in Hancock Park are simpler to expand. Hillside lots bring slopes, retaining walls and drainage to inspect.",
+          "**Permits and overlays.** Unpermitted work can slow a loan, an insurance quote and a resale. In a Historic Preservation Overlay Zone, exterior changes usually need review by the city's Office of Historic Resources.",
+          "**City rules and taxes.** The Measure ULA transfer tax applies to high-value sales inside the City of Los Angeles, while Beverly Hills and Santa Monica follow their own rules. Confirm current thresholds before you list or offer. Our [Hollywood Hills guide](/journal/5-things-to-know-before-buying-a-hollywood-hills-home) covers the tax and insurance details.",
+        ],
+      },
+      { k: "p", t: "Price per square foot rarely tells the full story for the same reasons." },
+
+      { k: "h2", t: "How do you choose between these neighborhoods?" },
+      { k: "p", t: "Start with the price band, then narrow by street. Five steps work for most buyers:" },
+      {
+        k: "ol",
+        items: [
+          "**Use sold prices on the exact street.** A neighborhood median hides the gap between a condo and an estate.",
+          "**Decide how much privacy and lot you need.** Hillside homes offer views, and flat lots offer easier upkeep.",
+          "**Check which city the address sits in.** A Beverly Hills mailing address can fall outside the city limits, so confirm the jurisdiction on the property record.",
+          "**Get an insurance quote and read the permit history.** Do this before you write an offer, especially in fire zones.",
+          "**Ask about off-market homes.** In slow-turnover areas like Windsor Square, private sales often happen before a home reaches the MLS.",
+        ],
+      },
+      { k: "p", t: "Set up [new listing alerts](/home-search) for your top two areas so you hear about homes as they come on the market." },
+
+      { k: "h2", t: "Why work with Alexandra Kerr on a luxury home search?" },
+      { k: "p", t: "Alexandra Kerr is a REALTOR, Estates Director and Senior Real Estate Specialist at Compass. She has 13 years in Los Angeles real estate, 179 homes sold and $184 million in total sales, and her work has been recognized by RealTrends and Los Angeles Magazine." },
+      { k: "p", t: "Her focus is homes with history, character and distinctive architecture. She reads permit and property records with buyers before an offer is written, and she brings Compass private exclusives to the table. If you plan to sell, start with a [home valuation](/home-valuation)." },
+
+      { k: "faq" },
+
+      { k: "h2", t: "Choosing among the wealthiest neighborhoods in Los Angeles" },
+      { k: "p", t: "The wealthiest neighborhoods in Los Angeles are not all priced alike, and the right fit depends on whether you want a famous address, a view or a protected street. Judge any address by sold prices on its own street, not by a neighborhood median." },
+      { k: "p", t: "If you want an honest read on a specific block, [schedule a consultation](/contact) or call [(310) 795-1440](tel:+13107951440)." },
+    ],
+    faq: [
+      {
+        q: "Is Beverly Hills part of the City of Los Angeles?",
+        a: "No. Beverly Hills is its own city, surrounded by Los Angeles. It has its own government, rules and school district, so a home there follows different rules than one in Bel Air or Holmby Hills.",
+      },
+      {
+        q: "How long do luxury homes take to sell in these areas?",
+        a: "It depends on the area and the price. Ruby Home MLS data showed an average of 88 days on the market in the Hollywood Hills on October 9, 2026. Redfin recorded 213 days in Holmby Hills in November 2025, though that came from only two sales.",
+      },
+      {
+        q: "How much is property tax on a $3 million home in Los Angeles?",
+        a: "New buyers pay about 1.2% to 1.25% of the purchase price each year, which is roughly $36,000 to $37,500 on $3 million. Prop 13 then caps yearly growth in assessed value at 2%. A supplemental tax bill usually arrives a few months after closing.",
+      },
+      {
+        q: "Can I buy in one of these neighborhoods from out of state?",
+        a: "Yes. Alexandra works with out-of-state buyers through video tours and digital signing, and local professionals handle inspections in person. Read more on the relocation page.",
+      },
+    ],
+  },
+  {
     slug: "moving-from-los-angeles-to-nashville",
     title: "Moving From Los Angeles to Nashville: Costs, Taxes, Homes",
     seoTitle: "Moving From Los Angeles to Nashville: Costs, Taxes, Homes",

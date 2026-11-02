@@ -261,6 +261,11 @@ export default async function NeighborhoodsPage() {
               quality of the original design often matter more, which is why a local read on the
               block is worth having before you tour.
             </p>
+            <p>
+              For dated prices, recent sales, and the Westside estate markets side by side, read our
+              guide to the <Link href="/journal/wealthiest-neighborhoods-in-los-angeles">wealthiest
+              neighborhoods in Los Angeles</Link>.
+            </p>
           </div>
         </div>
       </section>
