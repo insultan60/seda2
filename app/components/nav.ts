@@ -16,7 +16,6 @@ export type DrawerGroup = { label: string; href?: string; sub: NavLink[] };
  *  and the side menu. From neighborhoods/data.ts, so a new guide appears here
  *  on its own. */
 export const NEIGHBORHOOD_LINKS: NavLink[] = [
-  { t: "All Neighborhoods", href: "/neighborhoods" },
   ...FEATURED.filter((h) => h.page).map((h) => ({ t: h.name, href: h.page as string })),
 ];
 
