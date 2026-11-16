@@ -323,7 +323,7 @@ export default function SearchClient({
             </datalist>
           </div>
 
-          <div className="sbar__tabs" role="radiogroup" aria-label="For sale or for rent">
+          <div className="sbar__tabs" role="radiogroup" aria-label="Buy or rent (full MLS search)">
             {IDX_LISTING_TYPES.map((t) => (
               <button
                 key={t.value}

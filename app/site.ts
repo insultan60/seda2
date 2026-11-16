@@ -85,8 +85,8 @@ export const IDX_MLS_ID = "e025";
 /** Sale vs. rent, as IDX property-type codes (mls/propertytypes/e025):
  *  sfr = Residential (for sale), lse = Lease. */
 export const IDX_LISTING_TYPES = [
-  { value: "sfr", label: "For Sale" },
-  { value: "lse", label: "For Rent" },
+  { value: "sfr", label: "Buy" },
+  { value: "lse", label: "Rent" },
 ] as const;
 
 /** Home types, sent as a_propSubType[]. Every value is a CRMLS sub-type that
