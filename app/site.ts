@@ -92,7 +92,7 @@ export const IDX_LISTING_TYPES = [
 /** Home types, sent as a_propSubType[]. Every value is a CRMLS sub-type that
  *  exists under both Residential and Residential Lease. */
 export const IDX_HOME_TYPES = [
-  { value: "", label: "Any Home Type" },
+  { value: "", label: "Home Type" },
   { value: "Single Family Residence", label: "House" },
   { value: "Condominium", label: "Condo" },
   { value: "Townhouse", label: "Townhouse" },

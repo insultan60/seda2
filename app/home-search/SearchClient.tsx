@@ -355,7 +355,7 @@ export default function SearchClient({
 
           {panel(
             "price",
-            minPrice || maxPrice ? "Price ·" : "Any Price",
+            minPrice || maxPrice ? "Price ·" : "Price",
             <div className="sbar__range-row">
               <div className="sbar__range-field">
                 <label htmlFor="pmin">Min</label>
@@ -380,7 +380,7 @@ export default function SearchClient({
 
           {panel(
             "beds",
-            beds || baths ? `${beds}+ bd, ${baths}+ ba` : "Any Beds, Any Baths",
+            beds || baths ? `${beds}+ bd, ${baths}+ ba` : "Beds & Baths",
             <>
               {([["Beds", beds, setBeds], ["Baths", baths, setBaths]] as const).map(([label, val, set]) => (
                 <div className="sbar__seg-group" key={label}>
@@ -548,6 +548,14 @@ export default function SearchClient({
               </p>
             )}
           </div>
+
+          {results.length > 0 && (
+            <div className="results__cta">
+              <p>That&rsquo;s all of Alexandra&rsquo;s listings</p>
+              <span>See every MLS home that matches your filters.</span>
+              <a className="btn btn--solid-moss" href={mlsUrl}>Search the Full MLS</a>
+            </div>
+          )}
 
           <div className="results__cta">
             <p>Not seeing it here?</p>
