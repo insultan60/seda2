@@ -11,17 +11,30 @@ import {
   type Listing,
 } from "../properties/data";
 import { ALSO_SERVING, FEATURED } from "../neighborhoods/data";
-import { idxResultsUrl } from "../site";
+import { IDX_HOME_TYPES, IDX_LISTING_TYPES, idxResultsUrl } from "../site";
+import { IDX_CITIES } from "./cities";
 
-/** The ZIPs to hand IDX for whatever is in the location box: a neighborhood
- *  name she serves, or any 5-digit ZIP typed in. Empty means "all of the MLS". */
-function zipsFor(query: string): string[] {
-  const q = query.trim().toLowerCase();
-  if (!q) return [];
+const HOODS = [...FEATURED, ...ALSO_SERVING].filter((h) => h.zips?.length);
+const LA_CITY_ID = IDX_CITIES.find(([n]) => n === "Los Angeles")![1];
+
+/** What to hand IDX for whatever is in the location box: any 5-digit ZIP(s)
+ *  typed in, a neighborhood she serves (its ZIPs), or a CRMLS city (its IDX
+ *  city ID). Empty or unrecognised falls back to the City of Los Angeles,
+ *  never the whole statewide MLS. */
+function resolveLocation(query: string): { zips?: string[]; cityIds?: string[]; known: boolean } {
+  const q = query.trim().toLowerCase().replace(/,?\s*(ca|california)$/, "").trim();
+  if (!q) return { cityIds: [LA_CITY_ID], known: true };
   const typed = q.match(/\b9\d{4}\b/g);
-  if (typed) return typed;
-  const hood = [...FEATURED, ...ALSO_SERVING].find((h) => h.name.toLowerCase().includes(q) || q.includes(h.name.toLowerCase()));
-  return hood?.zips ? [...hood.zips] : [];
+  if (typed) return { zips: typed, known: true };
+  const hood =
+    HOODS.find((h) => h.name.toLowerCase() === q) ??
+    HOODS.find((h) => h.name.toLowerCase().includes(q) || q.includes(h.name.toLowerCase()));
+  if (hood) return { zips: [...hood.zips!], known: true };
+  const city =
+    IDX_CITIES.find(([n]) => n.toLowerCase() === q) ??
+    IDX_CITIES.find(([n]) => n.toLowerCase().startsWith(q));
+  if (city) return { cityIds: [city[1]], known: true };
+  return { cityIds: [LA_CITY_ID], known: false };
 }
 
 /* Ported from the static build (f/alexandra-kerr/home-search.html + js/search.js).
@@ -83,6 +96,9 @@ export default function SearchClient({
   const [maxPrice, setMaxPrice] = useState(0);
   const [beds, setBeds] = useState(0);
   const [baths, setBaths] = useState(0);
+  /* MLS-only filters: her own listings are few enough not to need them. */
+  const [listingType, setListingType] = useState<string>("sfr");
+  const [homeType, setHomeType] = useState<string>("");
   const [sort, setSort] = useState<Sort>("Newest");
   const [openPanel, setOpenPanel] = useState<string | null>(null);
   const [view, setView] = useState<"map" | "list">("map");
@@ -121,9 +137,11 @@ export default function SearchClient({
 
   const pinned = results.filter((l) => l.lat != null && l.lng != null);
 
-  /* The same filters, run against the entire MLS on IDX — where visitors can
-     also save the search and get email alerts with an IDX account. */
-  const mlsUrl = idxResultsUrl({ zips: zipsFor(query), minPrice, maxPrice, beds, baths });
+  /* The real search: the same filters run against the entire MLS on IDX,
+     where visitors can also save the search and get email alerts. The map
+     and cards below are only Alexandra's own listings. */
+  const location = resolveLocation(query);
+  const mlsUrl = idxResultsUrl({ ...location, pt: listingType, minPrice, maxPrice, beds, baths, homeType });
 
   /* The static build hardcoded `top: 56px` for the filter bar because its nav
      was a fixed 56px. This project's <Header> is fluid, so measure it instead
@@ -262,14 +280,27 @@ export default function SearchClient({
     </div>
   );
 
-  const priceOptions = [0, 500_000, 1_000_000, 2_000_000, 3_000_000, 5_000_000, 8_000_000];
+  const rent = listingType === "lse";
+  const priceOptions = rent
+    ? [0, 2_000, 3_000, 4_000, 5_000, 7_500, 10_000, 15_000, 25_000]
+    : [0, 500_000, 750_000, 1_000_000, 1_500_000, 2_000_000, 3_000_000, 5_000_000, 8_000_000, 12_000_000];
+  const money = (v: number) =>
+    rent ? `$${v.toLocaleString("en-US")}/mo` : v >= 1_000_000 ? `$${+(v / 1_000_000).toFixed(2)}M` : `$${v / 1000}K`;
+  const switchType = (t: string) => {
+    if (t === listingType) return;
+    // Sale and rent prices are different scales; carrying one over to the
+    // other would silently return nothing.
+    setListingType(t);
+    setMinPrice(0);
+    setMaxPrice(0);
+  };
 
   return (
     /* One screen-high block: the copy above and below it scrolls with the
        page, the bars stay pinned only while the map is in view. */
     <div className="search-app">
       {/* ---------- FILTER BAR ---------- */}
-      <form className="sbar" role="search" aria-label="Property search filters" onSubmit={(e) => e.preventDefault()}>
+      <form className="sbar" role="search" aria-label="Property search filters" onSubmit={(e) => { e.preventDefault(); window.location.assign(mlsUrl); }}>
         <div className="sbar__inner">
           <div className="sbar__location">
             <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
@@ -280,11 +311,31 @@ export default function SearchClient({
             <input
               id="q"
               type="search"
-              placeholder="Location"
+              placeholder="City, neighborhood or ZIP"
               autoComplete="off"
+              list="ak-locations"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
+            <datalist id="ak-locations">
+              {HOODS.map((h) => <option key={`h-${h.name}`} value={h.name} />)}
+              {IDX_CITIES.map(([n]) => <option key={`c-${n}`} value={n} />)}
+            </datalist>
+          </div>
+
+          <div className="sbar__tabs" role="radiogroup" aria-label="For sale or for rent">
+            {IDX_LISTING_TYPES.map((t) => (
+              <button
+                key={t.value}
+                type="button"
+                role="radio"
+                aria-checked={listingType === t.value}
+                className={listingType === t.value ? "is-active" : ""}
+                onClick={() => switchType(t.value)}
+              >
+                {t.label}
+              </button>
+            ))}
           </div>
 
           <div className="sbar__tabs" role="tablist" aria-label="Listing status">
@@ -310,7 +361,7 @@ export default function SearchClient({
                 <label htmlFor="pmin">Min</label>
                 <select id="pmin" value={minPrice} onChange={(e) => setMinPrice(Number(e.target.value))}>
                   {priceOptions.map((v) => (
-                    <option key={v} value={v}>{v ? `$${(v / 1_000_000).toFixed(1)}M` : "No min"}</option>
+                    <option key={v} value={v}>{v ? money(v) : "No min"}</option>
                   ))}
                 </select>
               </div>
@@ -319,7 +370,7 @@ export default function SearchClient({
                 <label htmlFor="pmax">Max</label>
                 <select id="pmax" value={maxPrice} onChange={(e) => setMaxPrice(Number(e.target.value))}>
                   {priceOptions.map((v) => (
-                    <option key={v} value={v}>{v ? `$${(v / 1_000_000).toFixed(1)}M` : "No max"}</option>
+                    <option key={v} value={v}>{v ? money(v) : "No max"}</option>
                   ))}
                 </select>
               </div>
@@ -352,12 +403,18 @@ export default function SearchClient({
             "sbar__dropdown--beds",
           )}
 
-          {/* Was a "Save Search" button that only flipped its own label and
-              saved nothing. Saving a search for real happens on IDX, with an
-              account and email alerts, so the button goes there. */}
-          <a className="sbar__save sbar__save--mls" href={mlsUrl}>
-            Search The MLS
-          </a>
+          <div className="sbar__filter">
+            <label className="sr-only" htmlFor="htype">Home type</label>
+            <select id="htype" className="sbar__btn sbar__select" value={homeType} onChange={(e) => setHomeType(e.target.value)}>
+              {IDX_HOME_TYPES.map((t) => <option key={t.value} value={t.value}>{t.label}</option>)}
+            </select>
+          </div>
+
+          {/* Submits the form: opens the full-MLS results on IDX with every
+              filter above applied. */}
+          <button type="submit" className="sbar__save sbar__save--mls">
+            Search Homes
+          </button>
         </div>
       </form>
 
@@ -393,7 +450,10 @@ export default function SearchClient({
           <span className="rbar__count">
             <strong>{results.length}</strong> results{" "}
             <span className="rbar__note">
-              <span className="rbar__long">· Alexandra&rsquo;s listings · </span>
+              <span className="rbar__long">
+                · Alexandra&rsquo;s listings
+                {!location.known && ` · “${query.trim()}” not recognised, so the MLS search covers Los Angeles`} ·{" "}
+              </span>
               <a href={mlsUrl} className="rbar__mls">
                 <span className="rbar__long">See every home for sale on the MLS</span>
                 <span className="rbar__short">Search the MLS</span>&nbsp;&rarr;

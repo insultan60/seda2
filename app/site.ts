@@ -79,34 +79,56 @@ export const IDX = {
   browseByCity: `${IDX_URL}/idx/searchbycity`,
 } as const;
 
-/** IDX property types for CRMLS (from the API: mls/propertytypes/e025). */
-export const IDX_PROPERTY_TYPES = [
-  { value: "sfr", label: "Homes & Condos for Sale" },
-  { value: "lse", label: "For Lease" },
-  { value: "ri", label: "Income Property" },
-  { value: "ld", label: "Lots & Land" },
+/** CRMLS on IDX Broker (from the API: mls/approvedmls). */
+export const IDX_MLS_ID = "e025";
+
+/** Sale vs. rent, as IDX property-type codes (mls/propertytypes/e025):
+ *  sfr = Residential (for sale), lse = Lease. */
+export const IDX_LISTING_TYPES = [
+  { value: "sfr", label: "For Sale" },
+  { value: "lse", label: "For Rent" },
 ] as const;
 
-/** A link to MLS search results on IDX. Every parameter here was checked
- *  against the live results page: zipcode[] (several allowed), pt, lp/hp
- *  (price range), bd (min beds), tb (min baths). */
+/** Home types, sent as a_propSubType[]. Every value is a CRMLS sub-type that
+ *  exists under both Residential and Residential Lease. */
+export const IDX_HOME_TYPES = [
+  { value: "", label: "Any Home Type" },
+  { value: "Single Family Residence", label: "House" },
+  { value: "Condominium", label: "Condo" },
+  { value: "Townhouse", label: "Townhouse" },
+  { value: "Duplex", label: "Duplex" },
+] as const;
+
+/** A link to full-MLS search results on IDX. Every parameter here was checked
+ *  against the live results page (the "N Listings" count changes with each):
+ *  pt (sfr / lse), ccz=city + city[] (IDX city IDs, app/home-search/cities.ts)
+ *  or ccz=zipcode + zipcode[], lp/hp (price range), bd (min beds), tb (min
+ *  baths), a_propSubType[] (home type), srt (sort). */
 export function idxResultsUrl(f: {
   zips?: readonly string[];
+  cityIds?: readonly string[];
   pt?: string;
   minPrice?: number;
   maxPrice?: number;
   beds?: number;
   baths?: number;
+  homeType?: string;
 }): string {
   const p = new URLSearchParams();
+  p.set("idxID", IDX_MLS_ID);
   p.set("pt", f.pt || "sfr");
   if (f.zips?.length) {
     p.set("ccz", "zipcode");
     for (const z of f.zips) p.append("zipcode[]", z);
+  } else if (f.cityIds?.length) {
+    p.set("ccz", "city");
+    for (const c of f.cityIds) p.append("city[]", c);
   }
   if (f.minPrice) p.set("lp", String(f.minPrice));
   if (f.maxPrice) p.set("hp", String(f.maxPrice));
   if (f.beds) p.set("bd", String(f.beds));
   if (f.baths) p.set("tb", String(f.baths));
+  if (f.homeType) p.append("a_propSubType[]", f.homeType);
+  p.set("srt", "newest");
   return `${IDX.results}?${p.toString()}`;
 }

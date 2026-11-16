@@ -3,11 +3,15 @@ import Link from "next/link";
 import SearchClient from "./SearchClient";
 import FaqSection, { type FaqItem } from "../components/Faq";
 import { getListings } from "../properties/listings";
-import { IDX } from "../site";
+import { IDX, idxResultsUrl } from "../site";
+import { IDX_CITIES } from "./cities";
 import "../components/copy.css";
 import JsonLd from "../components/JsonLd";
 import { HOME_SEARCH } from "../schema";
 import "./search.css";
+
+/* Luxury = the $2M+ tiers below, City of Los Angeles, on the full MLS. */
+const LUXURY_SEARCH = idxResultsUrl({ cityIds: IDX_CITIES.filter(([n]) => n === "Los Angeles").map(([, id]) => id), minPrice: 2_000_000 });
 
 /* Copy from the October 2026 content brief ("Home Search Page Copy"). The
    page targets "luxury homes for sale Los Angeles", with "Los Angeles homes
@@ -193,7 +197,7 @@ export default async function HomeSearchPage({
               you like.
             </p>
             <div className="cp-actions">
-              <a className="btn btn--solid-moss" href={IDX.mapSearch}>Search Luxury Homes</a>
+              <a className="btn btn--solid-moss" href={LUXURY_SEARCH}>Search Luxury Homes</a>
             </div>
           </div>
         </div>

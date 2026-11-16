@@ -389,3 +389,7 @@
 @media (max-width: 1023px) {
   .hs-intro__inner { grid-template-columns: 1fr; align-items: start; }
 }
+
+/* Home-type picker: a native select dressed as the filter buttons. */
+.sbar__select { appearance: none; -webkit-appearance: none; font: inherit; padding-right: 14px; }
+button.sbar__save { font-family: inherit; cursor: pointer; }
