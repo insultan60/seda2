@@ -132,6 +132,66 @@ async function deliver(lead: LeadInput): Promise<boolean> {
   }
 }
 
+/* ── IDX Broker ──────────────────────────────────────────────────────────────
+   Every lead is also created in Alexandra's IDX Broker account (Leads tab), so
+   it lands in her CRM even when email isn't configured. A returning visitor's
+   email already exists in IDX (409); we look that lead up instead. The form
+   details go on the lead as a note. Uses IDX_BROKER_ACCESS_KEY. */
+const IDX = "https://api.idxbroker.com";
+
+async function idx(path: string, init?: RequestInit) {
+  const key = process.env.IDX_BROKER_ACCESS_KEY;
+  if (!key) return null;
+  return fetch(`${IDX}/${path}`, {
+    ...init,
+    headers: { accesskey: key, outputtype: "json", "Content-Type": "application/x-www-form-urlencoded", ...(init?.headers ?? {}) },
+    cache: "no-store",
+    signal: AbortSignal.timeout(15000),
+  });
+}
+
+async function sendToIdx(lead: LeadInput): Promise<boolean> {
+  try {
+    const [firstName, ...rest] = clean(lead.name, 200).split(" ");
+    const form = new URLSearchParams({
+      firstName: firstName || "Website",
+      lastName: rest.join(" ") || "Lead",
+      email: clean(lead.email, 200),
+    });
+    if (clean(lead.phone, 60)) form.set("phone", clean(lead.phone, 60));
+    if (clean(lead.address, 300)) form.set("address", clean(lead.address, 300));
+
+    let id: string | null = null;
+    const res = await idx("leads/lead", { method: "PUT", body: form.toString() });
+    if (!res) return false;
+    if (res.ok) {
+      const j = (await res.json().catch(() => null)) as { newID?: number | string } | null;
+      id = j?.newID != null ? String(j.newID) : null;
+    }
+    if (!id) {
+      const look = await idx(`leads/lead?email=${encodeURIComponent(clean(lead.email, 200))}`);
+      if (look?.ok && look.status !== 204) {
+        const j = (await look.json().catch(() => null)) as { data?: { id: string; email: string }[] } | null;
+        id = j?.data?.find((l) => l.email.toLowerCase() === clean(lead.email, 200).toLowerCase())?.id ?? null;
+      }
+    }
+    if (!id) {
+      console.error(`[lead] IDX did not accept the lead (${res.status}).`);
+      return false;
+    }
+    // The note is a bonus: the lead already exists, so don't fail on it.
+    await idx(`leads/note/${id}`, {
+      method: "PUT",
+      body: new URLSearchParams({ note: `${SUBJECTS[lead.kind]}
+${composeBody(lead)}` }).toString(),
+    }).catch(() => null);
+    return true;
+  } catch (err) {
+    console.error(`[lead] IDX threw: ${String(err)}`);
+    return false;
+  }
+}
+
 export async function submitLead(input: LeadInput): Promise<LeadResult> {
   // Silently accept-and-drop bot submissions: a bot told it failed just retries.
   if (clean(input.company, 100)) return { ok: true, message: "Thank you." };
@@ -150,8 +210,9 @@ export async function submitLead(input: LeadInput): Promise<LeadResult> {
     return { ok: false, message: "Please enter your property address." };
   }
 
-  const sent = await deliver({ ...input, email });
-  if (!sent) return { ok: false, message: FALLBACK };
+  // Email and IDX run side by side; either one landing means the lead is safe.
+  const [mailed, inIdx] = await Promise.all([deliver({ ...input, email }), sendToIdx({ ...input, email })]);
+  if (!mailed && !inIdx) return { ok: false, message: FALLBACK };
 
   const first = clean(input.name, 200).split(" ")[0];
   switch (input.kind) {
