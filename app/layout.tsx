@@ -103,6 +103,17 @@ export default function RootLayout({
             phones). Loaded here because
             the root layout is not remounted on client-side navigation, so the
             widget and the settings a visitor picks survive every route change. */}
+        {/* Google Tag Manager (GTM-M6GZ8FG2) */}
+        <Script
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-M6GZ8FG2"
+          strategy="afterInteractive"
+        />
+        <Script id="gtm-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});`}
+        </Script>
         <Script
           src="https://cdn.jsdelivr.net/npm/sienna-accessibility@2.2.333/dist/sienna-accessibility.umd.js"
           strategy="afterInteractive"
