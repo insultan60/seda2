@@ -36,6 +36,22 @@ export default function ContactForm() {
     });
   };
 
+  if (ok === true) {
+    return (
+      <div className="ck-thanks" role="status" aria-live="polite">
+        <span className="ck-thanks__icon" aria-hidden="true">✓</span>
+        <h3 className="ck-thanks__title">Thank you</h3>
+        <p className="ck-thanks__text">{status}</p>
+        <p className="ck-thanks__text">
+          Need her sooner? Call <a href="tel:+13107951440">(310) 795-1440</a>.
+        </p>
+        <button className="btn btn--outline-moss" type="button" onClick={() => { setOk(null); setStatus(""); }}>
+          Send another message
+        </button>
+      </div>
+    );
+  }
+
   return (
     <form className="ck-form" onSubmit={submit} noValidate>
       <div className="field">

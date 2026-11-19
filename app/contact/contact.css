@@ -65,3 +65,11 @@
 /* A failed send has to look different from a successful one — same element,
    opposite meaning. */
 .ck-form__status.is-error { color: var(--alert); }
+
+/* Shown in place of the form after a successful send. */
+.ck-thanks { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding: 40px 0 8px; }
+.ck-thanks__icon { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: var(--moss); color: #fff; font-size: 26px; }
+.ck-thanks__title { font-family: var(--serif); font-size: 34px; font-weight: 400; margin: 6px 0 0; }
+.ck-thanks__text { margin: 0; line-height: 1.6; }
+.ck-thanks__text a { text-decoration: underline; }
+.ck-thanks .btn { margin-top: 12px; }
