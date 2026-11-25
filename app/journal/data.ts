@@ -52,6 +52,112 @@ export type Post = {
 // Newest first. `img` values are stock placeholders pending the real article art.
 export const POSTS: Post[] = [
   {
+    slug: "moving-to-los-angeles-from-new-york",
+    title: "Moving to Los Angeles From New York: What Changes",
+    seoTitle: "Moving to Los Angeles From New York: Costs & Neighborhoods",
+    description:
+      "Moving to Los Angeles from New York? See what changes, which neighborhoods feel closest to NYC, and what homes cost. Advice from Alexandra Kerr, Compass.",
+    date: "November 26, 2026",
+    iso: "2026-11-26",
+    tag: "Relocation",
+    excerpt:
+      "Moving to Los Angeles from New York usually means trading the subway for a car and an apartment for a house, but it does not always mean a cheaper home. Here is what changes, which neighborhoods feel closest to New York, and what buying looks like, with dated numbers.",
+    img: "/assets/listings/s2-rossmore.jpg",
+    imgAlt: "A tree-lined Los Angeles street near Hancock Park",
+    body: [
+      { k: "p", t: "Moving to Los Angeles from New York usually means trading the subway for a car and an apartment for a house, but it does not always mean a cheaper home. This guide covers what changes, which neighborhoods feel closest to New York, and what buying looks like, with dated numbers. Most of it also applies if you are moving to Los Angeles from another state." },
+
+      { k: "h2", t: "What Changes When You Move to Los Angeles From New York" },
+      { k: "h3", t: "Getting around without the subway" },
+      { k: "p", t: "Walk Score rates Los Angeles 69 for walkability against 88 for New York, and 53 for transit against 89. That gap shows up every day. Metro runs only two subway lines." },
+      { k: "p", t: "In New York, you pick a home near a train. In Los Angeles, you pick one near your work, your freeway and the streets you want to walk." },
+      { k: "p", t: "Test the drive before you fall for a street. Visit at 8 a.m. and again at 5 p.m., because a quiet street at noon can be a long commute." },
+      { k: "h3", t: "Space, parking and the house itself" },
+      { k: "p", t: "Most New Yorkers move from an apartment or co-op into a house. You gain a yard, a garage and room to spread out. You also gain a roof, drains and sometimes a retaining wall, and there is no building super to call." },
+      { k: "p", t: "Older homes need a closer read. Alexandra checks permit history and hillside records before an offer, which our guide to [buying a hillside home in the Hollywood Hills](/journal/buying-a-hillside-home-in-the-hollywood-hills) explains." },
+      { k: "h3", t: "Weather and pace" },
+      { k: "p", t: "Los Angeles gets about 16 inches of rain a year against 44 in New York, and almost no snow against roughly 62 inches. Locals treat a rainy day as an event, so expect cancelled plans." },
+      { k: "p", t: "The pace is looser too. Things run on a more relaxed timetable. Some New Yorkers love that, and others need a few months to adjust." },
+
+      { k: "h2", t: "Los Angeles Neighborhoods That Feel Closest to New York" },
+      { k: "p", t: "No Los Angeles neighborhood matches New York block for block. A few share walkable streets, older buildings and independent shops. One roundup lists Downtown, Silver Lake, Hollywood and Los Feliz among the best known pedestrian-friendly areas." },
+      { k: "p", t: "Downtown and Hollywood are walkable, but their housing leans toward condos and apartments. The areas below suit buyers who want a house." },
+      {
+        k: "table",
+        head: ["Neighborhood", "What feels familiar", "What differs", "Typical value"],
+        rows: [
+          ["[Los Feliz](/neighborhoods/los-feliz)", "Walkable village streets, strong architecture", "Hillside houses, not apartments", "$1,919,869 (Zillow, Jun 2026)"],
+          ["[Silver Lake](/neighborhoods/silver-lake)", "Independent restaurants, reservoir loop", "Steep lots and winding streets", "$1,173,800, ZIP 90026 (Zillow, Jun 2026)"],
+          ["Echo Park", "Lake, cafes, smaller homes", "Fewer luxury houses", "$1,114,759 (Zillow, Jun 2026)"],
+          ["[Hancock Park](/neighborhoods/hancock-park) and [Windsor Square](/neighborhoods/windsor-square)", "Tree-lined blocks, period architecture", "Large lots, car-based, historic rules", "$3.6M to $7.8M, recent sales"],
+        ],
+      },
+      { k: "p", t: "The “familiar” column is Alexandra’s editorial read, not a ranking." },
+      { k: "p", t: "**Los Feliz** is the closest match for people who want to walk to dinner. Time Out calls it the central Los Angeles pocket best experienced on foot. The homes run from Spanish Colonial to Neutra and Lloyd Wright designs, so expect far more space than a one bedroom." },
+      { k: "p", t: "**Silver Lake** offers a walkable core around Sunset Junction, with Craftsman and mid-century houses on the hills. If you love the look of those homes, read our [mid-century buyer’s guide](/journal/mid-century-modern-homes-los-angeles) first. Hillside lots reward buyers who can read a slope and a permit history." },
+      { k: "p", t: "**Hancock Park and Windsor Square** suit buyers who prefer New York’s brownstone blocks to its towers. Larchmont Boulevard’s shops sit close to many streets. Both are historic districts, so exterior work needs review, and many Windsor Square homes sell before they reach the MLS. Our [Mills Act guide](/journal/mills-act-los-angeles) covers those rules." },
+
+      { k: "h2", t: "Cost of Living in Los Angeles vs New York: Renting First or Buying Remotely" },
+      { k: "h3", t: "Is Los Angeles cheaper than New York?" },
+      { k: "p", t: "It depends on what you rent or buy. Zillow puts the typical New York City home at $825,854 as of September 2026, and Manhattan at $1,254,053. Los Angeles sits at $949,479 in data through June 2026." },
+      {
+        k: "table",
+        head: ["Measure", "New York City", "Los Angeles"],
+        rows: [
+          ["Typical home value (Zillow)", "$825,854 (Sep 2026); Manhattan $1,254,053", "$949,479 (through Jun 2026)"],
+          ["Typical rent (Zillow, Oct 2026)", "—", "$2,913 (LA metro)"],
+          ["Sales closing over list price (Zillow, Sep 2026)", "22.3%", "42.3% (LA County)"],
+        ],
+      },
+      { k: "p", t: "Compare like with like. Zillow’s index includes single-family homes, condos and co-ops, so apartments pull New York’s number down. A Los Angeles buyer is mostly buying a house." },
+      { k: "p", t: "The walkable neighborhoods above are not bargains next to Manhattan’s typical value. Los Feliz sits well above it, and Silver Lake and Echo Park sit above Brooklyn’s $962,988. You get more space and a yard for the money, not a lower price." },
+      { k: "p", t: "Costs after closing also differ. A sale resets your assessed value to your purchase price under Prop 13, so you start with a 1% base rate. Many City of Los Angeles bills land near 1.2%, and our [cost of living in Los Angeles guide](/journal/cost-of-living-los-angeles) shows the math." },
+      { k: "p", t: "Insurance needs an early quote, especially on hillside homes. The California FAIR Plan raised rates by an average of 29.1% on October 15, 2026. California’s top state income tax rate is 12.3%, plus 1% on income over $1 million, and New York City residents also pay a city income tax. Compare your own numbers with a CPA." },
+      { k: "h3", t: "Renting first vs buying remotely" },
+      { k: "p", t: "Renting first lets you see streets at rush hour and learn how each area feels. It also means a second move, a second set of costs and a market that does not wait for you." },
+      { k: "p", t: "Buying remotely lets you act on the right home when it appears. The risk is buying a street you have never stood on. A good agent closes that gap with honest video tours and plain answers about the downsides." },
+      { k: "p", t: "A middle path works for many buyers. Book a short furnished stay in the neighborhood you most want to test, then shop with a shortlist already in hand." },
+
+      { k: "h2", t: "How Buying a Home in Los Angeles Differs From New York" },
+      { k: "p", t: "The process changes more than the prices do. These are the four differences New Yorkers notice first." },
+      {
+        k: "ol",
+        items: [
+          "**No board approval.** A co-op purchase in New York runs through a board package and interview. A Los Angeles house has no board, but you will inspect the roof, foundation and sewer line, and review permits.",
+          "**Escrow instead of a closing table.** In New York, buyers usually hire an attorney to handle the closing. In California, a neutral escrow company holds funds and documents, and your agent coordinates the steps.",
+          "**Faster, more competitive offers.** About 42% of LA County sales closed over list in September 2026, against about 22% in New York City. Strategy matters, which is why Alexandra builds offers around comparable sales on the same street.",
+          "**Permit history carries weight.** Unpermitted work can limit what you can change, and it can affect value. Ask for records early.",
+        ],
+      },
+
+      { k: "h2", t: "Moving to Los Angeles From Another State: How a Remote Purchase Works" },
+      { k: "p", t: "Alexandra has guided relocations in both directions for over a decade. As a relocation real estate agent in Los Angeles, she runs the same four steps whether you are crossing the country or crossing a time zone." },
+      {
+        k: "ol",
+        items: [
+          "**Before you fly.** A call about what listing sites cannot tell you, such as the real commute, which streets go quiet at night and where the afternoon light falls. The shortlist starts there.",
+          "**Touring remotely.** Walkthrough video shot on your schedule, with your questions answered ahead of time and honest notes on what photographs flatter.",
+          "**Offer and escrow.** Strategy set against what the home is worth, then inspections, appraisal and digital signing coordinated across time zones.",
+          "**Landing.** Keys, contractors and the small logistics nobody warns you about.",
+        ],
+      },
+      { k: "p", t: "One West Hollywood couple managed a rental and then a sale from out of state and sold over asking within a month. You can read their story and others on the [testimonials page](/testimonials), and see the full process on the [relocation page](/relocation)." },
+
+      { k: "faq" },
+
+      { k: "h2", t: "Plan Your Move to Los Angeles From New York" },
+      { k: "p", t: "Moving to Los Angeles from New York changes how you get around, how you buy and how far your budget stretches. Neighborhood, insurance and your first-year costs matter more than any citywide average." },
+      { k: "p", t: "Alexandra Kerr is an Estates Director at Compass and a relocation real estate agent in Los Angeles with 13 years in the market. Call her at [(310) 795-1440](tel:+13107951440), start on the [relocation page](/relocation), or reach out through the [contact page](/contact). You can also browse the [portfolio](/properties) or start a [home search](/home-search) to see what your budget buys." },
+    ],
+    faq: [
+      { q: "How much does it cost to ship a household from New York to Los Angeles?", a: "Estimates vary by size and date. moveBuddha puts a 2,789 mile move at $1,590 to $6,325, while North American Van Lines reports an average line haul of $3,900. Get at least three quotes." },
+      { q: "Where should I stay while I house hunt?", a: "Choose a furnished short stay or hotel in the neighborhood you most want to test. Living there for a week tells you more than a map will." },
+      { q: "Do I need earthquake insurance?", a: "Standard California homeowners policies typically exclude earthquake damage, so coverage is a separate policy. Ask an insurance agent for a quote before you write an offer." },
+      { q: "When do I become a California tax resident?", a: "It depends on facts such as where you live and where you intend to stay. Talk to a CPA who handles both states. This guide is not tax or legal advice." },
+      { q: "How early should I contact an agent before I fly out?", a: "Before you book flights. The first call shapes your shortlist, and the shortlist decides which neighborhoods you tour." },
+    ],
+  },
+  {
     slug: "cost-of-living-los-angeles",
     title: "Cost of Living in Los Angeles: What You Really Need to Earn",
     seoTitle: "Cost of Living in Los Angeles: What You Need to Earn",
